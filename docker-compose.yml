@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: elvago
+      POSTGRES_PASSWORD: change-me
+      POSTGRES_DB: elvago
+    ports:
+      - "5432:5432"
+    volumes:
+      - elvago_pgdata:/var/lib/postgresql/data
+
+volumes:
+  elvago_pgdata:

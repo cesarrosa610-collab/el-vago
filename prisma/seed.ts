@@ -1,0 +1,27 @@
+import { PrismaClient } from '@prisma/client';
+import bcrypt from 'bcryptjs';
+const p = new PrismaClient();
+async function main(){
+ const hash=await bcrypt.hash('demo123',10);
+ await p.user.upsert({where:{email:'demo@elvago.local'},update:{passwordHash:hash},create:{email:'demo@elvago.local',passwordHash:hash,role:'USER'}});
+ await p.user.upsert({where:{email:'admin@elvago.local'},update:{passwordHash:hash,role:'ADMIN'},create:{email:'admin@elvago.local',passwordHash:hash,role:'ADMIN'}});
+ const cases=[
+ {code:'EV-EXP-001',title:'La Habitación 317',slug:'la-habitacion-317',description:'Una habitación que no debería existir. Una llamada. Una fecha imposible.',conclusionTitle:'La habitación sí existió',conclusion:'Las inconsistencias no fueron un simple error administrativo: alguien alteró los registros para ocultar la existencia de la 317 y conectar el incidente de 1987 con el de 1991.',e:[['E-001','La llamada','02:58:41. Una llamada quedó registrada antes de que el teléfono fuera instalado.',0],['E-002','La puerta','Una puerta marcada con 317 aparece en un plano donde el tercer piso termina en la 316.',1],['E-003','VHS 17/09/1991','Una cinta contiene imágenes de la habitación y una persona que no figura en ningún registro.',2],['E-004','Uniforme de 1987','Una prenda encontrada dentro de la habitación conecta el caso con un incidente anterior.',3],['E-005','Registros del hotel','Los registros de ocupación contradicen la existencia de la habitación.',3]],
+ c:[['C-001','La hora','Las tres fuentes independientes apuntan a las 03:17.',2],['C-002','El huésped ausente','Un nombre aparece en un documento que oficialmente nunca existió.',3]],
+ q:[['Q-001','¿Quién dejó la llamada registrada? ',1],['Q-002','¿Por qué aparece 317 en documentos que no coinciden?',2],['Q-003','¿Qué conecta 1987 con 1991?',3]],
+ t:[['T-001','Error administrativo','La habitación es consecuencia de registros mal archivados.',2],['T-002','Habitación fuera de tiempo','Los documentos pertenecen a momentos incompatibles entre sí.',3]],
+ h:[['H-001','Fue un simple error','Una cadena de errores explica todas las anomalías.',3,false],['H-002','La habitación fue ocultada deliberadamente','Los registros fueron alterados para ocultar algo.',4,true]],
+ l:[['TL-001','17/09/1987','Primer incidente relacionado con el ala norte.',1,0],['TL-002','17/09/1991','La cinta VHS registra la habitación.',2,1],['TL-003','03:17','La llamada conecta las dos fechas.',3,2]]},
+ {code:'EV-EXP-002',title:'La Llamada de las 03:17',slug:'la-llamada-de-las-0317',description:'Segundo expediente de prueba para demostrar que el motor no depende del caso piloto.',conclusionTitle:'El reloj equivocado',conclusion:'La llamada era real; el conflicto provenía de una sincronización distinta entre los dos sistemas de registro.',e:[['E-201','La llamada','Una llamada recibida exactamente a las 03:17.',0],['E-202','El registro','El registro contradice la llamada.',1]],c:[['C-201','La diferencia','La hora no coincide en dos sistemas.',1]],q:[['Q-201','¿Cuál de los registros es falso?',1]],t:[['T-201','Error de sincronización','Dos relojes fueron ajustados de forma diferente.',1]],h:[['H-201','Fallo técnico','La diferencia es accidental.',1,true]],l:[['TL-201','03:17','Se recibe la llamada.',0,0]]}
+ ];
+ for(const x of cases){
+  const ex=await p.expediente.upsert({where:{code:x.code},update:{title:x.title,slug:x.slug,description:x.description,status:'PUBLISHED',conclusionTitle:x.conclusionTitle,conclusion:x.conclusion},create:{code:x.code,title:x.title,slug:x.slug,description:x.description,status:'PUBLISHED',conclusionTitle:x.conclusionTitle,conclusion:x.conclusion}});
+  for(const [code,title,description,unlockAfter] of x.e as any[]) await p.evidence.upsert({where:{expedienteId_code:{expedienteId:ex.id,code}},update:{title,description,unlockAfter:Number(unlockAfter)},create:{expedienteId:ex.id,code,title,description,unlockAfter:Number(unlockAfter)}});
+  for(const [code,title,description,unlockAfter] of x.c as any[]) await p.clue.upsert({where:{expedienteId_code:{expedienteId:ex.id,code}},update:{title,description,unlockAfter:Number(unlockAfter)},create:{expedienteId:ex.id,code,title,description,unlockAfter:Number(unlockAfter)}});
+  for(const [code,text,unlockAfter] of x.q as any[]) await p.question.upsert({where:{expedienteId_code:{expedienteId:ex.id,code}},update:{text,unlockAfter:Number(unlockAfter)},create:{expedienteId:ex.id,code,text,unlockAfter:Number(unlockAfter)}});
+  for(const [code,title,description,unlockAfter] of x.t as any[]) await p.theory.upsert({where:{expedienteId_code:{expedienteId:ex.id,code}},update:{title,description,unlockAfter:Number(unlockAfter)},create:{expedienteId:ex.id,code,title,description,unlockAfter:Number(unlockAfter)}});
+  for(const [code,title,description,unlockAfter,isCorrect] of x.h as any[]) await p.hypothesis.upsert({where:{expedienteId_code:{expedienteId:ex.id,code}},update:{title,description,unlockAfter:Number(unlockAfter),isCorrect:Boolean(isCorrect)},create:{expedienteId:ex.id,code,title,description,unlockAfter:Number(unlockAfter),isCorrect:Boolean(isCorrect)}});
+  for(const [code,label,description,sortOrder,unlockAfter] of x.l as any[]) await p.timelineEvent.upsert({where:{expedienteId_code:{expedienteId:ex.id,code}},update:{label,description,sortOrder:Number(sortOrder),unlockAfter:Number(unlockAfter)},create:{expedienteId:ex.id,code,label,description,sortOrder:Number(sortOrder),unlockAfter:Number(unlockAfter)}});
+ }
+}
+main().finally(()=>p.$disconnect());

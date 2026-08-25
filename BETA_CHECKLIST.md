@@ -1,0 +1,13 @@
+# Beta acceptance
+- [ ] npm install
+- [ ] prisma generate
+- [ ] prisma db push
+- [ ] seed
+- [ ] login user
+- [ ] open EV-001
+- [ ] discover E-001, E-002, E-003
+- [ ] progress persists after logout/login
+- [ ] admin creates DRAFT EV-003
+- [ ] add at least one evidence (DB/admin tooling)
+- [ ] publish EV-003
+- [ ] user opens EV-003 with same engine

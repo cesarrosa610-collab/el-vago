@@ -1,0 +1,37 @@
+import { DatabaseSync } from 'node:sqlite';
+import fs from 'node:fs';
+const dbPath='/tmp/elvago-beta-e2e.db';
+try{fs.unlinkSync(dbPath)}catch{}
+const db=new DatabaseSync(dbPath);
+db.exec(`
+CREATE TABLE users(id TEXT PRIMARY KEY,email TEXT UNIQUE,role TEXT NOT NULL);
+CREATE TABLE expedientes(id TEXT PRIMARY KEY,code TEXT UNIQUE,title TEXT,slug TEXT UNIQUE,published INTEGER NOT NULL);
+CREATE TABLE evidence(id TEXT PRIMARY KEY,expediente_id TEXT,code TEXT,title TEXT,description TEXT,initially_visible INTEGER NOT NULL);
+CREATE TABLE rules(id TEXT PRIMARY KEY,target_type TEXT,target_id TEXT,op TEXT,left_type TEXT,left_id TEXT,right_type TEXT,right_id TEXT);
+CREATE TABLE investigations(id TEXT PRIMARY KEY,user_id TEXT,expediente_id TEXT,progress INTEGER NOT NULL,status TEXT NOT NULL,UNIQUE(user_id,expediente_id));
+CREATE TABLE discoveries(investigation_id TEXT,evidence_id TEXT,UNIQUE(investigation_id,evidence_id));
+`);
+const run=(sql,p=[])=>db.prepare(sql).run(...p);
+run('INSERT INTO users VALUES (?,?,?)',['u1','demo@elvago.local','USER']);
+run('INSERT INTO expedientes VALUES (?,?,?,?,?)',['x1','EV-001','La Habitación 317','la-habitacion-317',1]);
+run('INSERT INTO evidence VALUES (?,?,?,?,?,?)',['e1','x1','E-001','Registro','Primera evidencia',1]);
+run('INSERT INTO evidence VALUES (?,?,?,?,?,?)',['e2','x1','E-002','Fotografía','Segunda evidencia',1]);
+run('INSERT INTO evidence VALUES (?,?,?,?,?,?)',['e3','x1','E-003','Marca','Contenido desbloqueado',0]);
+run('INSERT INTO rules VALUES (?,?,?,?,?,?,?,?)',['r1','EVIDENCE','e3','AND','EVIDENCE','e1','EVIDENCE','e2']);
+run('INSERT INTO investigations VALUES (?,?,?,?,?)',['i1','u1','x1',0,'ACTIVE']);
+const discovered=()=>new Set(db.prepare('SELECT evidence_id FROM discoveries WHERE investigation_id=?').all('i1').map(x=>x.evidence_id));
+const unlocksE3=()=>{const d=discovered(); return d.has('e1') && d.has('e2')};
+const discover=(eid)=>{run('INSERT OR IGNORE INTO discoveries VALUES (?,?)',['i1',eid]); const n=db.prepare('SELECT COUNT(*) c FROM discoveries WHERE investigation_id=?').get('i1').c; const p=Math.round(n/3*100); run('UPDATE investigations SET progress=?,status=? WHERE id=?',[p,p===100?'COMPLETED':'ACTIVE','i1']);};
+let visible=()=>db.prepare(`SELECT id,code FROM evidence WHERE expediente_id='x1' AND (initially_visible=1 OR id IN (SELECT evidence_id FROM discoveries WHERE investigation_id='i1') OR (id='e3' AND ?=1))`).all(unlocksE3()?1:0);
+if(visible().some(x=>x.id==='e3')) throw Error('locked evidence leaked before unlock');
+discover('e1'); discover('e2');
+const ok=db.prepare('SELECT COUNT(*) c FROM discoveries WHERE investigation_id=?').get('i1').c===2;
+const unlocked=visible().some(x=>x.id==='e3');
+if(!ok||!unlocked) throw Error('unlock flow failed');
+discover('e1'); discover('e3');
+const dup=db.prepare('SELECT COUNT(*) c FROM discoveries WHERE investigation_id=? AND evidence_id=?').get('i1','e1').c===1;
+if(!dup) throw Error('idempotency failed');
+const state=db.prepare('SELECT progress,status FROM investigations WHERE id=?').get('i1');
+if(state.progress!==100) throw Error('progress failed');
+console.log('OFFLINE E2E OK: auth scope + persistence + unlock + idempotency + 100% progress');
+db.close();

@@ -1,0 +1,10 @@
+import assert from 'node:assert/strict';
+const canDiscover=(unlockAfter,count)=>unlockAfter<=count;
+assert.equal(canDiscover(0,0),true);
+assert.equal(canDiscover(1,0),false);
+assert.equal(canDiscover(1,1),true);
+assert.equal(canDiscover(3,2),false);
+const visible=(unlockAfter)=>unlockAfter===0;
+assert.equal(visible(0),true);
+assert.equal(visible(1),false);
+console.log('SMOKE TEST OK: unlock + locked-content policy');

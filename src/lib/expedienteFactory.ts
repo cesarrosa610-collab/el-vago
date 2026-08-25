@@ -1,0 +1,1 @@
+export function validateNewExpediente(x:any){for(const k of ['code','title','slug','description'])if(!x?.[k])throw new Error(`Missing ${k}`);return {...x,category:x.category??'Misterio',difficulty:x.difficulty??'MEDIUM'};}
