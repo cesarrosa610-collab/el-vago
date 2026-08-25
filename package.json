@@ -16,7 +16,7 @@
     "db:postgres:generate": "prisma generate --schema prisma/schema.postgres.prisma",
     "db:postgres:push": "prisma db push --schema prisma/schema.postgres.prisma",
     "postinstall": "prisma generate --schema prisma/schema.postgres.prisma",
-    "vercel-build": "prisma generate --schema prisma/schema.postgres.prisma && prisma db push --schema prisma/schema.postgres.prisma && next build"
+    "vercel-build": "prisma generate --schema prisma/schema.postgres.prisma && prisma db push --schema prisma/schema.postgres.prisma && npm run semilla && next build"
   },
   "dependencies": {
     "@prisma/client": "^6.14.0",
