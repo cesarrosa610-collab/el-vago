@@ -29,3 +29,4 @@ return NextResponse.json({
   completed,
   correct: h.isCorrect
 });
+}
