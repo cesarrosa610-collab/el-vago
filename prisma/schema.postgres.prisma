@@ -1,169 +1,60 @@
-generator client {
-  provider = "prisma-client-js"
-}
-
-datasource db {
-  provider = "postgresql"
-  url      = env("POSTGRES_PRISMA_URL")
-}
-
-model User {
-  id             String         @id @default(cuid())
-  email          String         @unique
-  passwordHash   String
-  role           String         @default("USER")
-  investigations Investigation[]
-  discoveries    Discovery[]
-  sessions       Session[]
-}
-
-model Session {
-  id        String   @id @default(cuid())
-  token     String   @unique
-  userId    String
-  expiresAt DateTime
-  createdAt DateTime @default(now())
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@index([userId])
-}
-
-model Expediente {
-  id                String           @id @default(cuid())
-  code              String           @unique
-  title             String
-  slug              String           @unique
-  description       String
-  category          String           @default("Misterio")
-  difficulty        String           @default("MEDIUM")
-  status            String           @default("PUBLISHED")
-  conclusionTitle   String?
-  conclusion        String?
-  createdAt         DateTime         @default(now())
-  updatedAt         DateTime         @updatedAt
-
-  investigations    Investigation[]
-  evidence          Evidence[]
-  clues             Clue[]
-  questions         Question[]
-  theories          Theory[]
-  hypotheses        Hypothesis[]
-  timelineEvents    TimelineEvent[]
-}
-
-model Investigation {
-  id                   String      @id @default(cuid())
-  userId               String
-  expedienteId         String
-  progress             Float       @default(0)
-  status               String      @default("IN_PROGRESS")
-  selectedHypothesisId String?
-
-  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
-  expediente Expediente @relation(fields: [expedienteId], references: [id], onDelete: Cascade)
-
-  @@unique([userId, expedienteId])
-}
-
-model Evidence {
-  id             String      @id @default(cuid())
-  expedienteId   String
-  code           String
-  title          String
-  description    String
-  status         String      @default("PUBLISHED")
-  sortOrder      Int         @default(0)
-  unlockAfter    Int         @default(0)
-
-  expediente     Expediente  @relation(fields: [expedienteId], references: [id], onDelete: Cascade)
-  discoveries    Discovery[]
-
-  @@unique([expedienteId, code])
-}
-
-model Discovery {
-  userId     String
-  evidenceId String
-  createdAt  DateTime @default(now())
-
-  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  evidence Evidence @relation(fields: [evidenceId], references: [id], onDelete: Cascade)
-
-  @@id([userId, evidenceId])
-}
+generator client { provider = "prisma-client-js" }
+datasource db { provider = "postgresql" url = env("DATABASE_URL") }
+model User { id String @id @default(cuid()); email String @unique; passwordHash String; role String @default("USER"); investigations Investigation[]; discoveries Discovery[]; sessions Session[] }
+model Session { id String @id @default(cuid()); token String @unique; userId String; expiresAt DateTime; user User @relation(fields:[userId],references:[id],onDelete:Cascade); createdAt DateTime @default(now()); @@index([userId]) }
+model Expediente { id String @id @default(cuid()); code String @unique; title String; slug String @unique; description String; category String @default("Misterio"); difficulty String @default("MEDIUM"); status String @default("PUBLISHED"); conclusionTitle String?; conclusion String?; createdAt DateTime @default(now()); updatedAt DateTime @updatedAt; investigations Investigation[]; evidence Evidence[] }
+model Investigation { id String @id @default(cuid()); userId String; expedienteId String; progress Float @default(0); status String @default("IN_PROGRESS"); selectedHypothesisId String?; user User @relation(fields:[userId],references:[id],onDelete:Cascade); expediente Expediente @relation(fields:[expedienteId],references:[id],onDelete:Cascade); @@unique([userId,expedienteId]) }
+model Evidence { id String @id @default(cuid()); expedienteId String; code String; title String; description String; unlockAfter Int @default(0); expediente Expediente @relation(fields:[expedienteId],references:[id],onDelete:Cascade); discoveries Discovery[]; @@unique([expedienteId,code]) }
+model Discovery { userId String; evidenceId String; createdAt DateTime @default(now()); user User @relation(fields:[userId],references:[id],onDelete:Cascade); evidence Evidence @relation(fields:[evidenceId],references:[id],onDelete:Cascade); @@id([userId,evidenceId]) }
 
 model Clue {
-  id           String      @id @default(cuid())
+  id String @id @default(cuid())
   expedienteId String
-  code         String
-  title        String
-  description  String
-  status       String      @default("PUBLISHED")
-  sortOrder    Int         @default(0)
-  unlockAfter  Int         @default(0)
-
-  expediente   Expediente  @relation(fields: [expedienteId], references: [id], onDelete: Cascade)
-
-  @@unique([expedienteId, code])
+  code String
+  title String
+  description String
+  unlockAfter Int @default(0)
+  expediente Expediente @relation(fields:[expedienteId],references:[id],onDelete:Cascade)
+  @@unique([expedienteId,code])
 }
-
 model Question {
-  id           String      @id @default(cuid())
+  id String @id @default(cuid())
   expedienteId String
-  code         String
-  text         String
-  status       String      @default("PUBLISHED")
-  sortOrder    Int         @default(0)
-  unlockAfter  Int         @default(0)
-
-  expediente   Expediente  @relation(fields: [expedienteId], references: [id], onDelete: Cascade)
-
-  @@unique([expedienteId, code])
+  code String
+  text String
+  unlockAfter Int @default(0)
+  expediente Expediente @relation(fields:[expedienteId],references:[id],onDelete:Cascade)
+  @@unique([expedienteId,code])
 }
-
 model Theory {
-  id           String      @id @default(cuid())
+  id String @id @default(cuid())
   expedienteId String
-  code         String
-  title        String
-  description  String
-  status       String      @default("PUBLISHED")
-  sortOrder    Int         @default(0)
-  unlockAfter  Int         @default(0)
-
-  expediente   Expediente  @relation(fields: [expedienteId], references: [id], onDelete: Cascade)
-
-  @@unique([expedienteId, code])
+  code String
+  title String
+  description String
+  unlockAfter Int @default(0)
+  expediente Expediente @relation(fields:[expedienteId],references:[id],onDelete:Cascade)
+  @@unique([expedienteId,code])
 }
-
 model Hypothesis {
-  id           String      @id @default(cuid())
+  id String @id @default(cuid())
   expedienteId String
-  code         String
-  title        String
-  description  String
-  status       String      @default("PUBLISHED")
-  isCorrect    Boolean     @default(false)
-  sortOrder    Int         @default(0)
-  unlockAfter  Int         @default(0)
-
-  expediente   Expediente  @relation(fields: [expedienteId], references: [id], onDelete: Cascade)
-
-  @@unique([expedienteId, code])
+  code String
+  title String
+  description String
+  isCorrect Boolean @default(false)
+  unlockAfter Int @default(0)
+  expediente Expediente @relation(fields:[expedienteId],references:[id],onDelete:Cascade)
+  @@unique([expedienteId,code])
 }
-
 model TimelineEvent {
-  id           String      @id @default(cuid())
+  id String @id @default(cuid())
   expedienteId String
-  code         String
-  label        String
-  description  String
-  status       String      @default("PUBLISHED")
-  sortOrder    Int         @default(0)
-  unlockAfter  Int         @default(0)
-
-  expediente   Expediente  @relation(fields: [expedienteId], references: [id], onDelete: Cascade)
-
-  @@unique([expedienteId, code])
+  code String
+  label String
+  description String
+  sortOrder Int @default(0)
+  unlockAfter Int @default(0)
+  expediente Expediente @relation(fields:[expedienteId],references:[id],onDelete:Cascade)
+  @@unique([expedienteId,code])
 }

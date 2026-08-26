@@ -1,16 +1,15 @@
-# El Vago — Private Beta RC v2.2
+# El Vago — Private Beta RC v2.4
 
-Paquete consolidado para pasar de Beta local a un entorno real.
+Paquete consolidado para Beta privada y validación del CMS.
 
 - Next.js 16.x
 - Prisma
-- SQLite offline
 - PostgreSQL para Beta
-- Auth/sesiones
-- CMS
-- Expedientes Engine
+- Auth/sesiones persistentes
+- CMS mínimo
+- Expedientes Engine genérico
 - Unlock/Progress
 - EV-001 y EV-002
-- E2E offline
+- Flujo CMS preparado para EV-003
 
-Ver `PRIVATE_BETA.md` para el único flujo de preparación.
+Ver `PRIVATE_BETA.md` y `BETA_CHECKLIST.md` para el flujo de validación.
