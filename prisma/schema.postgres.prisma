@@ -109,6 +109,8 @@ model Question {
   code         String
   text         String
   unlockAfter  Int        @default(0)
+  sortOrder    Int        @default(0)
+  status       String     @default("PUBLISHED")
 
   expediente Expediente @relation(fields: [expedienteId], references: [id], onDelete: Cascade)
 
@@ -122,6 +124,8 @@ model Theory {
   title        String
   description  String
   unlockAfter  Int        @default(0)
+  sortOrder    Int        @default(0)
+  status       String     @default("PUBLISHED")
 
   expediente Expediente @relation(fields: [expedienteId], references: [id], onDelete: Cascade)
 
@@ -150,6 +154,7 @@ model TimelineEvent {
   description  String
   sortOrder    Int        @default(0)
   unlockAfter  Int        @default(0)
+  status       String     @default("PUBLISHED")
 
   expediente Expediente @relation(fields: [expedienteId], references: [id], onDelete: Cascade)
 
