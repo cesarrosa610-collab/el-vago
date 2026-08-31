@@ -29,7 +29,7 @@ const isTabUnlocked=(x:string)=>{
   return false;
 };
  return <main className="casePage"><header className="caseHero"><div className="nav"><a className="brand" href="/">EL VAGO</a><span className="caseCode">{expediente.code}</span></div><p className="eyebrow">EXPEDIENTE · INVESTIGACIÓN</p><h1>{expediente.title}</h1><p className="lead">{expediente.description}</p><div className="caseMeta"><span>Investigación {Math.round(progress)}%</span><span>{status==='COMPLETED'?'Caso cerrado':'Hay piezas que todavía no encajan'}</span></div><div className="bar"><i style={{width:`${progress}%`}}/></div>{status==='NOT_STARTED'&&<button className="btn heroBtn" onClick={start} disabled={busy}>{busy?'Abriendo expediente…':'Comenzar investigación'}</button>}</header>
- <section className="investigation"><aside className="caseNav"><div className="sideTitle">ARCHIVO</div>{{nav.map(x=>{
+<section className="investigation"><aside className="caseNav"><div className="sideTitle">ARCHIVO</div>{nav.map(x=>{
   const unlocked=isTabUnlocked(x);
   return (
     <button
@@ -43,7 +43,7 @@ const isTabUnlocked=(x:string)=>{
       {!unlocked&&' 🔒'}
     </button>
   );
-})}
+})}</aside><div className="evidenceArea">
  {tab==='Evidencias'&&<div className="evidenceGrid">{visible.map(e=>{const found=discovered.has(e.id);return <article className={`evidence ${found?'found':'locked'}`} key={e.id}><div className="evidenceTop"><span>{e.code}</span><span>{found?'DESCUBIERTA':'PENDIENTE'}</span></div><h3>{e.title}</h3>{found?<><p>{e.description}</p><div className="foundMark">✓ Hallazgo registrado</div></>:<><p className="redacted">Información pendiente de descubrimiento.</p><button className="btn" onClick={()=>discover(e)} disabled={busy}>Investigar evidencia</button></>}</article>})}</div>}
  {tab==='Pistas'&&<div className="narrativeGrid">{narrative.clues.map(x=><article className="card" key={x.id}><span className="tag">{x.code}</span><h3>{x.title}</h3><p>{x.description}</p></article>)}{!narrative.clues.length&&<div className="card muted">Todavía no hay conexiones suficientes. Sigue investigando.</div>}</div>}
  {tab==='Preguntas'&&<div className="narrativeGrid">{narrative.questions.map(x=><article className="card" key={x.id}><span className="tag">{x.code}</span><h3>{x.text}</h3><p className="muted">No busques la respuesta todavía. Busca la pieza que falta.</p></article>)}</div>}
