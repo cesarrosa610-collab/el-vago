@@ -17,8 +17,33 @@ export default function InvestigationClient({expediente,initialProgress,initialS
  async function discover(e:Evidence){setBusy(true);setMessage('');const r=await fetch(`/api/expedientes/${expediente.id}/evidence/${e.id}/discover`,{method:'POST'});const j=await r.json();if(r.ok){setIds(j.discoveredIds);setProgress(j.progress);setStatus(j.status);setMessage(j.newlyDiscovered?'Hallazgo registrado. Una nueva conexión puede haberse abierto.':'Esta evidencia ya estaba en tu expediente.')}else setMessage(j.error||'No se pudo descubrir');setBusy(false)}
  async function chooseHypothesis(id:string){setBusy(true);const r=await fetch(`/api/expedientes/${expediente.id}/hypothesis/select`,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({hypothesisId:id})});const j=await r.json();if(r.ok){setMessage(j.correct?'Hipótesis seleccionada. Tu lectura del caso encaja con la evidencia.':'Hipótesis seleccionada. Algunas piezas todavía no encajan.');await refreshNarrative();}else setMessage(j.error||'No se pudo seleccionar');setBusy(false)}
  const nav=['Evidencias','Pistas','Preguntas','Teorías','Hipótesis','Timeline','Cierre'];
+
+const isTabUnlocked=(x:string)=>{
+  if(x==='Evidencias') return true;
+  if(x==='Pistas') return narrative.clues.length>0;
+  if(x==='Preguntas') return narrative.questions.length>0;
+  if(x==='Teorías') return narrative.theories.length>0;
+  if(x==='Hipótesis') return narrative.hypotheses.length>0;
+  if(x==='Timeline') return narrative.timeline.length>0;
+  if(x==='Cierre') return narrative.conclusion?.completed===true;
+  return false;
+};
  return <main className="casePage"><header className="caseHero"><div className="nav"><a className="brand" href="/">EL VAGO</a><span className="caseCode">{expediente.code}</span></div><p className="eyebrow">EXPEDIENTE · INVESTIGACIÓN</p><h1>{expediente.title}</h1><p className="lead">{expediente.description}</p><div className="caseMeta"><span>Investigación {Math.round(progress)}%</span><span>{status==='COMPLETED'?'Caso cerrado':'Hay piezas que todavía no encajan'}</span></div><div className="bar"><i style={{width:`${progress}%`}}/></div>{status==='NOT_STARTED'&&<button className="btn heroBtn" onClick={start} disabled={busy}>{busy?'Abriendo expediente…':'Comenzar investigación'}</button>}</header>
- <section className="investigation"><aside className="caseNav"><div className="sideTitle">ARCHIVO</div>{nav.map(x=><button key={x} className={tab===x?'active':''} onClick={()=>setTab(x)}>{x}</button>)}</aside><div className="evidenceArea"><div className="sectionHead"><div><p className="eyebrow">{tab.toUpperCase()}</p><h2>{tab==='Evidencias'?'Lo que sabemos':tab==='Pistas'?'Conexiones encontradas':tab==='Preguntas'?'Preguntas abiertas':tab==='Teorías'?'Líneas de investigación':tab==='Hipótesis'?'Tu explicación del caso':tab==='Timeline'?'La historia en el tiempo':'La resolución'}</h2></div><p className="muted">Cada hallazgo puede abrir una nueva línea.</p></div>{message&&<div className="notice">{message}</div>}
+ <section className="investigation"><aside className="caseNav"><div className="sideTitle">ARCHIVO</div>{{nav.map(x=>{
+  const unlocked=isTabUnlocked(x);
+  return (
+    <button
+      key={x}
+      className={tab===x?'active':''}
+      onClick={()=>unlocked&&setTab(x)}
+      disabled={!unlocked}
+      title={!unlocked?'Completa más hallazgos para desbloquear esta sección':undefined}
+    >
+      {x}
+      {!unlocked&&' 🔒'}
+    </button>
+  );
+})}
  {tab==='Evidencias'&&<div className="evidenceGrid">{visible.map(e=>{const found=discovered.has(e.id);return <article className={`evidence ${found?'found':'locked'}`} key={e.id}><div className="evidenceTop"><span>{e.code}</span><span>{found?'DESCUBIERTA':'PENDIENTE'}</span></div><h3>{e.title}</h3>{found?<><p>{e.description}</p><div className="foundMark">✓ Hallazgo registrado</div></>:<><p className="redacted">Información pendiente de descubrimiento.</p><button className="btn" onClick={()=>discover(e)} disabled={busy}>Investigar evidencia</button></>}</article>})}</div>}
  {tab==='Pistas'&&<div className="narrativeGrid">{narrative.clues.map(x=><article className="card" key={x.id}><span className="tag">{x.code}</span><h3>{x.title}</h3><p>{x.description}</p></article>)}{!narrative.clues.length&&<div className="card muted">Todavía no hay conexiones suficientes. Sigue investigando.</div>}</div>}
  {tab==='Preguntas'&&<div className="narrativeGrid">{narrative.questions.map(x=><article className="card" key={x.id}><span className="tag">{x.code}</span><h3>{x.text}</h3><p className="muted">No busques la respuesta todavía. Busca la pieza que falta.</p></article>)}</div>}
