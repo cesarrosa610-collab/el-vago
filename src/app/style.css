@@ -327,3 +327,52 @@
     align-items:flex-start;
   }
 }
+/* EL VAGO — Home Premium v3 */
+
+.homePage .homeHero{
+  min-height:360px;
+  padding:54px 0 24px;
+}
+
+.homePage .featuredCase{
+  margin-top:18px;
+  margin-bottom:52px;
+  padding:30px 34px;
+  min-height:0;
+  align-items:center;
+}
+
+.homePage .featuredCopy .lead{
+  max-width:600px;
+  line-height:1.55;
+}
+
+.homePage .featuredVisual{
+  min-height:220px;
+}
+
+.homePage .featuredVisual strong{
+  font-size:clamp(34px,4vw,48px);
+}
+
+.homePage .premiumTeaser{
+  margin-top:48px;
+}
+
+@media(max-width:760px){
+  .homePage .homeHero{
+    min-height:300px;
+    padding:42px 0 18px;
+  }
+
+  .homePage .featuredCase{
+    margin-top:10px;
+    margin-bottom:38px;
+    padding:24px;
+    gap:22px;
+  }
+
+  .homePage .featuredVisual{
+    min-height:170px;
+  }
+}
