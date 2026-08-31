@@ -28,7 +28,7 @@ const isTabUnlocked=(x:string)=>{
   if(x==='Cierre') return narrative.conclusion?.completed===true;
   return false;
 };
- return <main className="casePage"><header className="caseHero"><div className="nav"><a className="brand" href="/">EL VAGO</a><span className="caseCode">{expediente.code}</span></div><p className="eyebrow">EXPEDIENTE · INVESTIGACIÓN</p><h1>{expediente.title}</h1><p className="lead">{expediente.description}</p><div className="caseMeta"><span>Investigación {Math.round(progress)}%</span><span>{status==='COMPLETED'?'Caso cerrado':'Hay piezas que todavía no encajan'}</span></div><div className="bar"><i style={{width:`${progress}%`}}/></div>{status==='NOT_STARTED'&&<button className="btn heroBtn" onClick={start} disabled={busy}>{busy?'Abriendo expediente…':'Comenzar investigación'}</button>}</header>
+ return <main className="casePage">{message&&<div className="message">{message}</div>}<header className="caseHero"><div className="nav"><a className="brand" href="/">EL VAGO</a><span className="caseCode">{expediente.code}</span></div><p className="eyebrow">EXPEDIENTE · INVESTIGACIÓN</p><h1>{expediente.title}</h1><p className="lead">{expediente.description}</p><div className="caseMeta"><span>Investigación {Math.round(progress)}%</span><span>{status==='COMPLETED'?'Caso cerrado':'Hay piezas que todavía no encajan'}</span></div><div className="bar"><i style={{width:`${progress}%`}}/></div>{status==='NOT_STARTED'&&<button className="btn heroBtn" onClick={start} disabled={busy}>{busy?'Abriendo expediente…':'Comenzar investigación'}</button>}</header>
 <section className="investigation"><aside className="caseNav"><div className="sideTitle">ARCHIVO</div>{nav.map(x=>{
   const unlocked=isTabUnlocked(x);
   return (
