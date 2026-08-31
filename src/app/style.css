@@ -4,3 +4,136 @@
   opacity:.35;
   cursor:not-allowed;
 }
+.nav{
+  position:relative;
+}
+
+.nav:after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:-1px;
+  height:1px;
+  background:linear-gradient(90deg,transparent,#3b181b 25%,#3b181b 75%,transparent);
+}
+
+.hero{
+  position:relative;
+  min-height:430px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.hero:before{
+  content:"";
+  position:absolute;
+  inset:-80px -20px -40px;
+  background:
+    radial-gradient(circle at 75% 35%,rgba(229,9,20,.13),transparent 28%),
+    linear-gradient(135deg,rgba(255,255,255,.02),transparent 48%);
+  pointer-events:none;
+}
+
+.hero h1{
+  text-wrap:balance;
+  text-shadow:0 8px 40px rgba(0,0,0,.45);
+}
+
+.card{
+  position:relative;
+  overflow:hidden;
+}
+
+.card:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,.025),transparent 40%);
+  pointer-events:none;
+}
+
+.card .tag{
+  position:relative;
+  z-index:1;
+}
+
+.card h2,
+.card p,
+.card .btn{
+  position:relative;
+  z-index:1;
+}
+
+.card:first-child{
+  border-color:#3a2527;
+}
+
+.card:first-child:after{
+  content:"DESTACADO";
+  position:absolute;
+  top:18px;
+  right:18px;
+  font-size:9px;
+  letter-spacing:.15em;
+  font-weight:900;
+  color:#ff4852;
+  z-index:2;
+}
+
+.btn{
+  box-shadow:0 8px 24px rgba(229,9,20,.12);
+}
+
+.btn:hover{
+  box-shadow:0 12px 30px rgba(229,9,20,.22);
+}
+
+.caseHero{
+  position:relative;
+  overflow:hidden;
+}
+
+.caseHero:before{
+  content:"";
+  position:absolute;
+  width:520px;
+  height:520px;
+  right:-180px;
+  top:-180px;
+  background:radial-gradient(circle,rgba(229,9,20,.10),transparent 68%);
+  pointer-events:none;
+}
+
+.caseHero h1,
+.caseHero .lead,
+.caseHero .caseMeta,
+.caseHero .bar,
+.caseHero .heroBtn{
+  position:relative;
+  z-index:1;
+}
+
+.evidence{
+  box-shadow:0 14px 45px rgba(0,0,0,.18);
+}
+
+.evidence.found{
+  box-shadow:0 14px 45px rgba(90,20,24,.12);
+}
+
+.message{
+  border-left:3px solid #e50914;
+}
+
+@media(max-width:760px){
+  .hero{
+    min-height:360px;
+  }
+
+  .card:first-child:after{
+    top:14px;
+    right:14px;
+  }
+}
