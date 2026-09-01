@@ -1,13 +1,13 @@
 import Link from 'next/link';
 import { prisma } from '@/src/lib/prisma';
-import { currentUser } from '@/src/lib/auth';
+import GlobalNav from '../GlobalNav';
 
 export default async function Explorar({
   searchParams,
 }: {
   searchParams: Promise<{ q?: string }>;
 }) {
-  const user = await currentUser();
+  
   const params = await searchParams;
   const q = params.q?.trim() ?? '';
 
@@ -30,43 +30,8 @@ export default async function Explorar({
 
   return (
     <main className="wrap explorePage">
-      <div className="nav">
-        <div className="brand">EL VAGO</div>
-
-        <div className="navActions">
-          <Link className="navLink active" href="/explorar">
-            Explorar
-          </Link>
-
-          {user ? (
-            <>
-              <span className="muted">{user.email}</span>
-
-              {user.role === 'ADMIN' && (
-                <Link className="btn secondary" href="/admin">
-                  CMS
-                </Link>
-              )}
-
-              <form action="/api/auth/logout" method="post">
-                <button className="btn secondary">Salir</button>
-              </form>
-            </>
-          ) : (
-            <>
-              <Link className="btn secondary" href="/login">
-                Entrar
-              </Link>
-
-              <Link className="btn" href="/register">
-                Crear cuenta
-              </Link>
-            </>
-          )}
-        </div>
-      </div>
-
-      <section className="exploreHero">
+      
+   <GlobalNav />
         <p className="eyebrow">EXPLORAR</p>
 
         <h1>Encuentra tu próximo misterio.</h1>
