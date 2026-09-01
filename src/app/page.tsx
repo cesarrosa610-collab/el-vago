@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import { prisma } from '@/src/lib/prisma';
-import { currentUser } from '@/src/lib/auth';
+import GlobalNav from './GlobalNav';
 
 export default async function Home() {
-  const user = await currentUser();
+  
 
   const exps = await prisma.expediente.findMany({
     where: { status: 'PUBLISHED' },
@@ -15,39 +15,15 @@ export default async function Home() {
   const others = exps.slice(1);
 
   return (
-    <main className="wrap homePage">
-      <div className="nav">
-        <div className="brand">EL VAGO</div>
 
-        <div className="navActions">
-          {user ? (
-            <>
-              <span className="muted">{user.email}</span>
+  <main className="wrap homePage">
+    <GlobalNav />
 
-              {user.role === 'ADMIN' && (
-                <Link className="btn secondary" href="/admin">
-                  CMS
-                </Link>
-              )}
+ 
 
-              <form action="/api/auth/logout" method="post">
-                <button className="btn secondary">Salir</button>
-              </form>
-            </>
-          ) : (
-            <>
-              <Link className="btn secondary" href="/login">
-                Entrar
-              </Link>
 
-              <Link className="btn" href="/register">
-                Crear cuenta
-              </Link>
-            </>
-          )}
-        </div>
-      </div>
-
+            
+              
       <section className="hero homeHero">
         <p className="eyebrow">EXPEDIENTES INTERACTIVOS</p>
 
