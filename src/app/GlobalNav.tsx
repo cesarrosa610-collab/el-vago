@@ -33,9 +33,9 @@ export default async function GlobalNav() {
           <>
             <span className="muted navUser">{user.email}</span>
 
-            <span className="navLink navDisabled">
-              Mi Vago
-            </span>
+            <Link className="navLink" href="/mi-vago">
+  Mi Vago
+</Link>
 
             {user.role === 'ADMIN' && (
               <Link className="btn secondary" href="/admin">
