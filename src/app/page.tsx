@@ -48,7 +48,7 @@ export default async function Home() {
         <p className="lead">
           Investiga, conecta evidencias y descubre la verdad.
         </p>
-         {user && activeInvestigation ? (
+        </section> {user && activeInvestigation ? (
         <section className="homeSection">
           <div className="sectionHead">
             <div>
