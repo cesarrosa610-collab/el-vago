@@ -376,3 +376,28 @@
     min-height:170px;
   }
 }
+/* Explorar — ajustes visuales */
+
+.exploreCardTop{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  margin-bottom:18px;
+}
+
+.exploreStatus{
+  white-space:nowrap;
+  font-size:10px;
+  letter-spacing:.12em;
+  font-weight:800;
+  color:#777;
+}
+
+.exploreCard:after{
+  content:none !important;
+}
+
+.exploreCard:first-child:after{
+  content:none !important;
+}
