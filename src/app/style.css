@@ -401,3 +401,46 @@
 .exploreCard:first-child:after{
   content:none !important;
 }
+/* Navegación global */
+
+.globalNav{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:32px;
+}
+
+.navCenter{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:24px;
+  flex:1;
+}
+
+.navLink{
+  color:#aaa;
+  text-decoration:none;
+  font-size:14px;
+  white-space:nowrap;
+  transition:color .2s ease;
+}
+
+.navLink:hover{
+  color:#fff;
+}
+
+.navDisabled{
+  color:#555;
+  cursor:default;
+}
+
+.navActions{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.navUser{
+  white-space:nowrap;
+}
