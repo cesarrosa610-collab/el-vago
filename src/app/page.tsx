@@ -1,9 +1,25 @@
 import Link from 'next/link';
 import { prisma } from '@/src/lib/prisma';
+import { currentUser } from '@/src/lib/auth';
 import GlobalNav from './GlobalNav';
 
 export default async function Home() {
-  
+  const user = await currentUser();
+
+  const activeInvestigation = user
+    ? await prisma.investigation.findFirst({
+        where: {
+          userId: user.id,
+          status: { not: 'COMPLETED' },
+        },
+        include: {
+          expediente: true,
+        },
+        orderBy: {
+          id: 'asc',
+        },
+      })
+    : null;
 
   const exps = await prisma.expediente.findMany({
     where: { status: 'PUBLISHED' },
@@ -32,9 +48,71 @@ export default async function Home() {
         <p className="lead">
           Investiga, conecta evidencias y descubre la verdad.
         </p>
-      </section>
+         {user && activeInvestigation ? (
+        <section className="homeSection">
+          <div className="sectionHead">
+            <div>
+              <p className="eyebrow">TU INVESTIGACIÓN</p>
+              <h2>Continúa donde te quedaste.</h2>
+            </div>
 
-      {featured && (
+            <p className="muted">
+              {Math.round(activeInvestigation.progress)}% completado
+            </p>
+          </div>
+
+          <div className="card">
+            <span className="tag">
+              {activeInvestigation.expediente.code}
+            </span>
+
+            <h2>{activeInvestigation.expediente.title}</h2>
+
+            <p className="muted">
+              Sigue investigando para descubrir la verdad.
+            </p>
+
+            <div
+              className="bar"
+              aria-label={`Progreso ${Math.round(
+                activeInvestigation.progress
+              )}%`}
+            >
+              <i
+                style={{
+                  width: `${Math.min(
+                    100,
+                    Math.max(0, activeInvestigation.progress)
+                  )}%`,
+                }}
+              />
+            </div>
+
+            <Link
+              className="btn"
+              href={`/expedientes/${activeInvestigation.expediente.slug}`}
+            >
+              Continuar investigación
+            </Link>
+          </div>
+        </section>
+      ) : user ? (
+        <section className="homeSection">
+          <div className="sectionHead">
+            <div>
+              <p className="eyebrow">MI VAGO</p>
+              <h2>Descubre tu próximo misterio.</h2>
+            </div>
+          </div>
+
+          <div className="notice exploreEmpty">
+            Ya resolviste tus casos actuales.{' '}
+            <Link href="/explorar">Explorar expedientes</Link>
+          </div>
+        </section>
+      ) : null}
+
+ {featured && (
         <section className="featuredCase">
           <div className="featuredCopy">
             <p className="eyebrow">EXPEDIENTE DESTACADO</p>
