@@ -28,19 +28,19 @@ export default async function Explorar({
     include: { evidence: true },
   });
 
-  return (
-    <main className="wrap explorePage">
-      
-   <GlobalNav />
+    return (
+     <main className="wrap explorePage">
+
+       <GlobalNav />
+       <section className="exploreHero">
         <p className="eyebrow">EXPLORAR</p>
 
         <h1>Encuentra tu próximo misterio.</h1>
 
         <p className="lead">
           Busca entre los expedientes publicados y elige dónde comenzar.
-        </p>
-      </section>
-
+ </p>
+  </section>
       <form className="exploreSearch" method="get">
         <input
           className="input"
