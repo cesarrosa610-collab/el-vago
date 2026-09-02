@@ -15,7 +15,7 @@
     "beta:offline": "npm run preflight && npm run smoke:test && npm run offline:e2e",
     "db:postgres:generate": "prisma generate --schema prisma/schema.postgres.prisma",
     "db:postgres:push": "prisma db push --schema prisma/schema.postgres.prisma",
-    "postinstall": "prisma generate --schema prisma/schema.postgres.prisma",
+    "postinstall": "prisma generate",
     "vercel-build": "prisma generate --schema prisma/schema.postgres.prisma && prisma db push --schema prisma/schema.postgres.prisma && next build"
   },
   "dependencies": {
