@@ -5,7 +5,7 @@ import { prisma } from '@/src/lib/prisma';
 import EvidenceForm from './EvidenceForm';
 import NarrativeForm from './NarrativeForm';
 import PublishButton from './PublishButton';
-
+import DeleteDraftButton from './DeleteDraftButton';
 export default async function AdminExpedientePage({
   params,
 }: {
@@ -253,20 +253,16 @@ export default async function AdminExpedientePage({
         </div>
 
         {expediente.status === 'DRAFT' && (
-          <div className="card">
-            <h2>Publicar</h2>
+  <div className="card">
+    <h2>Zona de administración</h2>
 
-            <p className="muted">
-              El expediente debe estar completo
-              antes de publicarse.
-            </p>
+    <p className="muted">
+      Este expediente aún no está publicado.
+      Puedes eliminarlo de forma segura.
+    </p>
 
-            <PublishButton
-              expedienteId={expediente.id}
-            />
-          </div>
-        )}
-      </section>
-    </main>
-  );
-}
+    <DeleteDraftButton
+      expedienteId={expediente.id}
+    />
+  </div>
+)}
