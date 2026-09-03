@@ -6,6 +6,7 @@ import EvidenceForm from './EvidenceForm';
 import NarrativeForm from './NarrativeForm';
 import PublishButton from './PublishButton';
 import DeleteDraftButton from './DeleteDraftButton';
+import EditExpedienteForm from './EditExpedienteForm';
 export default async function AdminExpedientePage({
   params,
 }: {
@@ -41,17 +42,31 @@ export default async function AdminExpedientePage({
       },
       theories: {
         orderBy: [
-          { unlockAfter: 'asc' },
-          { sortOrder: 'asc' },
-        ],
-      },
-      hypotheses: {
-        orderBy: [
-          { unlockAfter: 'asc' },
-          { sortOrder: 'asc' },
-        ],
-      },
-      timelineEvents: {
+          <p className="muted">
+  {expediente.code} · Estado:{' '}
+  <strong>{expediente.status}</strong>
+</p>
+
+{expediente.status === 'DRAFT' && (
+  <EditExpedienteForm
+    expediente={{
+      id: expediente.id,
+      code: expediente.code,
+      slug: expediente.slug,
+      title: expediente.title,
+      description: expediente.description,
+      category: expediente.category,
+      difficulty: expediente.difficulty,
+      conclusionTitle: expediente.conclusionTitle,
+      conclusion: expediente.conclusion,
+    }}
+  />
+)}
+
+<section
+  className="stack"
+  style={{ marginTop: 24 }}
+>
         orderBy: [
           { sortOrder: 'asc' },
           { unlockAfter: 'asc' },
