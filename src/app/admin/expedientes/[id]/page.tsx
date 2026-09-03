@@ -266,3 +266,8 @@ export default async function AdminExpedientePage({
     />
   </div>
 )}
+        
+      </section>
+    </main>
+  );
+}
