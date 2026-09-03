@@ -3,6 +3,7 @@ import { redirect, notFound } from 'next/navigation';
 import { currentUser } from '@/src/lib/auth';
 import { prisma } from '@/src/lib/prisma';
 import EvidenceForm from './EvidenceForm';
+import EditEvidenceForm from './EditEvidenceForm';
 import NarrativeForm from './NarrativeForm';
 import PublishButton from './PublishButton';
 import DeleteDraftButton from './DeleteDraftButton';
@@ -138,9 +139,22 @@ export default async function AdminExpedientePage({
                   {e.description}
                 </p>
 
-                <small className="muted">
+                         <small className="muted">
                   Desbloqueo: {e.unlockAfter}
                 </small>
+
+                {expediente.status === 'DRAFT' && (
+                  <EditEvidenceForm
+                    expedienteId={expediente.id}
+                    evidence={{
+                      id: e.id,
+                      code: e.code,
+                      title: e.title,
+                      description: e.description,
+                      unlockAfter: e.unlockAfter,
+                    }}
+                  />
+                )}
               </article>
             ))}
           </div>
