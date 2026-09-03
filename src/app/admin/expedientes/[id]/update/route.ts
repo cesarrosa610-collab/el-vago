@@ -51,13 +51,26 @@ export async function PATCH(
 
   const expediente = await prisma.expediente.findUnique({
     where: { id },
-    select: { id: true },
+    select: {
+      id: true,
+      status: true,
+    },
   });
 
   if (!expediente) {
     return NextResponse.json(
       { error: 'Expediente no encontrado' },
       { status: 404 }
+    );
+  }
+
+  if (expediente.status !== 'DRAFT') {
+    return NextResponse.json(
+      {
+        error:
+          'Solo se pueden editar expedientes DRAFT',
+      },
+      { status: 409 }
     );
   }
 
