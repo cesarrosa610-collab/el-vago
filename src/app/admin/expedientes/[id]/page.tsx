@@ -289,7 +289,4 @@ export default async function AdminExpedientePage({
   );
 }
         
-      </section>
-    </main>
-  );
-}
+  
