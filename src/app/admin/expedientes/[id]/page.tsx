@@ -7,6 +7,7 @@ import NarrativeForm from './NarrativeForm';
 import PublishButton from './PublishButton';
 import DeleteDraftButton from './DeleteDraftButton';
 import EditExpedienteForm from './EditExpedienteForm';
+
 export default async function AdminExpedientePage({
   params,
 }: {
@@ -42,31 +43,17 @@ export default async function AdminExpedientePage({
       },
       theories: {
         orderBy: [
-          <p className="muted">
-  {expediente.code} · Estado:{' '}
-  <strong>{expediente.status}</strong>
-</p>
-
-{expediente.status === 'DRAFT' && (
-  <EditExpedienteForm
-    expediente={{
-      id: expediente.id,
-      code: expediente.code,
-      slug: expediente.slug,
-      title: expediente.title,
-      description: expediente.description,
-      category: expediente.category,
-      difficulty: expediente.difficulty,
-      conclusionTitle: expediente.conclusionTitle,
-      conclusion: expediente.conclusion,
-    }}
-  />
-)}
-
-<section
-  className="stack"
-  style={{ marginTop: 24 }}
->
+          { sortOrder: 'asc' },
+          { unlockAfter: 'asc' },
+        ],
+      },
+      hypotheses: {
+        orderBy: [
+          { unlockAfter: 'asc' },
+          { sortOrder: 'asc' },
+        ],
+      },
+      timelineEvents: {
         orderBy: [
           { sortOrder: 'asc' },
           { unlockAfter: 'asc' },
@@ -106,6 +93,22 @@ export default async function AdminExpedientePage({
         {expediente.code} · Estado:{' '}
         <strong>{expediente.status}</strong>
       </p>
+
+      {expediente.status === 'DRAFT' && (
+        <EditExpedienteForm
+          expediente={{
+            id: expediente.id,
+            code: expediente.code,
+            slug: expediente.slug,
+            title: expediente.title,
+            description: expediente.description,
+            category: expediente.category,
+            difficulty: expediente.difficulty,
+            conclusionTitle: expediente.conclusionTitle,
+            conclusion: expediente.conclusion,
+          }}
+        />
+      )}
 
       <section
         className="stack"
@@ -268,19 +271,23 @@ export default async function AdminExpedientePage({
         </div>
 
         {expediente.status === 'DRAFT' && (
-  <div className="card">
-    <h2>Zona de administración</h2>
+          <div className="card">
+            <h2>Zona de administración</h2>
 
-    <p className="muted">
-      Este expediente aún no está publicado.
-      Puedes eliminarlo de forma segura.
-    </p>
+            <p className="muted">
+              Este expediente aún no está publicado.
+              Puedes eliminarlo de forma segura.
+            </p>
 
-    <DeleteDraftButton
-      expedienteId={expediente.id}
-    />
-  </div>
-)}
+            <DeleteDraftButton
+              expedienteId={expediente.id}
+            />
+          </div>
+        )}
+      </section>
+    </main>
+  );
+}
         
       </section>
     </main>
