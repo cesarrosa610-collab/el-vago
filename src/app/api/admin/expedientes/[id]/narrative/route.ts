@@ -2,188 +2,150 @@ import { NextResponse } from 'next/server';
 import { prisma } from '@/src/lib/prisma';
 import { currentUser } from '@/src/lib/auth';
 
-const TYPES = new Set([
-  'CLUE',
-  'QUESTION',
-  'THEORY',
-  'HYPOTHESIS',
-  'TIMELINE',
-]);
-
-export async function POST(
-  req: Request,
+export async function GET(
+  _: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
   const user = await currentUser();
 
-  if (!user || user.role !== 'ADMIN') {
+  if (!user) {
     return NextResponse.json(
-      { error: 'No autorizado' },
-      { status: 403 }
+      { error: 'No autenticado' },
+      { status: 401 }
     );
   }
 
   const { id } = await params;
-  const body = await req.json().catch(() => ({}));
 
-  const type = typeof body.type === 'string' ? body.type : '';
-  const code = typeof body.code === 'string' ? body.code.trim() : '';
-  const title = typeof body.title === 'string' ? body.title.trim() : '';
-  const text = typeof body.body === 'string' ? body.body.trim() : '';
-
-  const unlockAfter = Number.isInteger(body.unlockAfter)
-    ? body.unlockAfter
-    : Number.parseInt(String(body.unlockAfter ?? '0'), 10);
-
-  const sortOrder = Number.isInteger(body.sortOrder)
-    ? body.sortOrder
-    : Number.parseInt(String(body.sortOrder ?? '0'), 10);
-
-  const isCorrect = Boolean(body.isCorrect);
-
-  if (!TYPES.has(type)) {
-    return NextResponse.json(
-      { error: 'Tipo narrativo inválido' },
-      { status: 400 }
-    );
-  }
-
-  if (!code || !Number.isInteger(unlockAfter) || unlockAfter < 0) {
-    return NextResponse.json(
-      {
-        error: 'Código y unlockAfter válido son requeridos',
-      },
-      { status: 400 }
-    );
-  }
-
-  if (type === 'QUESTION') {
-    if (!text) {
-      return NextResponse.json(
-        { error: 'La pregunta es requerida' },
-        { status: 400 }
-      );
-    }
-  } else if (!title || !text) {
-    return NextResponse.json(
-      {
-        error: 'Título y descripción son requeridos',
-      },
-      { status: 400 }
-    );
-  }
-
-  if (
-    type === 'TIMELINE' &&
-    (!Number.isInteger(sortOrder) || sortOrder < 0)
-  ) {
-    return NextResponse.json(
-      { error: 'sortOrder inválido' },
-      { status: 400 }
-    );
-  }
-
-  const expediente = await prisma.expediente.findUnique({
-    where: { id },
+  const expediente = await prisma.expediente.findFirst({
+    where: {
+      id,
+      status: 'PUBLISHED',
+    },
+    select: {
+      id: true,
+      conclusionTitle: true,
+      conclusion: true,
+    },
   });
 
   if (!expediente) {
     return NextResponse.json(
-      { error: 'Expediente no encontrado' },
+      { error: 'No encontrado' },
       { status: 404 }
     );
   }
 
-  if (expediente.status !== 'DRAFT') {
-    return NextResponse.json(
-      {
-        error:
-          'Solo se puede editar contenido narrativo de un DRAFT',
+  const investigation = await prisma.investigation.findUnique({
+    where: {
+      userId_expedienteId: {
+        userId: user.id,
+        expedienteId: id,
       },
+    },
+  });
+
+  if (!investigation) {
+    return NextResponse.json(
+      { error: 'Investigación no iniciada' },
       { status: 409 }
     );
   }
 
-  try {
-    let item;
-
-    switch (type) {
-      case 'CLUE':
-        item = await prisma.clue.create({
-          data: {
-            expedienteId: id,
-            code,
-            title,
-            description: text,
-            unlockAfter,
-          },
-        });
-        break;
-
-      case 'QUESTION':
-        item = await prisma.question.create({
-          data: {
-            expedienteId: id,
-            code,
-            text,
-            unlockAfter,
-          },
-        });
-        break;
-
-      case 'THEORY':
-        item = await prisma.theory.create({
-          data: {
-            expedienteId: id,
-            code,
-            title,
-            description: text,
-            unlockAfter,
-          },
-        });
-        break;
-
-      case 'HYPOTHESIS':
-        item = await prisma.hypothesis.create({
-          data: {
-            expedienteId: id,
-            code,
-            title,
-            description: text,
-            unlockAfter,
-            isCorrect,
-          },
-        });
-        break;
-
-      case 'TIMELINE':
-        item = await prisma.timelineEvent.create({
-          data: {
-            expedienteId: id,
-            code,
-            label: title,
-            description: text,
-            sortOrder,
-            unlockAfter,
-          },
-        });
-        break;
-    }
-
-    return NextResponse.json(
-      {
-        ok: true,
-        item,
+  const found = await prisma.discovery.count({
+    where: {
+      userId: user.id,
+      evidence: {
+        expedienteId: id,
       },
-      { status: 201 }
-    );
-  } catch {
-    return NextResponse.json(
-      {
-        error:
-          'El código ya existe para este tipo de contenido',
-      },
-      { status: 409 }
-    );
-  }
+    },
+  });
+
+  const [clues, questions, theories, hypotheses, timeline] =
+    await Promise.all([
+      prisma.clue.findMany({
+        where: {
+          expedienteId: id,
+          status: 'PUBLISHED',
+          unlockAfter: { lte: found },
+        },
+        orderBy: [
+          { unlockAfter: 'asc' },
+          { sortOrder: 'asc' },
+        ],
+      }),
+
+      prisma.question.findMany({
+        where: {
+          expedienteId: id,
+          status: 'PUBLISHED',
+          unlockAfter: { lte: found },
+        },
+        orderBy: [
+          { unlockAfter: 'asc' },
+          { sortOrder: 'asc' },
+        ],
+      }),
+
+      prisma.theory.findMany({
+        where: {
+          expedienteId: id,
+          status: 'PUBLISHED',
+          unlockAfter: { lte: found },
+        },
+        orderBy: [
+          { unlockAfter: 'asc' },
+          { sortOrder: 'asc' },
+        ],
+      }),
+
+      prisma.hypothesis.findMany({
+        where: {
+          expedienteId: id,
+          status: 'PUBLISHED',
+          unlockAfter: { lte: found },
+        },
+        orderBy: [
+          { unlockAfter: 'asc' },
+          { sortOrder: 'asc' },
+        ],
+      }),
+
+      prisma.timelineEvent.findMany({
+        where: {
+          expedienteId: id,
+          status: 'PUBLISHED',
+          unlockAfter: { lte: found },
+        },
+        orderBy: [
+          { unlockAfter: 'asc' },
+          { sortOrder: 'asc' },
+        ],
+      }),
+    ]);
+
+  return NextResponse.json({
+    clues,
+    questions,
+    theories,
+    hypotheses: hypotheses.map(({ isCorrect, ...h }) => h),
+    timeline,
+    conclusion: {
+      title:
+        investigation.status === 'COMPLETED'
+          ? expediente.conclusionTitle
+          : null,
+
+      description:
+        investigation.status === 'COMPLETED'
+          ? expediente.conclusion
+          : null,
+
+      selectedHypothesisId:
+        investigation.selectedHypothesisId ?? null,
+
+      completed:
+        investigation.status === 'COMPLETED',
+    },
+  });
 }
