@@ -40,12 +40,13 @@ export async function POST(req: Request, { params }: { params: Promise<{ id: str
   });
 
   const h = await prisma.hypothesis.findFirst({
-    where: {
-      id: hypothesisId,
-      expedienteId: id,
-      unlockAfter: { lte: found },
-    },
-  });
+  where: {
+    id: hypothesisId,
+    expedienteId: id,
+    status: 'PUBLISHED',
+    unlockAfter: { lte: found },
+  },
+});
 
   if (!h) {
     return NextResponse.json({ error: 'Hipótesis no disponible' }, { status: 404 });
