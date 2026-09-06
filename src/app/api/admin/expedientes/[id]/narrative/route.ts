@@ -241,7 +241,10 @@ export async function POST(
     type === 'HYPOTHESIS'
       ? Boolean(body.isCorrect)
       : false;
-
+const status =
+  body.publish === true
+    ? 'PUBLISHED'
+    : 'DRAFT';
   if (
     !code ||
     !narrativeBody ||
@@ -275,9 +278,9 @@ export async function POST(
             code,
             title,
             description: narrativeBody,
-            unlockAfter,
+            status,
             sortOrder,
-            status: 'PUBLISHED',
+            status,
           },
         });
         break;
@@ -290,7 +293,7 @@ export async function POST(
             text: narrativeBody,
             unlockAfter,
             sortOrder,
-            status: 'PUBLISHED',
+           status,
           },
         });
         break;
@@ -304,7 +307,7 @@ export async function POST(
             description: narrativeBody,
             unlockAfter,
             sortOrder,
-            status: 'PUBLISHED',
+            status,
           },
         });
         break;
@@ -319,8 +322,8 @@ export async function POST(
             isCorrect,
             unlockAfter,
             sortOrder,
-            status: 'PUBLISHED',
-          },
+           
+        status,
         });
         break;
 
@@ -333,9 +336,9 @@ export async function POST(
             description: narrativeBody,
             unlockAfter,
             sortOrder,
-            status: 'PUBLISHED',
+            status,,
           },
-        });
+     
         break;
     }
 
