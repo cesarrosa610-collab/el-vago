@@ -269,7 +269,7 @@ const status =
     );
   }
 
-  try {
+      try {
     switch (type) {
       case 'CLUE':
         await prisma.clue.create({
@@ -278,7 +278,7 @@ const status =
             code,
             title,
             description: narrativeBody,
-            status,
+            unlockAfter,
             sortOrder,
             status,
           },
@@ -293,7 +293,7 @@ const status =
             text: narrativeBody,
             unlockAfter,
             sortOrder,
-           status,
+            status,
           },
         });
         break;
@@ -322,8 +322,8 @@ const status =
             isCorrect,
             unlockAfter,
             sortOrder,
-           
-        status,
+            status,
+          },
         });
         break;
 
@@ -336,10 +336,13 @@ const status =
             description: narrativeBody,
             unlockAfter,
             sortOrder,
-            status,,
+            status,
           },
-     
+        });
         break;
+    }
+  }
+    }
     }
 
     return NextResponse.json(
