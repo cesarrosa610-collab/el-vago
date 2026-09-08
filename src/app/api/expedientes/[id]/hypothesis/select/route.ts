@@ -26,18 +26,23 @@ export async function POST(req: Request, { params }: { params: Promise<{ id: str
     return NextResponse.json({ error: 'Investigación no iniciada' }, { status: 409 });
   }
 
-  if (investigation.status === 'COMPLETED') {
-    return NextResponse.json({ error: 'La investigación ya está cerrada' }, { status: 409 });
-  }
 
-  const found = await prisma.discovery.count({
-    where: {
-      userId: user.id,
-      evidence: {
-        expedienteId: id,
-      },
-    },
-  });
+
+  if (investigation.selectedHypothesisId) {
+  return NextResponse.json(
+    { error: 'Ya existe una hipótesis seleccionada' },
+    { status: 409 }
+  );
+}
+const found = await prisma.discovery.count({
+where: {
+     userId: user.id,
+     evidence: {
+       expedienteId: id,
+     },
+   },
+ });
+
 
   const h = await prisma.hypothesis.findFirst({
   where: {
