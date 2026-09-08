@@ -342,8 +342,8 @@ const status =
         break;
     }
   }
-    }
-    }
+    
+    
 
     return NextResponse.json(
       { ok: true },
