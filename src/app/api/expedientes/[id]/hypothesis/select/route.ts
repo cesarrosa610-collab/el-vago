@@ -55,23 +55,16 @@ if (!h || !canDiscover(h.unlockAfter, found)) {
   );
 }
 
- if (!h || !canDiscover(h.unlockAfter, found)) {
-  return NextResponse.json(
-    { error: 'Hipótesis no disponible' },
-    { status: 404 }
-  );
-}
-
 const updated = await prisma.investigation.update({
-  const updated = await prisma.investigation.update({
-    where: { id: investigation.id },
-    data: { selectedHypothesisId: h.id },
-  });
+  where: { id: investigation.id },
+  data: { selectedHypothesisId: h.id },
+});
+   
 
-  return NextResponse.json({
-    ok: true,
-    selectedHypothesisId: updated.selectedHypothesisId,
-    completed: updated.status === 'COMPLETED',
-    correct: updated.status === 'COMPLETED' ? h.isCorrect : null,
-  });
+return NextResponse.json({
+  ok: true,
+  selectedHypothesisId: updated.selectedHypothesisId,
+  completed: updated.status === 'COMPLETED',
+  correct: updated.status === 'COMPLETED' ? h.isCorrect : null,
+});
 }
