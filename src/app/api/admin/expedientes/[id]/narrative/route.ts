@@ -327,7 +327,7 @@ const status =
         });
         break;
 
-      case 'TIMELINE':
+            case 'TIMELINE':
         await prisma.timelineEvent.create({
           data: {
             expedienteId: id,
@@ -341,9 +341,6 @@ const status =
         });
         break;
     }
-  }
-    
-    
 
     return NextResponse.json(
       { ok: true },
