@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/src/lib/prisma';
 import { currentUser } from '@/src/lib/auth';
-
+import { canDiscover } from '@/src/lib/security';
 export async function POST(req: Request, { params }: { params: Promise<{ id: string }> }) {
   const user = await currentUser();
   if (!user) return NextResponse.json({ error: 'No autenticado' }, { status: 401 });
@@ -48,10 +48,21 @@ export async function POST(req: Request, { params }: { params: Promise<{ id: str
   },
 });
 
-  if (!h) {
-    return NextResponse.json({ error: 'Hipótesis no disponible' }, { status: 404 });
-  }
+if (!h || !canDiscover(h.unlockAfter, found)) {
+  return NextResponse.json(
+    { error: 'Hipótesis no disponible' },
+    { status: 404 }
+  );
+}
 
+ if (!h || !canDiscover(h.unlockAfter, found)) {
+  return NextResponse.json(
+    { error: 'Hipótesis no disponible' },
+    { status: 404 }
+  );
+}
+
+const updated = await prisma.investigation.update({
   const updated = await prisma.investigation.update({
     where: { id: investigation.id },
     data: { selectedHypothesisId: h.id },
