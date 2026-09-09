@@ -30,19 +30,19 @@ export default async function Home() {
   const featured = exps[0];
   
 
-31  const featuredInvestigation =
-32    user && featured
-33      ? await prisma.investigation.findUnique({
-34          where: {
-35            userId_expedienteId: {
-36              userId: user.id,
-37              expedienteId: featured.id,
-38            },
-39          },
-40        })
-41      : null;
+  const featuredInvestigation =
+    user && featured
+      ? await prisma.investigation.findUnique({
+          where: {
+            userId_expedienteId: {
+              userId: user.id,
+              expedienteId: featured.id,
+            },
+          },
+        })
+: null;
 
-42  const others = exps.slice(1);
+const others = exps.slice(1);
 
   return (
 
