@@ -28,7 +28,21 @@ export default async function Home() {
   });
 
   const featured = exps[0];
-  const others = exps.slice(1);
+  
+
+31  const featuredInvestigation =
+32    user && featured
+33      ? await prisma.investigation.findUnique({
+34          where: {
+35            userId_expedienteId: {
+36              userId: user.id,
+37              expedienteId: featured.id,
+38            },
+39          },
+40        })
+41      : null;
+
+42  const others = exps.slice(1);
 
   return (
 
@@ -132,7 +146,11 @@ export default async function Home() {
               className="btn heroBtn"
               href={`/expedientes/${featured.slug}`}
             >
-              Comenzar investigación
+             {featuredInvestigation?.status === 'COMPLETED'
+  ? 'Revisar expediente'
+  : featuredInvestigation
+    ? 'Continuar investigación'
+    : 'Comenzar investigación'}
             </Link>
           </div>
 
