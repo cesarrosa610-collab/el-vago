@@ -293,7 +293,9 @@ export default async function AdminExpedientePage({
               Puedes eliminarlo de forma segura.
             </p>
 
-            <DeleteDraftButton
+           <PublishButton
+  expedienteId={expediente.id}
+/> <DeleteDraftButton
               expedienteId={expediente.id}
             />
           </div>
