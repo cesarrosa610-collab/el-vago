@@ -25,7 +25,12 @@ export async function POST(req: Request, { params }: { params: Promise<{ id: str
   if (!investigation) {
     return NextResponse.json({ error: 'Investigación no iniciada' }, { status: 409 });
   }
-
+if (investigation.status === 'COMPLETED') {
+  return NextResponse.json(
+    { error: 'La investigación ya está cerrada' },
+    { status: 409 }
+  );
+}
 
 
   if (investigation.selectedHypothesisId) {
