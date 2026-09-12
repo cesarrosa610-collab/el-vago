@@ -444,3 +444,40 @@
 .navUser{
   white-space:nowrap;
 }
+@media(max-width:760px){
+  .globalNav{
+    align-items:flex-start;
+    gap:12px;
+  }
+
+  .globalNav .brand{
+    font-size:22px;
+    line-height:1;
+    white-space:nowrap;
+  }
+
+  .globalNav .navCenter{
+    display:flex;
+    gap:10px;
+    overflow-x:auto;
+    flex:1;
+  }
+
+  .globalNav .navLink{
+    font-size:12px;
+    white-space:nowrap;
+  }
+
+  .globalNav .navActions{
+    gap:6px;
+  }
+
+  .globalNav .navActions .navUser{
+    display:none;
+  }
+
+  .globalNav .navActions .btn{
+    padding:9px 11px;
+    font-size:12px;
+  }
+}
