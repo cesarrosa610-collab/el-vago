@@ -264,3 +264,104 @@
     white-space:nowrap;
   }
 }
+/* EL VAGO — Navegación global corregida */
+
+.globalNav{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:32px;
+}
+
+.globalNav .brand{
+  flex:0 0 auto;
+  white-space:nowrap;
+}
+
+.globalNav .navCenter{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:24px;
+  flex:1;
+}
+
+.globalNav .navLink{
+  color:#aaa;
+  text-decoration:none;
+  font-size:14px;
+  white-space:nowrap;
+  transition:color .2s ease;
+}
+
+.globalNav .navLink:hover{
+  color:#fff;
+}
+
+.globalNav .navDisabled{
+  color:#555;
+  cursor:default;
+}
+
+.globalNav .navActions{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.globalNav .navUser{
+  white-space:nowrap;
+}
+
+/* Responsive móvil */
+
+@media(max-width:760px){
+
+  .globalNav{
+    flex-wrap:wrap;
+    align-items:center;
+    gap:10px;
+  }
+
+  .globalNav .brand{
+    font-size:22px;
+    line-height:1;
+    white-space:nowrap;
+    flex:0 0 auto;
+  }
+
+  .globalNav .navActions{
+    margin-left:auto;
+    display:flex;
+    align-items:center;
+    gap:6px;
+    flex:0 0 auto;
+  }
+
+  .globalNav .navCenter{
+    order:3;
+    flex:0 0 100%;
+    width:100%;
+    display:flex;
+    gap:18px;
+    overflow-x:auto;
+    padding-top:8px;
+    padding-bottom:4px;
+    justify-content:flex-start;
+  }
+
+  .globalNav .navLink{
+    font-size:12px;
+    white-space:nowrap;
+  }
+
+  .globalNav .navActions .navUser{
+    display:none;
+  }
+
+  .globalNav .navActions .btn{
+    padding:9px 11px;
+    font-size:12px;
+    white-space:nowrap;
+  }
+}
