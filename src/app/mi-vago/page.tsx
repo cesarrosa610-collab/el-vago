@@ -29,7 +29,10 @@ export default async function MiVago() {
   }
 
   const investigations = await prisma.investigation.findMany({
-    where: { userId: user.id },
+   where: {
+  userId: user.id,
+  expediente: { status: 'PUBLISHED' },
+},
     orderBy: { id: 'asc' },
     include: {
       expediente: {
