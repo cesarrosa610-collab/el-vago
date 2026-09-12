@@ -1,415 +1,258 @@
-*{box-sizing:border-box}html{background:#080808}body{margin:0;background:#080808;color:#f5f5f5;font-family:Inter,Arial,sans-serif}a{color:inherit;text-decoration:none}button{font:inherit}.wrap{max-width:1100px;margin:auto;padding:28px}.nav{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 0}.brand{font-size:27px;font-weight:900;letter-spacing:-.04em}.navActions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.hero{padding:72px 0 38px}.hero h1{font-size:clamp(42px,7vw,76px);line-height:.95;max-width:760px;margin:12px 0 20px;letter-spacing:-.055em}.eyebrow{letter-spacing:.18em;font-size:11px;color:#e50914;font-weight:900}.lead,.muted{color:#a7a7a7}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}.card{background:#121212;border:1px solid #272727;border-radius:18px;padding:22px}.btn{display:inline-block;background:#e50914;border:0;color:#fff;padding:12px 18px;border-radius:9px;cursor:pointer}.btn:disabled{opacity:.5;cursor:not-allowed}.secondary{background:#242424}.input{width:100%;padding:13px;border-radius:9px;border:1px solid #333;background:#111;color:#fff}.stack{display:grid;gap:12px;max-width:480px}.error{color:#ff7070}.ok{color:#70ff9b}.bar{height:8px;background:#242424;border-radius:20px;overflow:hidden}.bar i{display:block;height:100%;background:#e50914;transition:width .35s}.tag,.caseCode{font-size:11px;letter-spacing:.1em;color:#e50914}.casePage{min-height:100vh;background:radial-gradient(circle at 80% 10%,#1a0b0c 0,#080808 38%)}.caseHero{max-width:1200px;margin:auto;padding:24px 34px 48px}.caseHero h1{font-size:clamp(46px,8vw,88px);line-height:.9;letter-spacing:-.06em;max-width:850px;margin:14px 0}.caseMeta{display:flex;gap:22px;color:#aaa;margin:25px 0 10px;font-size:13px}.heroBtn{margin-top:22px}.investigation{max-width:1200px;margin:auto;padding:0 34px 60px;display:grid;grid-template-columns:190px 1fr;gap:34px}.caseNav{border-right:1px solid #262626;padding-right:18px;display:grid;align-content:start;gap:8px}.caseNav a{padding:10px 8px;color:#777}.caseNav .active{color:#fff;background:#151515;border-radius:8px}.sideTitle{font-size:10px;letter-spacing:.16em;color:#e50914;margin-bottom:8px}.sectionHead{display:flex;justify-content:space-between;gap:20px;align-items:end;margin-bottom:18px}.sectionHead h2{font-size:30px;margin:5px 0}.notice{padding:12px 14px;background:#151515;border:1px solid #333;border-radius:10px;margin-bottom:15px;color:#ddd}.evidenceGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.evidence{min-height:210px;padding:20px;border-radius:16px;border:1px solid #2a2a2a;background:#111;position:relative}.evidence.locked{background:linear-gradient(145deg,#141414,#0d0d0d)}.evidenceTop{display:flex;justify-content:space-between;font-size:10px;letter-spacing:.12em;color:#777}.evidence h3{font-size:24px;margin:34px 0 12px}.evidence p{color:#bdbdbd;line-height:1.55}.redacted{filter:blur(4px);user-select:none}.foundMark{margin-top:20px;color:#79d99a;font-size:12px;font-weight:700}.found{border-color:#3b2425}@media(max-width:760px){.wrap{padding:20px}.caseHero{padding:18px 20px 36px}.investigation{padding:0 20px 50px;display:block}.caseNav{display:flex;overflow:auto;border-right:0;border-bottom:1px solid #262626;padding:0 0 10px;margin-bottom:25px}.sectionHead{display:block}.evidenceGrid{grid-template-columns:1fr}.hero{padding:45px 0 25px}}
-.caseNav button{padding:10px 8px;color:#777;background:transparent;border:0;text-align:left;cursor:pointer;border-radius:8px}.caseNav button.active{color:#fff;background:#151515}.narrativeGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.narrativeGrid .card h3{margin:10px 0;font-size:21px}.timeline{display:grid;gap:14px}.timelineItem{display:grid;grid-template-columns:110px 1fr;gap:18px;padding:18px;border-left:2px solid #e50914;background:#111;border-radius:0 14px 14px 0}.timelineItem span{font-weight:800}.timelineItem b{font-size:11px;letter-spacing:.12em;color:#e50914}.timelineItem p{color:#aaa;margin:7px 0 0}@media(max-width:760px){.narrativeGrid{grid-template-columns:1fr}.timelineItem{grid-template-columns:1fr}}
-.caseNav button:disabled{
-  opacity:.35;
-  cursor:not-allowed;
-}
-.nav{
-  position:relative;
-}
+import { NextResponse } from 'next/server';
+import { prisma } from '@/src/lib/prisma';
+import { currentUser } from '@/src/lib/auth';
+import { canDiscover } from '@/src/lib/security';
 
-.nav:after{
-  content:"";
-  position:absolute;
-  left:0;
-  right:0;
-  bottom:-1px;
-  height:1px;
-  background:linear-gradient(90deg,transparent,#3b181b 25%,#3b181b 75%,transparent);
-}
+export async function GET(_: Request, { params }: { params: Promise<{ slug: string }> }) {
+  const u = await currentUser();
+  if (!u) return NextResponse.json({ error: 'No autenticado' }, { status: 401 });
 
-.hero{
-  position:relative;
-  min-height:430px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-}
+  const { slug } = await params;
 
-.hero:before{
-  content:"";
-  position:absolute;
-  inset:-80px -20px -40px;
-  background:
-    radial-gradient(circle at 75% 35%,rgba(229,9,20,.13),transparent 28%),
-    linear-gradient(135deg,rgba(255,255,255,.02),transparent 48%);
-  pointer-events:none;
-}
+  const e = await prisma.expediente.findUnique({
+    where: { slug },
+    include: {
+      evidence: {
+        orderBy: { unlockAfter: 'asc' },
+      },
+    },
+  });
 
-.hero h1{
-  text-wrap:balance;
-  text-shadow:0 8px 40px rgba(0,0,0,.45);
-}
-
-.card{
-  position:relative;
-  overflow:hidden;
-}
-
-.card:before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(135deg,rgba(255,255,255,.025),transparent 40%);
-  pointer-events:none;
-}
-
-.card .tag{
-  position:relative;
-  z-index:1;
-}
-
-.card h2,
-.card p,
-.card .btn{
-  position:relative;
-  z-index:1;
-}
-
-.card:first-child{
-  border-color:#3a2527;
-}
-
-.card:first-child:after{
-  content:"DESTACADO";
-  position:absolute;
-  top:18px;
-  right:18px;
-  font-size:9px;
-  letter-spacing:.15em;
-  font-weight:900;
-  color:#ff4852;
-  z-index:2;
-}
-
-.btn{
-  box-shadow:0 8px 24px rgba(229,9,20,.12);
-}
-
-.btn:hover{
-  box-shadow:0 12px 30px rgba(229,9,20,.22);
-}
-
-.caseHero{
-  position:relative;
-  overflow:hidden;
-}
-
-.caseHero:before{
-  content:"";
-  position:absolute;
-  width:520px;
-  height:520px;
-  right:-180px;
-  top:-180px;
-  background:radial-gradient(circle,rgba(229,9,20,.10),transparent 68%);
-  pointer-events:none;
-}
-
-.caseHero h1,
-.caseHero .lead,
-.caseHero .caseMeta,
-.caseHero .bar,
-.caseHero .heroBtn{
-  position:relative;
-  z-index:1;
-}
-
-.evidence{
-  box-shadow:0 14px 45px rgba(0,0,0,.18);
-}
-
-.evidence.found{
-  box-shadow:0 14px 45px rgba(90,20,24,.12);
-}
-
-.message{
-  border-left:3px solid #e50914;
-}
-
-@media(max-width:760px){
-  .hero{
-    min-height:360px;
+  if (!e || e.status !== 'PUBLISHED') {
+    return NextResponse.json({ error: 'No encontrado' }, { status: 404 });
   }
 
-  .card:first-child:after{
-    top:14px;
-    right:14px;
-  }
-}
-/* EL VAGO — Premium Expedientes v2 */
+  const inv = await prisma.investigation.findUnique({
+    where: {
+      userId_expedienteId: {
+        userId: u.id,
+        expedienteId: e.id,
+      },
+    },
+  });
 
-.caseNav button{
-  transition:background .2s ease,color .2s ease,transform .2s ease;
-}
+  const discoveries = await prisma.discovery.findMany({
+    where: {
+      userId: u.id,
+      evidence: {
+        expedienteId: e.id,
+      },
+    },
+    select: {
+      evidenceId: true,
+    },
+  });
 
-.caseNav button:not(:disabled):hover{
-  color:#fff;
-  background:#111;
-  transform:translateX(2px);
-}
+  const discoveredIds = discoveries.map(x => x.evidenceId);
+  const discoveredCount = discoveredIds.length;
 
-.caseNav button.active{
-  box-shadow:inset 2px 0 0 #e50914;
-}
+  const evidence = e.evidence.map(x => ({
+    id: x.id,
+    code: x.code,
+    title: x.title,
+    description:
+      canDiscover(x.unlockAfter, discoveredCount) ||
+      discoveredIds.includes(x.id)
+        ? x.description
+        : null,
+    unlockAfter: x.unlockAfter,
+    unlocked:
+      canDiscover(x.unlockAfter, discoveredCount) ||
+      discoveredIds.includes(x.id),
+    discovered: discoveredIds.includes(x.id),
+  }));
 
-.evidence,
-.narrativeGrid .card{
-  transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease;
-}
-
-.evidence:hover,
-.narrativeGrid .card:hover{
-  transform:translateY(-3px);
-  border-color:#49272a;
-  box-shadow:0 20px 55px rgba(0,0,0,.25);
-}
-
-.evidence.locked:hover{
-  transform:none;
-  border-color:#2a2a2a;
-  box-shadow:none;
-}
-
-.conclusion{
-  border-color:#4b2528;
-  background:linear-gradient(145deg,#151515,#0e0e0e);
-  box-shadow:0 20px 60px rgba(70,20,25,.18);
-}
-
-.conclusion h2{
-  font-size:clamp(28px,4vw,42px);
-  letter-spacing:-.03em;
-  margin:12px 0;
-}
-
-.conclusion p:not(.eyebrow){
-  font-size:17px;
-  line-height:1.65;
-  color:#d0d0d0;
+  return NextResponse.json({
+    expediente: {
+      id: e.id,
+      code: e.code,
+      title: e.title,
+      slug: e.slug,
+      description: e.description,
+    },
+    investigation: inv,
+    evidence,
+  });
 }
 
-.message{
-  max-width:1200px;
-  margin:0 auto 18px;
-  padding:12px 16px;
-  background:#141414;
-  border-top:1px solid #272727;
-  border-right:1px solid #272727;
-  border-bottom:1px solid #272727;
-  border-left:3px solid #e50914;
-  border-radius:0 10px 10px 0;
-  color:#e7e7e7;
-}
+export async function POST(
+  req: Request,
+  { params }: { params: Promise<{ slug: string }> }
+) {
+  const u = await currentUser();
 
-.caseMeta span:first-child{
-  font-weight:700;
-  color:#ddd;
-}
-
-.bar{
-  box-shadow:inset 0 1px 2px rgba(0,0,0,.45);
-}
-
-.bar i{
-  box-shadow:0 0 18px rgba(229,9,20,.28);
-}
-
-@media(max-width:760px){
-  .globalNav{
-    flex-wrap:wrap;
-    align-items:center;
-    gap:10px;
+  if (!u) {
+    return NextResponse.json(
+      { error: 'No autenticado' },
+      { status: 401 }
+    );
   }
 
-  .globalNav .brand{
-    font-size:22px;
-    line-height:1;
-    white-space:nowrap;
-    flex:0 0 auto;
+  const { slug } = await params;
+  const body = await req.json().catch(() => ({}));
+
+  const e = await prisma.expediente.findUnique({
+    where: { slug },
+    include: {
+      evidence: true,
+    },
+  });
+
+  if (!e || e.status !== 'PUBLISHED') {
+    return NextResponse.json(
+      { error: 'No encontrado' },
+      { status: 404 }
+    );
   }
 
-  .globalNav .navActions{
-    margin-left:auto;
-    display:flex;
-    align-items:center;
-    gap:6px;
-    flex:0 0 auto;
+  const investigation = await prisma.investigation.findUnique({
+    where: {
+      userId_expedienteId: {
+        userId: u.id,
+        expedienteId: e.id,
+      },
+    },
+  });
+
+  if (body.action === 'start') {
+    if (investigation?.status === 'COMPLETED') {
+      return NextResponse.json(
+        { error: 'La investigación ya está cerrada' },
+        { status: 409 }
+      );
+    }
+
+    const inv = await prisma.investigation.upsert({
+      where: {
+        userId_expedienteId: {
+          userId: u.id,
+          expedienteId: e.id,
+        },
+      },
+      update: {},
+      create: {
+        userId: u.id,
+        expedienteId: e.id,
+        status: 'IN_PROGRESS',
+      },
+    });
+
+    return NextResponse.json({
+      ok: true,
+      investigation: inv,
+    });
   }
 
-  .globalNav .navCenter{
-    order:3;
-    flex:0 0 100%;
-    width:100%;
-    display:flex;
-    gap:18px;
-    overflow-x:auto;
-    padding-top:8px;
-    padding-bottom:4px;
-    justify-content:flex-start;
+  if (
+    body.action === 'discover' &&
+    typeof body.evidenceId === 'string'
+  ) {
+    if (!investigation) {
+      return NextResponse.json(
+        { error: 'Investigación no iniciada' },
+        { status: 409 }
+      );
+    }
+
+    if (investigation.status === 'COMPLETED') {
+      return NextResponse.json(
+        { error: 'La investigación ya está cerrada' },
+        { status: 409 }
+      );
+    }
+
+    const evidence = e.evidence.find(
+      x => x.id === body.evidenceId
+    );
+
+    if (!evidence) {
+      return NextResponse.json(
+        { error: 'Evidencia inválida' },
+        { status: 400 }
+      );
+    }
+
+    const result = await prisma.$transaction(async tx => {
+      const existing = await tx.discovery.findUnique({
+        where: {
+          userId_evidenceId: {
+            userId: u.id,
+            evidenceId: evidence.id,
+          },
+        },
+      });
+
+      const count = await tx.discovery.count({
+        where: {
+          userId: u.id,
+          evidence: {
+            expedienteId: e.id,
+          },
+        },
+      });
+
+      if (existing) {
+        return {
+          created: false,
+          progress: investigation.progress,
+          status: investigation.status,
+        };
+      }
+
+      if (!canDiscover(evidence.unlockAfter, count)) {
+        return {
+          created: false,
+          blocked: true,
+          progress: Math.round(
+            count / Math.max(e.evidence.length, 1) * 100
+          ),
+          status: investigation.status,
+        };
+      }
+
+      await tx.discovery.create({
+        data: {
+          userId: u.id,
+          evidenceId: evidence.id,
+        },
+      });
+
+      const discovered = count + 1;
+
+      const progress = Math.round(
+        discovered / Math.max(e.evidence.length, 1) * 100
+      );
+
+      const status =
+        progress >= 100
+          ? 'COMPLETED'
+          : 'IN_PROGRESS';
+
+      const inv = await tx.investigation.update({
+        where: {
+          id: investigation.id,
+        },
+        data: {
+          progress,
+          status,
+        },
+      });
+
+      return {
+        created: true,
+        progress: inv.progress,
+        status: inv.status,
+      };
+    });
+
+    return NextResponse.json({
+      ok: true,
+      ...result,
+    });
   }
 
-  .globalNav .navLink{
-    font-size:12px;
-    white-space:nowrap;
-  }
-
-  .globalNav .navActions .navUser{
-    display:none;
-  }
-
-  .globalNav .navActions .btn{
-    padding:9px 11px;
-    font-size:12px;
-    white-space:nowrap;
-  }
-}
-/* EL VAGO — Navegación global corregida */
-
-.globalNav{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:32px;
-}
-
-.globalNav .brand{
-  flex:0 0 auto;
-  white-space:nowrap;
-}
-
-.globalNav .navCenter{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:24px;
-  flex:1;
-}
-
-.globalNav .navLink{
-  color:#aaa;
-  text-decoration:none;
-  font-size:14px;
-  white-space:nowrap;
-  transition:color .2s ease;
-}
-
-.globalNav .navLink:hover{
-  color:#fff;
-}
-
-.globalNav .navDisabled{
-  color:#555;
-  cursor:default;
-}
-
-.globalNav .navActions{
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
-
-.globalNav .navUser{
-  white-space:nowrap;
-}
-
-/* Responsive móvil */
-
-@media(max-width:760px){
-
-  .globalNav{
-    flex-wrap:wrap;
-    align-items:center;
-    gap:10px;
-  }
-
-  .globalNav .brand{
-    font-size:22px;
-    line-height:1;
-    white-space:nowrap;
-    flex:0 0 auto;
-  }
-
-  .globalNav .navActions{
-    margin-left:auto;
-    display:flex;
-    align-items:center;
-    gap:6px;
-    flex:0 0 auto;
-  }
-
-  .globalNav .navCenter{
-    order:3;
-    flex:0 0 100%;
-    width:100%;
-    display:flex;
-    gap:18px;
-    overflow-x:auto;
-    padding-top:8px;
-    padding-bottom:4px;
-    justify-content:flex-start;
-  }
-
-  .globalNav .navLink{
-    font-size:12px;
-    white-space:nowrap;
-  }
-
-  .globalNav .navActions .navUser{
-    display:none;
-  }
-
-  .globalNav .navActions .btn{
-    padding:9px 11px;
-    font-size:12px;
-    white-space:nowrap;
-  }
-}
-/* EL VAGO — Navegación del expediente */
-
-.caseHero .navCenter{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:24px;
-  flex:1;
-}
-
-.caseHero .navLink{
-  color:#aaa;
-  text-decoration:none;
-  font-size:14px;
-  white-space:nowrap;
-  transition:color .2s ease;
-}
-
-.caseHero .navLink:hover{
-  color:#fff;
-}
-
-.caseHero .caseCode{
-  white-space:nowrap;
-  flex:0 0 auto;
-}
-
-@media(max-width:760px){
-  .caseHero .nav{
-    flex-wrap:wrap;
-    gap:10px;
-  }
-
-  .caseHero .navCenter{
-    order:3;
-    flex:0 0 100%;
-    width:100%;
-    justify-content:flex-start;
-    gap:18px;
-    overflow-x:auto;
-    padding-top:8px;
-    padding-bottom:4px;
-  }
-
-  .caseHero .navLink{
-    font-size:12px;
-  }
+  return NextResponse.json(
+    { error: 'Acción inválida' },
+    { status: 400 }
+  );
 }
