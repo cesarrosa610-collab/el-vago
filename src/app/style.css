@@ -365,3 +365,51 @@
     white-space:nowrap;
   }
 }
+/* EL VAGO — Navegación del expediente */
+
+.caseHero .navCenter{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:24px;
+  flex:1;
+}
+
+.caseHero .navLink{
+  color:#aaa;
+  text-decoration:none;
+  font-size:14px;
+  white-space:nowrap;
+  transition:color .2s ease;
+}
+
+.caseHero .navLink:hover{
+  color:#fff;
+}
+
+.caseHero .caseCode{
+  white-space:nowrap;
+  flex:0 0 auto;
+}
+
+@media(max-width:760px){
+  .caseHero .nav{
+    flex-wrap:wrap;
+    gap:10px;
+  }
+
+  .caseHero .navCenter{
+    order:3;
+    flex:0 0 100%;
+    width:100%;
+    justify-content:flex-start;
+    gap:18px;
+    overflow-x:auto;
+    padding-top:8px;
+    padding-bottom:4px;
+  }
+
+  .caseHero .navLink{
+    font-size:12px;
+  }
+}
