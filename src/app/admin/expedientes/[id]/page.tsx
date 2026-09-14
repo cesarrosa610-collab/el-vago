@@ -7,6 +7,7 @@ import EditEvidenceForm from './EditEvidenceForm';
 import NarrativeForm from './NarrativeForm';
 import PublishButton from './PublishButton';
 import DeleteDraftButton from './DeleteDraftButton';
+import ArchiveButton from './ArchiveButton';
 import EditExpedienteForm from './EditExpedienteForm';
 
 export default async function AdminExpedientePage({
@@ -300,9 +301,21 @@ export default async function AdminExpedientePage({
             />
           </div>
         )}
+{expediente.status === 'PUBLISHED' && (
+  <div className="card">
+    <h2>Zona de administración</h2>
+
+    <p className="muted">
+      Este expediente está publicado.
+      Puedes archivarlo para retirarlo de la vista pública sin eliminarlo.
+    </p>
+
+    <ArchiveButton
+      expedienteId={expediente.id}
+    />
+  </div>
+)}
       </section>
     </main>
   );
-}
-        
-  
+}     
