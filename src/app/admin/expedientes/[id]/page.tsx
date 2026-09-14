@@ -296,11 +296,6 @@ export default async function AdminExpedientePage({
 
            <PublishButton
   expedienteId={expediente.id}
-/> <DeleteDraftButton
-              expedienteId={expediente.id}
-            />
-          </div>
-        )}
 {expediente.status === 'PUBLISHED' && (
   <div className="card">
     <h2>Zona de administración</h2>
@@ -310,6 +305,26 @@ export default async function AdminExpedientePage({
       Puedes archivarlo para retirarlo de la vista pública sin eliminarlo.
     </p>
 
+    <ArchiveButton
+      expedienteId={expediente.id}
+    />
+  </div>
+)}
+
+{expediente.status === 'ARCHIVED' && (
+  <div className="card">
+    <h2>Zona de administración</h2>
+
+    <p className="muted">
+      Este expediente está archivado y no aparece públicamente.
+      Puedes restaurarlo para volver a publicarlo.
+    </p>
+
+    <PublishButton
+      expedienteId={expediente.id}
+    />
+  </div>
+)}
     <ArchiveButton
       expedienteId={expediente.id}
     />
