@@ -21,7 +21,7 @@ export default function ArchiveButton({
     setBusy(true);
 
     const response = await fetch(
-      `/api/admin/expedientes/${expedienteId}/archive`,
+     `/api/expedientes/${expedienteId}/archive`,
       {
         method: 'POST',
       }
