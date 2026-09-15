@@ -28,7 +28,6 @@ export default async function Home() {
   });
 
   const featured = exps[0];
-  
 
   const featuredInvestigation =
     user && featured
@@ -40,20 +39,14 @@ export default async function Home() {
             },
           },
         })
-: null;
+      : null;
 
-const others = exps.slice(1);
+  const others = exps.slice(1);
 
   return (
+    <main className="wrap homePage">
+      <GlobalNav />
 
-  <main className="wrap homePage">
-    <GlobalNav />
-
- 
-
-
-            
-              
       <section className="hero homeHero">
         <p className="eyebrow">EXPEDIENTES INTERACTIVOS</p>
 
@@ -62,7 +55,9 @@ const others = exps.slice(1);
         <p className="lead">
           Investiga, conecta evidencias y descubre la verdad.
         </p>
-        </section> {user && activeInvestigation ? (
+      </section>
+
+      {user && activeInvestigation ? (
         <section className="homeSection">
           <div className="sectionHead">
             <div>
@@ -115,18 +110,18 @@ const others = exps.slice(1);
           <div className="sectionHead">
             <div>
               <p className="eyebrow">MI VAGO</p>
-              <h2>Descubre tu próximo misterio.</h2>
+              <h2>Comienza tu primera investigación.</h2>
             </div>
           </div>
 
           <div className="notice exploreEmpty">
-            Ya resolviste tus casos actuales.{' '}
+            Elige un expediente para comenzar tu primera investigación.{' '}
             <Link href="/explorar">Explorar expedientes</Link>
           </div>
         </section>
       ) : null}
 
- {featured && (
+      {featured && (
         <section className="featuredCase">
           <div className="featuredCopy">
             <p className="eyebrow">EXPEDIENTE DESTACADO</p>
@@ -146,11 +141,11 @@ const others = exps.slice(1);
               className="btn heroBtn"
               href={`/expedientes/${featured.slug}`}
             >
-             {featuredInvestigation?.status === 'COMPLETED'
-  ? 'Revisar expediente'
-  : featuredInvestigation
-    ? 'Continuar investigación'
-    : 'Comenzar investigación'}
+              {featuredInvestigation?.status === 'COMPLETED'
+                ? 'Revisar expediente'
+                : featuredInvestigation
+                  ? 'Continuar investigación'
+                  : 'Comenzar investigación'}
             </Link>
           </div>
 
