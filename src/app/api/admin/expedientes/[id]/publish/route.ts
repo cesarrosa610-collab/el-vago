@@ -1,5 +1,47 @@
-import {NextResponse} from 'next/server'; import {prisma} from '@/src/lib/prisma'; import {currentUser} from '@/src/lib/auth';
-export async function POST(_: Request, { params }: { params: Promise<{ id: string }> }) {
+import { NextResponse } from 'next/server';
+import { prisma } from '@/src/lib/prisma';
+import { currentUser } from '@/src/lib/auth';
+
+export async function GET(
+  _: Request,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  const u = await currentUser();
+
+  if (!u || u.role !== 'ADMIN') {
+    return NextResponse.json(
+      { error: 'No autorizado' },
+      { status: 403 }
+    );
+  }
+
+  const { id } = await params;
+
+  const e = await prisma.expediente.findUnique({
+    where: { id },
+    select: {
+      id: true,
+      status: true,
+    },
+  });
+
+  if (!e) {
+    return NextResponse.json(
+      { error: 'No encontrado' },
+      { status: 404 }
+    );
+  }
+
+  return NextResponse.json({
+    ok: true,
+    status: e.status,
+  });
+}
+
+export async function POST(
+  _: Request,
+  { params }: { params: Promise<{ id: string }> }
+) {
   const u = await currentUser();
 
   if (!u || u.role !== 'ADMIN') {
@@ -23,7 +65,36 @@ export async function POST(_: Request, { params }: { params: Promise<{ id: strin
     );
   }
 
-  if (!e.title || !e.slug || !e.description || e.evidence.length === 0) {
+  if (e.status === 'ARCHIVED') {
+    const r = await prisma.expediente.update({
+      where: { id },
+      data: { status: 'DRAFT' },
+    });
+
+    return NextResponse.json({
+      ok: true,
+      status: r.status,
+      action: 'RESTORED',
+      expediente: r,
+    });
+  }
+
+  if (e.status !== 'DRAFT') {
+    return NextResponse.json(
+      {
+        error:
+          'Solo se puede publicar un expediente DRAFT.',
+      },
+      { status: 409 }
+    );
+  }
+
+  if (
+    !e.title ||
+    !e.slug ||
+    !e.description ||
+    e.evidence.length === 0
+  ) {
     return NextResponse.json(
       { error: 'Expediente incompleto' },
       { status: 422 }
@@ -40,6 +111,7 @@ export async function POST(_: Request, { params }: { params: Promise<{ id: strin
         status: 'PUBLISHED',
       },
     }),
+
     prisma.question.updateMany({
       where: {
         expedienteId: id,
@@ -49,6 +121,7 @@ export async function POST(_: Request, { params }: { params: Promise<{ id: strin
         status: 'PUBLISHED',
       },
     }),
+
     prisma.theory.updateMany({
       where: {
         expedienteId: id,
@@ -58,6 +131,7 @@ export async function POST(_: Request, { params }: { params: Promise<{ id: strin
         status: 'PUBLISHED',
       },
     }),
+
     prisma.hypothesis.updateMany({
       where: {
         expedienteId: id,
@@ -67,6 +141,7 @@ export async function POST(_: Request, { params }: { params: Promise<{ id: strin
         status: 'PUBLISHED',
       },
     }),
+
     prisma.timelineEvent.updateMany({
       where: {
         expedienteId: id,
@@ -87,6 +162,8 @@ export async function POST(_: Request, { params }: { params: Promise<{ id: strin
 
   return NextResponse.json({
     ok: true,
+    status: r.status,
+    action: 'PUBLISHED',
     expediente: r,
   });
 }
