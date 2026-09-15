@@ -149,46 +149,40 @@ export default async function Home() {
             </Link>
           </div>
 
-        <div className="featuredVisual" aria-hidden="true">
-  <div className="featuredGlow" />
-       </div>
- </section>
- )}
-<section className="homeSection">
-  <div className="sectionHead">
-    <div>
-      <p className="eyebrow">CATÁLOGO</p>
-      <h2>Más misterios por resolver</h2>
-    </div>
+          <div
+            className="featuredVisual"
+            aria-hidden="true"
+          >
+            <div className="featuredGlow" />
+          </div>
+        </section>
+      )}
 
-    <p className="muted">
-      Elige un expediente y sigue las pistas.
-    </p>
-  </div>
+      <section className="homeSection">
+        <div className="sectionHead">
+          <div>
+            <p className="eyebrow">CATÁLOGO</p>
+            <h2>Más misterios por resolver</h2>
+          </div>
 
-  <div className="grid">
-    {(others.length ? others : exps).map((e) => (
-      <div className="card" key={e.id}>
-        <span className="tag">{e.code}</span>
+          <p className="muted">
+            Elige un expediente y sigue las pistas.
+          </p>
+        </div>
 
-        <h2>{e.title}</h2>
+        <div className="grid">
+          {(others.length ? others : exps).map((e) => (
+            <div className="card" key={e.id}>
+              <span className="tag">{e.code}</span>
 
-        <p className="muted">{e.description}</p>
+              <h2>{e.title}</h2>
 
-        <p className="muted">
-          {e.evidence.length} evidencias
-        </p>
+              <p className="muted">{e.description}</p>
 
-        <Link
-          className="btn"
-          href={`/expedientes/${e.slug}`}
-        >
-          Investigar
-        </Link>
-      </div>
-    ))}
-  </div>
-</section>
+              <p className="muted">
+                {e.evidence.length} evidencias
+              </p>
+
               <Link
                 className="btn"
                 href={`/expedientes/${e.slug}`}
