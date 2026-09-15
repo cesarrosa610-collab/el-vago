@@ -284,52 +284,57 @@ export default async function AdminExpedientePage({
             />
           )}
         </div>
-
         {expediente.status === 'DRAFT' && (
           <div className="card">
             <h2>Zona de administración</h2>
 
             <p className="muted">
               Este expediente aún no está publicado.
-              Puedes eliminarlo de forma segura.
+              Puedes publicarlo cuando esté listo o eliminarlo de forma segura.
             </p>
 
-           <PublishButton
-  expedienteId={expediente.id}
-{expediente.status === 'PUBLISHED' && (
-  <div className="card">
-    <h2>Zona de administración</h2>
+            <div className="nav">
+              <PublishButton
+                expedienteId={expediente.id}
+              />
 
-    <p className="muted">
-      Este expediente está publicado.
-      Puedes archivarlo para retirarlo de la vista pública sin eliminarlo.
-    </p>
+              <DeleteDraftButton
+                expedienteId={expediente.id}
+              />
+            </div>
+          </div>
+        )}
 
-    <ArchiveButton
-      expedienteId={expediente.id}
-    />
-  </div>
-)}
+        {expediente.status === 'PUBLISHED' && (
+          <div className="card">
+            <h2>Zona de administración</h2>
 
-{expediente.status === 'ARCHIVED' && (
-  <div className="card">
-    <h2>Zona de administración</h2>
+            <p className="muted">
+              Este expediente está publicado.
+              Puedes archivarlo para retirarlo de la vista pública sin eliminarlo.
+            </p>
 
-    <p className="muted">
-      Este expediente está archivado y no aparece públicamente.
-      Puedes restaurarlo para volver a publicarlo.
-    </p>
+            <ArchiveButton
+              expedienteId={expediente.id}
+            />
+          </div>
+        )}
 
-    <PublishButton
-      expedienteId={expediente.id}
-    />
-  </div>
-)}
-    <ArchiveButton
-      expedienteId={expediente.id}
-    />
-  </div>
-)}
+        {expediente.status === 'ARCHIVED' && (
+          <div className="card">
+            <h2>Zona de administración</h2>
+
+            <p className="muted">
+              Este expediente está archivado y no aparece públicamente.
+              Puedes restaurarlo para volver a publicarlo.
+            </p>
+
+            <PublishButton
+              expedienteId={expediente.id}
+            />
+          </div>
+        )}
+ 
       </section>
     </main>
   );
