@@ -1,37 +1,37 @@
-import {NextResponse} from 'next/server';
-import {prisma} from '@/src/lib/prisma';
-import {currentUser} from '@/src/lib/auth';
-import {canDiscover} from '@/src/lib/security';
+import { NextResponse } from 'next/server';
+import { prisma } from '@/src/lib/prisma';
+import { currentUser } from '@/src/lib/auth';
+import { canDiscover } from '@/src/lib/security';
 
 export async function POST(
   _: Request,
-  {params}: {params: Promise<{id: string; evidenceId: string}>}
+  { params }: { params: Promise<{ id: string; evidenceId: string }> }
 ) {
   const u = await currentUser();
 
   if (!u) {
     return NextResponse.json(
-      {error: 'No autenticado'},
-      {status: 401}
+      { error: 'No autenticado' },
+      { status: 401 }
     );
   }
 
-  const {id, evidenceId} = await params;
+  const { id, evidenceId } = await params;
 
   const e = await prisma.evidence.findFirst({
     where: {
       id: evidenceId,
       expedienteId: id,
       expediente: {
-        status: 'PUBLISHED'
-      }
-    }
+        status: 'PUBLISHED',
+      },
+    },
   });
 
   if (!e) {
     return NextResponse.json(
-      {error: 'Evidencia no disponible'},
-      {status: 404}
+      { error: 'Evidencia no disponible' },
+      { status: 404 }
     );
   }
 
@@ -39,22 +39,22 @@ export async function POST(
     where: {
       userId_expedienteId: {
         userId: u.id,
-        expedienteId: id
-      }
-    }
+        expedienteId: id,
+      },
+    },
   });
 
   if (!i) {
     return NextResponse.json(
-      {error: 'Inicia la investigación primero'},
-      {status: 400}
+      { error: 'Inicia la investigación primero' },
+      { status: 400 }
     );
   }
 
   if (i.status === 'COMPLETED') {
     return NextResponse.json(
-      {error: 'La investigación ya está cerrada'},
-      {status: 409}
+      { error: 'La investigación ya está cerrada' },
+      { status: 409 }
     );
   }
 
@@ -62,15 +62,15 @@ export async function POST(
     where: {
       userId: u.id,
       evidence: {
-        expedienteId: id
-      }
-    }
+        expedienteId: id,
+      },
+    },
   });
 
   if (!canDiscover(e.unlockAfter, count)) {
     return NextResponse.json(
-      {error: 'Evidencia bloqueada'},
-      {status: 403}
+      { error: 'Evidencia bloqueada' },
+      { status: 403 }
     );
   }
 
@@ -78,61 +78,65 @@ export async function POST(
     where: {
       userId_evidenceId: {
         userId: u.id,
-        evidenceId: e.id
-      }
-    }
+        evidenceId: e.id,
+      },
+    },
   });
 
-  const d = existed ?? await prisma.discovery.create({
-    data: {
-      userId: u.id,
-      evidenceId: e.id
-    }
-  });
+  if (!existed) {
+    await prisma.discovery.create({
+      data: {
+        userId: u.id,
+        evidenceId: e.id,
+      },
+    });
+  }
 
   const total = await prisma.evidence.count({
     where: {
-      expedienteId: id
-    }
+      expedienteId: id,
+    },
   });
 
   const found = await prisma.discovery.count({
     where: {
       userId: u.id,
       evidence: {
-        expedienteId: id
-      }
-    }
+        expedienteId: id,
+      },
+    },
   });
 
   const progress = total
-    ? Math.round(found / total * 100)
+    ? Math.round((found / total) * 100)
     : 0;
 
-  const status = progress >= 100
-    ? 'COMPLETED'
-    : 'IN_PROGRESS';
+  // Importante:
+  // Llegar al 100% de evidencias NO cierra el caso.
+  // El caso se cierra únicamente después de seleccionar
+  // una hipótesis en /hypothesis/select.
+  const status = 'IN_PROGRESS';
 
   await prisma.investigation.update({
     where: {
-      id: i.id
+      id: i.id,
     },
     data: {
       progress,
-      status
-    }
+      status,
+    },
   });
 
   const discoveries = await prisma.discovery.findMany({
     where: {
       userId: u.id,
       evidence: {
-        expedienteId: id
-      }
+        expedienteId: id,
+      },
     },
     select: {
-      evidenceId: true
-    }
+      evidenceId: true,
+    },
   });
 
   return NextResponse.json({
@@ -140,6 +144,8 @@ export async function POST(
     newlyDiscovered: !existed,
     progress,
     status,
-    discoveredIds: discoveries.map(x => x.evidenceId)
+    discoveredIds: discoveries.map(
+      (x) => x.evidenceId
+    ),
   });
 }
