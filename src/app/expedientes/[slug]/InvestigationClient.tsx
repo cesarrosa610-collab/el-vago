@@ -13,9 +13,9 @@ type Evidence = {
 type TimelineEvent = {
   id: string;
   code: string;
-  date: string;
+  label: string;
   description: string;
-  order: number;
+  sortOrder: number;
   unlockAfter: number;
 };
 
@@ -77,12 +77,38 @@ export default function InvestigationClient({
   );
 
   const refreshNarrative = async () => {
-    const r = await fetch(
-      `/api/expedientes/${expediente.id}/narrative`
-    );
+    try {
+      const r = await fetch(
+        `/api/expedientes/${expediente.id}/narrative`,
+        {
+          cache: 'no-store',
+        }
+      );
 
-    if (r.ok) {
-      setNarrative(await r.json());
+      if (!r.ok) {
+        return;
+      }
+
+      const data = await r.json();
+
+      setNarrative({
+        clues: Array.isArray(data.clues) ? data.clues : [],
+        questions: Array.isArray(data.questions)
+          ? data.questions
+          : [],
+        theories: Array.isArray(data.theories)
+          ? data.theories
+          : [],
+        hypotheses: Array.isArray(data.hypotheses)
+          ? data.hypotheses
+          : [],
+        timeline: Array.isArray(data.timeline)
+          ? data.timeline
+          : [],
+        conclusion: data.conclusion,
+      });
+    } catch {
+      setMessage('No se pudo actualizar el contenido narrativo.');
     }
   };
 
@@ -96,88 +122,100 @@ export default function InvestigationClient({
     setBusy(true);
     setMessage('');
 
-    const r = await fetch(
-      `/api/expedientes/${expediente.id}/start`,
-      {
-        method: 'POST',
-      }
-    );
-
-    const j = await r.json();
-
-    if (r.ok) {
-      setProgress(j.progress);
-      setStatus(j.status);
-      setMessage(
-        'Expediente abierto. La investigación comienza ahora.'
+    try {
+      const r = await fetch(
+        `/api/expedientes/${expediente.id}/start`,
+        {
+          method: 'POST',
+        }
       );
-    } else {
-      setMessage(j.error || 'No se pudo iniciar');
-    }
 
-    setBusy(false);
+      const j = await r.json();
+
+      if (r.ok) {
+        setProgress(j.progress);
+        setStatus(j.status);
+        setMessage(
+          'Expediente abierto. La investigación comienza ahora.'
+        );
+      } else {
+        setMessage(j.error || 'No se pudo iniciar');
+      }
+    } catch {
+      setMessage('No se pudo iniciar la investigación.');
+    } finally {
+      setBusy(false);
+    }
   }
 
   async function discover(e: Evidence) {
     setBusy(true);
     setMessage('');
 
-    const r = await fetch(
-      `/api/expedientes/${expediente.id}/evidence/${e.id}/discover`,
-      {
-        method: 'POST',
-      }
-    );
-
-    const j = await r.json();
-
-    if (r.ok) {
-      setIds(j.discoveredIds);
-      setProgress(j.progress);
-      setStatus(j.status);
-
-      setMessage(
-        j.newlyDiscovered
-          ? 'Hallazgo registrado. Una nueva conexión puede haberse abierto.'
-          : 'Esta evidencia ya estaba en tu expediente.'
+    try {
+      const r = await fetch(
+        `/api/expedientes/${expediente.id}/evidence/${e.id}/discover`,
+        {
+          method: 'POST',
+        }
       );
-    } else {
-      setMessage(j.error || 'No se pudo descubrir');
-    }
 
-    setBusy(false);
+      const j = await r.json();
+
+      if (r.ok) {
+        setIds(j.discoveredIds);
+        setProgress(j.progress);
+        setStatus(j.status);
+
+        setMessage(
+          j.newlyDiscovered
+            ? 'Hallazgo registrado. Una nueva conexión puede haberse abierto.'
+            : 'Esta evidencia ya estaba en tu expediente.'
+        );
+      } else {
+        setMessage(j.error || 'No se pudo descubrir');
+      }
+    } catch {
+      setMessage('No se pudo registrar el hallazgo.');
+    } finally {
+      setBusy(false);
+    }
   }
 
   async function chooseHypothesis(id: string) {
     setBusy(true);
     setMessage('');
 
-    const r = await fetch(
-      `/api/expedientes/${expediente.id}/hypothesis/select`,
-      {
-        method: 'POST',
-        headers: {
-          'content-type': 'application/json',
-        },
-        body: JSON.stringify({
-          hypothesisId: id,
-        }),
-      }
-    );
-
-    const j = await r.json();
-
-    if (r.ok) {
-      setMessage(
-        'Hipótesis registrada. Tu teoría ha quedado incorporada al expediente.'
+    try {
+      const r = await fetch(
+        `/api/expedientes/${expediente.id}/hypothesis/select`,
+        {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+          },
+          body: JSON.stringify({
+            hypothesisId: id,
+          }),
+        }
       );
 
-      await refreshNarrative();
-    } else {
-      setMessage(j.error || 'No se pudo seleccionar');
-    }
+      const j = await r.json();
 
-    setBusy(false);
+      if (r.ok) {
+        setMessage(
+          'Hipótesis registrada. Tu teoría ha quedado incorporada al expediente.'
+        );
+
+        await refreshNarrative();
+      } else {
+        setMessage(j.error || 'No se pudo seleccionar');
+      }
+    } catch {
+      setMessage('No se pudo registrar la hipótesis.');
+    } finally {
+      setBusy(false);
+    }
   }
 
   const nav = [
@@ -192,13 +230,33 @@ export default function InvestigationClient({
 
   const isTabUnlocked = (x: string) => {
     if (x === 'Evidencias') return true;
-    if (x === 'Pistas') return narrative.clues.length > 0;
-    if (x === 'Preguntas') return narrative.questions.length > 0;
-    if (x === 'Teorías') return narrative.theories.length > 0;
-    if (x === 'Hipótesis') return narrative.hypotheses.length > 0;
-    if (x === 'Timeline') return narrative.timeline.length > 0;
+
     if (x === 'Cierre') {
       return narrative.conclusion?.completed === true;
+    }
+
+    if (status === 'COMPLETED') {
+      return true;
+    }
+
+    if (x === 'Pistas') {
+      return narrative.clues.length > 0;
+    }
+
+    if (x === 'Preguntas') {
+      return narrative.questions.length > 0;
+    }
+
+    if (x === 'Teorías') {
+      return narrative.theories.length > 0;
+    }
+
+    if (x === 'Hipótesis') {
+      return narrative.hypotheses.length > 0;
+    }
+
+    if (x === 'Timeline') {
+      return narrative.timeline.length > 0;
     }
 
     return false;
@@ -206,7 +264,11 @@ export default function InvestigationClient({
 
   return (
     <main className="casePage">
-      {message && <div className="message">{message}</div>}
+      {message && (
+        <div className="message">
+          {message}
+        </div>
+      )}
 
       <header className="caseHero">
         <nav
@@ -222,11 +284,17 @@ export default function InvestigationClient({
               Inicio
             </a>
 
-            <a className="navLink" href="/explorar">
+            <a
+              className="navLink"
+              href="/explorar"
+            >
               Explorar
             </a>
 
-            <a className="navLink" href="/mi-vago">
+            <a
+              className="navLink"
+              href="/mi-vago"
+            >
               Mi Vago
             </a>
           </div>
@@ -261,7 +329,10 @@ export default function InvestigationClient({
         <div className="bar">
           <i
             style={{
-              width: `${progress}%`,
+              width: `${Math.min(
+                100,
+                Math.max(0, progress)
+              )}%`,
             }}
           />
         </div>
@@ -286,12 +357,15 @@ export default function InvestigationClient({
           </div>
 
           {nav.map((x) => {
-            const unlocked = isTabUnlocked(x);
+            const unlocked =
+              isTabUnlocked(x);
 
             return (
               <button
                 key={x}
-                className={tab === x ? 'active' : ''}
+                className={
+                  tab === x ? 'active' : ''
+                }
                 onClick={() =>
                   unlocked && setTab(x)
                 }
@@ -313,7 +387,8 @@ export default function InvestigationClient({
           {tab === 'Evidencias' && (
             <div className="evidenceGrid">
               {visible.map((e) => {
-                const found = discovered.has(e.id);
+                const found =
+                  discovered.has(e.id);
 
                 return (
                   <article
@@ -323,7 +398,9 @@ export default function InvestigationClient({
                     key={e.id}
                   >
                     <div className="evidenceTop">
-                      <span>{e.code}</span>
+                      <span>
+                        {e.code}
+                      </span>
 
                       <span>
                         {found
@@ -336,7 +413,9 @@ export default function InvestigationClient({
 
                     {found ? (
                       <>
-                        <p>{e.description}</p>
+                        <p>
+                          {e.description}
+                        </p>
 
                         <div className="foundMark">
                           ✓ Hallazgo registrado
@@ -378,7 +457,9 @@ export default function InvestigationClient({
 
                   <h3>{x.title}</h3>
 
-                  <p>{x.description}</p>
+                  <p>
+                    {x.description}
+                  </p>
                 </article>
               ))}
 
@@ -426,7 +507,9 @@ export default function InvestigationClient({
 
                   <h3>{x.title}</h3>
 
-                  <p>{x.description}</p>
+                  <p>
+                    {x.description}
+                  </p>
                 </article>
               ))}
             </div>
@@ -437,7 +520,8 @@ export default function InvestigationClient({
               {narrative.hypotheses.map((x) => {
                 const selected =
                   narrative.conclusion
-                    ?.selectedHypothesisId === x.id;
+                    ?.selectedHypothesisId ===
+                  x.id;
 
                 return (
                   <article
@@ -452,7 +536,9 @@ export default function InvestigationClient({
 
                     <h3>{x.title}</h3>
 
-                    <p>{x.description}</p>
+                    <p>
+                      {x.description}
+                    </p>
 
                     {selected && (
                       <div className="foundMark">
@@ -487,26 +573,36 @@ export default function InvestigationClient({
             <div className="narrativeGrid">
               {narrative.timeline
                 .slice()
-                .sort((a, b) => a.order - b.order)
+                .sort(
+                  (a, b) =>
+                    a.sortOrder -
+                    b.sortOrder
+                )
                 .map((x) => (
                   <article
                     className="card"
                     key={x.id}
                   >
                     <div className="evidenceTop">
-                      <span>{x.code}</span>
+                      <span>
+                        {x.code}
+                      </span>
 
                       <span>
-                        {x.date}
+                        {x.label}
                       </span>
                     </div>
 
                     <h3>
-                      {x.description}
+                      {x.label}
                     </h3>
 
+                    <p>
+                      {x.description}
+                    </p>
+
                     <p className="muted">
-                      Orden {x.order}
+                      Orden {x.sortOrder}
                     </p>
                   </article>
                 ))}
@@ -532,7 +628,8 @@ export default function InvestigationClient({
               </h2>
 
               <p>
-                {narrative.conclusion?.description ||
+                {narrative.conclusion
+                  ?.description ||
                   'Sigue reuniendo las piezas y selecciona una hipótesis cuando estés listo.'}
               </p>
 
