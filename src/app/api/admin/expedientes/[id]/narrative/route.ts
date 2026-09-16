@@ -135,7 +135,9 @@ export async function GET(
     clues,
     questions,
     theories,
-    hypotheses: hypotheses.map(({ isCorrect, ...h }) => h),
+    hypotheses: hypotheses.map(
+      ({ isCorrect, ...h }) => h
+    ),
     timeline,
     conclusion: {
       title:
@@ -237,14 +239,17 @@ export async function POST(
 
   const unlockAfter = Number(body.unlockAfter);
   const sortOrder = Number(body.sortOrder ?? 0);
+
   const isCorrect =
     type === 'HYPOTHESIS'
       ? Boolean(body.isCorrect)
       : false;
-const status =
-  body.publish === true
-    ? 'PUBLISHED'
-    : 'DRAFT';
+
+  const status =
+    body.publish === true
+      ? 'PUBLISHED'
+      : 'DRAFT';
+
   if (
     !code ||
     !narrativeBody ||
@@ -269,7 +274,7 @@ const status =
     );
   }
 
-      try {
+  try {
     switch (type) {
       case 'CLUE':
         await prisma.clue.create({
@@ -327,7 +332,7 @@ const status =
         });
         break;
 
-            case 'TIMELINE':
+      case 'TIMELINE':
         await prisma.timelineEvent.create({
           data: {
             expedienteId: id,
@@ -352,6 +357,156 @@ const status =
         error:
           'No se pudo guardar. Verifica que el código no esté repetido.',
       },
+      { status: 409 }
+    );
+  }
+}
+
+export async function DELETE(
+  req: Request,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  const user = await currentUser();
+
+  if (!user || user.role !== 'ADMIN') {
+    return NextResponse.json(
+      { error: 'No autorizado' },
+      { status: 403 }
+    );
+  }
+
+  const { id } = await params;
+
+  const expediente = await prisma.expediente.findUnique({
+    where: { id },
+    select: {
+      id: true,
+      status: true,
+    },
+  });
+
+  if (!expediente) {
+    return NextResponse.json(
+      { error: 'Expediente no encontrado' },
+      { status: 404 }
+    );
+  }
+
+  if (expediente.status !== 'DRAFT') {
+    return NextResponse.json(
+      {
+        error:
+          'Solo se pueden eliminar piezas de un DRAFT',
+      },
+      { status: 409 }
+    );
+  }
+
+  const body = await req.json().catch(() => null);
+
+  if (!body) {
+    return NextResponse.json(
+      { error: 'Datos inválidos' },
+      { status: 400 }
+    );
+  }
+
+  const type = body.type as NarrativeType;
+  const itemId =
+    typeof body.itemId === 'string'
+      ? body.itemId.trim()
+      : '';
+
+  const allowedTypes: NarrativeType[] = [
+    'CLUE',
+    'QUESTION',
+    'THEORY',
+    'HYPOTHESIS',
+    'TIMELINE',
+  ];
+
+  if (!allowedTypes.includes(type) || !itemId) {
+    return NextResponse.json(
+      { error: 'Pieza narrativa inválida' },
+      { status: 400 }
+    );
+  }
+
+  try {
+    let deleted = 0;
+
+    switch (type) {
+      case 'CLUE': {
+        const result = await prisma.clue.deleteMany({
+          where: {
+            id: itemId,
+            expedienteId: id,
+          },
+        });
+        deleted = result.count;
+        break;
+      }
+
+      case 'QUESTION': {
+        const result = await prisma.question.deleteMany({
+          where: {
+            id: itemId,
+            expedienteId: id,
+          },
+        });
+        deleted = result.count;
+        break;
+      }
+
+      case 'THEORY': {
+        const result = await prisma.theory.deleteMany({
+          where: {
+            id: itemId,
+            expedienteId: id,
+          },
+        });
+        deleted = result.count;
+        break;
+      }
+
+      case 'HYPOTHESIS': {
+        const result = await prisma.hypothesis.deleteMany({
+          where: {
+            id: itemId,
+            expedienteId: id,
+          },
+        });
+        deleted = result.count;
+        break;
+      }
+
+      case 'TIMELINE': {
+        const result =
+          await prisma.timelineEvent.deleteMany({
+            where: {
+              id: itemId,
+              expedienteId: id,
+            },
+          });
+        deleted = result.count;
+        break;
+      }
+    }
+
+    if (deleted === 0) {
+      return NextResponse.json(
+        { error: 'La pieza no existe' },
+        { status: 404 }
+      );
+    }
+
+    return NextResponse.json({
+      ok: true,
+      deleted: true,
+    });
+  } catch {
+    return NextResponse.json(
+      { error: 'No se pudo eliminar la pieza' },
       { status: 409 }
     );
   }
