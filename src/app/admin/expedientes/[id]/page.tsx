@@ -2,9 +2,11 @@ import Link from 'next/link';
 import { redirect, notFound } from 'next/navigation';
 import { currentUser } from '@/src/lib/auth';
 import { prisma } from '@/src/lib/prisma';
+
 import EvidenceForm from './EvidenceForm';
 import EditEvidenceForm from './EditEvidenceForm';
 import NarrativeForm from './NarrativeForm';
+import NarrativeDeleteButton from './NarrativeDeleteButton';
 import PublishButton from './PublishButton';
 import DeleteDraftButton from './DeleteDraftButton';
 import ArchiveButton from './ArchiveButton';
@@ -31,30 +33,35 @@ export default async function AdminExpedientePage({
           unlockAfter: 'asc',
         },
       },
+
       clues: {
         orderBy: [
           { unlockAfter: 'asc' },
           { sortOrder: 'asc' },
         ],
       },
+
       questions: {
         orderBy: [
           { unlockAfter: 'asc' },
           { sortOrder: 'asc' },
         ],
       },
+
       theories: {
         orderBy: [
           { sortOrder: 'asc' },
           { unlockAfter: 'asc' },
         ],
       },
+
       hypotheses: {
         orderBy: [
           { unlockAfter: 'asc' },
           { sortOrder: 'asc' },
         ],
       },
+
       timelineEvents: {
         orderBy: [
           { sortOrder: 'asc' },
@@ -116,6 +123,11 @@ export default async function AdminExpedientePage({
         className="stack"
         style={{ marginTop: 24 }}
       >
+
+        {/* ========================= */}
+        {/* EVIDENCIAS */}
+        {/* ========================= */}
+
         <div className="card">
           <h2>Evidencias</h2>
 
@@ -140,7 +152,7 @@ export default async function AdminExpedientePage({
                   {e.description}
                 </p>
 
-                         <small className="muted">
+                <small className="muted">
                   Desbloqueo: {e.unlockAfter}
                 </small>
 
@@ -167,6 +179,11 @@ export default async function AdminExpedientePage({
           )}
         </div>
 
+
+        {/* ========================= */}
+        {/* MOTOR NARRATIVO */}
+        {/* ========================= */}
+
         <div className="card">
           <h2>Motor narrativo</h2>
 
@@ -176,6 +193,11 @@ export default async function AdminExpedientePage({
           </p>
 
           <div className="grid">
+
+            {/* ========================= */}
+            {/* PISTAS */}
+            {/* ========================= */}
+
             <article className="card">
               <span className="tag">
                 PISTAS
@@ -186,15 +208,28 @@ export default async function AdminExpedientePage({
               </h3>
 
               {expediente.clues.map((x) => (
-                <p
-                  className="muted"
-                  key={x.id}
-                >
-                  {x.code} · {x.title} ·
-                  desbloqueo {x.unlockAfter}
-                </p>
+                <div key={x.id}>
+                  <p className="muted">
+                    {x.code} · {x.title} ·
+                    desbloqueo {x.unlockAfter}
+                  </p>
+
+                  {expediente.status === 'DRAFT' && (
+                    <NarrativeDeleteButton
+                      expedienteId={expediente.id}
+                      itemId={x.id}
+                      type="CLUE"
+                      code={x.code}
+                    />
+                  )}
+                </div>
               ))}
             </article>
+
+
+            {/* ========================= */}
+            {/* PREGUNTAS */}
+            {/* ========================= */}
 
             <article className="card">
               <span className="tag">
@@ -206,15 +241,28 @@ export default async function AdminExpedientePage({
               </h3>
 
               {expediente.questions.map((x) => (
-                <p
-                  className="muted"
-                  key={x.id}
-                >
-                  {x.code} · {x.text} ·
-                  desbloqueo {x.unlockAfter}
-                </p>
+                <div key={x.id}>
+                  <p className="muted">
+                    {x.code} · {x.text} ·
+                    desbloqueo {x.unlockAfter}
+                  </p>
+
+                  {expediente.status === 'DRAFT' && (
+                    <NarrativeDeleteButton
+                      expedienteId={expediente.id}
+                      itemId={x.id}
+                      type="QUESTION"
+                      code={x.code}
+                    />
+                  )}
+                </div>
               ))}
             </article>
+
+
+            {/* ========================= */}
+            {/* TEORÍAS */}
+            {/* ========================= */}
 
             <article className="card">
               <span className="tag">
@@ -226,15 +274,28 @@ export default async function AdminExpedientePage({
               </h3>
 
               {expediente.theories.map((x) => (
-                <p
-                  className="muted"
-                  key={x.id}
-                >
-                  {x.code} · {x.title} ·
-                  desbloqueo {x.unlockAfter}
-                </p>
+                <div key={x.id}>
+                  <p className="muted">
+                    {x.code} · {x.title} ·
+                    desbloqueo {x.unlockAfter}
+                  </p>
+
+                  {expediente.status === 'DRAFT' && (
+                    <NarrativeDeleteButton
+                      expedienteId={expediente.id}
+                      itemId={x.id}
+                      type="THEORY"
+                      code={x.code}
+                    />
+                  )}
+                </div>
               ))}
             </article>
+
+
+            {/* ========================= */}
+            {/* HIPÓTESIS */}
+            {/* ========================= */}
 
             <article className="card">
               <span className="tag">
@@ -246,15 +307,28 @@ export default async function AdminExpedientePage({
               </h3>
 
               {expediente.hypotheses.map((x) => (
-                <p
-                  className="muted"
-                  key={x.id}
-                >
-                  {x.code} · {x.title} ·
-                  desbloqueo {x.unlockAfter}
-                </p>
+                <div key={x.id}>
+                  <p className="muted">
+                    {x.code} · {x.title} ·
+                    desbloqueo {x.unlockAfter}
+                  </p>
+
+                  {expediente.status === 'DRAFT' && (
+                    <NarrativeDeleteButton
+                      expedienteId={expediente.id}
+                      itemId={x.id}
+                      type="HYPOTHESIS"
+                      code={x.code}
+                    />
+                  )}
+                </div>
               ))}
             </article>
+
+
+            {/* ========================= */}
+            {/* TIMELINE */}
+            {/* ========================= */}
 
             <article className="card">
               <span className="tag">
@@ -266,17 +340,31 @@ export default async function AdminExpedientePage({
               </h3>
 
               {expediente.timelineEvents.map((x) => (
-                <p
-                  className="muted"
-                  key={x.id}
-                >
-                  {x.code} · {x.label} ·
-                  orden {x.sortOrder} ·
-                  desbloqueo {x.unlockAfter}
-                </p>
+                <div key={x.id}>
+                  <p className="muted">
+                    {x.code} · {x.label} ·
+                    orden {x.sortOrder} ·
+                    desbloqueo {x.unlockAfter}
+                  </p>
+
+                  {expediente.status === 'DRAFT' && (
+                    <NarrativeDeleteButton
+                      expedienteId={expediente.id}
+                      itemId={x.id}
+                      type="TIMELINE"
+                      code={x.code}
+                    />
+                  )}
+                </div>
               ))}
             </article>
+
           </div>
+
+
+          {/* ========================= */}
+          {/* FORMULARIO NARRATIVO */}
+          {/* ========================= */}
 
           {expediente.status === 'DRAFT' && (
             <NarrativeForm
@@ -284,13 +372,20 @@ export default async function AdminExpedientePage({
             />
           )}
         </div>
+
+
+        {/* ========================= */}
+        {/* ADMINISTRACIÓN DRAFT */}
+        {/* ========================= */}
+
         {expediente.status === 'DRAFT' && (
           <div className="card">
             <h2>Zona de administración</h2>
 
             <p className="muted">
               Este expediente aún no está publicado.
-              Puedes publicarlo cuando esté listo o eliminarlo de forma segura.
+              Puedes publicarlo cuando esté listo o
+              eliminarlo de forma segura.
             </p>
 
             <div className="nav">
@@ -305,13 +400,19 @@ export default async function AdminExpedientePage({
           </div>
         )}
 
+
+        {/* ========================= */}
+        {/* ADMINISTRACIÓN PUBLICADO */}
+        {/* ========================= */}
+
         {expediente.status === 'PUBLISHED' && (
           <div className="card">
             <h2>Zona de administración</h2>
 
             <p className="muted">
               Este expediente está publicado.
-              Puedes archivarlo para retirarlo de la vista pública sin eliminarlo.
+              Puedes archivarlo para retirarlo de la
+              vista pública sin eliminarlo.
             </p>
 
             <ArchiveButton
@@ -320,13 +421,19 @@ export default async function AdminExpedientePage({
           </div>
         )}
 
+
+        {/* ========================= */}
+        {/* ADMINISTRACIÓN ARCHIVADO */}
+        {/* ========================= */}
+
         {expediente.status === 'ARCHIVED' && (
           <div className="card">
             <h2>Zona de administración</h2>
 
             <p className="muted">
-              Este expediente está archivado y no aparece públicamente.
-              Puedes restaurarlo para volver a publicarlo.
+              Este expediente está archivado y no
+              aparece públicamente. Puedes restaurarlo
+              para volver a publicarlo.
             </p>
 
             <PublishButton
@@ -334,8 +441,8 @@ export default async function AdminExpedientePage({
             />
           </div>
         )}
- 
+
       </section>
     </main>
   );
-}     
+}
