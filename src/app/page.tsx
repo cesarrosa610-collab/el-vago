@@ -48,13 +48,20 @@ export default async function Home() {
       <GlobalNav />
 
       <section className="hero homeHero">
-        <p className="eyebrow">EXPEDIENTES INTERACTIVOS</p>
+        <div className="homeHeroBackdrop" aria-hidden="true">
+          <img src="/hero-investigacion.svg" alt="" />
+          <span className="heroScanline" />
+        </div>
 
-        <h1>Misterios que tienes que resolver.</h1>
+        <div className="homeHeroCopy">
+          <p className="eyebrow">EXPEDIENTES INTERACTIVOS</p>
+
+          <h1>Misterios que tienes que resolver.</h1>
 
         <p className="lead">
           Investiga, conecta evidencias y descubre la verdad.
         </p>
+        </div>
       </section>
 
       {user && activeInvestigation ? (
@@ -150,6 +157,7 @@ export default async function Home() {
           </div>
 
           <div className="featuredVisual" aria-hidden="true">
+            <img className="featuredArtwork" src="/exp-002-llamada.svg" alt="" />
             <div className="sceneGrid" />
             <div className="sceneNoise" />
             <div className="featuredGlow" />
@@ -169,7 +177,7 @@ export default async function Home() {
         </section>
       )}
 
-      <section className="homeSection">
+      <section className="homeSection visualArchive">
         <div className="sectionHead">
           <div>
             <p className="eyebrow">CATÁLOGO</p>
@@ -179,6 +187,10 @@ export default async function Home() {
           <p className="muted">
             Elige un expediente y sigue las pistas.
           </p>
+        </div>
+
+        <div className="catalogIntroVisual" aria-hidden="true">
+          <img src="/archivo-visual.svg" alt="" />
         </div>
 
         <div className="grid">
