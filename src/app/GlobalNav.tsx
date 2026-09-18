@@ -19,13 +19,13 @@ export default async function GlobalNav() {
           Explorar
         </Link>
 
-        <span className="navLink navDisabled">
+        <Link className="navLink" href="/multimedia">
           Multimedia
-        </span>
+        </Link>
 
-        <span className="navLink navDisabled">
+        <Link className="navLink" href="/comunidad">
           Comunidad
-        </span>
+        </Link>
       </div>
 
       <div className="navActions">
