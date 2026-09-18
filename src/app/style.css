@@ -66,22 +66,6 @@
   z-index:1;
 }
 
-.card:first-child{
-  border-color:#3a2527;
-}
-
-.card:first-child:after{
-  content:"DESTACADO";
-  position:absolute;
-  top:18px;
-  right:18px;
-  font-size:9px;
-  letter-spacing:.15em;
-  font-weight:900;
-  color:#ff4852;
-  z-index:2;
-}
-
 .btn{
   box-shadow:0 8px 24px rgba(229,9,20,.12);
 }
@@ -132,10 +116,6 @@
     min-height:360px;
   }
 
-  .card:first-child:after{
-    top:14px;
-    right:14px;
-  }
 }
 /* EL VAGO — Premium Expedientes v2 */
 
