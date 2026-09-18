@@ -403,6 +403,12 @@ export default function InvestigationClient({
                     }`}
                     key={e.id}
                   >
+                    <div className="evidenceVisual" aria-hidden="true">
+                      <span className="evidenceVisualCode">{e.code}</span>
+                      <span className="evidenceVisualSignal" />
+                      <span className="evidenceVisualCorner" />
+                    </div>
+                    <div className="evidenceBody">
                     <div className="evidenceTop">
                       <span>
                         {e.code}
@@ -444,6 +450,7 @@ export default function InvestigationClient({
                         </button>
                       </>
                     )}
+                    </div>
                   </article>
                 );
               })}
