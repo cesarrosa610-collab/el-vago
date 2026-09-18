@@ -149,11 +149,22 @@ export default async function Home() {
             </Link>
           </div>
 
-          <div
-            className="featuredVisual"
-            aria-hidden="true"
-          >
+          <div className="featuredVisual" aria-hidden="true">
+            <div className="sceneGrid" />
+            <div className="sceneNoise" />
             <div className="featuredGlow" />
+            <div className="evidenceCard evidenceCardPhone">
+              <span>REGISTRO</span>
+              <b>03:17</b>
+              <small>LLAMADA ENTRANTE</small>
+            </div>
+            <div className="evidenceCard evidenceCardFile">
+              <span>EXP-002</span>
+              <b>SEÑAL</b>
+              <i /><i /><i />
+            </div>
+            <div className="sceneScan" />
+            <div className="sceneStamp">EVIDENCIA / 002</div>
           </div>
         </section>
       )}
