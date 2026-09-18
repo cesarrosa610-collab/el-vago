@@ -413,3 +413,30 @@
     font-size:12px;
   }
 }
+
+/* EL VAGO — Landings y metadatos de expedientes */
+.exploreCardTop{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.landingGrid .card:first-child{
+  border-color:#272727;
+}
+
+.landingGrid .card:first-child:after{
+  content:none;
+}
+
+.landingGrid .card{
+  min-height:220px;
+}
+
+.landingGrid .muted:last-child{
+  display:inline-block;
+  margin-top:10px;
+  letter-spacing:.08em;
+  font-size:11px;
+}
