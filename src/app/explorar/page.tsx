@@ -86,7 +86,7 @@ export default async function Explorar({
               <p className="muted">{e.description}</p>
 
               <div className="caseMeta">
-                <span>{e.evidence.length} evidencias</span>
+                <span>{e.evidence.length === 1 ? '1 evidencia' : e.evidence.length + ' evidencias'}</span>
                 <span>Expediente interactivo</span>
               </div>
 
