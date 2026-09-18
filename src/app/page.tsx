@@ -133,7 +133,7 @@ export default async function Home() {
             <p className="lead">{featured.description}</p>
 
             <div className="caseMeta">
-              <span>{featured.evidence.length} evidencias</span>
+              <span>{featured.evidence.length === 1 ? '1 evidencia' : featured.evidence.length + ' evidencias'}</span>
               <span>Investigación interactiva</span>
             </div>
 
@@ -180,7 +180,7 @@ export default async function Home() {
               <p className="muted">{e.description}</p>
 
               <p className="muted">
-                {e.evidence.length} evidencias
+                {e.evidence.length === 1 ? '1 evidencia' : e.evidence.length + ' evidencias'}
               </p>
 
               <Link
