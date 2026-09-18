@@ -218,6 +218,15 @@ export default function InvestigationClient({
     }
   }
 
+  const caseArtwork =
+    expediente.code === 'EV-EXP-003'
+      ? '/exp-003-cuarto.svg'
+      : expediente.code === 'EV-EXP-004'
+        ? '/exp-004-archivo.svg'
+        : expediente.code === 'EV-EXP-006'
+          ? '/exp-006-habitacion.svg'
+          : '/exp-002-llamada.svg';
+
   const nav = [
     'Evidencias',
     'Pistas',
@@ -272,7 +281,7 @@ export default function InvestigationClient({
 
       <header className="caseHero">
         <div className="caseHeroVisual" aria-hidden="true">
-          <img src="/exp-002-llamada.svg" alt="" />
+          <img src={caseArtwork} alt="" />
           <span className="caseHeroScan" />
         </div>
         <div className="caseHeroContent">
