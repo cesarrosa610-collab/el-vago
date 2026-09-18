@@ -271,6 +271,11 @@ export default function InvestigationClient({
       )}
 
       <header className="caseHero">
+        <div className="caseHeroVisual" aria-hidden="true">
+          <img src="/exp-002-llamada.svg" alt="" />
+          <span className="caseHeroScan" />
+        </div>
+        <div className="caseHeroContent">
         <nav
           className="nav"
           aria-label="Navegación de investigación"
@@ -348,6 +353,7 @@ export default function InvestigationClient({
               : 'Comenzar investigación'}
           </button>
         )}
+        </div>
       </header>
 
       <section className="investigation">
