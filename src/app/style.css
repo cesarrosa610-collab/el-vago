@@ -494,3 +494,91 @@
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
 }
+
+
+/* EL VAGO — Escena visual cinematográfica del expediente destacado */
+@keyframes vagoGridMove{from{transform:translate3d(0,0,0)}to{transform:translate3d(-42px,28px,0)}}
+@keyframes vagoFloatA{0%,100%{transform:translate3d(0,0,0) rotate(-2deg)}50%{transform:translate3d(-8px,-12px,0) rotate(1deg)}}
+@keyframes vagoFloatB{0%,100%{transform:translate3d(0,0,0) rotate(3deg)}50%{transform:translate3d(10px,8px,0) rotate(-1deg)}}
+@keyframes vagoScan{0%{transform:translateY(-120%);opacity:0}12%,82%{opacity:.8}100%{transform:translateY(420%);opacity:0}}
+@keyframes vagoFlicker{0%,92%,100%{opacity:1}94%{opacity:.55}96%{opacity:.9}}
+@keyframes vagoLine{0%,100%{transform:scaleX(.65);opacity:.25}50%{transform:scaleX(1);opacity:.7}}
+
+.homePage .featuredVisual{
+  background:
+    radial-gradient(circle at 62% 48%,rgba(229,9,20,.12),transparent 30%),
+    linear-gradient(145deg,#0b0b0b,#101010 55%,#0d0809);
+  border-left:1px solid #292020;
+  isolation:isolate;
+}
+.homePage .sceneGrid{
+  position:absolute;inset:-20%;
+  background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);
+  background-size:34px 34px;
+  transform:rotate(-7deg);
+  animation:vagoGridMove 12s linear infinite;
+  opacity:.55;
+}
+.homePage .sceneNoise{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(circle at 20% 80%,rgba(255,255,255,.05),transparent 25%),
+    repeating-linear-gradient(0deg,transparent 0 3px,rgba(255,255,255,.018) 4px);
+  mix-blend-mode:screen;
+  opacity:.7;
+}
+.homePage .evidenceCard{
+  position:absolute;
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+  width:190px;
+  padding:18px;
+  border:1px solid #3a2729;
+  border-radius:14px;
+  background:rgba(14,14,14,.88);
+  box-shadow:0 24px 55px rgba(0,0,0,.45),0 0 35px rgba(229,9,20,.08);
+  backdrop-filter:blur(8px);
+}
+.homePage .evidenceCard span,
+.homePage .sceneStamp{
+  color:#e50914;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.16em;
+}
+.homePage .evidenceCard b{
+  font-size:42px;
+  line-height:1;
+  letter-spacing:-.04em;
+}
+.homePage .evidenceCard small{color:#888;font-size:10px;letter-spacing:.08em}
+.homePage .evidenceCardPhone{left:12%;top:20%;animation:vagoFloatA 5s ease-in-out infinite,vagoFlicker 8s linear infinite}
+.homePage .evidenceCardFile{right:9%;bottom:17%;width:155px;animation:vagoFloatB 6s ease-in-out infinite}
+.homePage .evidenceCardFile b{font-size:24px}
+.homePage .evidenceCardFile i{
+  display:block;width:100%;height:3px;margin-top:2px;
+  background:linear-gradient(90deg,#e50914 0 18%,#363636 18% 100%);
+  animation:vagoLine 3s ease-in-out infinite;
+}
+.homePage .evidenceCardFile i:nth-of-type(2){width:76%;animation-delay:.4s}
+.homePage .evidenceCardFile i:nth-of-type(3){width:58%;animation-delay:.8s}
+.homePage .sceneScan{
+  position:absolute;left:4%;right:4%;top:0;height:2px;
+  background:linear-gradient(90deg,transparent,#e50914,transparent);
+  box-shadow:0 0 18px rgba(229,9,20,.75);
+  animation:vagoScan 5.5s ease-in-out infinite;
+  z-index:3;
+}
+.homePage .sceneStamp{
+  position:absolute;left:8%;bottom:7%;
+  padding:7px 9px;border:1px solid #342225;
+  background:rgba(8,8,8,.72);
+  transform:rotate(-4deg);
+}
+@media(max-width:760px){
+  .homePage .featuredVisual{border-left:0;border-top:1px solid #292020;min-height:210px}
+  .homePage .evidenceCard{transform:scale(.78)}
+  .homePage .evidenceCardPhone{left:4%;top:16%}
+  .homePage .evidenceCardFile{right:1%;bottom:8%}
+}
