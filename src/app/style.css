@@ -681,3 +681,63 @@
 .evidenceTop{position:relative;z-index:3}
 .evidence .btn{margin-top:8px}
 @media(max-width:760px){.evidenceVisual{height:125px}.evidenceBody{padding:18px}}
+
+
+/* EL VAGO — Sistema narrativo visual */
+.evidenceArea{animation:vagoReveal .7s ease both}
+.narrativeGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.narrativeGrid .card{
+  position:relative;overflow:hidden;min-height:190px;
+  border-color:#292929;
+  background:linear-gradient(145deg,#0d0d0d,#111 65%,#16090b);
+  transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease;
+}
+.narrativeGrid .card:before{
+  content:"";position:absolute;left:0;top:0;bottom:0;width:2px;
+  background:#e50914;opacity:.45;transform:scaleY(.35);transform-origin:center;
+  transition:transform .35s ease,opacity .35s ease;
+}
+.narrativeGrid .card:hover{transform:translateY(-4px);border-color:#442a2d;box-shadow:0 20px 45px rgba(0,0,0,.28)}
+.narrativeGrid .card:hover:before{transform:scaleY(1);opacity:.9}
+.narrativeGrid .tag{position:relative;z-index:1}
+.narrativeGrid .card h3{position:relative;z-index:1}
+.narrativeGrid .card p{position:relative;z-index:1}
+.narrativeGrid .evidenceTop{
+  display:flex;justify-content:space-between;gap:12px;
+  color:#777;font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+}
+.narrativeGrid .evidenceTop span:first-child{color:#e50914;font-weight:800}
+.narrativeGrid .foundMark{position:relative;z-index:1}
+.narrativeGrid .card .btn{position:relative;z-index:2}
+
+.caseNav{
+  position:sticky;top:18px;
+  border:1px solid #242424;border-radius:16px;
+  background:rgba(10,10,10,.88);backdrop-filter:blur(10px);
+}
+.caseNav button{position:relative;overflow:hidden}
+.caseNav button:after{
+  content:"";position:absolute;left:0;bottom:0;width:100%;height:1px;
+  background:#e50914;transform:scaleX(0);transform-origin:left;transition:transform .25s ease;
+}
+.caseNav button.active:after{transform:scaleX(1)}
+
+.timelineCard{position:relative}
+.conclusion{
+  position:relative;overflow:hidden;
+  border:1px solid #3b2729!important;
+  background:radial-gradient(circle at 80% 20%,rgba(229,9,20,.13),transparent 35%),linear-gradient(145deg,#0d0d0d,#13090a);
+}
+.conclusion:after{
+  content:"EXPEDIENTE / CIERRE";
+  position:absolute;right:24px;top:22px;
+  color:#e50914;font-size:10px;font-weight:800;letter-spacing:.16em;
+}
+@media(max-width:760px){
+  .narrativeGrid{grid-template-columns:1fr;gap:14px}
+  .caseNav{position:relative;top:auto}
+  .conclusion:after{position:static;display:block;margin-top:18px}
+}
+@media(prefers-reduced-motion:reduce){
+  .narrativeGrid .card,.caseNav button:after{transition:none}
+}
