@@ -440,3 +440,57 @@
   letter-spacing:.08em;
   font-size:11px;
 }
+
+/* EL VAGO — Presentación cinematográfica */
+@keyframes vagoReveal{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes vagoGlow{0%,100%{opacity:.45;transform:scale(1)}50%{opacity:.8;transform:scale(1.08)}}
+@keyframes vagoPulse{0%,100%{opacity:.5}50%{opacity:1}}
+
+.homePage .homeHero{
+  min-height:560px;
+  overflow:hidden;
+  animation:vagoReveal .8s ease both;
+}
+.homePage .homeHero:after{
+  content:"";
+  position:absolute;
+  width:520px;height:520px;right:-170px;top:40px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(229,9,20,.18),rgba(229,9,20,.05) 35%,transparent 70%);
+  filter:blur(10px);
+  animation:vagoGlow 6s ease-in-out infinite;
+  pointer-events:none;
+}
+.homePage .homeHero h1,.homePage .homeHero .lead,.homePage .homeHero .eyebrow{position:relative;z-index:1}
+.homePage .homeHero h1{animation:vagoReveal .9s .12s ease both}
+.homePage .homeHero .lead{animation:vagoReveal .9s .24s ease both}
+.homePage .featuredCase{
+  position:relative;overflow:hidden;border:1px solid #302022;border-radius:24px;
+  background:linear-gradient(120deg,#111 0%,#0d0d0d 58%,#16090b 100%);
+  box-shadow:0 30px 90px rgba(0,0,0,.35);
+  animation:vagoReveal .9s .3s ease both;
+}
+.homePage .featuredCase:after{
+  content:"";position:absolute;inset:auto -100px -180px auto;width:520px;height:520px;border-radius:50%;
+  background:radial-gradient(circle,rgba(229,9,20,.16),transparent 65%);animation:vagoGlow 7s ease-in-out infinite;
+  pointer-events:none;
+}
+.homePage .featuredCopy{position:relative;z-index:1}
+.homePage .featuredVisual{position:relative;min-height:280px;overflow:hidden}
+.homePage .featuredGlow{position:absolute;inset:10% 8%;border-radius:50%;background:radial-gradient(circle,rgba(229,9,20,.22),transparent 62%);filter:blur(16px);animation:vagoPulse 4s ease-in-out infinite}
+.homePage .homeSection{animation:vagoReveal .9s .45s ease both}
+.homePage .premiumTeaser{animation:vagoReveal .9s .55s ease both}
+
+@media(min-width:761px){
+  .homePage .featuredCase{display:grid;grid-template-columns:1.1fr .9fr;align-items:stretch}
+  .homePage .featuredCopy{padding:56px 54px}
+}
+@media(max-width:760px){
+  .homePage .homeHero{min-height:470px}
+  .homePage .featuredCopy{padding:30px 24px}
+  .homePage .featuredVisual{min-height:180px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
