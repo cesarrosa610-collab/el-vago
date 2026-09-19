@@ -845,3 +845,21 @@
 .authFoot{margin:24px 0 0;color:#777;font-size:13px}
 .authFoot a{color:#fff}
 @media(max-width:760px){.authCard{padding:28px 22px;border-radius:18px}.authShell{width:min(460px,calc(100% - 28px))}.authBackdrop{opacity:.25}}
+
+
+/* EL VAGO — navegación final / lenguaje de archivo */
+.globalNav{position:relative;z-index:20;padding-bottom:14px;border-bottom:1px solid #1d1d1d}
+.globalNav:after{content:"";position:absolute;left:0;bottom:-1px;width:72px;height:1px;background:#e50914;box-shadow:0 0 12px rgba(229,9,20,.45)}
+.globalNav .brand{font-weight:900;letter-spacing:.08em;text-shadow:0 0 24px rgba(229,9,20,.12)}
+.globalNav .navLink{position:relative}
+.globalNav .navLink:after{content:"";position:absolute;left:0;right:0;bottom:-7px;height:1px;background:#e50914;transform:scaleX(0);transform-origin:center;transition:transform .2s ease}
+.globalNav .navLink:hover:after{transform:scaleX(1)}
+.globalNav .navActions .btn{min-height:36px}
+@media(max-width:760px){
+  .globalNav{padding-bottom:8px}
+  .globalNav .navLink:after{bottom:-3px}
+}
+
+/* Footer mínimo coherente cuando exista */
+.siteFooter{margin-top:70px;padding:28px 0 40px;border-top:1px solid #1d1d1d;color:#666;font-size:11px;letter-spacing:.06em}
+.siteFooter strong{color:#aaa;letter-spacing:.12em}
