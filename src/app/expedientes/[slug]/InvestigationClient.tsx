@@ -275,7 +275,7 @@ export default function InvestigationClient({
     }
 
     if (x === 'Timeline') {
-      return narrative.timeline.length > 0;
+      return status === 'COMPLETED';
     }
 
     return false;
