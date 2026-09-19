@@ -22,6 +22,7 @@ export default async function Explorar({
   const exps = await prisma.expediente.findMany({
     where: {
       status: 'PUBLISHED',
+      code: 'EV-EXP-001',
       ...(q
         ? {
             OR: [
