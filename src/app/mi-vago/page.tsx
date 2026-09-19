@@ -29,10 +29,10 @@ export default async function MiVago() {
   }
 
   const investigations = await prisma.investigation.findMany({
-   where: {
-  userId: user.id,
-  expediente: { status: 'PUBLISHED' },
-},
+    where: {
+      userId: user.id,
+      expediente: { status: 'PUBLISHED' },
+    },
     orderBy: { id: 'asc' },
     include: {
       expediente: {
@@ -50,7 +50,7 @@ export default async function MiVago() {
   );
 
   return (
-    <main className="wrap homePage">
+    <main className="wrap homePage miVagoPage">
       <GlobalNav />
 
       <section className="hero homeHero">
@@ -131,9 +131,7 @@ export default async function MiVago() {
             <h2>Casos completados</h2>
           </div>
 
-          <p className="muted">
-            {completed.length} completados
-          </p>
+          <p className="muted">{completed.length} completados</p>
         </div>
 
         {completed.length ? (
