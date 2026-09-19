@@ -34,7 +34,7 @@ export default function Multimedia() {
         <article className="card mediaCard">
           <span className="tag">VIDEOS</span>
           <h2>Historias en movimiento.</h2>
-          <p className="muted">Trailers, reconstrucciones y piezas narrativas y reconstrucciones de ficción.</p>
+          <p className="muted">Trailers, reconstrucciones y piezas narrativas de ficción.</p>
           <span className="muted">CONTENIDO EN PREPARACIÓN</span>
         </article>
         <article className="card mediaCard">
