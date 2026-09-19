@@ -1,17 +1,10 @@
-# El Vago — Private Beta RC v2.2
+# Historial — Private Beta
 
-Objetivo: primer entorno real de Beta privada.
+Este documento corresponde a la etapa histórica de Beta privada de El Vago.
 
-## Ruta rápida
-1. Copiar `.env.example` a `.env` y cambiar secretos.
-2. Levantar PostgreSQL: `docker compose up -d postgres`.
-3. Usar `prisma/schema.postgres.prisma` como schema de producción/Beta.
-4. Generar Prisma Client y aplicar migraciones con las dependencias instaladas.
-5. Ejecutar seed.
-6. Ejecutar `npm run beta:check`.
-7. Ejecutar `npm run start` después de un build exitoso.
+La versión actual está congelada como V1 / Release Candidate final. Para el estado vigente y la preparación de lanzamiento, consultar:
 
-## Importante
-SQLite sigue siendo el modo offline de validación. PostgreSQL es el destino de Beta/producción porque el estado persistente no debe depender del filesystem efímero de un hosting serverless.
+- `README.md`
+- `LAUNCH_ACCEPTANCE.md`
 
-No incluir `.env` real en Git.
+Las instrucciones de infraestructura de este documento no deben interpretarse como una guía de configuración actual sin verificar primero el entorno de producción.
