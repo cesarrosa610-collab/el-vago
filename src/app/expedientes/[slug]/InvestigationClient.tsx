@@ -107,6 +107,11 @@ export default function InvestigationClient({
           : [],
         conclusion: data.conclusion,
       });
+
+      if (data.conclusion?.completed === true) {
+        setStatus('COMPLETED');
+        setProgress(100);
+      }
     } catch {
       setMessage('No se pudo actualizar el contenido narrativo.');
     }
@@ -203,6 +208,9 @@ export default function InvestigationClient({
       const j = await r.json();
 
       if (r.ok) {
+        setProgress(j.progress);
+        setStatus(j.status);
+
         setMessage(
           'Hipótesis registrada. Tu teoría ha quedado incorporada al expediente.'
         );
