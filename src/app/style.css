@@ -1017,3 +1017,147 @@
 @media(max-width:760px){
   .exploreCardVisual{height:135px}
 }
+
+/* EL VAGO — Home final / streaming cinematic master */
+.homePage{max-width:1280px;padding:0 34px 30px}
+.homePage .globalNav{margin:0 -34px;padding:18px 34px 15px;background:rgba(5,7,9,.92);backdrop-filter:blur(14px)}
+.brandLockup{display:flex;flex-direction:column;gap:2px;min-width:210px}
+.brandLockup strong{font-size:27px;line-height:.9;letter-spacing:-.055em;color:#f2f2f2}
+.brandLockup strong span,.homeBrand span{color:#e50914}
+.brandLockup small{font-size:7px;letter-spacing:.1em;color:#9a9a9a;white-space:nowrap}
+.globalNav .navCenter{gap:28px}
+.globalNav .navCenter .navLink.active{color:#fff}
+.navIcon{width:28px;height:28px;display:grid;place-items:center;color:#eee;font-size:25px;line-height:1}
+.navBell{font-size:18px;opacity:.85}
+.navProfile{width:32px;height:32px;border:1px solid #555;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:800;background:#151515;color:#fff}
+.navRegister{padding:9px 13px!important}
+.navLogout{padding:8px 12px!important}
+
+.homePage .homeHero{
+  min-height:650px;
+  margin:0 -34px;
+  border-radius:0;
+  border-bottom:1px solid #242424;
+}
+.homePage .homeHeroBackdrop:after{
+  background:
+    linear-gradient(90deg,#040608 0%,rgba(4,6,8,.86) 27%,rgba(4,6,8,.25) 62%,rgba(4,6,8,.42) 100%),
+    linear-gradient(0deg,#040608 0%,transparent 38%,rgba(0,0,0,.12) 100%);
+}
+.homePage .homeHeroCopy{padding:78px 7%;max-width:760px}
+.homeBrandLockup{display:flex;flex-direction:column;gap:6px;margin-bottom:24px}
+.homeBrand{font-size:76px;line-height:.82;font-weight:950;letter-spacing:-.065em;color:#eee;text-shadow:0 8px 30px rgba(0,0,0,.5)}
+.homeBrandLockup small{font-size:12px;letter-spacing:.18em;color:#ddd}
+.homePage .homeHero .eyebrow{margin-top:24px}
+.homePage .homeHero h1{font-size:clamp(44px,6vw,72px);max-width:700px;margin:12px 0 16px}
+.homePage .homeHero .lead{max-width:620px;font-size:17px;line-height:1.55;color:#ddd}
+.homeHeroActions{display:flex;gap:14px;align-items:center;margin-top:28px}
+.heroPrimary{min-width:160px;text-align:center}
+.heroSecondary{border:1px solid #bbb;background:rgba(10,10,10,.5)}
+.heroPrimary span{margin-right:7px}
+.heroDots{display:flex;gap:8px;margin-top:28px;align-items:center}
+.heroDots i{width:8px;height:8px;border-radius:50%;background:#777;opacity:.75}
+.heroDots i.active{width:22px;border-radius:8px;background:#e50914;opacity:1}
+
+.homePage .featuredCase{
+  margin-top:0;
+  border-radius:0 0 12px 12px;
+  min-height:160px;
+  grid-template-columns:1fr .72fr;
+  background:#080a0c;
+}
+.homePage .featuredCopy{padding:24px 30px}
+.homePage .featuredBadge{
+  display:inline-block;margin:2px 0 7px;padding:5px 10px;border-radius:4px;
+  background:#d50b14;color:#fff;font-size:10px;font-weight:900;letter-spacing:.08em
+}
+.homePage .featuredCopy h2{font-size:30px;margin:3px 0 8px}
+.homePage .featuredCopy .lead{font-size:14px;margin:0;max-width:680px;color:#d2d2d2}
+.homePage .featuredCopy .caseMeta{margin:15px 0 0;font-size:11px;gap:20px}
+.homePage .featuredCopy .difficulty{color:#e50914}
+.homePage .featuredCopy .heroBtn{margin-top:15px;padding:9px 15px}
+.homePage .featuredVisual{min-height:175px}
+.homePage .featuredDoorMark{
+  position:absolute;right:16%;top:34%;z-index:3;font-family:Georgia,serif;font-size:46px;color:#c9a06c;text-shadow:0 2px 12px #000;
+}
+.homePage .visualArchive{padding-top:46px}
+.homePage .visualArchive .sectionHead{margin-bottom:14px}
+.sectionLink{font-size:12px;color:#ddd}
+.homeCaseRail{
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;
+}
+.homeCaseCard{
+  min-width:0;border:1px solid #2a2a2a;border-radius:7px;overflow:hidden;background:#0b0d0f;
+  transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease;
+}
+.homeCaseCard:hover{transform:translateY(-4px);border-color:#4a3335;box-shadow:0 18px 40px rgba(0,0,0,.3)}
+.homeCaseVisual{height:150px;position:relative;overflow:hidden;background:#08090a}
+.homeCaseVisual img{width:100%;height:100%;object-fit:cover;opacity:.72;filter:contrast(1.08);transition:transform .6s ease,opacity .3s ease}
+.homeCaseCard:hover .homeCaseVisual img{transform:scale(1.05);opacity:.88}
+.homeCaseBody{padding:14px}
+.homeCaseBody h3{margin:6px 0 7px;font-size:18px;line-height:1.1}
+.homeCaseBody p{margin:0;color:#999;font-size:12px;line-height:1.45;min-height:35px}
+.homeCaseBody .caseMeta{margin-top:13px;font-size:10px;gap:14px}
+.upcomingVisual{display:grid;place-items:center;background:
+  radial-gradient(circle at 60% 45%,rgba(229,9,20,.13),transparent 25%),
+  linear-gradient(135deg,#111 0%,#08090a 100%);
+}
+.upcomingVisual:before{content:"";position:absolute;inset:18px;border:1px solid #252525}
+.upcomingVisual span{position:relative;z-index:2;color:#777;font-size:10px;font-weight:800;letter-spacing:.18em}
+.upcomingVisual2{background:linear-gradient(145deg,#15110f,#090909)}
+.upcomingVisual3{background:linear-gradient(145deg,#101217,#08090a)}
+.homeCaseCard.upcomingCase{opacity:.84}
+.homeCaseCard.upcomingCase .tag{color:#777}
+.communityBand{
+  margin:56px -34px 0;min-height:180px;padding:34px 7%;
+  display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;
+  border-top:1px solid #252525;border-bottom:1px solid #252525;
+  background:linear-gradient(90deg,rgba(5,5,5,.94),rgba(14,10,9,.76)),url('/archivo-visual.svg') center/cover;
+}
+.communityQuote{position:relative;padding-left:18px}
+.communityQuote>span{position:absolute;left:0;top:-8px;color:#e50914;font-family:Georgia,serif;font-size:42px}
+.communityQuote p{font-family:Georgia,serif;font-size:18px;line-height:1.55;letter-spacing:.04em;margin:0}
+.communityQuote i{display:block;width:62px;height:2px;background:#e50914;margin-top:18px}
+.communityInvite{border-left:1px solid #e50914;padding-left:28px}
+.communityInvite h3{font-size:14px;line-height:1.45;font-weight:500;color:#bbb;max-width:500px;margin:7px 0 14px}
+.communityInvite .btn{padding:9px 14px}
+.homePage .premiumTeaser{margin-top:0;border-radius:0}
+.homePage .siteFooter{margin-top:0;padding-top:28px}
+.homePage .footerLinks{gap:22px}
+
+@media(max-width:900px){
+ .homeCaseRail{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .brandLockup{min-width:165px}
+ .brandLockup strong{font-size:22px}
+ .globalNav .navCenter{gap:16px}
+}
+@media(max-width:760px){
+ .homePage{padding:0 18px 24px}
+ .homePage .globalNav{margin:0 -18px;padding:14px 18px 10px}
+ .brandLockup small{display:none}
+ .brandLockup strong{font-size:22px}
+ .navIcon{display:none}
+ .homePage .homeHero{margin:0 -18px;min-height:570px}
+ .homePage .homeHeroCopy{padding:48px 24px}
+ .homeBrand{font-size:52px}
+ .homeBrandLockup small{display:block;font-size:8px}
+ .homePage .homeHero h1{font-size:44px}
+ .homeHeroActions{flex-wrap:wrap}
+ .homeHeroActions .btn{flex:1;min-width:145px}
+ .homePage .featuredCase{grid-template-columns:1fr;border-radius:0}
+ .homePage .featuredVisual{min-height:150px}
+ .homePage .featuredCopy{padding:22px 20px}
+ .homeCaseRail{grid-template-columns:1fr 1fr;gap:9px}
+ .homeCaseVisual{height:112px}
+ .homeCaseBody{padding:11px}
+ .homeCaseBody h3{font-size:15px}
+ .homeCaseBody p{font-size:11px}
+ .homeCaseBody .caseMeta{display:block;line-height:1.7}
+ .communityBand{margin:46px -18px 0;padding:30px 22px;grid-template-columns:1fr;gap:26px}
+ .communityInvite{padding-left:18px}
+ .communityQuote p{font-size:15px}
+}
+@media(max-width:430px){
+ .homeCaseRail{grid-template-columns:1fr}
+ .homeCaseVisual{height:145px}
+}
