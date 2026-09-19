@@ -71,7 +71,7 @@ export default async function Home() {
               </Link>
             )}
             <Link className="btn secondary heroSecondary" href="/explorar">
-              Explorar casos
+              Explorar expediente
             </Link>
           </div>
           <div className="heroDots" aria-hidden="true">
@@ -214,7 +214,7 @@ export default async function Home() {
         </div>
         <div className="footerLinks">
           <Link href="/">Inicio</Link>
-          <Link href="/explorar">Expedientes</Link>
+          <Link href="/explorar">Explorar</Link>
           <Link href="/multimedia">Multimedia</Link>
           <Link href="/comunidad">Comunidad</Link>
           <Link href="/mi-vago">Mi Vago</Link>
