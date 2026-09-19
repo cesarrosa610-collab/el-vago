@@ -67,7 +67,7 @@ export default async function Home() {
           <div className="homeHeroActions">
             {featured && (
               <Link className="btn heroPrimary" href={`/expedientes/${featured.slug}`}>
-                <span aria-hidden="true">▶</span> Ver ahora
+                <span aria-hidden="true">→</span> Comenzar investigación
               </Link>
             )}
             <Link className="btn secondary heroSecondary" href="/explorar">
