@@ -23,7 +23,7 @@ export default function Multimedia() {
         <div>
           <p className="eyebrow">PIEZA DESTACADA</p>
           <h2>La Habitación 317</h2>
-          <p className="muted">La pieza audiovisual de La Habitación 317 reunirá imágenes, registros y sonido del expediente.</p>
+          <p className="muted">La pieza audiovisual de La Habitación 317 reúne imágenes, registros y sonido del expediente.</p>
         </div>
         <div className="mediaTimeline" aria-hidden="true">
           <span /><span /><span /><span /><span /><span /><span />
@@ -55,7 +55,7 @@ export default function Multimedia() {
         <div>
           <p className="eyebrow">EL VAGO</p>
           <h2>Todo misterio deja algo que ver.</h2>
-          <p className="muted">Mientras preparamos esta sección, puedes comenzar una investigación.</p>
+          <p className="muted">El archivo multimedia crecerá junto con la historia. Mientras tanto, puedes comenzar la investigación.</p>
         </div>
         <Link className="btn" href="/explorar">Explorar expedientes</Link>
       </section>
