@@ -46,9 +46,8 @@ export default async function Home() {
 
   const featuredArtwork = featured ? artwork[featured.code] ?? '/exp-001-habitacion.svg' : null;
 
-  const readyCount = exps.length;
   const upcomingCards = [
-    { title: 'Próximo expediente', text: 'Una nueva investigación está siendo preparada.', label: 'EN PREPARACIÓN' },
+    { title: 'Nuevo caso', text: 'Una nueva investigación está siendo preparada.', label: 'EN PREPARACIÓN' },
     { title: 'Próximo expediente', text: 'Nuevas pistas, nuevos documentos y otra historia por descubrir.', label: 'PRÓXIMAMENTE' },
     { title: 'Próximo expediente', text: 'El archivo continúa creciendo.', label: 'PRÓXIMAMENTE' },
   ];
