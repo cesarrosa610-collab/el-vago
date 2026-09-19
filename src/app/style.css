@@ -1662,3 +1662,62 @@ main:after{
   .cinematicVisual img,
   .atmosphereVisual img{transition:none;transform:none}
 }
+
+
+/* EL VAGO — FINAL MOBILE CASE FIT / 19-09-2026 */
+html,body{
+  overflow-x:hidden;
+}
+.casePage{
+  width:100%;
+  overflow-x:hidden;
+}
+.caseHero,
+.caseHeroContent,
+.investigation,
+.evidenceArea{
+  min-width:0;
+  max-width:100%;
+}
+@media(max-width:760px){
+  .caseHero{
+    padding-left:16px;
+    padding-right:16px;
+  }
+  .caseHeroContent{
+    width:100%;
+    max-width:100%;
+    overflow:hidden;
+  }
+  .caseHero h1{
+    width:100%;
+    max-width:100%;
+    font-size:clamp(36px,10.5vw,48px);
+    line-height:.94;
+    letter-spacing:-.045em;
+    overflow-wrap:anywhere;
+    word-break:normal;
+  }
+  .caseHero .lead{
+    width:100%;
+    max-width:100%;
+    font-size:17px;
+    line-height:1.45;
+    overflow-wrap:anywhere;
+  }
+  .caseHero .caseMeta{
+    width:100%;
+    max-width:100%;
+    flex-wrap:wrap;
+    gap:8px 18px;
+    line-height:1.35;
+  }
+  .caseHero .bar{
+    width:100%;
+    max-width:100%;
+  }
+  .caseHero .heroBtn{
+    width:100%;
+    text-align:center;
+  }
+}
