@@ -1516,3 +1516,57 @@ main:after{
     font-size:34px;
   }
 }
+
+
+/* EL VAGO — Realismo cinematográfico / capa visual final */
+.multimediaHero,
+.mediaFeature{
+  border-color:#292929;
+  box-shadow:0 22px 70px rgba(0,0,0,.34);
+}
+.multimediaHeroVisual img{
+  filter:contrast(1.12) saturate(.82) brightness(.68);
+  transform:scale(1.025);
+  transition:transform .9s ease,filter .7s ease;
+}
+.multimediaHero:hover .multimediaHeroVisual img{
+  transform:scale(1.045);
+  filter:contrast(1.14) saturate(.9) brightness(.78);
+}
+.mediaFeature{
+  position:relative;
+  overflow:hidden;
+  min-height:260px;
+  background:
+    linear-gradient(90deg,rgba(7,7,7,.98) 0%,rgba(7,7,7,.84) 44%,rgba(7,7,7,.3) 100%),
+    url('/exp-001-habitacion.svg') center/cover no-repeat;
+}
+.mediaFeature:after{
+  content:"317";
+  position:absolute;
+  right:7%;
+  top:50%;
+  transform:translateY(-50%);
+  font:900 clamp(90px,15vw,180px)/1 Georgia,serif;
+  color:rgba(255,255,255,.08);
+  pointer-events:none;
+}
+.mediaFeature>div:first-child{position:relative;z-index:2;max-width:650px}
+.mediaTimeline{position:relative;z-index:2}
+.mediaCard{
+  background:linear-gradient(145deg,#101010,#090909 72%,#15090a);
+}
+.mediaCard .muted:last-child{
+  display:inline-block;
+  margin-top:18px;
+  color:#777;
+  letter-spacing:.13em;
+  font-size:9px;
+}
+@media(max-width:760px){
+  .mediaFeature{
+    min-height:300px;
+    background-position:center;
+  }
+  .mediaFeature:after{right:4%;font-size:100px}
+}
