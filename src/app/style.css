@@ -2010,3 +2010,98 @@ html,body{
   .caseHeroScan{animation:none;display:none}
   .evidence{transition:none}
 }
+
+
+/* EL VAGO — MOBILE OVERFLOW HARDENING / 19-09-2026 */
+@media(max-width:760px){
+  html,body{
+    width:100%;
+    max-width:100%;
+    overflow-x:hidden;
+  }
+
+  .wrap{
+    width:100%;
+    max-width:100%;
+    min-width:0;
+  }
+
+  .globalNav{
+    width:100%;
+    max-width:100%;
+    min-width:0;
+    flex-wrap:wrap !important;
+    overflow:visible;
+  }
+
+  .globalNav .brand{
+    min-width:0;
+    max-width:55%;
+    overflow:hidden;
+  }
+
+  .globalNav .navActions{
+    margin-left:auto !important;
+    max-width:45%;
+    min-width:0;
+  }
+
+  .globalNav .navCenter{
+    order:3 !important;
+    flex:0 0 100% !important;
+    width:100% !important;
+    max-width:100%;
+    min-width:0;
+    justify-content:flex-start !important;
+    overflow-x:auto !important;
+    overflow-y:hidden;
+    scrollbar-width:none;
+    -webkit-overflow-scrolling:touch;
+    padding:8px 0 6px;
+    gap:18px;
+  }
+
+  .globalNav .navCenter::-webkit-scrollbar{
+    display:none;
+  }
+
+  .globalNav .navLink{
+    flex:0 0 auto;
+    white-space:nowrap;
+  }
+
+  .exploreHeroCopy,
+  .exploreHeroCopy h1,
+  .exploreHeroCopy .lead{
+    width:100%;
+    max-width:100%;
+    min-width:0;
+    overflow-wrap:anywhere;
+    word-break:normal;
+  }
+
+  .exploreHeroCopy .lead{
+    font-size:17px;
+    line-height:1.45;
+  }
+
+  .exploreHero,
+  .exploreHeroCopy{
+    max-width:100%;
+    min-width:0;
+    overflow:hidden;
+  }
+
+  .landingGrid,
+  .landingGrid .card,
+  .exploreCard{
+    min-width:0;
+    max-width:100%;
+  }
+
+  .exploreCard h2,
+  .exploreCard p{
+    max-width:100%;
+    overflow-wrap:anywhere;
+  }
+}
