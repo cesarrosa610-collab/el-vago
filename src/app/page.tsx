@@ -49,7 +49,7 @@ export default async function Home() {
 
       <section className="hero homeHero">
         <div className="homeHeroBackdrop" aria-hidden="true">
-          <img src="/hero-investigacion.svg" alt="" />
+          <img src="/hero-puerta-317.svg" alt="" />
           <span className="heroScanline" />
         </div>
 
