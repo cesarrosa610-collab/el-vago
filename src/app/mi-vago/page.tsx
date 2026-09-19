@@ -19,7 +19,7 @@ export default async function MiVago() {
           <h1>Tu investigación, siempre contigo.</h1>
 
           <p className="lead">
-            Inicia sesión para ver tus expedientes, progreso y casos completados.
+            Inicia sesión para continuar tu investigación y revisar tu progreso en La Habitación 317.
           </p>
 
           <Link className="btn" href="/login">
@@ -31,7 +31,7 @@ export default async function MiVago() {
         <footer className="siteFooter">
           <div>
             <span className="footerBrand">EL VAGO</span>
-            <p className="muted">Misterios que tienes que resolver.</p>
+            <p className="muted">Historias de ficción. Preguntas sin respuesta.</p>
           </div>
           <div className="footerLinks">
             <Link href="/">Inicio</Link>
@@ -78,7 +78,7 @@ export default async function MiVago() {
         <h1>Tu investigación, siempre contigo.</h1>
 
         <p className="lead">
-          Continúa donde te quedaste y revisa los misterios que ya resolviste.
+          Continúa donde te quedaste y revisa lo que has descubierto en La Habitación 317.
         </p>
         </div>
       </section>
@@ -87,10 +87,10 @@ export default async function MiVago() {
         <div className="sectionHead">
           <div>
             <p className="eyebrow">EN INVESTIGACIÓN</p>
-            <h2>Casos en curso</h2>
+            <h2>Investigación en curso</h2>
           </div>
 
-          <p className="muted">{active.length} activos</p>
+          <p className="muted">{active.length} activa</p>
         </div>
 
         {active.length ? (
@@ -138,8 +138,8 @@ export default async function MiVago() {
           </div>
         ) : (
           <div className="notice exploreEmpty">
-            Aún no tienes investigaciones en curso.{' '}
-            <Link href="/explorar">Explorar expedientes</Link>
+            Aún no has comenzado la investigación.{' '}
+            <Link href="/explorar">Entrar en la historia</Link>
           </div>
         )}
       </section>
@@ -148,10 +148,10 @@ export default async function MiVago() {
         <div className="sectionHead">
           <div>
             <p className="eyebrow">HISTORIAL</p>
-            <h2>Casos completados</h2>
+            <h2>Investigación completada</h2>
           </div>
 
-          <p className="muted">{completed.length} completados</p>
+          <p className="muted">{completed.length} completada</p>
         </div>
 
         {completed.length ? (
@@ -180,7 +180,7 @@ export default async function MiVago() {
           </div>
         ) : (
           <div className="notice exploreEmpty">
-            Tus casos completados aparecerán aquí.
+            Cuando completes la investigación, aquí podrás volver a revisar lo descubierto.
           </div>
         )}
       </section>
