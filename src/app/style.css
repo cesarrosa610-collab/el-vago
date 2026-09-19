@@ -773,3 +773,27 @@
  .exploreSearch{grid-template-columns:1fr;gap:9px;margin-bottom:34px}
  .exploreSearch .btn{width:100%;text-align:center}
 }
+
+/* EL VAGO — Expediente físico: capa final */
+.casePage{background:radial-gradient(circle at 50% 0%,rgba(229,9,20,.035),transparent 34%),#070707}
+.investigation{max-width:1240px;margin:0 auto;padding:42px 28px 70px}
+.caseNav{box-shadow:0 16px 45px rgba(0,0,0,.22)}
+.caseNav .sideTitle{padding:18px 18px 10px;color:#e50914;font-size:10px;font-weight:800;letter-spacing:.18em}
+.caseNav button{display:block;width:100%;text-align:left;padding:13px 16px;border:0;border-top:1px solid #1c1c1c;background:transparent;color:#888;font-size:12px;letter-spacing:.04em}
+.caseNav button.active{background:linear-gradient(90deg,rgba(229,9,20,.13),transparent);color:#fff}
+.evidenceArea{min-width:0}
+.evidenceGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.evidence{border:1px solid #252525;border-radius:18px;box-shadow:0 10px 35px rgba(0,0,0,.2)}
+.narrativeGrid .card{border-radius:18px}
+.evidenceBody h3,.narrativeGrid .card h3{font-family:Georgia,serif;letter-spacing:-.01em}
+.foundMark{font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+@media(min-width:900px){
+ .investigation{display:grid;grid-template-columns:220px minmax(0,1fr);gap:30px}
+}
+@media(max-width:760px){
+ .investigation{padding:26px 18px 54px}
+ .evidenceGrid{grid-template-columns:1fr}
+ .caseNav{overflow-x:auto;display:flex;align-items:center;gap:0}
+ .caseNav .sideTitle{display:none}
+ .caseNav button{min-width:max-content;border-top:0;border-right:1px solid #1c1c1c;padding:12px 14px}
+}
