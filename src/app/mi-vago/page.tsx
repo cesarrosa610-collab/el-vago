@@ -8,7 +8,7 @@ export default async function MiVago() {
 
   if (!user) {
     return (
-      <main className="wrap homePage">
+      <main className="wrap homePage miVagoPage">
         <GlobalNav />
 
         <section className="hero homeHero">
