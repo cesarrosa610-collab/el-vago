@@ -14,7 +14,7 @@ export default function Multimedia() {
           <p className="eyebrow">ARCHIVO MULTIMEDIA</p>
           <h1>Mira, escucha y descubre.</h1>
           <p className="lead">
-            Una capa audiovisual para entrar en cada historia desde otra perspectiva.
+            Una capa audiovisual para entrar en el universo de ficción desde otra perspectiva.
           </p>
         </div>
       </section>
