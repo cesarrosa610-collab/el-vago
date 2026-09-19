@@ -227,7 +227,9 @@ export default function InvestigationClient({
   }
 
   const caseArtwork =
-    expediente.code === 'EV-EXP-003'
+    expediente.code === 'EV-EXP-001'
+      ? '/exp-001-habitacion.svg'
+      : expediente.code === 'EV-EXP-003'
       ? '/exp-003-cuarto.svg'
       : expediente.code === 'EV-EXP-004'
         ? '/exp-004-archivo.svg'
