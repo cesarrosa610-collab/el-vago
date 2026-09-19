@@ -164,6 +164,20 @@ export default async function MiVago() {
           </div>
         )}
       </section>
+
+      <footer className="siteFooter">
+        <div>
+          <span className="footerBrand">EL VAGO</span>
+          <p className="muted">Misterios que tienes que resolver.</p>
+        </div>
+        <div className="footerLinks">
+          <Link href="/">Inicio</Link>
+          <Link href="/explorar">Explorar</Link>
+          <Link href="/multimedia">Multimedia</Link>
+          <Link href="/comunidad">Comunidad</Link>
+        </div>
+        <span className="muted footerCopy">© {new Date().getFullYear()} El Vago</span>
+      </footer>
     </main>
   );
 }
