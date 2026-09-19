@@ -887,3 +887,24 @@
   .casePage .caseHero{min-height:500px}
   .casePage .caseHeroContent{padding-top:120px}
 }
+
+
+/* EL VAGO — microinteracciones y controles finales */
+.btn{font-weight:800;letter-spacing:.02em;transition:transform .18s ease,box-shadow .18s ease,background .18s ease}
+.btn:hover{transform:translateY(-1px);box-shadow:0 10px 28px rgba(0,0,0,.28)}
+.btn:active{transform:translateY(0)}
+.input{transition:border-color .18s ease,box-shadow .18s ease;background:rgba(17,17,17,.92)}
+.input:focus{outline:none;border-color:#6b2529;box-shadow:0 0 0 3px rgba(229,9,20,.09)}
+.card{transition:border-color .2s ease,transform .2s ease,box-shadow .2s ease}
+.card:hover{border-color:#333;transform:translateY(-2px);box-shadow:0 16px 42px rgba(0,0,0,.25)}
+.siteFooter{display:flex;justify-content:space-between;align-items:end;gap:24px}
+.footerBrand{font-weight:900;letter-spacing:.14em;color:#aaa}
+.footerLinks{display:flex;gap:18px;flex-wrap:wrap}
+.footerLinks a{color:#777;text-decoration:none}
+.footerLinks a:hover{color:#fff}
+.footerCopy{white-space:nowrap}
+@media(max-width:760px){
+  .siteFooter{display:grid;gap:20px}
+  .footerCopy{white-space:normal}
+  .footerLinks{gap:12px}
+}
