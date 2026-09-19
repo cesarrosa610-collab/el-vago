@@ -28,9 +28,9 @@ export default function Login() {
       <div className="authShell">
         <Link className="brand authBrand" href="/">EL VAGO</Link>
         <section className="authCard">
-          <p className="eyebrow">ACCESO AL ARCHIVO</p>
+          <p className="eyebrow">FICCIÓN INTERACTIVA</p>
           <h1>Entrar</h1>
-          <p className="muted">Continúa tu investigación y vuelve al expediente.</p>
+          <p className="muted">Entra para continuar tu investigación en La Habitación 317.</p>
           <form className="stack authForm" onSubmit={go}>
             <label>Email<input className="input" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="tu@email.com" type="email" autoComplete="email" required /></label>
             <label>Contraseña<input className="input" value={password} onChange={(e) => setPassword(e.target.value)} type="password" autoComplete="current-password" required /></label>
