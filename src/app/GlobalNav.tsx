@@ -8,7 +8,7 @@ export default async function GlobalNav() {
     <nav className="nav globalNav" aria-label="Navegación principal">
       <Link className="brand brandLockup" href="/">
         <strong>EL VAG<span>O</span></strong>
-        <small>HISTORIAS REALES. PREGUNTAS SIN RESPUESTA.</small>
+        <small>HISTORIAS DE FICCIÓN. PREGUNTAS SIN RESPUESTA.</small>
       </Link>
 
       <div className="navCenter">
