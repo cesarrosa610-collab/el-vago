@@ -19,7 +19,7 @@ export default async function MiVago() {
           <h1>Tu investigación, siempre contigo.</h1>
 
           <p className="lead">
-            Inicia sesión para continuar tu investigación y revisar tu progreso en La Habitación 317.
+            Inicia sesión para continuar tus investigaciones y revisar tu progreso en El Vago.
           </p>
 
           <Link className="btn" href="/login">
@@ -79,7 +79,7 @@ export default async function MiVago() {
         <h1>Tu investigación, siempre contigo.</h1>
 
         <p className="lead">
-          Continúa donde te quedaste y revisa lo que has descubierto en La Habitación 317.
+          Continúa donde te quedaste y revisa tus investigaciones y descubrimientos.
         </p>
         </div>
       </section>
@@ -140,7 +140,7 @@ export default async function MiVago() {
         ) : (
           <div className="notice exploreEmpty">
             No tienes investigaciones en curso.{' '}
-            <Link href="/explorar">Entrar en la historia</Link>
+            <Link href="/explorar">Explorar expedientes</Link>
           </div>
         )}
       </section>
