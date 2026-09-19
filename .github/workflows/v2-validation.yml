@@ -6,7 +6,8 @@ on:
       - v2-content-planning
   pull_request:
     branches:
-      - v2-content-planning
+      - main
+  workflow_dispatch:
 
 jobs:
   validate:
