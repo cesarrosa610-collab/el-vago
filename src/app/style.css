@@ -956,3 +956,20 @@
  .adminPage .adminToolbar .nav{gap:12px}
  .adminPage .adminHeader h1{font-size:40px}
 }
+
+
+/* EL VAGO — navegación: jerarquía y estados */
+.globalNav .navLink,.globalNav .brand{position:relative}
+.globalNav .navCenter .navLink{padding:10px 2px}
+.globalNav .navCenter .navLink:after{content:"";position:absolute;left:0;right:0;bottom:2px;height:1px;background:#e50914;transform:scaleX(0);transform-origin:center;transition:transform .2s ease}
+.globalNav .navCenter .navLink:hover:after{transform:scaleX(.72)}
+.globalNav .navActions{align-items:center}
+.globalNav .navUser{max-width:210px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:11px}
+@media(max-width:900px){.globalNav .navUser{display:none}}
+@media(max-width:760px){
+ .globalNav{gap:12px}
+ .globalNav .navCenter{order:3;width:100%;overflow-x:auto;justify-content:flex-start;padding-top:4px}
+ .globalNav .navCenter .navLink{white-space:nowrap}
+ .globalNav .navActions{margin-left:auto}
+ .globalNav .navActions .navLink{display:none}
+}
