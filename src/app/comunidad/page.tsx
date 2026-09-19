@@ -5,12 +5,15 @@ export default function Comunidad() {
   return (
     <main className="wrap">
       <GlobalNav />
-      <section className="hero">
+      <section className="hero communityHero">
+        <div className="communityHeroVisual" aria-hidden="true"><img src="/comunidad-escena.svg" alt="" /></div>
+        <div className="communityHeroCopy">
         <p className="eyebrow">COMUNIDAD</p>
         <h1>Investiga. Comparte. Conecta.</h1>
         <p className="lead">
           Un espacio para compartir teorías, debatir pistas y descubrir nuevas formas de resolver los expedientes.
         </p>
+        </div>
       </section>
 
       <section className="grid landingGrid">
