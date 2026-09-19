@@ -754,3 +754,22 @@
     margin-bottom:16px;
   }
 }
+
+/* EL VAGO — Escenas cinematográficas de navegación */
+.exploreHero,.communityHero{position:relative;min-height:420px;display:flex;align-items:flex-end;overflow:hidden;border-radius:24px;background:#060606;border:1px solid #242424;isolation:isolate;margin-top:18px}
+.exploreHeroVisual,.communityHeroVisual{position:absolute;inset:0;z-index:-1;overflow:hidden}
+.exploreHeroVisual img,.communityHeroVisual img{width:100%;height:100%;object-fit:cover;opacity:.62;filter:contrast(1.08);animation:vagoHeroDrift 16s ease-in-out infinite alternate}
+.exploreHeroVisual:after,.communityHeroVisual:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#050505 0%,rgba(5,5,5,.84) 38%,rgba(5,5,5,.22) 78%,rgba(5,5,5,.55) 100%),linear-gradient(0deg,#050505 0%,transparent 48%,rgba(0,0,0,.2) 100%)}
+.exploreHeroCopy,.communityHeroCopy{position:relative;z-index:2;max-width:760px;padding:54px 7%;text-shadow:0 4px 30px rgba(0,0,0,.75)}
+.exploreHero h1,.communityHero h1{max-width:760px}
+.exploreSearch{display:grid;grid-template-columns:1fr auto auto;gap:10px;margin:24px 0 46px}
+.exploreCard{min-height:270px;background:linear-gradient(145deg,#101010,#0b0b0b 70%,#17090b)}
+.exploreCard:after{content:"";position:absolute;right:-60px;bottom:-80px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(229,9,20,.13),transparent 70%);pointer-events:none}
+.exploreStatus{font-size:10px;letter-spacing:.12em;color:#777}
+@media(max-width:760px){
+ .exploreHero,.communityHero{min-height:430px;border-radius:18px}
+ .exploreHeroVisual img,.communityHeroVisual img{opacity:.46}
+ .exploreHeroCopy,.communityHeroCopy{padding:38px 24px}
+ .exploreSearch{grid-template-columns:1fr;gap:9px;margin-bottom:34px}
+ .exploreSearch .btn{width:100%;text-align:center}
+}
