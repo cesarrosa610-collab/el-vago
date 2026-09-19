@@ -920,3 +920,18 @@
 .adminPage .adminToolbar a:hover{color:#fff}
 .adminPage .statusPublished{color:#79d99a}
 @media(max-width:760px){.adminPage .adminToolbar{align-items:stretch;flex-direction:column}.adminPage .adminToolbar .btn{width:100%;text-align:center}}
+
+
+/* EL VAGO — Mi Vago: archivo visual */
+.miVagoHero{position:relative;isolation:isolate;overflow:hidden;min-height:430px;border-radius:24px;background:#060606}
+.miVagoHeroVisual{position:absolute;inset:0;z-index:-1;overflow:hidden}
+.miVagoHeroVisual img{width:100%;height:100%;object-fit:cover;opacity:.46;filter:grayscale(1) contrast(1.12);transform:scale(1.03);animation:vagoHeroDrift 16s ease-in-out infinite alternate}
+.miVagoHeroVisual:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#050505 0%,rgba(5,5,5,.82) 40%,rgba(5,5,5,.3) 78%,rgba(5,5,5,.62) 100%),linear-gradient(0deg,#050505 0%,transparent 48%,rgba(0,0,0,.2) 100%)}
+.miVagoHeroCopy{position:relative;z-index:2;max-width:760px;padding:54px}
+.miVagoHero:before{content:"ARCHIVO PERSONAL / INVESTIGACIÓN";position:absolute;right:28px;top:26px;color:#e50914;font-size:10px;font-weight:800;letter-spacing:.16em}
+@media(max-width:760px){
+ .miVagoHero{min-height:430px;border-radius:18px}
+ .miVagoHeroVisual img{opacity:.34}
+ .miVagoHeroCopy{padding:38px 24px}
+ .miVagoHero:before{right:20px;top:20px;font-size:9px}
+}
