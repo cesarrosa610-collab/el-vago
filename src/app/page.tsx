@@ -16,7 +16,7 @@ export default async function Home() {
 
   const activeInvestigation = user
     ? await prisma.investigation.findFirst({
-        where: { userId: user.id, status: { not: 'COMPLETED' } },
+        where: { userId: user.id, status: { not: 'COMPLETED' }, expediente: { status: 'PUBLISHED' } },
         include: { expediente: true },
         orderBy: { id: 'asc' },
       })
