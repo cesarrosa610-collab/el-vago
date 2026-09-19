@@ -935,3 +935,24 @@
  .miVagoHeroCopy{padding:38px 24px}
  .miVagoHero:before{right:20px;top:20px;font-size:9px}
 }
+
+
+/* EL VAGO — CMS: centro de operaciones */
+.adminPage{min-height:100vh;padding-bottom:72px}
+.adminPage .adminHeader{position:relative;margin:30px 0 34px;padding:34px 36px;border:1px solid #292929;border-radius:22px;overflow:hidden;background:linear-gradient(120deg,#0d0d0d,#101010 65%,#16090b);box-shadow:0 18px 55px rgba(0,0,0,.28)}
+.adminPage .adminHeader:before{content:"CONTROL ROOM / EL VAGO";display:block;margin-bottom:10px;color:#e50914;font-size:10px;font-weight:800;letter-spacing:.18em}
+.adminPage .adminHeader:after{content:"";position:absolute;left:0;bottom:0;width:34%;height:2px;background:linear-gradient(90deg,#e50914,transparent)}
+.adminPage .adminHeader h1{font-family:Georgia,serif;font-size:clamp(38px,6vw,58px);margin:0 0 8px}
+.adminPage .adminCard{position:relative;overflow:hidden;border-color:#292929;background:linear-gradient(145deg,#0d0d0d,#111 68%,#16090b);box-shadow:0 12px 40px rgba(0,0,0,.22)}
+.adminPage .adminCard:before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:#e50914;opacity:.65}
+.adminPage .adminCard h2{font-family:Georgia,serif}
+.adminPage .adminToolbar{padding-top:10px;border-bottom:1px solid #1d1d1d}
+.adminPage .adminToolbar .nav{justify-content:space-between;align-items:center}
+.adminPage .adminToolbar a:not(.btn){color:#777;text-decoration:none;font-size:12px;letter-spacing:.06em}
+.adminPage .adminToolbar a:not(.btn):hover{color:#fff}
+.adminPage .tag{border-color:#3a2425;color:#e50914;background:rgba(229,9,20,.05)}
+@media(max-width:760px){
+ .adminPage .adminHeader{margin:22px 0 26px;padding:28px 22px;border-radius:18px}
+ .adminPage .adminToolbar .nav{gap:12px}
+ .adminPage .adminHeader h1{font-size:40px}
+}
