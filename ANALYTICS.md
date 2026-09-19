@@ -1,32 +1,41 @@
-# El Vago — Analytics V1
+# El Vago — Analytics
 
-## Implementación
+## Estado actual
 
-El proyecto integra **Vercel Web Analytics** mediante `@vercel/analytics`.
+La integración de **Vercel Web Analytics está pendiente**.
 
-La integración registra las páginas visitadas y permite disponer de métricas de tráfico sin introducir una plataforma de seguimiento adicional en el código.
+Los intentos realizados durante V1 con `@vercel/analytics` provocaron fallos de build por resolución de dependencia (`module_not_found`). La implementación fue retirada de la aplicación estable para no comprometer la versión congelada.
 
-## Estado
+Por lo tanto:
 
-- [x] Dependencia agregada.
-- [x] Componente `<Analytics />` integrado en el layout global.
-- [ ] Activar **Web Analytics** en el proyecto desde el panel de Vercel.
-- [ ] Confirmar recepción de datos después de la activación.
-- [ ] Revisar la política de privacidad/cookies según la configuración final y la normativa aplicable.
+- [ ] Dependencia `@vercel/analytics` instalada.
+- [ ] Componente `<Analytics />` integrado en el layout.
+- [ ] Web Analytics activado en Vercel.
+- [ ] Recepción de datos reales confirmada.
 
-## Métricas iniciales
+## Criterio de cierre
 
-La V1 debe comenzar con métricas simples:
+Analytics solo se considera operativo cuando:
+
+1. la dependencia se instala correctamente;
+2. el build de producción termina sin errores;
+3. el componente queda integrado;
+4. Web Analytics está habilitado en Vercel;
+5. se confirma recepción de datos reales.
+
+La implementación deberá realizarse como cambio controlado de V2, nunca directamente sobre la V1 congelada.
+
+## Métricas previstas
+
+Cuando se habilite, comenzar con métricas generales:
 
 - visitas;
 - páginas consultadas;
 - navegación general;
-- rendimiento/uso básico que proporcione la plataforma.
+- rendimiento/uso básico proporcionado por la plataforma.
 
-No se añaden identificadores personales, correo, contraseña, progreso individual ni contenido de investigación como parámetros de analytics.
+No se deben enviar identificadores personales, contraseñas, progreso individual ni contenido privado de investigación como parámetros de analytics.
 
-## Criterio de cierre
+## Nota
 
-Analytics solo se considera operativo cuando Web Analytics esté habilitado en el proyecto Vercel y se confirme que aparecen datos reales después de una visita de producción.
-
-Referencia: documentación y paquete oficial de Vercel Web Analytics.
+Este documento refleja el estado real del proyecto y no declara Analytics como operativo hasta que exista una validación técnica y de producción.
