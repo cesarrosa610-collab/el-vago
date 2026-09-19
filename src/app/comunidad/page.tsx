@@ -43,7 +43,7 @@ export default function Comunidad() {
           <h2>Cada pista puede abrir una teoría.</h2>
           <p className="muted">Estamos preparando este espacio para que cada misterio pueda abrir nuevas conversaciones.</p>
         </div>
-        <Link className="btn" href="/explorar">Explorar expedientes</Link>
+        <Link className="btn" href="/explorar">Entrar en la historia</Link>
       </section>
 
       <footer className="siteFooter">
