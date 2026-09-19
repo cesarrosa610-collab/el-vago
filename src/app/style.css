@@ -739,3 +739,18 @@
   .footerLinks{justify-content:flex-start}
   .footerCopy{text-align:left}
 }
+
+/* EL VAGO — Espaciado final de investigación */
+.homePage .homeSection .card .bar{
+  margin-top:18px;
+  margin-bottom:18px;
+}
+.homePage .homeSection .card > .btn{
+  margin-top:0;
+}
+@media(max-width:760px){
+  .homePage .homeSection .card .bar{
+    margin-top:16px;
+    margin-bottom:16px;
+  }
+}
