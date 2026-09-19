@@ -1279,3 +1279,143 @@ main:after{
   .btn:after{display:none}
   .mediaTimeline span{animation:none}
 }
+
+
+/* EL VAGO — PUBLICATION VISUAL MASTER / FINAL PASS */
+.homePage .homeHeroBackdrop img{
+  object-position:center center;
+  filter:contrast(1.08) saturate(.82) brightness(.82);
+}
+.homePage .homeHeroBackdrop:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:1;
+  background:
+    radial-gradient(circle at 72% 48%,rgba(229,9,20,.13),transparent 24%),
+    linear-gradient(90deg,rgba(0,0,0,.18),transparent 46%,rgba(0,0,0,.28));
+  pointer-events:none;
+}
+.homePage .homeHeroCopy{
+  max-width:760px;
+  padding-left:clamp(24px,7vw,92px);
+}
+.homePage .homeBrand{
+  letter-spacing:-.075em;
+  text-shadow:0 10px 45px rgba(0,0,0,.7),0 0 35px rgba(229,9,20,.08);
+}
+.homePage .homeHero h1{
+  max-width:720px;
+  font-weight:900;
+  text-shadow:0 10px 42px rgba(0,0,0,.8);
+}
+.homePage .homeHero .lead{
+  text-shadow:0 4px 22px rgba(0,0,0,.8);
+}
+.homePage .homeHeroActions .heroPrimary{
+  box-shadow:0 12px 35px rgba(229,9,20,.25);
+}
+.homePage .featuredCase{
+  border-top:1px solid #2b1719;
+}
+.homePage .featuredVisual{
+  min-height:230px;
+}
+.homePage .featuredArtwork{
+  opacity:.38;
+  filter:grayscale(.82) contrast(1.16) brightness(.82);
+  transform:scale(1.04);
+  transition:transform .8s ease,opacity .4s ease;
+}
+.homePage .featuredCase:hover .featuredArtwork{
+  transform:scale(1.08);
+  opacity:.48;
+}
+.homePage .featuredVisual:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:1;
+  background:
+    linear-gradient(90deg,#080a0c 0%,rgba(8,10,12,.22) 48%,rgba(8,10,12,.08) 100%),
+    radial-gradient(circle at 65% 50%,rgba(229,9,20,.18),transparent 42%);
+  pointer-events:none;
+}
+.homePage .homeCaseVisual{
+  background:#070809;
+}
+.homePage .homeCaseVisual:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(0deg,rgba(5,5,5,.72),transparent 62%);
+  pointer-events:none;
+}
+.homePage .realCaseCard{
+  border-color:#422326;
+  box-shadow:0 16px 45px rgba(0,0,0,.28),0 0 0 1px rgba(229,9,20,.03);
+}
+.homePage .realCaseCard .tag{
+  color:#e50914;
+}
+.homePage .upcomingCase{
+  background:linear-gradient(145deg,#0c0c0c,#090909);
+  border-color:#242424;
+}
+.homePage .upcomingCase .homeCaseVisual{
+  opacity:.72;
+}
+.homePage .communityBand{
+  position:relative;
+  overflow:hidden;
+}
+.homePage .communityBand:after{
+  content:"317";
+  position:absolute;
+  right:5%;
+  bottom:-38px;
+  font:900 180px/.8 Georgia,serif;
+  color:rgba(229,9,20,.035);
+  pointer-events:none;
+}
+.homePage .premiumTeaser{
+  border-top:1px solid #202020;
+  border-bottom:1px solid #202020;
+  padding:34px 0;
+}
+@media(max-width:760px){
+  .homePage .homeHeroBackdrop img{
+    object-position:58% center;
+    filter:contrast(1.05) saturate(.75) brightness(.62);
+  }
+  .homePage .homeHeroBackdrop:after{
+    background:
+      linear-gradient(90deg,rgba(3,4,5,.88) 0%,rgba(3,4,5,.52) 55%,rgba(3,4,5,.32) 100%),
+      linear-gradient(0deg,#040608 0%,transparent 48%,rgba(0,0,0,.18) 100%);
+  }
+  .homePage .homeHeroCopy{
+    padding:44px 22px 54px;
+  }
+  .homePage .homeHero h1{
+    font-size:clamp(40px,11vw,54px);
+    line-height:.94;
+  }
+  .homePage .homeHero .lead{
+    font-size:15px;
+    max-width:520px;
+  }
+  .homePage .featuredVisual{
+    min-height:190px;
+  }
+  .homePage .featuredArtwork{
+    opacity:.34;
+  }
+  .homePage .communityBand:after{
+    font-size:120px;
+    right:-8px;
+    bottom:-18px;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .homePage .featuredArtwork{transform:none!important}
+}
