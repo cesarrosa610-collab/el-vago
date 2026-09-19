@@ -819,3 +819,12 @@
  .conclusion{min-height:300px;padding:30px!important}
  .conclusion:before{inset:12px}
 }
+
+/* EL VAGO — Mi Vago como archivo personal */
+.miVagoPage .homeHero{position:relative;overflow:hidden;border-bottom:1px solid #242424}
+.miVagoPage .homeHero:after{content:"ARCHIVO PERSONAL / INVESTIGACIÓN";position:absolute;right:28px;bottom:24px;color:#e50914;font-size:10px;font-weight:800;letter-spacing:.16em}
+.miVagoPage .homeSection .card{position:relative;overflow:hidden}
+.miVagoPage .homeSection .card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:#e50914;opacity:.55}
+.miVagoPage .homeSection .card .bar{margin:18px 0}
+.miVagoPage .homeSection .card .btn{margin-top:4px}
+@media(max-width:760px){.miVagoPage .homeHero:after{position:static;display:block;margin-top:26px}}
