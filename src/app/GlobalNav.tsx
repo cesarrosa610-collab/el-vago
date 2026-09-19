@@ -15,7 +15,7 @@ export default async function GlobalNav() {
 
       <div className="navCenter">
         <Link className={`navLink ${pathname === '/' ? 'active' : ''}`} href="/">Inicio</Link>
-        <Link className={`navLink ${pathname.startsWith('/explorar') ? 'active' : ''}`} href="/explorar">Explorar</Link>
+        <Link className={`navLink ${(pathname.startsWith('/explorar') || pathname.startsWith('/expedientes/')) ? 'active' : ''}`} href="/explorar">Explorar</Link>
         <Link className={`navLink ${pathname.startsWith('/multimedia') ? 'active' : ''}`} href="/multimedia">Multimedia</Link>
         <Link className={`navLink ${pathname.startsWith('/comunidad') ? 'active' : ''}`} href="/comunidad">Comunidad</Link>
         <Link className={`navLink ${pathname.startsWith('/mi-vago') ? 'active' : ''}`} href="/mi-vago">Mi Vago</Link>
