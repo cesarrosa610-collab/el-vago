@@ -56,6 +56,7 @@ export default function Comunidad() {
           <Link href="/explorar">Explorar</Link>
           <Link href="/multimedia">Multimedia</Link>
           <Link href="/comunidad">Comunidad</Link>
+          <Link href="/mi-vago">Mi Vago</Link>
         </div>
         <span className="muted footerCopy">© {new Date().getFullYear()} El Vago</span>
       </footer>
