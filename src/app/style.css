@@ -604,7 +604,7 @@
 .mediaPlay{position:absolute;z-index:3;right:8%;top:35%;width:72px;height:72px;border:1px solid rgba(229,9,20,.7);border-radius:50%;background:rgba(5,5,5,.6);box-shadow:0 0 45px rgba(229,9,20,.18);animation:vagoPulse 3s ease-in-out infinite}
 .mediaPlay i{position:absolute;left:29px;top:23px;width:0;height:0;border-top:13px solid transparent;border-bottom:13px solid transparent;border-left:19px solid #e50914}
 .mediaFeature{position:relative;margin:28px 0;padding:32px 34px;border:1px solid #302022;border-radius:20px;background:linear-gradient(120deg,#101010,#0d0d0d 65%,#16090b);overflow:hidden}
-.mediaFeature:after{content:"AUDIOVISUAL / EXP-002";position:absolute;right:24px;top:24px;color:#e50914;font-size:10px;font-weight:800;letter-spacing:.15em}
+.mediaFeature:after{content:"AUDIOVISUAL / EXP-001";position:absolute;right:24px;top:24px;color:#e50914;font-size:10px;font-weight:800;letter-spacing:.15em}
 .mediaTimeline{display:flex;align-items:center;gap:5px;margin-top:22px;height:30px}
 .mediaTimeline span{display:block;width:12%;height:3px;background:#3a3a3a;animation:vagoLine 2.8s ease-in-out infinite}
 .mediaTimeline span:nth-child(2){animation-delay:.15s}.mediaTimeline span:nth-child(3){animation-delay:.3s}.mediaTimeline span:nth-child(4){animation-delay:.45s}.mediaTimeline span:nth-child(5){animation-delay:.6s}.mediaTimeline span:nth-child(6){animation-delay:.75s}.mediaTimeline span:nth-child(7){animation-delay:.9s}
