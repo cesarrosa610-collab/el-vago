@@ -1161,3 +1161,5 @@
  .homeCaseRail{grid-template-columns:1fr}
  .homeCaseVisual{height:145px}
 }
+
+.navBell svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}.navBell{opacity:.9}
