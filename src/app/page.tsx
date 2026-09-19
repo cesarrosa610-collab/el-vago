@@ -229,7 +229,7 @@ export default async function Home() {
         </div>
 
         <div className="catalogIntroVisual" aria-hidden="true">
-          <img src="/archivo-visual.svg" alt="" />
+          <img src="/archivo-visual.svg" alt="" loading="lazy" />
         </div>
 
         <div className="grid">
