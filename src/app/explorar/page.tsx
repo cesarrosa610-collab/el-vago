@@ -33,6 +33,8 @@ export default async function Explorar({
 
        <GlobalNav />
        <section className="exploreHero">
+        <div className="exploreHeroVisual" aria-hidden="true"><img src="/explorar-escena.svg" alt="" /></div>
+        <div className="exploreHeroCopy">
         <p className="eyebrow">EXPLORAR</p>
 
         <h1>Encuentra tu próximo misterio.</h1>
@@ -40,7 +42,8 @@ export default async function Explorar({
         <p className="lead">
           Busca entre los expedientes publicados y elige dónde comenzar.
  </p>
-  </section>
+  </div>
+      </section>
       <form className="exploreSearch" method="get">
         <input
           className="input"
