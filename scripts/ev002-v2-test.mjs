@@ -40,6 +40,24 @@ const timeline = [
 
 const unlocked = (unlockAfter, found) => unlockAfter <= found;
 
+const progressFor = (found, total = evidence.length) =>
+  total ? Math.round((found / total) * 100) : 0;
+
+const stateAfterDiscovery = (found) => ({
+  found,
+  progress: progressFor(found),
+  status: 'IN_PROGRESS',
+  completed: false,
+});
+
+const stateAfterHypothesis = (found, hypothesisId) => ({
+  found,
+  hypothesisId,
+  progress: 100,
+  status: 'COMPLETED',
+  completed: true,
+});
+
 for (let found = 0; found <= 4; found += 1) {
   assert.equal(
     evidence.filter(([, unlock]) => unlocked(unlock, found)).length,
@@ -72,4 +90,24 @@ assert.deepEqual(
   ['TL-201', 'TL-202', 'TL-203', 'TL-204']
 );
 
-console.log('V2 EV-EXP-002 TEST OK: progressive unlock matrix');
+for (let found = 1; found <= 5; found += 1) {
+  const state = stateAfterDiscovery(found);
+  assert.equal(state.progress, progressFor(found));
+  assert.equal(state.status, 'IN_PROGRESS');
+  assert.equal(state.completed, false);
+}
+
+assert.equal(progressFor(5), 100);
+assert.equal(stateAfterDiscovery(5).status, 'IN_PROGRESS');
+assert.equal(stateAfterDiscovery(5).completed, false);
+
+const completed = stateAfterHypothesis(5, 'H-201');
+assert.equal(completed.progress, 100);
+assert.equal(completed.status, 'COMPLETED');
+assert.equal(completed.completed, true);
+assert.equal(completed.hypothesisId, 'H-201');
+
+assert.equal(completed.hypothesisId, 'H-201');
+assert.notEqual(completed.hypothesisId, 'H-202');
+
+console.log('V2 EV-EXP-002 TEST OK: full narrative lifecycle');
