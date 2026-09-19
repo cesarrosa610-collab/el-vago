@@ -9,9 +9,9 @@ export default async function AdminExpedientes() {
   const es = await prisma.expediente.findMany({ orderBy: { createdAt: 'asc' }, include: { evidence: true } });
 
   return (
-    <main className="wrap">
+    <main className="wrap adminPage"><div className="adminToolbar">
       <div className="nav"><Link href="/admin">← CMS</Link><Link className="btn" href="/admin/expedientes/new">Nuevo</Link></div>
-      <h1>Expedientes</h1>
+      <div className="adminHeader"><h1>Expedientes</h1></div>
       <div className="grid">
         {es.map((e) => (
           <div className="card" key={e.id}>
