@@ -1001,3 +1001,19 @@
     padding-right:2px;
   }
 }
+
+/* EL VAGO — artwork de expediente en catálogo */
+.exploreCard{position:relative;overflow:hidden;padding:0!important}
+.exploreCardVisual{position:relative;height:150px;overflow:hidden;border-bottom:1px solid #292020;background:#080808}
+.exploreCardVisual img{width:100%;height:100%;object-fit:cover;opacity:.48;filter:grayscale(1) contrast(1.12);transform:scale(1.02);transition:transform .7s ease,opacity .4s ease}
+.exploreCardVisual:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(6,6,6,.72),rgba(6,6,6,.08) 55%,rgba(6,6,6,.6)),linear-gradient(0deg,#0c0c0c 0%,transparent 55%)}
+.exploreCard:hover .exploreCardVisual img{transform:scale(1.06);opacity:.66}
+.exploreCardTop,.exploreCard h2,.exploreCard>p,.exploreCard .caseMeta,.exploreCard>.btn{position:relative;z-index:2;margin-left:22px;margin-right:22px}
+.exploreCardTop{margin-top:20px}
+.exploreCard h2{margin-top:14px}
+.exploreCard>p{margin-top:10px}
+.exploreCard .caseMeta{margin-top:18px}
+.exploreCard>.btn{margin-bottom:22px}
+@media(max-width:760px){
+  .exploreCardVisual{height:135px}
+}
