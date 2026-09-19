@@ -11,7 +11,9 @@ export default async function MiVago() {
       <main className="wrap homePage miVagoPage">
         <GlobalNav />
 
-        <section className="hero homeHero">
+        <section className="hero homeHero miVagoHero">
+          <div className="miVagoHeroVisual" aria-hidden="true"><img src="/exp-001-habitacion.svg" alt="" /></div>
+          <div className="miVagoHeroCopy">
           <p className="eyebrow">MI VAGO</p>
 
           <h1>Tu investigación, siempre contigo.</h1>
@@ -23,6 +25,7 @@ export default async function MiVago() {
           <Link className="btn" href="/login">
             Entrar
           </Link>
+          </div>
         </section>
       </main>
     );
@@ -53,7 +56,9 @@ export default async function MiVago() {
     <main className="wrap homePage miVagoPage">
       <GlobalNav />
 
-      <section className="hero homeHero">
+      <section className="hero homeHero miVagoHero">
+        <div className="miVagoHeroVisual" aria-hidden="true"><img src="/exp-001-habitacion.svg" alt="" /></div>
+        <div className="miVagoHeroCopy">
         <p className="eyebrow">MI VAGO</p>
 
         <h1>Tu investigación, siempre contigo.</h1>
@@ -61,6 +66,7 @@ export default async function MiVago() {
         <p className="lead">
           Continúa donde te quedaste y revisa los misterios que ya resolviste.
         </p>
+        </div>
       </section>
 
       <section className="homeSection">
