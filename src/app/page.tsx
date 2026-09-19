@@ -28,9 +28,7 @@ export default async function Home() {
     include: { evidence: true },
   });
 
-  const featured =
-    exps.find((e) => e.code === 'EV-EXP-001') ??
-    exps[0];
+  const featured = exps.find((e) => e.code === 'EV-EXP-001') ?? null;
 
   const featuredInvestigation =
     user && featured
