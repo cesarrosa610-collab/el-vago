@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import './style.css';
-import { Analytics } from '@vercel/analytics/react';
 
 const siteUrl = 'https://el-vago.vercel.app';
 
@@ -39,7 +38,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es">
-      <body>{children}<Analytics /></body>
+      <body>{children}</body>
     </html>
   );
 }
