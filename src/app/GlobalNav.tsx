@@ -1,8 +1,10 @@
 import Link from 'next/link';
+import { headers } from 'next/headers';
 import { currentUser } from '@/src/lib/auth';
 
 export default async function GlobalNav() {
   const user = await currentUser();
+  const pathname = (await headers()).get('x-pathname') ?? '';
 
   return (
     <nav className="nav globalNav" aria-label="Navegación principal">
@@ -12,11 +14,11 @@ export default async function GlobalNav() {
       </Link>
 
       <div className="navCenter">
-        <Link className="navLink active" href="/">Inicio</Link>
-        <Link className="navLink" href="/explorar">Explorar</Link>
-        <Link className="navLink" href="/multimedia">Multimedia</Link>
-        <Link className="navLink" href="/comunidad">Comunidad</Link>
-        <Link className="navLink" href="/mi-vago">Mi Vago</Link>
+        <Link className={`navLink ${pathname === '/' ? 'active' : ''}`} href="/">Inicio</Link>
+        <Link className={`navLink ${pathname.startsWith('/explorar') ? 'active' : ''}`} href="/explorar">Explorar</Link>
+        <Link className={`navLink ${pathname.startsWith('/multimedia') ? 'active' : ''}`} href="/multimedia">Multimedia</Link>
+        <Link className={`navLink ${pathname.startsWith('/comunidad') ? 'active' : ''}`} href="/comunidad">Comunidad</Link>
+        <Link className={`navLink ${pathname.startsWith('/mi-vago') ? 'active' : ''}`} href="/mi-vago">Mi Vago</Link>
       </div>
 
       <div className="navActions">
