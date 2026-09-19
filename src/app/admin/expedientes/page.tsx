@@ -22,6 +22,7 @@ export default async function AdminExpedientes() {
           </div>
         ))}
       </div>
+      </div>
     </main>
   );
 }
