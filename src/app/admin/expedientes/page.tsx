@@ -9,19 +9,33 @@ export default async function AdminExpedientes() {
   const es = await prisma.expediente.findMany({ orderBy: { createdAt: 'asc' }, include: { evidence: true } });
 
   return (
-    <main className="wrap adminPage"><div className="adminToolbar">
-      <div className="nav"><Link href="/admin">← CMS</Link><Link className="btn" href="/admin/expedientes/new">Nuevo</Link></div>
-      <div className="adminHeader"><h1>Expedientes</h1></div>
+    <main className="wrap adminPage">
+      <div className="adminToolbar">
+        <div className="nav">
+          <Link href="/admin">← CMS</Link>
+          <Link className="btn" href="/admin/expedientes/new">Nuevo</Link>
+        </div>
+      </div>
+
+      <div className="adminHeader">
+        <h1>Expedientes</h1>
+        <p className="muted">Administra, publica y revisa los expedientes de El Vago.</p>
+      </div>
+
       <div className="grid">
         {es.map((e) => (
-          <div className="card" key={e.id}>
-            <span className="tag">{e.code}</span><h2>{e.title}</h2>
+          <div className="card adminCard" key={e.id}>
+            <span className="tag">{e.code}</span>
+            <h2>{e.title}</h2>
             <p className="muted">Estado: {e.status} · {e.evidence.length} evidencias</p>
-            <Link className="btn" href={`/admin/expedientes/${e.id}`}>Administrar</Link>
-            {e.status === 'PUBLISHED' && <Link className="btn secondary" href={`/expedientes/${e.slug}`}>Abrir</Link>}
+            <div className="nav">
+              <Link className="btn" href={`/admin/expedientes/${e.id}`}>Administrar</Link>
+              {e.status === 'PUBLISHED' && (
+                <Link className="btn secondary" href={`/expedientes/${e.slug}`}>Abrir</Link>
+              )}
+            </div>
           </div>
         ))}
-      </div>
       </div>
     </main>
   );
