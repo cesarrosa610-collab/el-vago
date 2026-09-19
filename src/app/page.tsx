@@ -16,7 +16,7 @@ export default async function Home() {
 
   const activeInvestigation = user
     ? await prisma.investigation.findFirst({
-        where: { userId: user.id, status: { not: 'COMPLETED' } },
+        where: { userId: user.id, status: { not: 'COMPLETED' }, expediente: { status: 'PUBLISHED' } },
         include: { expediente: true },
         orderBy: { id: 'asc' },
       })
@@ -71,7 +71,7 @@ export default async function Home() {
               </Link>
             )}
             <Link className="btn secondary heroSecondary" href="/explorar">
-              Explorar expediente
+              Explorar expedientes
             </Link>
           </div>
           <div className="heroDots" aria-hidden="true">
@@ -92,7 +92,7 @@ export default async function Home() {
           <div className="card continueCard">
             <span className="tag">{activeInvestigation.expediente.code}</span>
             <h2>{activeInvestigation.expediente.title}</h2>
-            <p className="muted">Sigue investigando para descubrir qué ocurrió en la habitación 317.</p>
+            <p className="muted">Sigue investigando para descubrir qué ocurrió en esta historia.</p>
             <div className="bar" aria-label={`Progreso ${Math.round(activeInvestigation.progress)}%`}>
               <i style={{ width: `${Math.min(100, Math.max(0, activeInvestigation.progress))}%` }} />
             </div>
@@ -112,7 +112,7 @@ export default async function Home() {
             <p className="lead">Un hotel. Una desaparición. Una historia que se descubre pieza por pieza.</p>
             <div className="caseMeta">
               <span>▣ Ficción interactiva</span>
-              <span>6 capítulos</span>
+              <span>5 evidencias</span>
               <span className="difficulty">▮▮▮ Intermedio</span>
             </div>
             <Link className="btn heroBtn" href={`/expedientes/${featured.slug}`}>
@@ -155,7 +155,7 @@ export default async function Home() {
               <span className="tag">EV-EXP-001</span>
               <h3>{featured?.title ?? 'La Habitación 317'}</h3>
               <p>Un hotel. Una desaparición. Un expediente de ficción que todavía guarda preguntas.</p>
-              <div className="caseMeta"><span>▣ Ficción interactiva</span><span>6 capítulos</span><span className="difficulty">▮▮▮ Intermedio</span></div>
+              <div className="caseMeta"><span>▣ Ficción interactiva</span><span>5 evidencias</span><span className="difficulty">▮▮▮ Intermedio</span></div>
             </div>
           </article>
 

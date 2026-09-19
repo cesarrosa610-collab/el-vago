@@ -271,11 +271,14 @@ export default function InvestigationClient({
     }
 
     if (x === 'Hipótesis') {
-      return narrative.hypotheses.length > 0;
+      return (
+        ids.length >= expediente.evidence.length &&
+        narrative.hypotheses.length > 0
+      );
     }
 
     if (x === 'Timeline') {
-      return narrative.timeline.length > 0;
+      return status === 'COMPLETED';
     }
 
     return false;

@@ -30,7 +30,7 @@ export default function Login() {
         <section className="authCard">
           <p className="eyebrow">FICCIÓN INTERACTIVA</p>
           <h1>Entrar</h1>
-          <p className="muted">Entra para continuar tu investigación en La Habitación 317.</p>
+          <p className="muted">Entra para continuar tus investigaciones y retomar tu progreso.</p>
           <form className="stack authForm" onSubmit={go}>
             <label>Email<input className="input" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="tu@email.com" type="email" autoComplete="email" required /></label>
             <label>Contraseña<input className="input" value={password} onChange={(e) => setPassword(e.target.value)} type="password" autoComplete="current-password" required /></label>

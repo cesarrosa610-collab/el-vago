@@ -78,6 +78,20 @@ export async function POST(
     },
   });
 
+  const totalEvidence = await prisma.evidence.count({
+    where: {
+      expedienteId: id,
+      status: 'PUBLISHED',
+    },
+  });
+
+  if (found < totalEvidence) {
+    return NextResponse.json(
+      { error: 'Debes descubrir todas las evidencias antes de cerrar la investigación' },
+      { status: 409 }
+    );
+  }
+
   const h = await prisma.hypothesis.findFirst({
     where: {
       id: hypothesisId,

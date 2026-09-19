@@ -11,7 +11,7 @@ export default function Comunidad() {
         <p className="eyebrow">COMUNIDAD</p>
         <h1>La historia también se investiga en comunidad.</h1>
         <p className="lead">
-          Un espacio para compartir teorías, debatir pistas y descubrir nuevas formas de interpretar La Habitación 317.
+          Un espacio para compartir teorías, debatir pistas y descubrir nuevas formas de interpretar cada expediente.
         </p>
         </div>
       </section>
@@ -56,6 +56,7 @@ export default function Comunidad() {
           <Link href="/explorar">Explorar</Link>
           <Link href="/multimedia">Multimedia</Link>
           <Link href="/comunidad">Comunidad</Link>
+          <Link href="/mi-vago">Mi Vago</Link>
         </div>
         <span className="muted footerCopy">© {new Date().getFullYear()} El Vago</span>
       </footer>

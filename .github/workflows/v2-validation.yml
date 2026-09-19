@@ -1,0 +1,39 @@
+name: V2 Validation
+
+on:
+  push:
+    branches:
+      - v2-content-planning
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: EV002 unlock matrix
+        run: npm run test:ev002
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Unit tests
+        run: npm run test
+
+      - name: Production build
+        env:
+          DATABASE_URL: file:./ci.db
+        run: npm run db:push && npm run build

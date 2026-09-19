@@ -40,6 +40,15 @@ export async function GET(
     },
   });
 
+  const totalEvidence = await prisma.evidence.count({
+    where: {
+      expedienteId: id,
+      status: 'PUBLISHED',
+    },
+  });
+
+  const allEvidenceFound = found >= totalEvidence;
+
   const [clues, questions, theories, hypotheses, timeline] =
     await Promise.all([
       prisma.clue.findMany({
@@ -69,23 +78,27 @@ export async function GET(
         orderBy: { unlockAfter: 'asc' },
       }),
 
-      prisma.hypothesis.findMany({
-        where: {
-          expedienteId: id,
-          status: 'PUBLISHED',
-          unlockAfter: { lte: found },
-        },
-        orderBy: { unlockAfter: 'asc' },
-      }),
+      allEvidenceFound
+        ? prisma.hypothesis.findMany({
+            where: {
+              expedienteId: id,
+              status: 'PUBLISHED',
+              unlockAfter: { lte: found },
+            },
+            orderBy: { unlockAfter: 'asc' },
+          })
+        : Promise.resolve([]),
 
-      prisma.timelineEvent.findMany({
-        where: {
-          expedienteId: id,
-          status: 'PUBLISHED',
-          unlockAfter: { lte: found },
-        },
-        orderBy: { sortOrder: 'asc' },
-      }),
+      investigation?.status === 'COMPLETED'
+        ? prisma.timelineEvent.findMany({
+            where: {
+              expedienteId: id,
+              status: 'PUBLISHED',
+              unlockAfter: { lte: found },
+            },
+            orderBy: { sortOrder: 'asc' },
+          })
+        : Promise.resolve([]),
     ]);
 
   const completed = investigation?.status === 'COMPLETED';
