@@ -77,7 +77,7 @@ export default async function Explorar({
         <div>
           <p className="eyebrow">EXPEDIENTES</p>
           <h2>
-            {q ? `Resultados para “${q}”` : 'Todos los expedientes'}
+            {q ? `Resultados para “${q}”` : 'La Habitación 317'}
           </h2>
         </div>
 
