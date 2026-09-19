@@ -34,7 +34,7 @@ export default function Multimedia() {
         <article className="card mediaCard">
           <span className="tag">VIDEOS</span>
           <h2>Historias en movimiento.</h2>
-          <p className="muted">Trailers, reconstrucciones y piezas documentales.</p>
+          <p className="muted">Trailers, reconstrucciones y piezas narrativas y reconstrucciones de ficción.</p>
           <span className="muted">CONTENIDO EN PREPARACIÓN</span>
         </article>
         <article className="card mediaCard">
@@ -63,7 +63,7 @@ export default function Multimedia() {
       <footer className="siteFooter">
         <div>
           <span className="footerBrand">EL VAGO</span>
-          <p className="muted">Historias reales. Preguntas sin respuesta.</p>
+          <p className="muted">Historias de ficción. Preguntas sin respuesta.</p>
         </div>
         <div className="footerLinks">
           <Link href="/">Inicio</Link>
