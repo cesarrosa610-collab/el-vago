@@ -157,7 +157,7 @@ export default async function Home() {
           </div>
 
           <div className="featuredVisual" aria-hidden="true">
-            <img className="featuredArtwork" src="/exp-002-llamada.svg" alt="" />
+            <img className="featuredArtwork" src="/exp-001-habitacion.svg" alt="" />
             <div className="sceneGrid" />
             <div className="sceneNoise" />
             <div className="featuredGlow" />
