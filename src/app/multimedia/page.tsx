@@ -7,7 +7,7 @@ export default function Multimedia() {
       <GlobalNav />
       <section className="hero multimediaHero">
         <div className="multimediaHeroVisual" aria-hidden="true">
-          <img src="/exp-002-llamada.svg" alt="" />
+          <img src="/exp-001-habitacion.svg" alt="" />
           <span className="mediaPlay"><i /></span>
         </div>
         <div className="multimediaHeroCopy">
@@ -22,7 +22,7 @@ export default function Multimedia() {
       <section className="mediaFeature">
         <div>
           <p className="eyebrow">PIEZA DESTACADA</p>
-          <h2>La Llamada de las 03:17</h2>
+          <h2>La Habitación 317</h2>
           <p className="muted">Una futura pieza audiovisual reunirá imágenes, registros y sonido del expediente.</p>
         </div>
         <div className="mediaTimeline" aria-hidden="true">
@@ -63,7 +63,7 @@ export default function Multimedia() {
       <footer className="siteFooter">
         <div>
           <span className="footerBrand">EL VAGO</span>
-          <p className="muted">Misterios que tienes que resolver.</p>
+          <p className="muted">Historias reales. Preguntas sin respuesta.</p>
         </div>
         <div className="footerLinks">
           <Link href="/">Inicio</Link>
