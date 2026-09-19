@@ -112,7 +112,6 @@ export async function POST(
     selectedHypothesisId:
       updated.selectedHypothesisId,
     completed: true,
-    correct: h.isCorrect,
     progress: 100,
     status: 'COMPLETED',
   });
