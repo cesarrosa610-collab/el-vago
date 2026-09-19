@@ -112,7 +112,7 @@ export default async function Home() {
             <p className="lead">Un hotel. Una desaparición. Una historia que se descubre pieza por pieza.</p>
             <div className="caseMeta">
               <span>▣ Ficción interactiva</span>
-              <span>6 capítulos</span>
+              <span>5 evidencias</span>
               <span className="difficulty">▮▮▮ Intermedio</span>
             </div>
             <Link className="btn heroBtn" href={`/expedientes/${featured.slug}`}>
@@ -155,7 +155,7 @@ export default async function Home() {
               <span className="tag">EV-EXP-001</span>
               <h3>{featured?.title ?? 'La Habitación 317'}</h3>
               <p>Un hotel. Una desaparición. Un expediente de ficción que todavía guarda preguntas.</p>
-              <div className="caseMeta"><span>▣ Ficción interactiva</span><span>6 capítulos</span><span className="difficulty">▮▮▮ Intermedio</span></div>
+              <div className="caseMeta"><span>▣ Ficción interactiva</span><span>5 evidencias</span><span className="difficulty">▮▮▮ Intermedio</span></div>
             </div>
           </article>
 
