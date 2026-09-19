@@ -24,15 +24,15 @@ export default async function Explorar({
       ...(q
         ? {
             OR: [
-              { title: { contains: q, mode: 'insensitive' } },
-              { description: { contains: q, mode: 'insensitive' } },
-              { code: { contains: q, mode: 'insensitive' } },
+              { title: { contains: q } },
+              { description: { contains: q } },
+              { code: { contains: q } },
             ],
           }
         : {}),
     },
     orderBy: { createdAt: 'asc' },
-    include: { evidence: true },
+    _count: { select: { evidence: true } },
   });
 
   return (
@@ -101,9 +101,9 @@ export default async function Explorar({
 
               <div className="caseMeta">
                 <span>
-                  {e.evidence.length === 1
+                  {e._count.evidence === 1
                     ? '1 evidencia'
-                    : e.evidence.length + ' evidencias'}
+                    : e._count.evidence + ' evidencias'}
                 </span>
                 <span>Expediente interactivo</span>
               </div>
