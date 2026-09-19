@@ -92,7 +92,7 @@ export default async function Home() {
           <div className="card continueCard">
             <span className="tag">{activeInvestigation.expediente.code}</span>
             <h2>{activeInvestigation.expediente.title}</h2>
-            <p className="muted">Sigue investigando para descubrir la verdad.</p>
+            <p className="muted">Sigue investigando para descubrir qué ocurrió en la habitación 317.</p>
             <div className="bar" aria-label={`Progreso ${Math.round(activeInvestigation.progress)}%`}>
               <i style={{ width: `${Math.min(100, Math.max(0, activeInvestigation.progress))}%` }} />
             </div>
@@ -109,7 +109,7 @@ export default async function Home() {
             <p className="eyebrow">EXPEDIENTE PRINCIPAL</p>
             <span className="featuredBadge">DESTACADO</span>
             <h2>{featured.title}</h2>
-            <p className="lead">Un hotel. Una desaparición. Más preguntas que respuestas.</p>
+            <p className="lead">Un hotel. Una desaparición. Una historia que se descubre pieza por pieza.</p>
             <div className="caseMeta">
               <span>▣ Ficción interactiva</span>
               <span>6 capítulos</span>
@@ -138,7 +138,7 @@ export default async function Home() {
       <section className="homeSection visualArchive">
         <div className="sectionHead">
           <div>
-            <p className="eyebrow">CATÁLOGO</p>
+            <p className="eyebrow">UNIVERSO 001</p>
             <h2>El universo de la historia</h2>
           </div>
           <Link className="sectionLink" href="/explorar">Entrar al expediente →</Link>
