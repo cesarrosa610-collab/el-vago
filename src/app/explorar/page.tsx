@@ -2,6 +2,14 @@ import Link from 'next/link';
 import { prisma } from '@/src/lib/prisma';
 import GlobalNav from '../GlobalNav';
 
+const exploreArtwork: Record<string, string> = {
+  'EV-EXP-001': '/exp-001-habitacion.svg',
+  'EV-EXP-002': '/exp-002-llamada.svg',
+  'EV-EXP-003': '/exp-003-cuarto.svg',
+  'EV-EXP-004': '/exp-004-archivo.svg',
+  'EV-EXP-006': '/exp-006-habitacion.svg',
+};
+
 export default async function Explorar({
   searchParams,
 }: {
@@ -79,6 +87,9 @@ export default async function Explorar({
         <div className="grid">
           {exps.map((e) => (
             <article className="card exploreCard" key={e.id}>
+              <div className="exploreCardVisual" aria-hidden="true">
+                <img src={exploreArtwork[e.code] ?? '/archivo-visual.svg'} alt="" loading="lazy" />
+              </div>
               <div className="exploreCardTop">
                 <span className="tag">{e.code}</span>
                 <span className="exploreStatus">PUBLICADO</span>
