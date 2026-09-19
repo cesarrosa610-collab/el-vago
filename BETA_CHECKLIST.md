@@ -1,13 +1,13 @@
-# Beta acceptance
-- [ ] npm install
-- [ ] prisma generate
-- [ ] prisma db push
-- [ ] seed
-- [ ] login user
-- [ ] open EV-001
-- [ ] discover E-001, E-002, E-003
-- [ ] progress persists after logout/login
-- [ ] admin creates DRAFT EV-003
-- [ ] add at least one evidence (DB/admin tooling)
-- [ ] publish EV-003
-- [ ] user opens EV-003 with same engine
+# Historial — Beta acceptance
+
+Este archivo conserva la checklist utilizada durante la etapa Beta. **No representa el estado actual de lanzamiento.**
+
+La aceptación vigente de V1 está documentada en `LAUNCH_ACCEPTANCE.md`.
+
+La Beta permitió validar, entre otros puntos:
+- autenticación y persistencia;
+- CMS y ciclo de publicación;
+- motor narrativo;
+- desbloqueos progresivos;
+- experiencia responsive;
+- flujo completo de investigación.
