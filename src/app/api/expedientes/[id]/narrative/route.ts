@@ -78,14 +78,16 @@ export async function GET(
         orderBy: { unlockAfter: 'asc' },
       }),
 
-      prisma.timelineEvent.findMany({
-        where: {
-          expedienteId: id,
-          status: 'PUBLISHED',
-          unlockAfter: { lte: found },
-        },
-        orderBy: { sortOrder: 'asc' },
-      }),
+      investigation?.status === 'COMPLETED'
+        ? prisma.timelineEvent.findMany({
+            where: {
+              expedienteId: id,
+              status: 'PUBLISHED',
+              unlockAfter: { lte: found },
+            },
+            orderBy: { sortOrder: 'asc' },
+          })
+        : Promise.resolve([]),
     ]);
 
   const completed = investigation?.status === 'COMPLETED';
