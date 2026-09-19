@@ -44,12 +44,6 @@ export default async function Home() {
 
   const featuredArtwork = featured ? artwork[featured.code] ?? '/exp-001-habitacion.svg' : null;
 
-  const upcomingCards = [
-    { title: 'Nuevo caso', text: 'Una nueva investigación está siendo preparada.', label: 'EN PREPARACIÓN' },
-    { title: 'Próximo expediente', text: 'Nuevas pistas, nuevos documentos y otra historia por descubrir.', label: 'PRÓXIMAMENTE' },
-    { title: 'Próximo expediente', text: 'El archivo continúa creciendo.', label: 'PRÓXIMAMENTE' },
-  ];
-
   return (
     <main className="wrap homePage">
       <GlobalNav />
@@ -68,7 +62,7 @@ export default async function Home() {
           <p className="eyebrow">EXPEDIENTES INTERACTIVOS</p>
           <h1>Misterios que tienes que resolver.</h1>
           <p className="lead">
-            Casos impactantes. Misterios sin resolver. Historias que te harán ver el mundo de otra forma.
+            Una historia de ficción. Una habitación. Preguntas que no dejan de aparecer.
           </p>
           <div className="homeHeroActions">
             {featured && (
@@ -150,44 +144,56 @@ export default async function Home() {
           <Link className="sectionLink" href="/explorar">Ver todos →</Link>
         </div>
 
-        <div className="homeCaseRail">
-          <article className="homeCaseCard realCaseCard">
-            <div className="homeCaseVisual">
+        <div className="homeCaseRail cinematicRail">
+          <article className="homeCaseCard realCaseCard cinematicCaseCard">
+            <div className="homeCaseVisual cinematicVisual">
               <img src={featuredArtwork ?? '/exp-001-habitacion.svg'} alt="" loading="lazy" />
+              <span className="visualVignette" />
+              <span className="visualCode">317</span>
             </div>
             <div className="homeCaseBody">
               <span className="tag">EV-EXP-001</span>
               <h3>{featured?.title ?? 'La Habitación 317'}</h3>
-              <p>Un hotel. Una desaparición. Un expediente que todavía guarda preguntas.</p>
-              <div className="caseMeta"><span>▣ Ficción interactiva</span><span className="difficulty">▮▮▮ Intermedio</span></div>
+              <p>Un hotel. Una desaparición. Un expediente de ficción que todavía guarda preguntas.</p>
+              <div className="caseMeta"><span>▣ Ficción interactiva</span><span>6 capítulos</span><span className="difficulty">▮▮▮ Intermedio</span></div>
             </div>
           </article>
 
-          {upcomingCards.map((card, index) => (
-            <article className="homeCaseCard upcomingCase" key={index}>
-              <div className={`homeCaseVisual upcomingVisual upcomingVisual${index + 1}`}>
-                <span>{index === 0 ? 'ARCHIVO' : index === 1 ? 'EVIDENCIA' : 'INVESTIGACIÓN'}</span>
-              </div>
-              <div className="homeCaseBody">
-                <span className="tag">{card.label}</span>
-                <h3>{card.title}</h3>
-                <p>{card.text}</p>
-                <div className="caseMeta"><span>Contenido en preparación</span></div>
-              </div>
-            </article>
-          ))}
+          <article className="homeCaseCard atmosphereCard">
+            <div className="homeCaseVisual atmosphereVisual">
+              <img src="/archivo-visual.svg" alt="" loading="lazy" />
+              <span className="visualLabel">ARCHIVO</span>
+            </div>
+            <div className="homeCaseBody">
+              <span className="tag">EVIDENCIAS</span>
+              <h3>Todo deja una pista.</h3>
+              <p>Documentos, detalles y fragmentos de la historia aparecen a medida que avanzas.</p>
+            </div>
+          </article>
+
+          <article className="homeCaseCard atmosphereCard">
+            <div className="homeCaseVisual atmosphereVisual">
+              <img src="/hero-investigacion.svg" alt="" loading="lazy" />
+              <span className="visualLabel">INVESTIGACIÓN</span>
+            </div>
+            <div className="homeCaseBody">
+              <span className="tag">EXPERIENCIA</span>
+              <h3>Tú decides qué significa.</h3>
+              <p>Observa, conecta las piezas y construye tu propia teoría antes del cierre.</p>
+            </div>
+          </article>
         </div>
       </section>
 
       <section className="communityBand">
         <div className="communityQuote">
           <span>“</span>
-          <p>NO SE TRATA SOLO DE LO QUE PASÓ,<br />SINO DE TODO LO QUE AÚN NO SABEMOS.</p>
+          <p>NO SE TRATA SOLO DE LO QUE VES,<br />SINO DE TODO LO QUE AÚN NO SABES.</p>
           <i />
         </div>
         <div className="communityInvite">
           <p className="eyebrow">ÚNETE A LA COMUNIDAD DE EL VAGO</p>
-          <h3>Comparte tus teorías, descubre nuevas perspectivas y sé parte de la investigación.</h3>
+          <h3>Comparte tus teorías, conecta las pistas y entra en el universo de El Vago.</h3>
           <Link className="btn secondary" href="/comunidad">Entrar a la comunidad</Link>
         </div>
       </section>
