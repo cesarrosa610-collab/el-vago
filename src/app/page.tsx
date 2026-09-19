@@ -41,6 +41,18 @@ export default async function Home() {
         })
       : null;
 
+  const featuredArtwork = featured
+    ? featured.code === 'EV-EXP-001'
+      ? '/exp-001-habitacion.svg'
+      : featured.code === 'EV-EXP-003'
+        ? '/exp-003-cuarto.svg'
+        : featured.code === 'EV-EXP-004'
+          ? '/exp-004-archivo.svg'
+          : featured.code === 'EV-EXP-006'
+            ? '/exp-006-habitacion.svg'
+            : '/exp-002-llamada.svg'
+    : null;
+
   const others = exps.slice(1);
 
   return (
@@ -55,12 +67,10 @@ export default async function Home() {
 
         <div className="homeHeroCopy">
           <p className="eyebrow">EXPEDIENTES INTERACTIVOS</p>
-
           <h1>Misterios que tienes que resolver.</h1>
-
-        <p className="lead">
-          Investiga, conecta evidencias y descubre la verdad.
-        </p>
+          <p className="lead">
+            Investiga, conecta evidencias y descubre la verdad.
+          </p>
         </div>
       </section>
 
@@ -128,7 +138,7 @@ export default async function Home() {
         </section>
       ) : null}
 
-      {featured && (
+      {featured && featuredArtwork && (
         <section className="featuredCase">
           <div className="featuredCopy">
             <p className="eyebrow">EXPEDIENTE DESTACADO</p>
@@ -140,7 +150,11 @@ export default async function Home() {
             <p className="lead">{featured.description}</p>
 
             <div className="caseMeta">
-              <span>{featured.evidence.length === 1 ? '1 evidencia' : featured.evidence.length + ' evidencias'}</span>
+              <span>
+                {featured.evidence.length === 1
+                  ? '1 evidencia'
+                  : featured.evidence.length + ' evidencias'}
+              </span>
               <span>Investigación interactiva</span>
             </div>
 
@@ -157,7 +171,7 @@ export default async function Home() {
           </div>
 
           <div className="featuredVisual" aria-hidden="true">
-            <img className="featuredArtwork" src="/exp-001-habitacion.svg" alt="" />
+            <img className="featuredArtwork" src={featuredArtwork} alt="" />
             <div className="sceneGrid" />
             <div className="sceneNoise" />
             <div className="featuredGlow" />
@@ -203,7 +217,9 @@ export default async function Home() {
               <p className="muted">{e.description}</p>
 
               <p className="muted">
-                {e.evidence.length === 1 ? '1 evidencia' : e.evidence.length + ' evidencias'}
+                {e.evidence.length === 1
+                  ? '1 evidencia'
+                  : e.evidence.length + ' evidencias'}
               </p>
 
               <Link
