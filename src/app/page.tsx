@@ -63,7 +63,7 @@ export default async function Home() {
         <div className="homeHeroCopy">
           <div className="homeBrandLockup">
             <span className="homeBrand">EL VAG<span>O</span></span>
-            <small>HISTORIAS REALES. PREGUNTAS SIN RESPUESTA.</small>
+            <small>HISTORIAS DE FICCIÓN. PREGUNTAS SIN RESPUESTA.</small>
           </div>
           <p className="eyebrow">EXPEDIENTES INTERACTIVOS</p>
           <h1>Misterios que tienes que resolver.</h1>
@@ -117,7 +117,7 @@ export default async function Home() {
             <h2>{featured.title}</h2>
             <p className="lead">Un hotel. Una desaparición. Más preguntas que respuestas.</p>
             <div className="caseMeta">
-              <span>▣ Documental</span>
+              <span>▣ Ficción interactiva</span>
               <span>6 capítulos</span>
               <span className="difficulty">▮▮▮ Intermedio</span>
             </div>
@@ -159,7 +159,7 @@ export default async function Home() {
               <span className="tag">EV-EXP-001</span>
               <h3>{featured?.title ?? 'La Habitación 317'}</h3>
               <p>Un hotel. Una desaparición. Un expediente que todavía guarda preguntas.</p>
-              <div className="caseMeta"><span>▣ Documental</span><span className="difficulty">▮▮▮ Intermedio</span></div>
+              <div className="caseMeta"><span>▣ Ficción interactiva</span><span className="difficulty">▮▮▮ Intermedio</span></div>
             </div>
           </article>
 
