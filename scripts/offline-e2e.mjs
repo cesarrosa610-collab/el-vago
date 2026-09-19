@@ -237,10 +237,7 @@ const discover = (userId, evidenceId) => {
 
   const count = discoveryCount();
   const progress = Math.round((count / 3) * 100);
-  const status =
-    progress === 100
-      ? 'COMPLETED'
-      : 'IN_PROGRESS';
+  const status = 'IN_PROGRESS';
 
   run(
     'UPDATE investigations SET progress=?, status=? WHERE id=?',
@@ -414,11 +411,13 @@ if (duplicateCount !== 1) {
 
 /*
  * 6. La última evidencia debe llevar
- *    el expediente a 100% COMPLETED.
+ *    el progreso a 100%, pero el caso
+ *    permanece abierto hasta seleccionar
+ *    una hipótesis.
  */
 discover('u1', 'e3');
 
-const completed = one(
+const evidenceComplete = one(
   `SELECT progress, status
    FROM investigations
    WHERE id=?`,
@@ -426,11 +425,11 @@ const completed = one(
 );
 
 if (
-  completed.progress !== 100 ||
-  completed.status !== 'COMPLETED'
+  evidenceComplete.progress !== 100 ||
+  evidenceComplete.status !== 'IN_PROGRESS'
 ) {
   throw new Error(
-    'completion state failed'
+    'evidence completion state failed'
   );
 }
 
@@ -493,7 +492,7 @@ if (otherUser) {
 }
 
 console.log(
-  'OFFLINE E2E OK: progressive unlock + hypothesis selection + idempotency + 100% completion + post-close protection + user scope'
+  'OFFLINE E2E OK: progressive unlock + hypothesis selection + idempotency + evidence 100% without premature close + hypothesis-driven completion + post-close protection + user scope'
 );
 
 db.close();
