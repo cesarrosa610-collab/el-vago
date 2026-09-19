@@ -32,8 +32,15 @@ export default async function Explorar({
         : {}),
     },
     orderBy: { createdAt: 'asc' },
-    _count: { select: { evidence: true } },
   });
+
+  const evidenceCounts = await Promise.all(
+    exps.map((e) =>
+      prisma.evidence.count({
+        where: { expedienteId: e.id, status: 'PUBLISHED' },
+      })
+    )
+  );
 
   return (
     <main className="wrap explorePage">
@@ -82,7 +89,7 @@ export default async function Explorar({
 
       {exps.length ? (
         <div className="grid">
-          {exps.map((e) => (
+          {exps.map((e, index) => (
             <article className="card exploreCard" key={e.id}>
               <div className="exploreCardVisual" aria-hidden="true">
                 <img
@@ -101,9 +108,9 @@ export default async function Explorar({
 
               <div className="caseMeta">
                 <span>
-                  {e._count.evidence === 1
+                  {evidenceCounts[index] === 1
                     ? '1 evidencia'
-                    : e._count.evidence + ' evidencias'}
+                    : evidenceCounts[index] + ' evidencias'}
                 </span>
                 <span>Expediente interactivo</span>
               </div>
