@@ -138,7 +138,7 @@ export default async function MiVago() {
           </div>
         ) : (
           <div className="notice exploreEmpty">
-            Aún no has comenzado la investigación.{' '}
+            No tienes investigaciones en curso.{' '}
             <Link href="/explorar">Entrar en la historia</Link>
           </div>
         )}
@@ -188,7 +188,7 @@ export default async function MiVago() {
       <footer className="siteFooter">
         <div>
           <span className="footerBrand">EL VAGO</span>
-          <p className="muted">Misterios que tienes que resolver.</p>
+          <p className="muted">Historias de ficción. Preguntas sin respuesta.</p>
         </div>
         <div className="footerLinks">
           <Link href="/">Inicio</Link>
