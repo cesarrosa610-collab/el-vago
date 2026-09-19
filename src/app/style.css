@@ -797,3 +797,25 @@
  .caseNav .sideTitle{display:none}
  .caseNav button{min-width:max-content;border-top:0;border-right:1px solid #1c1c1c;padding:12px 14px}
 }
+
+/* EL VAGO — Timeline y cierre: tablero de investigación */
+.timelineCard{position:relative}
+.timelineCard:before{content:"";position:absolute;left:27px;top:0;bottom:0;width:1px;background:linear-gradient(#e50914,rgba(229,9,20,.08))}
+.narrativeGrid .timelineCard{padding-left:58px}
+.timelineCard .evidenceTop{margin-bottom:12px}
+.timelineCard .evidenceTop:before{content:"";position:absolute;left:20px;top:25px;width:15px;height:15px;border:2px solid #e50914;border-radius:50%;background:#090909;box-shadow:0 0 18px rgba(229,9,20,.28)}
+.timelineCard:nth-child(even) .evidenceTop:before{box-shadow:0 0 18px rgba(229,9,20,.12)}
+.timelineCard .muted{font-size:10px;letter-spacing:.1em}
+.conclusion{min-height:360px;padding:44px!important;display:flex;flex-direction:column;justify-content:center}
+.conclusion:before{content:"";position:absolute;inset:18px;border:1px solid rgba(229,9,20,.12);pointer-events:none}
+.conclusion .eyebrow{color:#e50914}
+.conclusion h2{max-width:720px;font-family:Georgia,serif;font-size:clamp(32px,4vw,54px);line-height:1.02;margin:8px 0 18px}
+.conclusion>p:not(.eyebrow){max-width:700px;color:#aaa;line-height:1.8}
+.conclusion .foundMark{margin-top:24px}
+@media(max-width:760px){
+ .timelineCard:before{left:19px}
+ .narrativeGrid .timelineCard{padding-left:46px}
+ .timelineCard .evidenceTop:before{left:12px}
+ .conclusion{min-height:300px;padding:30px!important}
+ .conclusion:before{inset:12px}
+}
