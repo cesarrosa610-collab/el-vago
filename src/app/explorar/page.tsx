@@ -46,10 +46,10 @@ export default async function Explorar({
         <div className="exploreHeroCopy">
         <p className="eyebrow">EXPLORAR</p>
 
-        <h1>Encuentra tu próximo misterio de ficción.</h1>
+        <h1>Entra en la historia.</h1>
 
         <p className="lead">
-          Busca entre los expedientes publicados y elige dónde comenzar.
+          Explora el único expediente publicado y decide qué pista seguir primero.
  </p>
   </div>
       </section>
@@ -81,7 +81,7 @@ export default async function Explorar({
           </h2>
         </div>
 
-        <p className="muted">{exps.length} disponibles</p>
+        <p className="muted">{exps.length} expediente disponible</p>
       </div>
 
       {exps.length ? (
