@@ -151,10 +151,10 @@ export async function POST(
         discovered / Math.max(e.evidence.length, 1) * 100
       );
 
-      const status =
-        progress >= 100
-          ? 'COMPLETED'
-          : 'IN_PROGRESS';
+      // Llegar al 100% de evidencias NO cierra el caso.
+      // El cierre ocurre únicamente al seleccionar una hipótesis
+      // mediante /api/expedientes/[id]/hypothesis/select.
+      const status = 'IN_PROGRESS';
 
       const inv = await tx.investigation.update({
         where: {
