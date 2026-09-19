@@ -86,9 +86,21 @@ assert.deepEqual(
   ['H-201', 'H-202']
 );
 assert.deepEqual(
+  timeline.filter(([, unlock]) => unlocked(unlock, 0)).map(([code]) => code),
+  ['TL-201']
+);
+assert.deepEqual(
+  timeline.filter(([, unlock]) => unlocked(unlock, 3)).map(([code]) => code),
+  ['TL-201', 'TL-202', 'TL-203']
+);
+assert.deepEqual(
   timeline.filter(([, unlock]) => unlocked(unlock, 4)).map(([code]) => code),
   ['TL-201', 'TL-202', 'TL-203', 'TL-204']
 );
+
+const timelineVisible = (completed, found) => completed && timeline.some(([, unlock]) => unlocked(unlock, found));
+assert.equal(timelineVisible(false, 4), false);
+assert.equal(timelineVisible(true, 4), true);
 
 for (let found = 1; found <= 5; found += 1) {
   const state = stateAfterDiscovery(found);
