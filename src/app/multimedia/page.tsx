@@ -35,19 +35,19 @@ export default function Multimedia() {
           <span className="tag">VIDEOS</span>
           <h2>Historias en movimiento.</h2>
           <p className="muted">Trailers, reconstrucciones y piezas narrativas de ficción.</p>
-          <span className="muted">CONTENIDO EN PREPARACIÓN</span>
+          <span className="muted">FORMATO NARRATIVO</span>
         </article>
         <article className="card mediaCard">
           <span className="tag">AUDIOS</span>
           <h2>Escucha las pistas.</h2>
           <p className="muted">Testimonios, llamadas y piezas sonoras vinculadas a cada expediente.</p>
-          <span className="muted">CONTENIDO EN PREPARACIÓN</span>
+          <span className="muted">DISEÑO SONORO</span>
         </article>
         <article className="card mediaCard">
           <span className="tag">GALERÍA</span>
           <h2>Observa cada detalle.</h2>
           <p className="muted">Fotografías, documentos y material visual de cada investigación.</p>
-          <span className="muted">CONTENIDO EN PREPARACIÓN</span>
+          <span className="muted">ARCHIVO VISUAL</span>
         </article>
       </section>
 
