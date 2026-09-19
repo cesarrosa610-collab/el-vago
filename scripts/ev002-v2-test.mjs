@@ -27,8 +27,8 @@ const theories = [
 ];
 
 const hypotheses = [
-  ['H-201', 4],
-  ['H-202', 4],
+  ['H-201', 5],
+  ['H-202', 5],
 ];
 
 const timeline = [
@@ -83,6 +83,10 @@ assert.deepEqual(
 );
 assert.deepEqual(
   hypotheses.filter(([, unlock]) => unlocked(unlock, 4)).map(([code]) => code),
+  []
+);
+assert.deepEqual(
+  hypotheses.filter(([, unlock]) => unlocked(unlock, 5)).map(([code]) => code),
   ['H-201', 'H-202']
 );
 assert.deepEqual(
@@ -98,7 +102,8 @@ assert.deepEqual(
   ['TL-201', 'TL-202', 'TL-203', 'TL-204']
 );
 
-const timelineVisible = (completed, found) => completed && timeline.some(([, unlock]) => unlocked(unlock, found));
+const timelineVisible = (completed, found) =>
+  completed && timeline.some(([, unlock]) => unlocked(unlock, found));
 assert.equal(timelineVisible(false, 4), false);
 assert.equal(timelineVisible(true, 4), true);
 
@@ -109,6 +114,7 @@ for (let found = 1; found <= 5; found += 1) {
   assert.equal(state.completed, false);
 }
 
+assert.equal(progressFor(4), 80);
 assert.equal(progressFor(5), 100);
 assert.equal(stateAfterDiscovery(5).status, 'IN_PROGRESS');
 assert.equal(stateAfterDiscovery(5).completed, false);
