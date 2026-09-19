@@ -15,44 +15,43 @@ export default async function Explorar({
 }: {
   searchParams: Promise<{ q?: string }>;
 }) {
-  
   const params = await searchParams;
   const q = params.q?.trim() ?? '';
 
   const exps = await prisma.expediente.findMany({
     where: {
       status: 'PUBLISHED',
-      code: 'EV-EXP-001',
       ...(q
         ? {
             OR: [
-              { title: { contains: q, mode: 'insensitive' } },
-              { description: { contains: q, mode: 'insensitive' } },
-              { code: { contains: q, mode: 'insensitive' } },
+              { title: { contains: q } },
+              { description: { contains: q } },
+              { code: { contains: q } },
             ],
           }
         : {}),
     },
     orderBy: { createdAt: 'asc' },
-    include: { evidence: true },
+    _count: { select: { evidence: true } },
   });
 
-    return (
-     <main className="wrap explorePage">
+  return (
+    <main className="wrap explorePage">
+      <GlobalNav />
 
-       <GlobalNav />
-       <section className="exploreHero">
-        <div className="exploreHeroVisual" aria-hidden="true"><img src="/explorar-escena.svg" alt="" /></div>
+      <section className="exploreHero">
+        <div className="exploreHeroVisual" aria-hidden="true">
+          <img src="/explorar-escena.svg" alt="" />
+        </div>
         <div className="exploreHeroCopy">
-        <p className="eyebrow">EXPLORAR</p>
-
-        <h1>Entra en la historia.</h1>
-
-        <p className="lead">
-          Explora el único expediente publicado y decide qué pista seguir primero.
- </p>
-  </div>
+          <p className="eyebrow">EXPLORAR</p>
+          <h1>Entra en la historia.</h1>
+          <p className="lead">
+            Explora los expedientes publicados y decide qué pista seguir primero.
+          </p>
+        </div>
       </section>
+
       <form className="exploreSearch" method="get">
         <input
           className="input"
@@ -61,11 +60,9 @@ export default async function Explorar({
           placeholder="Buscar por nombre, código o descripción"
           aria-label="Buscar expedientes"
         />
-
         <button className="btn" type="submit">
           Buscar
         </button>
-
         {q && (
           <Link className="btn secondary" href="/explorar">
             Limpiar
@@ -76,12 +73,11 @@ export default async function Explorar({
       <div className="sectionHead exploreResultsHead">
         <div>
           <p className="eyebrow">EXPEDIENTES</p>
-          <h2>
-            {q ? `Resultados para “${q}”` : 'La Habitación 317'}
-          </h2>
+          <h2>{q ? `Resultados para “${q}”` : 'Expedientes publicados'}</h2>
         </div>
-
-        <p className="muted">{exps.length} expediente disponible</p>
+        <p className="muted">
+          {exps.length} {exps.length === 1 ? 'expediente disponible' : 'expedientes disponibles'}
+        </p>
       </div>
 
       {exps.length ? (
@@ -89,7 +85,11 @@ export default async function Explorar({
           {exps.map((e) => (
             <article className="card exploreCard" key={e.id}>
               <div className="exploreCardVisual" aria-hidden="true">
-                <img src={exploreArtwork[e.code] ?? '/archivo-visual.svg'} alt="" loading="lazy" />
+                <img
+                  src={exploreArtwork[e.code] ?? '/archivo-visual.svg'}
+                  alt=""
+                  loading="lazy"
+                />
               </div>
               <div className="exploreCardTop">
                 <span className="tag">{e.code}</span>
@@ -97,18 +97,18 @@ export default async function Explorar({
               </div>
 
               <h2>{e.title}</h2>
-
               <p className="muted">{e.description}</p>
 
               <div className="caseMeta">
-                <span>{e.evidence.length === 1 ? '1 evidencia' : e.evidence.length + ' evidencias'}</span>
+                <span>
+                  {e._count.evidence === 1
+                    ? '1 evidencia'
+                    : e._count.evidence + ' evidencias'}
+                </span>
                 <span>Expediente interactivo</span>
               </div>
 
-              <Link
-                className="btn"
-                href={`/expedientes/${e.slug}`}
-              >
+              <Link className="btn" href={`/expedientes/${e.slug}`}>
                 Investigar
               </Link>
             </article>

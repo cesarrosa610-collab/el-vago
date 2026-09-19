@@ -71,7 +71,7 @@ export default async function Home() {
               </Link>
             )}
             <Link className="btn secondary heroSecondary" href="/explorar">
-              Explorar expediente
+              Explorar expedientes
             </Link>
           </div>
           <div className="heroDots" aria-hidden="true">
@@ -92,7 +92,7 @@ export default async function Home() {
           <div className="card continueCard">
             <span className="tag">{activeInvestigation.expediente.code}</span>
             <h2>{activeInvestigation.expediente.title}</h2>
-            <p className="muted">Sigue investigando para descubrir qué ocurrió en la habitación 317.</p>
+            <p className="muted">Sigue investigando para descubrir qué ocurrió en esta historia.</p>
             <div className="bar" aria-label={`Progreso ${Math.round(activeInvestigation.progress)}%`}>
               <i style={{ width: `${Math.min(100, Math.max(0, activeInvestigation.progress))}%` }} />
             </div>
