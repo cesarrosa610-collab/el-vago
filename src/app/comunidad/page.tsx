@@ -11,7 +11,7 @@ export default function Comunidad() {
         <p className="eyebrow">COMUNIDAD</p>
         <h1>Investiga. Comparte. Conecta.</h1>
         <p className="lead">
-          Un espacio para compartir teorías, debatir pistas y descubrir nuevas formas de resolver los expedientes.
+          Un espacio para compartir teorías, debatir pistas y descubrir nuevas formas de interpretar las historias de ficción.
         </p>
         </div>
       </section>
