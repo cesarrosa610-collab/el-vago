@@ -767,10 +767,12 @@
 .exploreCard:after{content:"";position:absolute;right:-60px;bottom:-80px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(229,9,20,.13),transparent 70%);pointer-events:none}
 .exploreStatus{font-size:10px;letter-spacing:.12em;color:#777}
 @media(max-width:760px){
- .exploreHero,.communityHero{min-height:430px;border-radius:18px}
+ .exploreHero,.communityHero{min-height:360px;border-radius:18px}
  .exploreHeroVisual img,.communityHeroVisual img{opacity:.46}
- .exploreHeroCopy,.communityHeroCopy{padding:38px 24px}
- .exploreSearch{grid-template-columns:1fr;gap:9px;margin-bottom:34px}
+ .exploreHeroCopy,.communityHeroCopy{padding:30px 24px 34px}
+ .exploreHero h1,.communityHero h1{font-size:clamp(38px,10vw,48px);line-height:.96}
+ .exploreHero .lead,.communityHero .lead{font-size:15px;line-height:1.5}
+ .exploreSearch{grid-template-columns:1fr;gap:9px;margin:20px 0 30px}
  .exploreSearch .btn{width:100%;text-align:center}
 }
 
