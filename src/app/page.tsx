@@ -53,6 +53,27 @@ export default async function Home() {
             : '/exp-002-llamada.svg'
     : null;
 
+
+  const featuredVisualMeta = featured?.code === 'EV-EXP-002'
+    ? {
+        record: 'REGISTRO',
+        value: '03:17',
+        label: 'LLAMADA ENTRANTE',
+        ref: 'EXP-002',
+        signal: 'SEÑAL',
+        stamp: 'EVIDENCIA / 002',
+      }
+    : featured
+      ? {
+          record: 'ARCHIVO',
+          value: featured.code.replace('EV-EXP-', ''),
+          label: 'CASO ACTIVO',
+          ref: featured.code.replace('EV-', ''),
+          signal: 'EVIDENCIA',
+          stamp: `ARCHIVO / ${featured.code.replace('EV-EXP-', '')}`,
+        }
+      : null;
+
   const others = exps.slice(1);
 
   return (
@@ -175,18 +196,22 @@ export default async function Home() {
             <div className="sceneGrid" />
             <div className="sceneNoise" />
             <div className="featuredGlow" />
-            <div className="evidenceCard evidenceCardPhone">
-              <span>REGISTRO</span>
-              <b>03:17</b>
-              <small>LLAMADA ENTRANTE</small>
-            </div>
-            <div className="evidenceCard evidenceCardFile">
-              <span>EXP-002</span>
-              <b>SEÑAL</b>
-              <i /><i /><i />
-            </div>
-            <div className="sceneScan" />
-            <div className="sceneStamp">EVIDENCIA / 002</div>
+            {featuredVisualMeta && (
+              <>
+                <div className="evidenceCard evidenceCardPhone">
+                  <span>{featuredVisualMeta.record}</span>
+                  <b>{featuredVisualMeta.value}</b>
+                  <small>{featuredVisualMeta.label}</small>
+                </div>
+                <div className="evidenceCard evidenceCardFile">
+                  <span>{featuredVisualMeta.ref}</span>
+                  <b>{featuredVisualMeta.signal}</b>
+                  <i /><i /><i />
+                </div>
+                <div className="sceneScan" />
+                <div className="sceneStamp">{featuredVisualMeta.stamp}</div>
+              </>
+            )}
           </div>
         </section>
       )}
