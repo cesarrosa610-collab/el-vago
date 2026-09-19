@@ -9,9 +9,9 @@ export default function Comunidad() {
         <div className="communityHeroVisual" aria-hidden="true"><img src="/comunidad-escena.svg" alt="" /></div>
         <div className="communityHeroCopy">
         <p className="eyebrow">COMUNIDAD</p>
-        <h1>Investiga. Comparte. Conecta.</h1>
+        <h1>La historia también se investiga en comunidad.</h1>
         <p className="lead">
-          Un espacio para compartir teorías, debatir pistas y descubrir nuevas formas de interpretar las historias de ficción.
+          Un espacio para compartir teorías, debatir pistas y descubrir nuevas formas de interpretar La Habitación 317.
         </p>
         </div>
       </section>
@@ -31,8 +31,8 @@ export default function Comunidad() {
         </article>
         <article className="card">
           <span className="tag">INVESTIGADORES</span>
-          <h2>Encuentra otros investigadores.</h2>
-          <p className="muted">Descubre nuevas perspectivas y sigue las investigaciones que más te interesen.</p>
+          <h2>Descubre otras perspectivas.</h2>
+          <p className="muted">Compara interpretaciones y descubre cómo otros investigadores conectan las mismas pistas.</p>
           <span className="muted">PRÓXIMAMENTE</span>
         </article>
       </section>
@@ -40,7 +40,7 @@ export default function Comunidad() {
       <section className="premiumTeaser">
         <div>
           <p className="eyebrow">EL VAGO</p>
-          <h2>La investigación también se comparte.</h2>
+          <h2>Cada pista puede abrir una teoría.</h2>
           <p className="muted">Estamos preparando este espacio para que cada misterio pueda abrir nuevas conversaciones.</p>
         </div>
         <Link className="btn" href="/explorar">Explorar expedientes</Link>
