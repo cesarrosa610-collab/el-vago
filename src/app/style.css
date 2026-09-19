@@ -973,3 +973,31 @@
  .globalNav .navActions{margin-left:auto}
  .globalNav .navActions .navLink{display:none}
 }
+
+
+/* EL VAGO — ajuste final táctil móvil */
+@media(max-width:760px){
+  .globalNav .navCenter,
+  .caseHero .navCenter,
+  .caseNav{
+    scrollbar-width:none;
+    -ms-overflow-style:none;
+  }
+  .globalNav .navCenter::-webkit-scrollbar,
+  .caseHero .navCenter::-webkit-scrollbar,
+  .caseNav::-webkit-scrollbar{
+    display:none;
+  }
+  .globalNav .navLink,
+  .caseHero .navLink,
+  .caseNav button{
+    min-height:38px;
+    display:flex;
+    align-items:center;
+  }
+  .globalNav .navCenter,
+  .caseHero .navCenter{
+    padding-left:2px;
+    padding-right:2px;
+  }
+}
