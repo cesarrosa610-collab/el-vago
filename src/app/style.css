@@ -908,3 +908,15 @@
   .footerCopy{white-space:normal}
   .footerLinks{gap:12px}
 }
+
+
+/* EL VAGO — CMS visual consistency */
+.adminPage{min-height:100vh;background:radial-gradient(circle at 85% 5%,rgba(229,9,20,.05),transparent 28%),#070707}
+.adminPage .adminHeader{padding:34px 0 28px;border-bottom:1px solid #202020;margin-bottom:28px}
+.adminPage .adminHeader h1{font-family:Georgia,serif;font-size:clamp(38px,6vw,62px);margin:6px 0}
+.adminPage .adminCard{border:1px solid #292929;background:linear-gradient(145deg,#101010,#0b0b0b 70%,#16090b)}
+.adminPage .adminToolbar{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:28px}
+.adminPage .adminToolbar a{color:#888;text-decoration:none}
+.adminPage .adminToolbar a:hover{color:#fff}
+.adminPage .statusPublished{color:#79d99a}
+@media(max-width:760px){.adminPage .adminToolbar{align-items:stretch;flex-direction:column}.adminPage .adminToolbar .btn{width:100%;text-align:center}}
