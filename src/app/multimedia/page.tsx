@@ -7,7 +7,7 @@ export default function Multimedia() {
       <GlobalNav />
       <section className="hero multimediaHero">
         <div className="multimediaHeroVisual" aria-hidden="true">
-          <img src="/archivo-visual.svg" alt="" />
+          <img src="/exp-002-llamada.svg" alt="" />
           <span className="mediaPlay"><i /></span>
         </div>
         <div className="multimediaHeroCopy">
