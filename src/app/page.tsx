@@ -139,9 +139,9 @@ export default async function Home() {
         <div className="sectionHead">
           <div>
             <p className="eyebrow">CATÁLOGO</p>
-            <h2>Nuevos expedientes</h2>
+            <h2>El universo de la historia</h2>
           </div>
-          <Link className="sectionLink" href="/explorar">Ver todos →</Link>
+          <Link className="sectionLink" href="/explorar">Entrar al expediente →</Link>
         </div>
 
         <div className="homeCaseRail cinematicRail">
