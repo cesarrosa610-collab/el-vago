@@ -44,8 +44,8 @@ Este archivo contiene la especificación exacta de datos para implementar EV-EXP
 ## Hipótesis
 | code | title | unlockAfter | isCorrect |
 |---|---|---:|---|
-| H-201 | Fallo técnico | 4 | true |
-| H-202 | Alteración posterior | 4 | false |
+| H-201 | Fallo técnico | 5 | true |
+| H-202 | Alteración posterior | 5 | false |
 
 La API narrativa debe omitir el campo de corrección antes de completar la selección.
 
@@ -67,6 +67,7 @@ EV-EXP-002 permanece ARCHIVED. Esta rama no publica ni modifica el expediente en
 - E-201 desbloqueada inicialmente.
 - Cada descubrimiento aumenta el progreso de forma progresiva.
 - Hipótesis no revela corrección.
+- A 80% (4/5), hipótesis permanece bloqueada; a 100% (5/5), ambas se habilitan.
 - Selección completa la investigación.
 - Cierre aparece únicamente después de la selección.
 - Timeline queda disponible al completar.

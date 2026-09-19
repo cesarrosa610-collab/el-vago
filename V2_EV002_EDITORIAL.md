@@ -1,7 +1,7 @@
 # EV-EXP-002 — La Llamada de las 03:17
 
-**V2 — Borrador editorial**  
-**Estado:** no publicado / no altera V1
+**V2.1 — Cierre editorial para validación**  
+**Estado:** ARCHIVED / listo para validación controlada; no altera V1
 
 ## Premisa
 
@@ -84,10 +84,12 @@ El cierre solo aparece después de seleccionar una hipótesis válida y completa
 
 ## Requisitos de implementación
 
-- Mantener el expediente ARCHIVED hasta completar revisión.
+- Mantener el expediente ARCHIVED hasta completar la validación y la decisión explícita de publicación.
 - No alterar EV-EXP-001.
 - No publicar automáticamente desde seed.
 - Probar desbloqueos con usuario nuevo.
+- A 80% (4/5 evidencias), las hipótesis permanecen bloqueadas.
+- A 100% (5/5 evidencias), ambas hipótesis se habilitan y la selección completa la investigación.
 - Verificar que la corrección de hipótesis permanezca oculta.
 - Verificar persistencia del progreso.
 - Verificar 0% inicial.
