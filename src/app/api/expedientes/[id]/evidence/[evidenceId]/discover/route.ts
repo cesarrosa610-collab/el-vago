@@ -22,6 +22,7 @@ export async function POST(
     where: {
       id: evidenceId,
       expedienteId: id,
+      status: 'PUBLISHED',
       expediente: {
         status: 'PUBLISHED',
       },
@@ -63,6 +64,7 @@ export async function POST(
       userId: u.id,
       evidence: {
         expedienteId: id,
+        status: 'PUBLISHED',
       },
     },
   });
@@ -95,6 +97,7 @@ export async function POST(
   const total = await prisma.evidence.count({
     where: {
       expedienteId: id,
+      status: 'PUBLISHED',
     },
   });
 
@@ -103,6 +106,7 @@ export async function POST(
       userId: u.id,
       evidence: {
         expedienteId: id,
+        status: 'PUBLISHED',
       },
     },
   });
@@ -111,10 +115,6 @@ export async function POST(
     ? Math.round((found / total) * 100)
     : 0;
 
-  // Importante:
-  // Llegar al 100% de evidencias NO cierra el caso.
-  // El caso se cierra únicamente después de seleccionar
-  // una hipótesis en /hypothesis/select.
   const status = 'IN_PROGRESS';
 
   await prisma.investigation.update({
@@ -132,6 +132,7 @@ export async function POST(
       userId: u.id,
       evidence: {
         expedienteId: id,
+        status: 'PUBLISHED',
       },
     },
     select: {
