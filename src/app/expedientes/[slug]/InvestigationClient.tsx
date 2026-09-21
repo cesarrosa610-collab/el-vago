@@ -212,6 +212,13 @@ export default function InvestigationClient({
             ? '/exp-006-habitacion.svg'
             : '/exp-002-llamada.svg';
 
+  const goToSection = (section: string) => {
+    setTab(section);
+    window.requestAnimationFrame(() => {
+      document.querySelector('.evidenceArea')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  };
+
   const isTabUnlocked = (section: string) => {
     if (section === 'Evidencias') return true;
     if (section === 'Cierre') return narrative.conclusion?.completed === true;
@@ -392,6 +399,17 @@ export default function InvestigationClient({
             .evidenceVisual{height:132px}
             .message{margin:8px 12px -8px}
           }
+
+          .evidenceArea{position:relative;scroll-margin-top:28px}
+          .dossierRail{position:absolute;left:-18px;top:0;bottom:0;width:1px;background:linear-gradient(#e50914,rgba(229,9,20,.04) 65%,transparent);opacity:.45}
+          .dossierRail span{position:sticky;top:30%;display:block;width:5px;height:42px;margin-left:-2px;background:#e50914;box-shadow:0 0 18px rgba(229,9,20,.55)}
+          .dossierEvidence,.dossierCard{position:relative;overflow:hidden}
+          .dossierEvidence:before,.dossierCard:before{content:"";position:absolute;top:0;left:0;width:28%;height:1px;background:linear-gradient(90deg,#e50914,transparent);opacity:.7}
+          .dossierEvidence:after,.dossierCard:after{content:"";position:absolute;right:14px;top:14px;width:22px;height:22px;border-top:1px solid rgba(255,255,255,.08);border-right:1px solid rgba(255,255,255,.08);pointer-events:none}
+          .caseNav button{transition:background .2s ease,border-color .2s ease,transform .2s ease}
+          .caseNav button.active{box-shadow:inset 3px 0 #e50914,0 10px 30px rgba(0,0,0,.16)}
+          .caseNav button:not(:disabled):hover{transform:translateX(3px)}
+          .dossierConclusion{min-height:430px;background:radial-gradient(circle at 80% 25%,rgba(229,9,20,.08),transparent 30%),linear-gradient(145deg,#101010,#080808)}
           @media(prefers-reduced-motion:reduce){
             .caseHeroVisual img,.evidenceVisualLine,.messagePulse{animation:none}
           }
@@ -493,7 +511,7 @@ export default function InvestigationClient({
               <button
                 key={section.id}
                 className={tab === section.id ? 'active' : ''}
-                onClick={() => unlocked && setTab(section.id)}
+                onClick={() => unlocked && goToSection(section.id)}
                 disabled={!unlocked}
                 title={!unlocked ? 'Completa más hallazgos para desbloquear esta sección' : undefined}
               >
@@ -510,7 +528,7 @@ export default function InvestigationClient({
           </div>
         </aside>
 
-        <div className="evidenceArea">
+        <div className="evidenceArea" id="dossier">\n          <div className="dossierRail" aria-hidden="true"><span /></div>
           <div className="evidenceAreaHeader">
             <div>
               <p className="eyebrow">DOSSIER / {sections.find((s) => s.id === tab)?.kicker}</p>
@@ -524,7 +542,7 @@ export default function InvestigationClient({
               {visible.map((e) => {
                 const isFound = discovered.has(e.id);
                 return (
-                  <article className={`evidence ${isFound ? 'found' : 'locked'}`} key={e.id}>
+                  <article className={`evidence dossierEvidence ${isFound ? 'found' : 'locked'}`} key={e.id}>
                     <div className="evidenceVisual" aria-hidden="true">
                       <span className="evidenceVisualCode">{e.code}</span>
                       <span className="evidenceVisualSignal" />
@@ -560,7 +578,7 @@ export default function InvestigationClient({
           {tab === 'Pistas' && (
             <div className="narrativeGrid">
               {narrative.clues.map((x) => (
-                <article className="card" key={x.id}>
+                <article className="card dossierCard" key={x.id}>
                   <span className="tag">{x.code}</span>
                   <h3>{x.title}</h3>
                   <p>{x.description}</p>
@@ -599,7 +617,7 @@ export default function InvestigationClient({
               {narrative.hypotheses.map((x) => {
                 const selected = narrative.conclusion?.selectedHypothesisId === x.id;
                 return (
-                  <article className={`card ${selected ? 'found' : ''}`} key={x.id}>
+                  <article className={`card dossierCard ${selected ? 'found' : ''}`} key={x.id}>
                     <span className="tag">{x.code}</span>
                     <h3>{x.title}</h3>
                     <p>{x.description}</p>
@@ -632,7 +650,7 @@ export default function InvestigationClient({
           )}
 
           {tab === 'Cierre' && (
-            <article className="card conclusion">
+            <article className="card conclusion dossierConclusion">
               <p className="eyebrow">CIERRE DEL EXPEDIENTE</p>
               <span className="caseHeroSerial">ARCHIVO FINAL / CONCLUSIÓN</span>
               <h2>{narrative.conclusion?.title || 'La investigación aún no está cerrada'}</h2>
