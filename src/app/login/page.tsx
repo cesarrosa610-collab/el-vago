@@ -30,11 +30,11 @@ export default function Login() {
         <section className="authCard">
           <p className="eyebrow">FORMATO DOCUMENTAL</p>
           <h1>Entrar</h1>
-          <p className="muted">Entra para continuar tus investigaciones y retomar tu progreso.</p>
+          <p className="muted">Retoma tus investigaciones y continúa desde la última pista descubierta.</p>
           <form className="stack authForm" onSubmit={go}>
             <label>Email<input className="input" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="tu@email.com" type="email" autoComplete="email" required /></label>
             <label>Contraseña<input className="input" value={password} onChange={(e) => setPassword(e.target.value)} type="password" autoComplete="current-password" required /></label>
-            <button className="btn" type="submit">Entrar al archivo</button>
+            <button className="btn" type="submit">Entrar al archivo <span aria-hidden="true">→</span></button>
             {err && <div className="error">{err}</div>}
           </form>
           <p className="authFoot">¿No tienes cuenta? <Link href="/register">Crear cuenta</Link></p>
