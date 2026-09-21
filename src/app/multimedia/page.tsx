@@ -14,7 +14,7 @@ export default function Multimedia() {
           <p className="eyebrow">ARCHIVO MULTIMEDIA</p>
           <h1>Mira, escucha y descubre.</h1>
           <p className="lead">
-            Una capa audiovisual para entrar en el universo de ficción desde otra perspectiva.
+            Una capa audiovisual para entrar en el universo del expediente desde otra perspectiva.
           </p>
         </div>
       </section>
@@ -34,8 +34,8 @@ export default function Multimedia() {
         <article className="card mediaCard">
           <span className="tag">VIDEOS</span>
           <h2>Historias en movimiento.</h2>
-          <p className="muted">Trailers, reconstrucciones y piezas narrativas de ficción.</p>
-          <span className="muted">FORMATO NARRATIVO</span>
+          <p className="muted">Reconstrucciones y piezas documentales vinculadas a cada expediente.</p>
+          <span className="muted">FORMATO DOCUMENTAL</span>
         </article>
         <article className="card mediaCard">
           <span className="tag">AUDIOS</span>
@@ -63,7 +63,7 @@ export default function Multimedia() {
       <footer className="siteFooter">
         <div>
           <span className="footerBrand">EL VAGO</span>
-          <p className="muted">Historias de ficción. Preguntas sin respuesta.</p>
+          <p className="muted">Historias reales · Misterios sin respuesta.</p>
         </div>
         <div className="footerLinks">
           <Link href="/">Inicio</Link>
