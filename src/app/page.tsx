@@ -57,12 +57,12 @@ export default async function Home() {
         <div className="homeHeroCopy">
           <div className="homeBrandLockup">
             <span className="homeBrand">EL VAG<span>O</span></span>
-            <small>HISTORIAS DE FICCIÓN. PREGUNTAS SIN RESPUESTA.</small>
+            <small>HISTORIAS REALES. MISTERIOS. FORMATO DOCUMENTAL.</small>
           </div>
           <p className="eyebrow">EXPEDIENTES INTERACTIVOS</p>
           <h1>Misterios que tienes que resolver.</h1>
           <p className="lead">
-            Una historia de ficción. Una habitación. Preguntas que no dejan de aparecer.
+            Historias reales. Misterios que se descubren pieza por pieza. Preguntas que no dejan de aparecer.
           </p>
           <div className="homeHeroActions">
             {featured && (
@@ -111,7 +111,7 @@ export default async function Home() {
             <h2>{featured.title}</h2>
             <p className="lead">Un hotel. Una desaparición. Una historia que se descubre pieza por pieza.</p>
             <div className="caseMeta">
-              <span>▣ Ficción interactiva</span>
+              <span>▣ Formato documental</span>
               <span>5 evidencias</span>
               <span className="difficulty">▮▮▮ Intermedio</span>
             </div>
@@ -154,7 +154,7 @@ export default async function Home() {
             <div className="homeCaseBody">
               <span className="tag">EV-EXP-001</span>
               <h3>{featured?.title ?? 'La Habitación 317'}</h3>
-              <p>Un hotel. Una desaparición. Un expediente de ficción que todavía guarda preguntas.</p>
+              <p>Un hotel. Una desaparición. Un expediente que todavía guarda preguntas.</p>
               <div className="caseMeta"><span>▣ Ficción interactiva</span><span>5 evidencias</span><span className="difficulty">▮▮▮ Intermedio</span></div>
             </div>
           </article>
@@ -210,7 +210,7 @@ export default async function Home() {
       <footer className="siteFooter">
         <div>
           <span className="footerBrand">EL VAGO</span>
-          <p className="muted">Historias de ficción. Preguntas sin respuesta.</p>
+          <p className="muted">Historias reales. Misterios sin respuesta.</p>
         </div>
         <div className="footerLinks">
           <Link href="/">Inicio</Link>
