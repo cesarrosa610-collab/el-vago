@@ -1498,8 +1498,10 @@ main:after{
     grid-template-columns:1fr 1fr;
   }
   .cinematicCaseCard{
+  }
+}
 
-/* EL VAGO — Mobile case metadata final fit / iPhone QA v2 */
+/* EL VAGO — Mobile case metadata final fit / iPhone QA v3 */
 @media(max-width:760px){
   .homePage .homeCaseBody .caseMeta{
     display:flex;
