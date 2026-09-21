@@ -829,7 +829,15 @@
 .miVagoPage .homeSection .card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:#e50914;opacity:.55}
 .miVagoPage .homeSection .card .bar{margin:18px 0}
 .miVagoPage .homeSection .card .btn{margin-top:4px}
-@media(max-width:760px){.miVagoPage .homeHero:after{position:static;display:block;margin-top:26px}}
+@media(max-width:760px){
+  .miVagoPage .homeHero:after{display:none}
+  .miVagoHero:before{
+    left:24px;
+    right:auto;
+    top:20px;
+    font-size:9px;
+  }
+}
 
 
 /* EL VAGO — acceso cinematográfico */
