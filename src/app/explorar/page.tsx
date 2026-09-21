@@ -100,7 +100,7 @@ export default async function Explorar({
               </div>
               <div className="exploreCardTop">
                 <span className="tag">{e.code}</span>
-                <span className="exploreStatus">PUBLICADO</span>
+                <span className="exploreStatus">DISPONIBLE</span>
               </div>
 
               <h2>{e.title}</h2>
@@ -112,7 +112,7 @@ export default async function Explorar({
                     ? '1 evidencia'
                     : evidenceCounts[index] + ' evidencias'}
                 </span>
-                <span>Expediente interactivo</span>
+                <span>Investigación documental</span>
               </div>
 
               <Link className="btn" href={`/expedientes/${e.slug}`}>
@@ -130,7 +130,7 @@ export default async function Explorar({
       <footer className="siteFooter">
         <div>
           <span className="footerBrand">EL VAGO</span>
-          <p className="muted">Historias reales. Misterios sin respuesta.</p>
+          <p className="muted">Historias reales · Misterios sin respuesta.</p>
         </div>
         <div className="footerLinks">
           <Link href="/">Inicio</Link>
