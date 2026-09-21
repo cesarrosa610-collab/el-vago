@@ -28,7 +28,7 @@ export default function Login() {
       <div className="authShell">
         <Link className="brand authBrand" href="/">EL VAGO</Link>
         <section className="authCard">
-          <p className="eyebrow">FICCIÓN INTERACTIVA</p>
+          <p className="eyebrow">FORMATO DOCUMENTAL</p>
           <h1>Entrar</h1>
           <p className="muted">Entra para continuar tus investigaciones y retomar tu progreso.</p>
           <form className="stack authForm" onSubmit={go}>
