@@ -488,6 +488,42 @@ export default function InvestigationClient({
             .investigationMeter:after{display:none}
             .dossierConclusion{min-height:360px}
           }
+
+          .caseHero{isolation:isolate}
+          .caseHeroContent{position:relative;z-index:5}
+          .caseHeroSerial:after{
+            content:"";display:inline-block;width:32px;height:1px;margin:0 10px 3px;
+            background:#e50914;box-shadow:0 0 10px rgba(229,9,20,.45)
+          }
+          .caseHeroTitleRow h1{max-width:820px}
+          .caseHeroTitleRow h1::selection,.lead::selection{background:#e50914;color:#fff}
+          .caseHeroActions .heroBtn{min-width:230px}
+          .investigation{position:relative}
+          .investigation:before{
+            content:"";position:absolute;left:50%;top:0;width:1px;height:100%;
+            background:linear-gradient(transparent,#1b1e20 12%,#1b1e20 88%,transparent);
+            opacity:.35;pointer-events:none;
+          }
+          .caseNav{z-index:6}
+          .caseNav .sideTitle{display:flex;align-items:center;gap:9px}
+          .caseNav .sideTitle:before{content:"";width:18px;height:1px;background:#e50914}
+          .evidenceAreaHeader .eyebrow{margin-bottom:0}
+          .evidenceCounter{box-shadow:inset 0 0 22px rgba(229,9,20,.035)}
+          .dossierEvidence .evidenceBody{position:relative}
+          .dossierEvidence .evidenceBody:after{
+            content:"PIEZA / REGISTRO";position:absolute;right:0;bottom:0;
+            color:#353b3f;font-size:7px;font-weight:900;letter-spacing:.2em;
+          }
+          .dossierCard .tag{font-weight:900;letter-spacing:.16em}
+          .dossierCard p{line-height:1.72}
+          @media(max-width:900px){
+            .investigation:before{display:none}
+          }
+          @media(max-width:760px){
+            .caseHeroTitleRow h1{max-width:none}
+            .caseHeroActions .heroBtn{min-width:0}
+            .dossierEvidence .evidenceBody:after{display:none}
+          }
           @media(prefers-reduced-motion:reduce){
             .caseHeroVisual img,.evidenceVisualLine,.messagePulse{animation:none}
           }
