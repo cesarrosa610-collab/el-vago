@@ -1549,3 +1549,112 @@ main:after{
     white-space:nowrap;
   }
 }
+
+
+/* EL VAGO — CINEMATIC 2.0 / SUBSTANTIAL VISUAL PASS — 2026-09-21 */
+:root{--v-red:#e50914;--v-bg:#070809;--v-panel:#0d0f11;--v-line:#24282b;--v-text:#f2f2f2;--v-muted:#8f969b}
+body{background:radial-gradient(circle at 50% -12%,rgba(229,9,20,.08),transparent 30%),linear-gradient(180deg,#070809 0%,#090a0b 55%,#070707 100%);letter-spacing:.005em}
+.wrap{max-width:1240px;padding:28px 32px 42px}
+.globalNav{min-height:72px;gap:28px;border-bottom:1px solid #25282b;background:rgba(7,8,9,.88);backdrop-filter:blur(18px);box-shadow:0 10px 35px rgba(0,0,0,.18)}
+.globalNav .brandLockup{min-width:240px}
+.globalNav .brandLockup strong{font-size:30px;letter-spacing:-.065em}
+.globalNav .brandLockup small{font-size:7px;letter-spacing:.16em;color:#858b90}
+.globalNav .navCenter{gap:30px}
+.globalNav .navLink{font-size:12px;color:#8f969b;letter-spacing:.04em;transition:color .2s ease,transform .2s ease}
+.globalNav .navLink:hover,.globalNav .navLink.active{color:#fff;transform:translateY(-1px)}
+.navActions{gap:10px}
+.navProfile{border-color:#3b3f42;background:#111416;box-shadow:inset 0 0 0 1px rgba(255,255,255,.025)}
+.btn{border-radius:6px;padding:12px 18px;font-weight:800;letter-spacing:.01em;box-shadow:0 8px 24px rgba(0,0,0,.18);transition:transform .2s ease,box-shadow .2s ease,background .2s ease}
+.btn:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(0,0,0,.28)}
+.btn:not(.secondary){background:linear-gradient(135deg,#f00b16,#bd0710)}
+.secondary{background:#15181a;border-color:#303438}
+.hero h1{font-weight:900}
+.eyebrow{font-size:10px;letter-spacing:.24em;color:#f11b25}
+.card,.mediaFeature,.premiumTeaser{border-color:#252a2d;background:linear-gradient(145deg,#0d0f11,#101214 68%,#13090a);box-shadow:0 18px 55px rgba(0,0,0,.24)}
+.card{border-radius:14px}
+.homePage{max-width:1320px}
+.homePage .homeHero{min-height:700px;margin:0 -32px;border-radius:0 0 22px 22px;overflow:hidden}
+.homePage .homeHeroBackdrop img{filter:contrast(1.14) saturate(.7) brightness(.7)}
+.homePage .homeHeroCopy{max-width:820px;padding:100px clamp(30px,8vw,110px)}
+.homeBrand{font-size:clamp(58px,7vw,88px);font-weight:950}
+.homeBrandLockup{margin-bottom:34px}
+.homePage .homeHero h1{font-size:clamp(48px,6.5vw,82px);line-height:.9;max-width:780px;margin:16px 0 22px}
+.homePage .homeHero .lead{font-size:18px;max-width:650px;color:#d5d9dc}
+.homeHeroActions{margin-top:34px;gap:12px}
+.homePage .featuredCase{min-height:250px;grid-template-columns:1.15fr .85fr;border:1px solid #292d30;border-top:1px solid #4b2024;border-radius:16px;margin-top:22px;overflow:hidden}
+.homePage .featuredCopy{padding:34px 38px}
+.homePage .featuredCopy h2{font-size:38px;letter-spacing:-.04em}
+.homePage .featuredVisual{min-height:250px}
+.homePage .visualArchive{padding-top:72px}
+.sectionHead{margin-bottom:24px}
+.sectionHead h2{font-size:34px;letter-spacing:-.035em}
+.homeCaseRail{gap:16px}
+.homeCaseCard{border-radius:12px;border-color:#292d30;background:#0b0d0f}
+.homeCaseCard:hover{transform:translateY(-6px);border-color:#533035}
+.cinematicVisual,.atmosphereVisual{min-height:245px}
+.homeCaseBody{padding:18px}
+.homeCaseBody h3{font-size:21px;letter-spacing:-.02em}
+.communityBand{margin:78px -32px 0;min-height:250px;padding:52px 8%;background:linear-gradient(90deg,rgba(5,5,5,.97),rgba(18,11,12,.78)),url('/archivo-visual.svg') center/cover;border-color:#292d30}
+.communityQuote p{font-size:21px}
+.communityInvite h3{font-size:16px}
+.premiumTeaser{margin-top:38px!important;padding:40px 34px!important;border-radius:14px!important}
+.siteFooter{margin-top:46px!important;padding:34px 0 18px!important}
+.exploreHero,.communityHero,.multimediaHero,.miVagoHero{min-height:500px;border-radius:20px;border-color:#292d30}
+.exploreHeroCopy,.communityHeroCopy,.multimediaHeroCopy,.miVagoHeroCopy{padding:68px 7%}
+.exploreHero h1,.communityHero h1,.multimediaHero h1,.miVagoHero h1{font-size:clamp(48px,6vw,76px);line-height:.92}
+.exploreSearch{margin-top:28px;padding:12px;border-radius:12px}
+.exploreSearch .input{font-size:15px;min-height:46px}
+.exploreCardVisual{height:185px}
+.exploreCard{border-radius:14px}
+.mediaFeature{padding:36px;border-radius:16px;margin-top:28px}
+.mediaFeature h2{font-size:36px;letter-spacing:-.04em}
+.landingGrid{margin-top:28px}
+.miVagoHero{min-height:500px}
+.miVagoPage .homeSection{margin-top:68px}
+.miVagoPage .homeSection .grid .card{min-height:280px}
+.authCard{border-color:#2c3033!important;box-shadow:0 28px 80px rgba(0,0,0,.45)!important;background:linear-gradient(145deg,#0c0f11,#111416)!important}
+@media(max-width:900px){
+ .wrap{padding-left:22px;padding-right:22px}
+ .globalNav .brandLockup{min-width:190px}
+ .globalNav .navCenter{gap:18px}
+ .homePage .homeHero{margin-left:-22px;margin-right:-22px}
+ .communityBand{margin-left:-22px;margin-right:-22px}
+}
+@media(max-width:760px){
+ .wrap{padding:18px 16px 30px}
+ .globalNav{min-height:0;gap:10px;padding:12px 0 9px}
+ .globalNav .brandLockup{min-width:0}
+ .globalNav .brandLockup strong{font-size:23px}
+ .globalNav .navCenter{gap:18px;padding-top:7px}
+ .globalNav .navLink{font-size:11px}
+ .navActions .btn{padding:9px 11px;font-size:11px}
+ .homePage{padding-left:16px;padding-right:16px}
+ .homePage .globalNav{margin-left:-16px;margin-right:-16px;padding-left:16px;padding-right:16px}
+ .homePage .homeHero{margin-left:-16px;margin-right:-16px;min-height:620px;border-radius:0 0 18px 18px}
+ .homePage .homeHeroCopy{padding:62px 22px 48px}
+ .homeBrand{font-size:54px}
+ .homePage .homeHero h1{font-size:clamp(40px,11vw,55px)}
+ .homePage .homeHero .lead{font-size:15px}
+ .homeHeroActions{align-items:stretch;flex-direction:column}
+ .homeHeroActions .btn{width:100%;min-width:0}
+ .homePage .featuredCase{grid-template-columns:1fr;margin-top:16px}
+ .homePage .featuredCopy{padding:28px 22px}
+ .homePage .featuredCopy h2{font-size:30px}
+ .homePage .featuredVisual{min-height:190px}
+ .cinematicRail{grid-template-columns:1fr}
+ .cinematicVisual,.atmosphereVisual{min-height:190px}
+ .communityBand{margin-left:-16px;margin-right:-16px;padding:36px 22px;min-height:0}
+ .communityQuote p{font-size:16px}
+ .sectionHead h2{font-size:28px}
+ .exploreHero,.communityHero,.multimediaHero,.miVagoHero{min-height:410px;border-radius:16px}
+ .exploreHeroCopy,.communityHeroCopy,.multimediaHeroCopy,.miVagoHeroCopy{padding:34px 22px}
+ .exploreHero h1,.communityHero h1,.multimediaHero h1,.miVagoHero h1{font-size:clamp(40px,11vw,54px)}
+ .exploreSearch{display:grid;grid-template-columns:1fr;gap:8px}
+ .exploreSearch .btn{width:100%;text-align:center}
+ .exploreCardVisual{height:155px}
+ .mediaFeature{padding:24px}
+ .mediaFeature h2{font-size:30px}
+ .premiumTeaser{padding:28px 22px!important}
+ .siteFooter{padding-top:28px!important}
+}
+@media(prefers-reduced-motion:reduce){.btn,.homeCaseCard{transition:none!important}}
