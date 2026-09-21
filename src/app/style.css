@@ -1499,14 +1499,14 @@ main:after{
   }
   .cinematicCaseCard{
 
-/* EL VAGO — Mobile case metadata final fit / iPhone QA */
+/* EL VAGO — Mobile case metadata final fit / iPhone QA v2 */
 @media(max-width:760px){
   .homePage .homeCaseBody .caseMeta{
     display:flex;
     flex-wrap:wrap;
     align-items:center;
     column-gap:10px;
-    row-gap:6px;
+    row-gap:5px;
     line-height:1.35;
   }
 
@@ -1514,6 +1514,16 @@ main:after{
     display:inline-flex;
     align-items:center;
     white-space:nowrap;
+  }
+
+  /* Keep the long editorial label on its own clean line in narrow cards. */
+  .homePage .homeCaseBody .caseMeta span:first-child{
+    flex:0 0 100%;
+  }
+
+  .homePage .homeCaseBody .caseMeta span:nth-child(2),
+  .homePage .homeCaseBody .caseMeta span:nth-child(3){
+    flex:0 0 auto;
   }
 
   .homePage .featuredCopy .caseMeta{
