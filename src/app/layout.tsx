@@ -25,9 +25,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary',
-    title: 'El Vago — Expedientes interactivos',
+    title: 'El Vago — Historias reales y misterios',
     description:
-      'Investiga misterios, conecta evidencias y descubre la verdad en los expedientes interactivos de El Vago.',
+      'Historias reales, misterios y expedientes documentales para observar las evidencias, conectar las pistas y descubrir qué ocurrió.',
   },
 };
 
