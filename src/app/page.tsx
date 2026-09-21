@@ -155,7 +155,7 @@ export default async function Home() {
               <span className="tag">EV-EXP-001</span>
               <h3>{featured?.title ?? 'La Habitación 317'}</h3>
               <p>Un hotel. Una desaparición. Evidencias que todavía guardan preguntas.</p>
-              <div className="caseMeta"><span>▣ Ficción interactiva</span><span>5 evidencias</span><span className="difficulty">▮▮▮ Intermedio</span></div>
+              <div className="caseMeta"><span>▣ Investigación documental</span><span>5 evidencias</span><span className="difficulty">▮▮▮ Intermedio</span></div>
             </div>
           </article>
 
