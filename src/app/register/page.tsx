@@ -30,11 +30,11 @@ export default function Register() {
         <section className="authCard">
           <p className="eyebrow">FORMATO DOCUMENTAL</p>
           <h1>Crear cuenta</h1>
-          <p className="muted">Crea tu cuenta y comienza a investigar una nueva historia.</p>
+          <p className="muted">Crea tu cuenta y entra al archivo de El Vago.</p>
           <form className="stack authForm" onSubmit={go}>
             <label>Email<input className="input" type="email" autoComplete="email" required placeholder="tu@email.com" value={email} onChange={e => setEmail(e.target.value)} /></label>
             <label>Contraseña<input className="input" type="password" minLength={6} autoComplete="new-password" required placeholder="Mínimo 6 caracteres" value={password} onChange={e => setPassword(e.target.value)} /></label>
-            <button className="btn" type="submit">Comenzar investigación</button>
+            <button className="btn" type="submit">Entrar al archivo <span aria-hidden="true">→</span></button>
             {err && <div className="error">{err}</div>}
           </form>
           <p className="authFoot">¿Ya tienes cuenta? <Link href="/login">Entrar</Link></p>
