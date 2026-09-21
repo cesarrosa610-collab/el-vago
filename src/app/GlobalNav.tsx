@@ -10,7 +10,7 @@ export default async function GlobalNav() {
     <nav className="nav globalNav" aria-label="Navegación principal">
       <Link className="brand brandLockup" href="/">
         <strong>EL VAG<span>O</span></strong>
-        <small>HISTORIAS DE FICCIÓN. PREGUNTAS SIN RESPUESTA.</small>
+        <small>HISTORIAS REALES · MISTERIOS · FORMATO DOCUMENTAL</small>
       </Link>
 
       <div className="navCenter">
