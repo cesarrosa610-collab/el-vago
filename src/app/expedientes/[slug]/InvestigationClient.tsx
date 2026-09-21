@@ -225,7 +225,178 @@ export default function InvestigationClient({
   };
 
   return (
-    <main className="casePage">
+    <main className="casePage">\n
+        <style>{`
+          .caseHero{
+            min-height:680px;
+            border-radius:0 0 34px 34px;
+            border-bottom:1px solid #292d30;
+            background:#050607;
+            box-shadow:0 35px 110px rgba(0,0,0,.42);
+          }
+          .caseHeroVisual{inset:0;opacity:1}
+          .caseHeroVisual img{
+            width:100%;height:100%;object-fit:cover;
+            opacity:.46;
+            filter:grayscale(.82) contrast(1.18) brightness(.68);
+            transform:scale(1.035);
+            animation:vagoHeroDrift 18s ease-in-out infinite alternate;
+          }
+          .caseHeroVisual:after{
+            content:"";position:absolute;inset:0;
+            background:
+              radial-gradient(circle at 78% 40%,rgba(229,9,20,.14),transparent 24%),
+              linear-gradient(90deg,#050607 0%,rgba(5,6,7,.9) 34%,rgba(5,6,7,.45) 66%,rgba(5,6,7,.62) 100%),
+              linear-gradient(0deg,#050607 0%,transparent 48%,rgba(0,0,0,.22) 100%);
+          }
+          .caseHeroVignette{
+            position:absolute;inset:0;
+            background:radial-gradient(circle at center,transparent 35%,rgba(0,0,0,.42) 100%);
+            pointer-events:none;
+          }
+          .caseHeroScan{z-index:4}
+          .caseHeroContent{padding:0 34px 72px;max-width:1280px}
+          .caseHeroContent>.nav{
+            min-height:72px;
+            border-bottom:1px solid rgba(255,255,255,.08);
+            background:rgba(5,6,7,.42);
+            backdrop-filter:blur(12px);
+            padding:16px 18px;
+            border-radius:0 0 14px 14px;
+          }
+          .caseHeroEditorial{max-width:1040px;padding:108px 4% 0}
+          .caseHeroSerial{
+            display:inline-block;
+            color:#8e969b;
+            font-size:10px;
+            font-weight:800;
+            letter-spacing:.18em;
+            text-transform:uppercase;
+          }
+          .caseHeroTitleRow{
+            display:flex;
+            align-items:flex-start;
+            justify-content:space-between;
+            gap:38px;
+          }
+          .caseHeroTitleRow h1{
+            margin:14px 0 20px;
+            font-size:clamp(52px,7vw,94px);
+            line-height:.86;
+            letter-spacing:-.065em;
+            text-wrap:balance;
+          }
+          .caseHeroStamp{
+            flex:0 0 auto;
+            margin-top:22px;
+            min-width:142px;
+            padding:14px 16px;
+            border:1px solid rgba(229,9,20,.62);
+            color:#e50914;
+            background:rgba(7,7,7,.54);
+            box-shadow:0 0 30px rgba(229,9,20,.08);
+            transform:rotate(2deg);
+            display:grid;
+            gap:5px;
+            text-align:center;
+          }
+          .caseHeroStamp span{font-size:9px;letter-spacing:.2em;font-weight:800}
+          .caseHeroStamp strong{font-size:13px;letter-spacing:.14em}
+          .caseHeroEditorial>.lead{font-size:18px;line-height:1.65;color:#d1d6d9;max-width:700px}
+          .investigationMeter{
+            margin-top:32px;
+            max-width:760px;
+            padding:18px 20px;
+            border:1px solid #2a2f32;
+            border-radius:12px;
+            background:rgba(8,10,11,.72);
+            box-shadow:0 18px 50px rgba(0,0,0,.25);
+            backdrop-filter:blur(10px);
+          }
+          .investigationMeterTop,.investigationMeterBottom{
+            display:flex;justify-content:space-between;gap:18px;
+            align-items:center;
+            font-size:10px;letter-spacing:.13em;
+            text-transform:uppercase;
+          }
+          .investigationMeterTop{color:#8e969b;margin-bottom:10px}
+          .investigationMeterTop strong{color:#fff;font-size:14px}
+          .investigationMeter .bar{height:5px;background:#25292c}
+          .investigationMeter .bar i{box-shadow:0 0 18px rgba(229,9,20,.55)}
+          .investigationMeterBottom{color:#687075;margin-top:9px}
+          .investigationMeterBottom span:last-child{color:#e50914}
+          .caseHeroActions{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:25px}
+          .caseHeroHint{font-size:11px;color:#899196;letter-spacing:.03em}
+          .caseNavProgress{
+            display:grid;grid-template-columns:28px 1fr 28px;gap:8px;align-items:center;
+            padding:12px 16px 16px;color:#70787d;font-size:9px;font-weight:800;letter-spacing:.12em;
+          }
+          .caseNavProgress>div{height:3px;background:#24282b;overflow:hidden}
+          .caseNavProgress i{display:block;height:100%;background:#e50914;box-shadow:0 0 12px rgba(229,9,20,.5)}
+          .caseNavNote{
+            margin:12px 14px 14px;padding:12px;border-top:1px solid #202427;
+            display:grid;gap:5px;color:#666;font-size:9px;letter-spacing:.15em;
+          }
+          .caseNavNote strong{color:#aeb4b7;font-size:10px}
+          .evidenceAreaHeader{
+            display:flex;justify-content:space-between;align-items:end;gap:20px;
+            margin-bottom:22px;padding-bottom:16px;border-bottom:1px solid #202427;
+          }
+          .evidenceAreaHeader h2{
+            margin:6px 0 0;font-size:clamp(32px,4vw,52px);
+            letter-spacing:-.045em;font-weight:900;
+          }
+          .evidenceCounter{
+            min-width:68px;padding:10px 12px;border:1px solid #3a2427;
+            color:#e50914;background:rgba(229,9,20,.04);
+            font-size:12px;font-weight:900;letter-spacing:.1em;text-align:center;
+          }
+          .evidenceVisualLine{
+            position:absolute;left:0;right:0;top:50%;height:1px;
+            background:linear-gradient(90deg,transparent,#e50914,transparent);
+            opacity:.55;animation:vagoLine 3.5s ease-in-out infinite;
+          }
+          .evidence{box-shadow:0 18px 55px rgba(0,0,0,.28)}
+          .evidence:hover{transform:translateY(-6px);border-color:#4b292d;box-shadow:0 25px 65px rgba(0,0,0,.38)}
+          .evidenceBody{min-height:245px}
+          .message{
+            position:relative;z-index:30;
+            max-width:1240px;margin:12px auto -12px;
+            border:1px solid #2b3033;border-left:3px solid #e50914;
+            background:rgba(12,14,15,.94);box-shadow:0 14px 35px rgba(0,0,0,.3);
+            backdrop-filter:blur(10px);
+          }
+          .messagePulse{
+            display:inline-block;width:6px;height:6px;margin-right:9px;
+            border-radius:50%;background:#e50914;box-shadow:0 0 12px rgba(229,9,20,.7);
+            animation:vagoPulse 1.8s ease-in-out infinite;vertical-align:1px;
+          }
+          @media(max-width:760px){
+            .caseHero{min-height:640px;border-radius:0 0 20px 20px}
+            .caseHeroContent{padding:0 16px 46px}
+            .caseHeroContent>.nav{min-height:0;padding:12px 10px}
+            .caseHeroEditorial{padding:74px 6px 0}
+            .caseHeroTitleRow{display:block}
+            .caseHeroTitleRow h1{font-size:clamp(43px,12vw,60px);margin:11px 0 16px}
+            .caseHeroStamp{display:inline-grid;margin:2px 0 18px;transform:rotate(-1deg);min-width:124px;padding:10px 12px}
+            .caseHeroEditorial>.lead{font-size:15px;line-height:1.55}
+            .investigationMeter{margin-top:22px;padding:15px 14px}
+            .investigationMeterBottom{font-size:8px;gap:8px}
+            .caseHeroActions{align-items:stretch;flex-direction:column}
+            .caseHeroActions .btn{width:100%}
+            .caseHeroHint{text-align:center;line-height:1.4}
+            .caseNavProgress{padding:10px 12px 12px}
+            .evidenceAreaHeader{align-items:center;margin-bottom:18px}
+            .evidenceCounter{min-width:58px}
+            .evidenceBody{min-height:0}
+            .evidenceVisual{height:132px}
+            .message{margin:8px 12px -8px}
+          }
+          @media(prefers-reduced-motion:reduce){
+            .caseHeroVisual img,.evidenceVisualLine,.messagePulse{animation:none}
+          }
+        `}</style>
+
       {message && (
         <div className="message" role="status">
           <span className="messagePulse" aria-hidden="true" />
