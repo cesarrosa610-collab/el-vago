@@ -1,12 +1,12 @@
-# El Vago — Launch Acceptance Checklist
+# El Vago — V2 · Launch Acceptance
 
-Estado: **Release Candidate final / versión inicial congelada**
-Fecha de cierre funcional: **19 de septiembre de 2026**
+**Estado:** **ACEPTACIÓN FINAL COMPLETADA**  
+**Fecha de cierre:** 20 de septiembre de 2026
 
 ## Validado en producción
 
 - [x] Home y navegación principal
-- [x] Explorar con un único expediente publicado
+- [x] Explorar con el expediente publicado
 - [x] Multimedia
 - [x] Comunidad
 - [x] Mi Vago
@@ -24,16 +24,21 @@ Fecha de cierre funcional: **19 de septiembre de 2026**
 - [x] Persistencia del progreso
 - [x] Mi Vago conserva la investigación completada
 - [x] Adaptación móvil en iPhone
-- [x] Último despliegue Vercel confirmado como SUCCESS
+- [x] Identidad editorial documental
+- [x] Metadata SEO y social
+- [x] Recorrido final de aceptación de V2
+- [x] Último despliegue Vercel confirmado como READY
+- [x] Sin errores de runtime en las últimas 24 horas al momento del cierre
 
 ## Pendiente de operación, no de funcionalidad
 
+- [ ] Configurar y validar analítica/métricas de producto
 - [ ] Definir/confirmar dominio definitivo de lanzamiento si se utilizará uno distinto de el-vago.vercel.app
-- [ ] Configurar analítica y métricas de producto si se desean desde el día uno
 - [ ] Preparar política de privacidad, términos y avisos legales para publicación comercial
-- [ ] Preparar calendario de nuevas historias de ficción
+- [ ] Preparar calendario de nuevas historias
 - [ ] Planificar respaldo y rutina de mantenimiento de producción
+- [ ] Procedimiento de rollback y atención de incidencias
 
 ## Regla de congelación
 
-No modificar la lógica narrativa ni la estructura visual de esta versión salvo que aparezca un error reproducible en producción. Los cambios posteriores deben entrar como una nueva versión.
+La lógica narrativa y la estructura visual de V2 quedan congeladas. No modificar esta versión salvo que aparezca un error reproducible en producción. Los cambios posteriores deben entrar como una nueva versión.
