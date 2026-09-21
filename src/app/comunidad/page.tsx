@@ -49,7 +49,7 @@ export default function Comunidad() {
       <footer className="siteFooter">
         <div>
           <span className="footerBrand">EL VAGO</span>
-          <p className="muted">Historias de ficción. Preguntas sin respuesta.</p>
+          <p className="muted">Historias reales · Misterios sin respuesta.</p>
         </div>
         <div className="footerLinks">
           <Link href="/">Inicio</Link>
