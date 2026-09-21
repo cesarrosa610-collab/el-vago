@@ -1,16 +1,16 @@
-# El Vago — V1 · Lanzamiento
+# El Vago — V2 · Cierre final
 
-**Estado:** versión inicial congelada / Release Candidate final  
-**Fecha de cierre funcional:** 19 de septiembre de 2026
+**Estado:** V2 validada en producción / cierre final  
+**Fecha de cierre:** 20 de septiembre de 2026
 
-El Vago es una plataforma de **ficción interactiva** centrada en historias de misterio que el usuario investiga mediante expedientes narrativos.
+El Vago es una plataforma de **historias reales, misterios y formato documental** centrada en expedientes que el usuario investiga mediante evidencias, pistas, preguntas, teorías e hipótesis.
 
 ## Producción
 
 - URL canónica actual: https://el-vago.vercel.app
 - Stack: Next.js, React, TypeScript, Prisma y PostgreSQL
 - Deploy: Vercel
-- Expediente inicial: **EV-EXP-001 — La Habitación 317**
+- Expediente publicado: **EV-EXP-001 — La Habitación 317**
 - Estado del expediente inicial: **PUBLISHED**
 
 ## Funcionalidad validada
@@ -27,22 +27,22 @@ El Vago es una plataforma de **ficción interactiva** centrada en historias de m
 - Persistencia del progreso
 - Historial de investigaciones completadas en Mi Vago
 - Experiencia responsive validada en iPhone
+- Identidad editorial documental validada en producción
+- Recorrido final de aceptación de V2 completado
 
-## Congelación de V1
+## Estado de V2
 
-La lógica narrativa y la estructura visual de esta versión quedan congeladas. Los cambios posteriores deberán corresponder a una nueva versión o a una corrección reproducible de producción.
+La lógica narrativa y la estructura visual de V2 quedan congeladas tras la aceptación final. Los cambios posteriores deben corresponder a una nueva versión o a una corrección reproducible de producción.
 
-La aceptación funcional y las comprobaciones de cierre están documentadas en **LAUNCH_ACCEPTANCE.md**.
+## Pendientes operativos de siguiente fase
 
-## Preparación de lanzamiento
+Estos elementos no bloquean el cierre funcional de V2:
 
-Quedan como tareas operativas separadas del producto:
-
-1. Confirmación del dominio definitivo, si se sustituirá la URL de Vercel.
-2. Política de privacidad, términos y demás avisos legales necesarios para publicación comercial.
-3. Configuración y validación de analítica/métricas.
+1. Analítica y métricas de producto.
+2. Dominio definitivo, si se sustituirá la URL de Vercel.
+3. Política de privacidad, términos y avisos legales para publicación comercial.
 4. Rutina de copias de seguridad y mantenimiento.
 5. Plan de publicación de nuevas historias.
 6. Procedimiento de rollback y atención de incidencias.
 
-> No se consideran configurados estos elementos hasta que sean comprobados explícitamente en producción.
+> Estos elementos no se consideran configurados hasta que sean comprobados explícitamente en producción.
