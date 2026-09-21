@@ -457,6 +457,37 @@ export default function InvestigationClient({
             .caseNavNote{margin-top:10px}
             .evidenceGrid:before,.narrativeGrid:before{margin-top:4px}
           }
+
+          .caseHeroEditorial{position:relative}
+          .caseHeroEditorial:before{
+            content:"DOSSIER / ACTIVE FILE";
+            position:absolute;right:4%;top:86px;
+            color:#444b50;font-size:8px;font-weight:900;letter-spacing:.22em;
+            writing-mode:vertical-rl;transform:rotate(180deg);
+          }
+          .investigationMeter{position:relative;overflow:hidden}
+          .investigationMeter:after{
+            content:"";position:absolute;top:0;bottom:0;left:34%;
+            width:1px;background:rgba(255,255,255,.045);
+          }
+          .evidenceVisual{background:radial-gradient(circle at 72% 28%,rgba(229,9,20,.12),transparent 22%),linear-gradient(145deg,#171a1b,#090a0b)}
+          .evidenceVisualSignal{box-shadow:0 0 0 3px rgba(229,9,20,.05),0 0 24px rgba(229,9,20,.18)}
+          .dossierEvidence.found .evidenceVisual{filter:contrast(1.08) brightness(1.04)}
+          .dossierEvidence.locked .evidenceVisual:after{
+            content:"ACCESO RESTRINGIDO";position:absolute;inset:auto 12px 12px;
+            color:#70777b;font-size:8px;font-weight:900;letter-spacing:.18em;
+            border-top:1px solid #34383a;padding-top:8px;
+          }
+          .dossierCard .muted{color:#737b80}
+          .narrativeGrid .card{transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease}
+          .narrativeGrid .card:hover{transform:translateY(-4px);border-color:#3b3032;box-shadow:0 22px 55px rgba(0,0,0,.3)}
+          .conclusion{display:flex;flex-direction:column;justify-content:center}
+          .dossierConclusion .foundMark{margin-top:24px;padding:14px 16px;border:1px solid #3d2629;background:rgba(229,9,20,.045)}
+          @media(max-width:760px){
+            .caseHeroEditorial:before{display:none}
+            .investigationMeter:after{display:none}
+            .dossierConclusion{min-height:360px}
+          }
           @media(prefers-reduced-motion:reduce){
             .caseHeroVisual img,.evidenceVisualLine,.messagePulse{animation:none}
           }
