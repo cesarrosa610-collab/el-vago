@@ -28,7 +28,7 @@ export default function Register() {
       <div className="authShell">
         <Link className="brand authBrand" href="/">EL VAGO</Link>
         <section className="authCard">
-          <p className="eyebrow">FICCIÓN INTERACTIVA</p>
+          <p className="eyebrow">FORMATO DOCUMENTAL</p>
           <h1>Crear cuenta</h1>
           <p className="muted">Crea tu cuenta y comienza a investigar una nueva historia.</p>
           <form className="stack authForm" onSubmit={go}>
