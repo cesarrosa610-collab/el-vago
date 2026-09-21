@@ -410,6 +410,53 @@ export default function InvestigationClient({
           .caseNav button.active{box-shadow:inset 3px 0 #e50914,0 10px 30px rgba(0,0,0,.16)}
           .caseNav button:not(:disabled):hover{transform:translateX(3px)}
           .dossierConclusion{min-height:430px;background:radial-gradient(circle at 80% 25%,rgba(229,9,20,.08),transparent 30%),linear-gradient(145deg,#101010,#080808)}
+
+          .investigation{align-items:start}
+          .caseNav{position:sticky;top:22px;align-self:start;max-height:calc(100vh - 44px);overflow:auto;scrollbar-width:thin}
+          .caseNav::-webkit-scrollbar{width:4px}
+          .caseNav::-webkit-scrollbar-thumb{background:#34383b}
+          .evidenceGrid,.narrativeGrid{position:relative}
+          .evidenceGrid:before,.narrativeGrid:before{
+            content:"ARCHIVO / REGISTRO";
+            display:block;
+            margin:0 0 12px 2px;
+            color:#51585d;
+            font-size:8px;
+            font-weight:900;
+            letter-spacing:.22em;
+          }
+          .dossierEvidence{background:linear-gradient(145deg,#111314 0%,#0a0b0c 72%)}
+          .dossierEvidence.found{border-color:#31373a}
+          .dossierEvidence.locked{filter:saturate(.72)}
+          .dossierEvidence.locked .evidenceVisual{opacity:.72}
+          .dossierEvidence .evidenceVisualCode{font-size:11px;letter-spacing:.16em}
+          .dossierEvidence .evidenceTop span:last-child{letter-spacing:.14em}
+          .dossierEvidence.found .evidenceTop span:last-child{color:#e50914}
+          .dossierCard{background:linear-gradient(145deg,#111314,#090a0b);min-height:220px}
+          .dossierCard h3{letter-spacing:-.025em}
+          .dossierCard .tag{border-color:#3b2427}
+          .dossierCard.found{box-shadow:0 20px 55px rgba(0,0,0,.34),inset 0 1px rgba(229,9,20,.18)}
+          .foundMark{letter-spacing:.09em;text-transform:uppercase}
+          .dossierConclusion:before{width:48%;height:2px}
+          @media(max-width:900px){
+            .caseNav{position:relative;top:auto;max-height:none;overflow:visible}
+          }
+          @media(max-width:760px){
+            .caseNav{display:block;padding-bottom:4px}
+            .caseNav .sideTitle{margin-bottom:8px}
+            .caseNavProgress{display:none}
+            .caseNav>button{
+              display:inline-flex;width:auto;min-width:max-content;margin-right:5px;
+              padding:10px 12px;border:1px solid #252a2d;border-radius:999px;
+              background:#0c0e0f;white-space:nowrap;
+            }
+            .caseNav>button.active{background:#171012;border-color:#57282d;box-shadow:inset 0 -2px #e50914}
+            .caseNav>button small{display:none}
+            .caseNav{overflow-x:auto;white-space:nowrap;scrollbar-width:none}
+            .caseNav::-webkit-scrollbar{display:none}
+            .caseNavNote{margin-top:10px}
+            .evidenceGrid:before,.narrativeGrid:before{margin-top:4px}
+          }
           @media(prefers-reduced-motion:reduce){
             .caseHeroVisual img,.evidenceVisualLine,.messagePulse{animation:none}
           }
