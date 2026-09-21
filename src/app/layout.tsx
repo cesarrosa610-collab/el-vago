@@ -6,11 +6,11 @@ const siteUrl = 'https://el-vago.vercel.app';
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'El Vago — Expedientes interactivos',
+    default: 'El Vago — Historias reales y misterios',
     template: '%s | El Vago',
   },
   description:
-    'Investiga misterios, conecta evidencias y descubre la verdad en los expedientes interactivos de El Vago.',
+    'Historias reales, misterios y expedientes documentales para observar las evidencias, conectar las pistas y descubrir qué ocurrió.',
   alternates: {
     canonical: '/',
   },
