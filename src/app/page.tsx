@@ -62,7 +62,7 @@ export default async function Home() {
           <p className="eyebrow">EXPEDIENTES INTERACTIVOS</p>
           <h1>Misterios que <em>tienes que resolver.</em></h1>
           <p className="lead">
-            Historias reales. Misterios que se descubren pieza por pieza. Preguntas que no dejan de aparecer.
+            Entra al expediente. Observa las evidencias. Conecta las pistas y descubre lo que realmente ocurrió.
           </p>
           <div className="homeHeroActions">
             {featured && (
