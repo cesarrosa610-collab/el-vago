@@ -745,6 +745,17 @@ export default function InvestigationClient({
             .timelineCard h3{font-size:21px}
           }
 
+          .closureMeta{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;margin:30px 0 0;border:1px solid #252a2d;background:#252a2d}
+          .closureMetaItem{padding:15px 16px;background:#0b0c0d;display:grid;gap:5px}
+          .closureMetaItem span{color:#555d62;font-size:7px;font-weight:900;letter-spacing:.18em;text-transform:uppercase}
+          .closureMetaItem strong{color:#e2e5e6;font-size:12px;letter-spacing:.04em}
+          .closureSeal{display:inline-flex;align-items:center;gap:9px;margin-top:22px;padding:9px 12px;border:1px solid #54262b;color:#e50914;background:rgba(229,9,20,.045);font-size:8px;font-weight:900;letter-spacing:.17em;text-transform:uppercase}
+          .closureSeal i{width:6px;height:6px;border-radius:50%;background:#e50914;box-shadow:0 0 12px rgba(229,9,20,.65)}
+          @media(max-width:760px){
+            .closureMeta{grid-template-columns:1fr}
+            .closureMetaItem{padding:13px 14px}
+          }
+
           @media(prefers-reduced-motion:reduce){
             .evidenceVisual:after{display:none}
           }
@@ -997,7 +1008,14 @@ export default function InvestigationClient({
               <h2>{narrative.conclusion?.title || 'La investigación aún no está cerrada'}</h2>
               <p>{narrative.conclusion?.description || 'Sigue reuniendo las piezas y selecciona una hipótesis cuando estés listo.'}</p>
               {narrative.conclusion?.completed && (
-                <div className="foundMark">✓ Investigación completada · Expediente cerrado</div>
+                <>
+                  <div className="closureSeal"><i aria-hidden="true" /> ARCHIVO VERIFICADO · CIERRE AUTORIZADO</div>
+                  <div className="closureMeta" aria-label="Resumen del expediente">
+                    <div className="closureMetaItem"><span>Evidencias</span><strong>{found} / {total} descubiertas</strong></div>
+                    <div className="closureMetaItem"><span>Hipótesis</span><strong>Selección registrada</strong></div>
+                    <div className="closureMetaItem"><span>Estado</span><strong>Expediente cerrado</strong></div>
+                  </div>
+                </>
               )}
             </article>
           )}
