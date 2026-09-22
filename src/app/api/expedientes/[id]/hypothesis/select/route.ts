@@ -38,6 +38,18 @@ export async function POST(
     );
   }
 
+  const expediente = await prisma.expediente.findFirst({
+    where: { id, status: 'PUBLISHED' },
+    select: { id: true },
+  });
+
+  if (!expediente) {
+    return NextResponse.json(
+      { error: 'Expediente no disponible' },
+      { status: 404 }
+    );
+  }
+
   const investigation =
     await prisma.investigation.findUnique({
       where: {
@@ -74,6 +86,7 @@ export async function POST(
       userId: user.id,
       evidence: {
         expedienteId: id,
+        status: 'PUBLISHED',
       },
     },
   });
