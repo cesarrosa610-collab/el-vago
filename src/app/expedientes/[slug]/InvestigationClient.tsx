@@ -564,6 +564,29 @@ export default function InvestigationClient({
             .caseHeroActions .heroBtn{min-width:0}
             .dossierEvidence .evidenceBody:after{display:none}
           }
+
+          .caseHeroEditorial .eyebrow{display:flex;align-items:center;gap:10px}
+          .caseHeroEditorial .eyebrow:before{content:"01";color:#e50914;font-weight:900}
+          .caseHeroEditorial .eyebrow:after{content:"";width:42px;height:1px;background:#2d3235}
+          .caseHeroHint{max-width:390px}
+          .caseNavNote strong{letter-spacing:.12em}
+          .evidenceGrid{counter-reset:archive-card}
+          .dossierEvidence{counter-increment:archive-card}
+          .dossierEvidence .evidenceTop:before{
+            content:"PIEZA " counter(archive-card,decimal-leading-zero);
+            color:#4d5559;font-size:7px;letter-spacing:.16em;margin-right:auto;
+          }
+          .dossierEvidence .evidenceTop{display:flex;align-items:center;gap:10px}
+          .dossierEvidence .evidenceTop span:first-child{margin-left:0}
+          .dossierEvidence .evidenceTop span:last-child{margin-left:auto}
+          .dossierCard .evidenceTop{padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.05)}
+          .dossierCard h3{margin-top:18px}
+          .dossierConclusion .caseHeroSerial{color:#697176}
+          @media(max-width:760px){
+            .caseHeroEditorial .eyebrow:before{content:"01 /"}
+            .caseHeroEditorial .eyebrow:after{width:24px}
+            .dossierEvidence .evidenceTop:before{font-size:6px}
+          }
           @media(prefers-reduced-motion:reduce){
             .caseHeroVisual img,.evidenceVisualLine,.messagePulse{animation:none}
           }
