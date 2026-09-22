@@ -84,7 +84,9 @@ export default function InvestigationClient({
   const found = Math.min(ids.length, total);
   const completion = total ? Math.round((found / total) * 100) : progress;
   const visible = expediente.evidence.filter((e) => e.unlockAfter <= found);
-  const nextEvidence = expediente.evidence.find((e) => !discovered.has(e.id));
+  const nextEvidence = expediente.evidence.find(
+    (e) => !discovered.has(e.id) && e.unlockAfter <= found
+  );
 
   const refreshNarrative = async () => {
     try {
@@ -190,7 +192,7 @@ export default function InvestigationClient({
         setStatus(j.status);
         setMessage('Hipótesis registrada. El expediente está listo para su cierre.');
         await refreshNarrative();
-        setTab('Cierre');
+        goToSection('Cierre');
       } else {
         setMessage(j.error || 'No se pudo seleccionar.');
       }
@@ -862,7 +864,7 @@ export default function InvestigationClient({
                   {busy ? 'Registrando hallazgo…' : `Investigar ${nextEvidence.code} →`}
                 </button>
               ) : status !== 'COMPLETED' && narrative.hypotheses.length ? (
-                <button className="btn heroBtn" onClick={() => setTab('Hipótesis')} disabled={busy}>
+                <button className="btn heroBtn" onClick={() => goToSection('Hipótesis')} disabled={busy}>
                   Elegir hipótesis →
                 </button>
               ) : null}
