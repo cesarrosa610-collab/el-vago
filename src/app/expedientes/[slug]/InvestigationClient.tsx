@@ -745,6 +745,40 @@ export default function InvestigationClient({
             .timelineCard h3{font-size:21px}
           }
 
+          .investigationJourney{
+            display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:0;margin:0 0 28px;padding:14px 10px;
+            border:1px solid #24292c;background:linear-gradient(180deg,#0d0f10,#090a0b);
+            box-shadow:0 18px 50px rgba(0,0,0,.22);overflow:hidden;
+          }
+          .journeyStep{
+            position:relative;min-width:0;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:8px;
+            padding:10px 9px;border:0;border-right:1px solid #1e2224;background:transparent;color:#5d666b;
+            text-align:left;cursor:pointer;transition:background .2s ease,color .2s ease,transform .2s ease;
+          }
+          .journeyStep:last-child{border-right:0}
+          .journeyStep:after{content:"";position:absolute;left:10px;right:10px;bottom:0;height:2px;background:transparent;transition:background .2s ease,box-shadow .2s ease}
+          .journeyNumber{font-size:8px;font-weight:900;letter-spacing:.12em;color:#444b4f}
+          .journeyLabel{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:9px;font-weight:800;letter-spacing:.07em;text-transform:uppercase}
+          .journeyState{font-size:8px;color:#41484c}
+          .journeyStep.active{color:#fff;background:rgba(229,9,20,.055)}
+          .journeyStep.active:after{background:#e50914;box-shadow:0 0 14px rgba(229,9,20,.45)}
+          .journeyStep.active .journeyNumber,.journeyStep.active .journeyState{color:#e50914}
+          .journeyStep.completed .journeyState{color:#9ea6aa}
+          .journeyStep.locked{opacity:.55;cursor:not-allowed}
+          .journeyStep:not(:disabled):hover{background:#121516;color:#d9dddf;transform:translateY(-1px)}
+          .dossierCard.selectedHypothesis{border-color:#e50914;box-shadow:0 0 0 1px rgba(229,9,20,.16),0 24px 60px rgba(0,0,0,.34),inset 0 0 40px rgba(229,9,20,.035)}
+          .hypothesisBadge{display:inline-flex;align-items:center;gap:7px;margin:0 0 12px;padding:6px 8px;border:1px solid #55262b;background:rgba(229,9,20,.05);color:#e50914;font-size:7px;font-weight:900;letter-spacing:.16em;text-transform:uppercase}
+          .hypothesisBadge i{width:5px;height:5px;border-radius:50%;background:#e50914;box-shadow:0 0 10px rgba(229,9,20,.7)}
+          @media(max-width:900px){
+            .investigationJourney{grid-template-columns:repeat(7,minmax(112px,1fr));overflow-x:auto;scrollbar-width:none}
+            .investigationJourney::-webkit-scrollbar{display:none}
+          }
+          @media(max-width:760px){
+            .investigationJourney{margin:0 -2px 20px;padding:9px 7px;border-radius:9px}
+            .journeyStep{grid-template-columns:auto 1fr auto;padding:9px 10px}
+            .journeyLabel{font-size:8px}.journeyState{font-size:7px}
+          }
+
           .closureMeta{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;margin:30px 0 0;border:1px solid #252a2d;background:#252a2d}
           .closureMetaItem{padding:15px 16px;background:#0b0c0d;display:grid;gap:5px}
           .closureMetaItem span{color:#555d62;font-size:7px;font-weight:900;letter-spacing:.18em;text-transform:uppercase}
@@ -878,6 +912,31 @@ export default function InvestigationClient({
         </aside>
 
         <div className="evidenceArea" id="dossier">\n          <div className="dossierRail" aria-hidden="true"><span /></div>
+          <div className="investigationJourney" aria-label="Progreso de la investigación">
+            {sections.map((section, index) => {
+              const unlocked = isTabUnlocked(section.id);
+              const active = tab === section.id;
+              const completed = section.id === 'Evidencias' ? found >= total :
+                section.id === 'Cierre' ? narrative.conclusion?.completed === true :
+                section.id === 'Timeline' ? status === 'COMPLETED' :
+                isTabUnlocked(section.id) && !active;
+              return (
+                <button
+                  key={section.id}
+                  className={'journeyStep ' + (active ? 'active ' : '') + (completed ? 'completed ' : '') + (!unlocked ? 'locked' : '')}
+                  onClick={() => unlocked && goToSection(section.id)}
+                  disabled={!unlocked}
+                  aria-current={active ? 'step' : undefined}
+                  title={!unlocked ? 'Se desbloquea al avanzar en la investigación' : section.label}
+                >
+                  <span className="journeyNumber">{section.kicker}</span>
+                  <span className="journeyLabel">{section.label}</span>
+                  <span className="journeyState">{completed ? '✓' : unlocked ? '●' : '—'}</span>
+                </button>
+              );
+            })}
+          </div>
+
           <div className="evidenceAreaHeader">
             <div>
               <p className="eyebrow">DOSSIER / {sections.find((s) => s.id === tab)?.kicker}</p>
@@ -966,7 +1025,8 @@ export default function InvestigationClient({
               {narrative.hypotheses.map((x) => {
                 const selected = narrative.conclusion?.selectedHypothesisId === x.id;
                 return (
-                  <article className={`card dossierCard ${selected ? 'found' : ''}`} key={x.id}>
+                  <article className={`card dossierCard ${selected ? 'found selectedHypothesis' : ''}`} key={x.id}>
+                    {selected && <div className="hypothesisBadge"><i aria-hidden="true" /> SELECCIÓN REGISTRADA</div>}
                     <span className="tag">{x.code}</span>
                     <h3>{x.title}</h3>
                     <p>{x.description}</p>
