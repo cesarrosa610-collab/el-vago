@@ -638,6 +638,35 @@ export default function InvestigationClient({
             content:"";width:4px;height:4px;margin-right:7px;border-radius:50%;background:#e50914;
           }
           .dossierConclusion .eyebrow{color:#e50914}
+
+          .caseHeroEditorial{max-width:1080px}
+          .caseHeroEditorial .eyebrow{margin-bottom:13px}
+          .caseHeroTitleRow{align-items:flex-end}
+          .caseHeroStamp{margin-bottom:6px}
+          .caseHeroActions{min-height:48px}
+          .caseHeroActions .heroBtn{position:relative;overflow:hidden}
+          .caseHeroActions .heroBtn:before{
+            content:"";position:absolute;top:0;bottom:0;left:-45%;width:35%;
+            background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent);
+            transform:skewX(-18deg);transition:left .65s ease;
+          }
+          .caseHeroActions .heroBtn:hover:before{left:125%}
+          .evidenceArea{min-width:0}
+          .evidenceAreaHeader h2{text-transform:none}
+          .evidenceGrid{grid-auto-rows:minmax(0,1fr)}
+          .dossierEvidence .evidenceBody{display:flex;flex-direction:column}
+          .dossierEvidence .evidenceBody>p{flex:1}
+          .dossierEvidence .evidenceBody .btn{align-self:flex-start}
+          .dossierEvidence .foundMark{margin-top:14px}
+          .dossierCard{display:flex;flex-direction:column}
+          .dossierCard .btn{align-self:flex-start}
+          .dossierCard .foundMark{margin-top:auto}
+          @media(max-width:760px){
+            .caseHeroTitleRow{align-items:flex-start}
+            .caseHeroStamp{margin-bottom:18px}
+            .caseHeroActions{min-height:0}
+            .dossierEvidence .evidenceBody .btn,.dossierCard .btn{align-self:stretch}
+          }
           @media(prefers-reduced-motion:reduce){
             .evidenceVisual:after{display:none}
           }
