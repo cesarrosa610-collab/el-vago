@@ -614,6 +614,33 @@ export default function InvestigationClient({
             .caseHeroContent>.nav .caseCode{font-size:8px}
             .dossierConclusion h2{font-size:clamp(32px,10vw,48px)}
           }
+
+          .caseHeroVisual img{will-change:transform}
+          .caseHeroScan{opacity:.6}
+          .caseHeroContent>.nav .brand{letter-spacing:.2em}
+          .caseHeroContent>.nav .navLink{position:relative}
+          .caseHeroContent>.nav .navLink:after{
+            content:"";position:absolute;left:0;right:100%;bottom:-7px;height:1px;background:#e50914;
+            transition:right .25s ease;
+          }
+          .caseHeroContent>.nav .navLink:hover:after{right:0}
+          .investigationMeterTop span{font-weight:800}
+          .investigationMeterBottom span:first-child{font-variant-numeric:tabular-nums}
+          .evidenceVisual{position:relative}
+          .evidenceVisual:after{
+            content:"";position:absolute;inset:0;pointer-events:none;
+            background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.035) 50%,transparent 70%);
+            transform:translateX(-100%);transition:transform .8s ease;
+          }
+          .dossierEvidence:hover .evidenceVisual:after{transform:translateX(100%)}
+          .dossierCard .tag{display:inline-flex;align-items:center;min-height:24px}
+          .dossierCard .tag:before{
+            content:"";width:4px;height:4px;margin-right:7px;border-radius:50%;background:#e50914;
+          }
+          .dossierConclusion .eyebrow{color:#e50914}
+          @media(prefers-reduced-motion:reduce){
+            .evidenceVisual:after{display:none}
+          }
           @media(prefers-reduced-motion:reduce){
             .caseHeroVisual img,.evidenceVisualLine,.messagePulse{animation:none}
           }
