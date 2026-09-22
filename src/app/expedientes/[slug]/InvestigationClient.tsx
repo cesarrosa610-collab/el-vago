@@ -490,6 +490,46 @@ export default function InvestigationClient({
           }
 
           .caseHero{isolation:isolate}
+          .caseHeroVisual:before{
+            content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+            background:repeating-linear-gradient(0deg,transparent 0,transparent 3px,rgba(255,255,255,.012) 4px);
+            mix-blend-mode:screen;
+          }
+          .caseHeroContent>.nav{position:relative;z-index:8}
+          .caseHeroContent>.nav:after{
+            content:"SECURE CHANNEL";position:absolute;right:18px;bottom:5px;
+            color:#454c50;font-size:6px;font-weight:900;letter-spacing:.2em;
+          }
+          .caseHeroStamp:after{
+            content:"";position:absolute;inset:-5px;border:1px solid rgba(229,9,20,.12);
+            transform:rotate(-1deg);pointer-events:none;
+          }
+          .caseHeroStamp{position:relative}
+          .investigationMeterTop strong{font-variant-numeric:tabular-nums}
+          .investigationMeter .bar i{position:relative;overflow:hidden}
+          .investigationMeter .bar i:after{
+            content:"";position:absolute;inset:0;
+            background:linear-gradient(90deg,transparent,rgba(255,255,255,.32),transparent);
+            animation:vagoMeterSweep 2.8s linear infinite;
+          }
+          .evidenceAreaHeader{position:relative}
+          .evidenceAreaHeader:after{
+            content:"FIELD NOTES";position:absolute;right:0;bottom:5px;
+            color:#363d41;font-size:7px;font-weight:900;letter-spacing:.22em;
+          }
+          .dossierEvidence .evidenceVisual{border-bottom:1px solid rgba(255,255,255,.05)}
+          .dossierEvidence.found .evidenceVisual:before{
+            content:"VERIFIED";position:absolute;right:12px;top:12px;z-index:3;
+            color:#e50914;border:1px solid rgba(229,9,20,.35);padding:5px 7px;
+            font-size:7px;font-weight:900;letter-spacing:.16em;background:rgba(5,6,7,.65);
+          }
+          .dossierCard{backdrop-filter:blur(4px)}
+          .dossierCard:before{opacity:.9}
+          .dossierConclusion{position:relative}
+          .dossierConclusion:after{
+            content:"END OF FILE";position:absolute;right:22px;bottom:20px;
+            color:#353b3f;font-size:7px;font-weight:900;letter-spacing:.24em;
+          }
           .caseHeroContent{position:relative;z-index:5}
           .caseHeroSerial:after{
             content:"";display:inline-block;width:32px;height:1px;margin:0 10px 3px;
