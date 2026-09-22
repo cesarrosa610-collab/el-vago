@@ -587,6 +587,33 @@ export default function InvestigationClient({
             .caseHeroEditorial .eyebrow:after{width:24px}
             .dossierEvidence .evidenceTop:before{font-size:6px}
           }
+
+          .caseHeroContent>.nav .caseCode{
+            position:relative;padding-left:13px;font-variant-numeric:tabular-nums;
+          }
+          .caseHeroContent>.nav .caseCode:before{
+            content:"";position:absolute;left:0;top:50%;width:5px;height:5px;
+            transform:translateY(-50%);border-radius:50%;background:#e50914;
+            box-shadow:0 0 10px rgba(229,9,20,.7);
+          }
+          .caseHeroEditorial .lead{position:relative;padding-left:16px}
+          .caseHeroEditorial .lead:before{
+            content:"";position:absolute;left:0;top:7px;bottom:7px;width:2px;background:#e50914;
+            box-shadow:0 0 12px rgba(229,9,20,.3);
+          }
+          .caseHeroActions .heroBtn{box-shadow:0 12px 34px rgba(229,9,20,.16)}
+          .caseHeroActions .heroBtn:hover{box-shadow:0 18px 45px rgba(229,9,20,.24)}
+          .dossierEvidence .foundMark{border-top:1px solid rgba(229,9,20,.15);padding-top:12px}
+          .dossierEvidence.locked .btn{border-color:#33383b;color:#b3b9bc}
+          .dossierEvidence.locked .btn:hover{border-color:#e50914;color:#fff}
+          .dossierCard .btn{margin-top:16px}
+          .dossierConclusion h2{font-size:clamp(34px,5vw,64px);letter-spacing:-.05em;line-height:.95}
+          .dossierConclusion p{max-width:760px}
+          @media(max-width:760px){
+            .caseHeroEditorial .lead{padding-left:12px}
+            .caseHeroContent>.nav .caseCode{font-size:8px}
+            .dossierConclusion h2{font-size:clamp(32px,10vw,48px)}
+          }
           @media(prefers-reduced-motion:reduce){
             .caseHeroVisual img,.evidenceVisualLine,.messagePulse{animation:none}
           }
