@@ -720,6 +720,31 @@ export default function InvestigationClient({
             .dossierCard{padding:19px}
             .evidenceGrid,.narrativeGrid{gap:15px}
           }
+          .timelineGrid{position:relative;display:grid;gap:0;padding:10px 0 18px}
+          .timelineGrid:before{content:"";position:absolute;left:19px;top:16px;bottom:18px;width:1px;background:linear-gradient(#e50914,rgba(229,9,20,.28) 70%,rgba(229,9,20,0));box-shadow:0 0 14px rgba(229,9,20,.12)}
+          .timelineEntry{position:relative;padding:0 0 28px 58px}
+          .timelineEntry:last-child{padding-bottom:4px}
+          .timelineNode{position:absolute;left:12px;top:18px;width:15px;height:15px;border:1px solid #e50914;border-radius:50%;background:#090a0b;box-shadow:0 0 0 5px rgba(229,9,20,.055),0 0 18px rgba(229,9,20,.22)}
+          .timelineNode:after{content:"";position:absolute;left:4px;top:4px;width:5px;height:5px;border-radius:50%;background:#e50914}
+          .timelineEntry:nth-child(even) .timelineNode{border-color:#596166;box-shadow:0 0 0 5px rgba(255,255,255,.025)}
+          .timelineEntry:nth-child(even) .timelineNode:after{background:#596166}
+          .timelineCard{min-height:0;padding:22px 24px;background:linear-gradient(145deg,#111314,#090a0b);border:1px solid #252a2d;border-radius:10px;box-shadow:0 18px 48px rgba(0,0,0,.24);transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease}
+          .timelineCard:hover{transform:translateX(5px);border-color:#3f292d;box-shadow:0 24px 58px rgba(0,0,0,.32)}
+          .timelineMeta{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:12px;color:#697176;font-size:8px;font-weight:900;letter-spacing:.17em;text-transform:uppercase}
+          .timelineMeta strong{color:#e50914;font-variant-numeric:tabular-nums}
+          .timelineCard h3{margin:0 0 9px;font-size:clamp(20px,2.2vw,29px);letter-spacing:-.025em}
+          .timelineCard p{margin:0;color:#b9c0c3;line-height:1.65}
+          .timelineCard .timelineOrder{margin-top:14px;color:#555d62;font-size:8px;letter-spacing:.16em;text-transform:uppercase}
+          @media(max-width:760px){
+            .timelineGrid:before{left:13px}
+            .timelineEntry{padding-left:40px;padding-bottom:20px}
+            .timelineNode{left:6px;top:16px;width:14px;height:14px}
+            .timelineNode:after{left:4px;top:4px;width:4px;height:4px}
+            .timelineCard{padding:18px 17px}
+            .timelineMeta{font-size:7px;gap:8px}
+            .timelineCard h3{font-size:21px}
+          }
+
           @media(prefers-reduced-motion:reduce){
             .evidenceVisual:after{display:none}
           }
@@ -949,13 +974,16 @@ export default function InvestigationClient({
           )}
 
           {tab === 'Timeline' && (
-            <div className="narrativeGrid">
+            <div className="timelineGrid">
               {narrative.timeline.slice().sort((a, b) => a.sortOrder - b.sortOrder).map((x) => (
-                <article className="card" key={x.id}>
-                  <div className="evidenceTop"><span>{x.code}</span><span>{x.label}</span></div>
-                  <h3>{x.label}</h3>
-                  <p>{x.description}</p>
-                  <p className="muted">Orden {x.sortOrder}</p>
+                <article className="timelineEntry" key={x.id}>
+                  <span className="timelineNode" aria-hidden="true" />
+                  <div className="timelineCard">
+                    <div className="timelineMeta"><span>{x.code}</span><strong>REGISTRO {String(x.sortOrder).padStart(2, '0')}</strong></div>
+                    <h3>{x.label}</h3>
+                    <p>{x.description}</p>
+                    <p className="timelineOrder">Evento documentado · secuencia {x.sortOrder}</p>
+                  </div>
                 </article>
               ))}
               {!narrative.timeline.length && <div className="card muted">Todavía no hay eventos suficientes para construir la línea de tiempo.</div>}
