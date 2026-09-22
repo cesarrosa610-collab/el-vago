@@ -916,10 +916,15 @@ export default function InvestigationClient({
             {sections.map((section, index) => {
               const unlocked = isTabUnlocked(section.id);
               const active = tab === section.id;
-              const completed = section.id === 'Evidencias' ? found >= total :
-                section.id === 'Cierre' ? narrative.conclusion?.completed === true :
+              const completed =
+                section.id === 'Evidencias' ? found >= total :
+                section.id === 'Pistas' ? narrative.questions.length > 0 :
+                section.id === 'Preguntas' ? narrative.theories.length > 0 :
+                section.id === 'Teorías' ? narrative.hypotheses.length > 0 :
+                section.id === 'Hipótesis' ? narrative.conclusion?.completed === true :
                 section.id === 'Timeline' ? status === 'COMPLETED' :
-                isTabUnlocked(section.id) && !active;
+                section.id === 'Cierre' ? narrative.conclusion?.completed === true :
+                false;
               return (
                 <button
                   key={section.id}
