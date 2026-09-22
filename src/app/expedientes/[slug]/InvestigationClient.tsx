@@ -693,6 +693,33 @@ export default function InvestigationClient({
             .evidenceAreaHeader{min-height:0}
             .dossierEvidence .evidenceVisual{min-height:132px}
           }
+
+          .caseHeroEditorial .lead{max-width:760px}
+          .caseHeroActions{position:relative}
+          .caseHeroActions:before{
+            content:"FIELD ACTION";position:absolute;left:0;top:-13px;
+            color:#42494d;font-size:6px;font-weight:900;letter-spacing:.22em;
+          }
+          .caseNav .sideTitle{letter-spacing:.2em}
+          .caseNavProgress{border-bottom:1px solid #1e2224}
+          .caseNavNote{position:relative}
+          .caseNavNote:before{
+            content:"";position:absolute;left:0;top:0;width:24px;height:1px;background:#e50914;
+          }
+          .evidenceAreaHeader h2{font-weight:900}
+          .evidenceGrid{gap:22px}
+          .narrativeGrid{gap:22px}
+          .dossierEvidence,.dossierCard{border-radius:10px}
+          .dossierEvidence .evidenceBody{padding:22px}
+          .dossierCard{padding:24px}
+          .dossierCard h3{line-height:1.05}
+          .dossierConclusion{padding:clamp(26px,5vw,54px)}
+          @media(max-width:760px){
+            .caseHeroActions:before{top:-10px}
+            .dossierEvidence .evidenceBody{padding:18px}
+            .dossierCard{padding:19px}
+            .evidenceGrid,.narrativeGrid{gap:15px}
+          }
           @media(prefers-reduced-motion:reduce){
             .evidenceVisual:after{display:none}
           }
