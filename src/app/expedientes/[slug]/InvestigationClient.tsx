@@ -667,6 +667,32 @@ export default function InvestigationClient({
             .caseHeroActions{min-height:0}
             .dossierEvidence .evidenceBody .btn,.dossierCard .btn{align-self:stretch}
           }
+
+          .caseHeroEditorial .lead{font-weight:450}
+          .caseHeroActions .caseHeroHint:before{content:"↳";color:#e50914;margin-right:7px}
+          .caseNav{border-color:#24282b}
+          .caseNav button{position:relative}
+          .caseNav button.active:after{
+            content:"ACTIVE";position:absolute;right:12px;top:50%;transform:translateY(-50%);
+            color:#5d6468;font-size:6px;font-weight:900;letter-spacing:.18em;
+          }
+          .caseNav button:disabled{cursor:not-allowed}
+          .evidenceAreaHeader{min-height:74px}
+          .evidenceAreaHeader .evidenceCounter{font-variant-numeric:tabular-nums}
+          .dossierEvidence .evidenceVisual{min-height:150px}
+          .dossierEvidence .evidenceVisualCode{font-variant-numeric:tabular-nums}
+          .dossierEvidence h3,.dossierCard h3{font-weight:850}
+          .dossierEvidence p,.dossierCard p{color:#b9c0c3}
+          .dossierEvidence .redacted{
+            color:#626a6e;letter-spacing:.04em;font-size:12px;
+          }
+          .dossierConclusion{overflow:hidden}
+          .dossierConclusion .caseHeroSerial{margin-bottom:12px}
+          @media(max-width:760px){
+            .caseNav button.active:after{display:none}
+            .evidenceAreaHeader{min-height:0}
+            .dossierEvidence .evidenceVisual{min-height:132px}
+          }
           @media(prefers-reduced-motion:reduce){
             .evidenceVisual:after{display:none}
           }
