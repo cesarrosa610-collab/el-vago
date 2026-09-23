@@ -1,7 +1,35 @@
+import type { Metadata } from 'next';
 import { notFound, redirect } from 'next/navigation';
 import { prisma } from '@/src/lib/prisma';
 import { currentUser } from '@/src/lib/auth';
 import InvestigationClient from './InvestigationClient';
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const expediente = await prisma.expediente.findFirst({
+    where: { slug, status: 'PUBLISHED' },
+    select: { title: true, description: true, slug: true },
+  });
+
+  if (!expediente) {
+    return { title: 'Expediente no encontrado', robots: { index: false, follow: false } };
+  }
+
+  return {
+    title: expediente.title,
+    description: expediente.description,
+    alternates: { canonical: `/expedientes/${expediente.slug}` },
+    openGraph: {
+      url: `https://el-vago.vercel.app/expedientes/${expediente.slug}`,
+      title: `${expediente.title} | El Vago`,
+      description: expediente.description,
+    },
+    twitter: {
+      title: `${expediente.title} | El Vago`,
+      description: expediente.description,
+    },
+  };
+}
 
 export default async function ExpedientePage({params}:{params:Promise<{slug:string}>}) {
   const {slug}=await params;
