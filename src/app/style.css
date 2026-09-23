@@ -1658,3 +1658,41 @@ body{background:radial-gradient(circle at 50% -12%,rgba(229,9,20,.08),transparen
  .siteFooter{padding-top:28px!important}
 }
 @media(prefers-reduced-motion:reduce){.btn,.homeCaseCard{transition:none!important}}
+
+
+/* EL VAGO — Mobile return-to-top control */
+.mobileBackTop{
+  position:fixed;
+  right:16px;
+  bottom:18px;
+  z-index:1200;
+  width:44px;
+  height:44px;
+  display:grid;
+  place-items:center;
+  border:1px solid #3b3f42;
+  border-radius:50%;
+  background:rgba(12,14,16,.94);
+  color:#fff;
+  box-shadow:0 12px 30px rgba(0,0,0,.45),0 0 0 1px rgba(229,9,20,.08);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  cursor:pointer;
+  font-size:20px;
+  line-height:1;
+  transition:transform .2s ease,border-color .2s ease,background .2s ease;
+}
+.mobileBackTop:hover{
+  transform:translateY(-2px);
+  border-color:#e50914;
+  background:#17191b;
+}
+@media(min-width:761px){
+  .mobileBackTop{display:none}
+}
+@media(max-width:760px){
+  .mobileBackTop{display:grid}
+}
+@media(prefers-reduced-motion:reduce){
+  .mobileBackTop{transition:none}
+}
