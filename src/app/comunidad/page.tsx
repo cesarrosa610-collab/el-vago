@@ -31,7 +31,7 @@ export default function Comunidad() {
         <article className="card"><span className="tag">INVESTIGADORES</span><h2>Descubre otras perspectivas.</h2><p className="muted">Compara interpretaciones y descubre cómo otros investigadores conectan las mismas pistas.</p><span className="muted">PRÓXIMAMENTE</span></article>
       </section>
       <section className="premiumTeaser"><div><p className="eyebrow">EL VAGO</p><h2>Cada pista puede abrir una teoría.</h2><p className="muted">Estamos preparando este espacio para que cada misterio pueda abrir nuevas conversaciones.</p></div><Link className="btn" href="/explorar">Entrar en la historia</Link></section>
-      <footer className="siteFooter"><div><span className="footerBrand">EL VAGO</span><p className="muted">Historias reales · Misterios sin respuesta.</p></div><div className="footerLinks"><Link href="/">Inicio</Link><Link href="/explorar">Explorar</Link><Link href="/multimedia">Multimedia</Link><Link href="/comunidad">Comunidad</Link><Link href="/mi-vago">Mi Vago</Link></div><span className="muted footerCopy">© {new Date().getFullYear()} El Vago</span></div></footer>
+      <footer className="siteFooter"><div><span className="footerBrand">EL VAGO</span><p className="muted">Historias reales · Misterios sin respuesta.</p></div><div className="footerLinks"><Link href="/">Inicio</Link><Link href="/explorar">Explorar</Link><Link href="/multimedia">Multimedia</Link><Link href="/comunidad">Comunidad</Link><Link href="/mi-vago">Mi Vago</Link></div><span className="muted footerCopy">© {new Date().getFullYear()} El Vago</span></footer>
     </main>
   );
 }
