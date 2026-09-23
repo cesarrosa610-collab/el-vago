@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './style.css';
+import ScrollToTop from './ScrollToTop';
 
 const siteUrl = 'https://el-vago.vercel.app';
 
@@ -38,7 +39,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es">
-      <body>{children}</body>
+      <body><ScrollToTop />{children}</body>
     </html>
   );
 }
