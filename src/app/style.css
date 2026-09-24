@@ -1828,3 +1828,139 @@ body{background:radial-gradient(circle at 50% -12%,rgba(229,9,20,.08),transparen
     width:100%;
   }
 }
+
+
+/* EL VAGO — HOMEPAGE REFERENCE MATCH / FULL-BLEED FINAL PASS — 24-09-2026 */
+@media(min-width:761px){
+  .homePage{
+    width:100%;
+    max-width:none;
+    margin:0;
+    padding:0 0 42px;
+  }
+
+  .homePage .globalNav{
+    width:100%;
+    max-width:none;
+    padding:0 clamp(28px,8.6vw,132px);
+    margin:0;
+  }
+
+  .homePage .homeHero{
+    width:100%;
+    max-width:none;
+    margin:0;
+    min-height:410px;
+    border-radius:0;
+  }
+
+  .homePage .homeHeroCopy{
+    width:min(1334px,100%);
+    max-width:none;
+    margin:0 auto;
+    padding:48px 0 44px;
+    padding-left:max(32px,calc((100vw - 1334px)/2));
+    padding-right:32px;
+  }
+
+  .homePage .homeHeroBackdrop img{
+    filter:contrast(1.06) saturate(.96) brightness(1.08);
+    transform:scale(1.01);
+  }
+
+  .homePage .homeHeroBackdrop:before{
+    background:
+      linear-gradient(90deg,
+        rgba(3,4,5,.80) 0%,
+        rgba(3,4,5,.62) 27%,
+        rgba(3,4,5,.26) 50%,
+        rgba(3,4,5,.04) 72%,
+        rgba(3,4,5,.10) 100%),
+      linear-gradient(0deg,rgba(0,0,0,.34),transparent 48%,rgba(0,0,0,.08));
+  }
+
+  .homePage .homeHero h1{
+    max-width:590px;
+    font-size:clamp(48px,5.2vw,72px);
+  }
+
+  .homePage .homeHero .lead{
+    max-width:570px;
+    font-size:16px;
+    color:#e0e2e4;
+  }
+
+  .homePage .visualArchive{
+    width:min(1334px,calc(100% - 64px));
+    max-width:none;
+    margin:0 auto;
+    padding-top:18px;
+  }
+
+  .homePage .visualArchive .sectionHead{
+    margin-bottom:10px;
+  }
+
+  .homePage .visualArchive .sectionHead h2{
+    font-size:30px;
+  }
+
+  .homePage .cinematicRail{
+    width:100%;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:18px;
+  }
+
+  .homePage .cinematicVisual,
+  .homePage .atmosphereVisual{
+    min-height:155px;
+    height:155px;
+  }
+
+  .homePage .cinematicVisual img,
+  .homePage .atmosphereVisual img{
+    filter:grayscale(.02) contrast(1.08) brightness(1.02);
+  }
+
+  .homePage .homeCaseCard{
+    min-width:0;
+    border-color:#3b2528;
+  }
+
+  .homePage .homeCaseBody{
+    padding:16px 18px 18px;
+  }
+
+  .homePage .homeCaseBody h3{
+    font-size:20px;
+  }
+
+  .homePage .homeCaseBody p{
+    font-size:14px;
+    line-height:1.45;
+  }
+
+  .homePage .communityBand{
+    width:100%;
+    margin:18px 0 0;
+    min-height:250px;
+    padding:52px max(32px,calc((100vw - 1334px)/2));
+    background:
+      linear-gradient(90deg,rgba(5,5,5,.70),rgba(7,7,8,.46)),
+      url('/exp-003-cuarto.svg') center/cover;
+  }
+
+  .homePage .communityQuote,
+  .homePage .communityInvite{
+    max-width:600px;
+  }
+}
+
+@media(max-width:760px){
+  .homePage{
+    width:100%;
+    max-width:none;
+    padding-left:16px;
+    padding-right:16px;
+  }
+}
