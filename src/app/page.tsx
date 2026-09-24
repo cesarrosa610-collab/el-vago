@@ -161,7 +161,7 @@ export default async function Home() {
 
           <article className="homeCaseCard atmosphereCard">
             <div className="homeCaseVisual atmosphereVisual">
-              <img src="/archivo-visual.svg" alt="" loading="lazy" />
+              <img src="/exp-004-archivo.svg" alt="" loading="lazy" />
               <span className="visualLabel">ARCHIVO</span>
             </div>
             <div className="homeCaseBody">
@@ -173,7 +173,7 @@ export default async function Home() {
 
           <article className="homeCaseCard atmosphereCard">
             <div className="homeCaseVisual atmosphereVisual">
-              <img src="/hero-investigacion.svg" alt="" loading="lazy" />
+              <img src="/exp-002-llamada.svg" alt="" loading="lazy" />
               <span className="visualLabel">INVESTIGACIÓN</span>
             </div>
             <div className="homeCaseBody">
