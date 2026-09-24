@@ -1696,3 +1696,44 @@ body{background:radial-gradient(circle at 50% -12%,rgba(229,9,20,.08),transparen
 @media(prefers-reduced-motion:reduce){
   .mobileBackTop{transition:none}
 }
+
+
+/* EL VAGO — Desktop visual refinement / final direction */
+@media(min-width:761px){
+  .homePage .homeHero{
+    min-height:610px;
+  }
+  .homePage .homeHeroCopy{
+    padding-top:76px;
+    padding-bottom:76px;
+  }
+  .homePage .homeHeroBackdrop img{
+    filter:contrast(1.08) saturate(.82) brightness(.92);
+    transform:scale(1.025);
+  }
+}
+
+/* Remove decorative geometric placeholder treatment from the public home. */
+.homePage .communityBand{
+  background:
+    radial-gradient(circle at 78% 45%,rgba(229,9,20,.09),transparent 28%),
+    linear-gradient(90deg,#070809 0%,#0b0c0e 58%,#12090b 100%);
+}
+.homePage .communityBand:after{
+  content:"";
+  right:4%;
+  bottom:-44px;
+  font-size:170px;
+  color:rgba(229,9,20,.028);
+}
+.homePage .atmosphereVisual img{
+  filter:grayscale(.08) contrast(1.06) brightness(.84);
+}
+@media(max-width:760px){
+  .homePage .homeHero{
+    min-height:620px;
+  }
+  .homePage .homeHeroBackdrop img{
+    filter:contrast(1.05) saturate(.78) brightness(.70);
+  }
+}
