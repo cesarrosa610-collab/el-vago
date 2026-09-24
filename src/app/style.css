@@ -1737,3 +1737,94 @@ body{background:radial-gradient(circle at 50% -12%,rgba(229,9,20,.08),transparen
     filter:contrast(1.05) saturate(.78) brightness(.70);
   }
 }
+
+
+/* EL VAGO — FINAL APPROVED HOMEPAGE DIRECTION / 24-09-2026 */
+@media(min-width:761px){
+  .homePage .homeHero{
+    min-height:410px;
+    margin-left:-32px;
+    margin-right:-32px;
+    border-radius:0;
+  }
+  .homePage .homeHeroBackdrop{
+    position:absolute;
+    inset:0;
+  }
+  .homePage .homeHeroBackdrop img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center center;
+    filter:contrast(1.08) saturate(.86) brightness(.94);
+    transform:none;
+  }
+  .homePage .homeHeroBackdrop:before{
+    background:
+      linear-gradient(90deg,rgba(3,4,5,.94) 0%,rgba(3,4,5,.78) 30%,rgba(3,4,5,.35) 52%,rgba(3,4,5,.08) 76%,rgba(3,4,5,.18) 100%),
+      linear-gradient(0deg,rgba(0,0,0,.42),transparent 45%,rgba(0,0,0,.16));
+  }
+  .homePage .homeHeroCopy{
+    position:relative;
+    z-index:2;
+    width:52%;
+    max-width:720px;
+    padding:48px 0 44px 72px;
+    margin:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+  }
+  .homePage .homeHero h1{
+    font-size:clamp(48px,5.2vw,72px);
+    max-width:590px;
+    margin:12px 0 18px;
+  }
+  .homePage .homeHero .lead{
+    font-size:16px;
+    max-width:560px;
+  }
+  .homePage .homeHeroActions{margin-top:24px}
+  .homePage .heroDots{display:none}
+  .homePage .featuredCase{display:none}
+  .homePage .visualArchive{padding-top:38px}
+  .homePage .cinematicRail{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:18px;
+  }
+  .homePage .cinematicVisual,
+  .homePage .atmosphereVisual{
+    min-height:155px;
+    height:155px;
+  }
+  .homePage .homeCaseBody{padding:16px}
+  .homePage .homeCaseBody h3{font-size:20px}
+  .homePage .homeCaseBody p{font-size:14px;line-height:1.45}
+  .homePage .communityBand{
+    margin-top:18px;
+    min-height:190px;
+    padding:34px 7%;
+    background:
+      linear-gradient(90deg,rgba(5,5,5,.93),rgba(7,7,8,.74)),
+      url('/exp-003-cuarto.svg') center/cover;
+  }
+  .homePage .communityBand:after{display:none}
+}
+.homePage .atmosphereVisual img{
+  filter:grayscale(.05) contrast(1.08) brightness(.9);
+}
+.homePage .communityBand{
+  border-top:1px solid #4a2024;
+  border-bottom:1px solid #24272a;
+}
+@media(max-width:760px){
+  .homePage .homeHero{
+    min-height:620px;
+  }
+  .homePage .homeHeroBackdrop img{
+    filter:contrast(1.06) saturate(.8) brightness(.72);
+  }
+  .homePage .homeHeroCopy{
+    width:100%;
+  }
+}
