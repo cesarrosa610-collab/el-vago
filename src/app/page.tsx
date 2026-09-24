@@ -55,10 +55,6 @@ export default async function Home() {
         </div>
 
         <div className="homeHeroCopy">
-          <div className="homeBrandLockup">
-            <span className="homeBrand">EL VAG<span>O</span></span>
-            <small>HISTORIAS REALES · MISTERIOS · FORMATO DOCUMENTAL</small>
-          </div>
           <p className="eyebrow">EXPEDIENTES INTERACTIVOS</p>
           <h1>Misterios que <em>tienes que resolver.</em></h1>
           <p className="lead">
