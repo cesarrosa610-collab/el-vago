@@ -234,7 +234,7 @@ export default function InvestigationClient({
   };
 
   return (
-    <main className="casePage">\n
+    <main className="casePage">
         <style>{`
           .caseHero{
             min-height:680px;
