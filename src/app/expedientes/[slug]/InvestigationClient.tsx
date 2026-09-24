@@ -913,7 +913,7 @@ export default function InvestigationClient({
           </div>
         </aside>
 
-        <div className="evidenceArea" id="dossier">\n          <div className="dossierRail" aria-hidden="true"><span /></div>
+        <div className="evidenceArea" id="dossier">          <div className="dossierRail" aria-hidden="true"><span /></div>
           <div className="investigationJourney" aria-label="Progreso de la investigación">
             {sections.map((section, index) => {
               const unlocked = isTabUnlocked(section.id);
