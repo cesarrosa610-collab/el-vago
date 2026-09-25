@@ -4,7 +4,7 @@ import { currentUser } from '@/src/lib/auth';
 import GlobalNav from './GlobalNav';
 
 const artwork: Record<string, string> = {
-  'EV-EXP-001': '/hero-puerta-317.svg',
+  'EV-EXP-001': '/door-317.jpg',
   'EV-EXP-002': '/exp-002-llamada.svg',
   'EV-EXP-003': '/exp-003-cuarto.svg',
   'EV-EXP-004': '/exp-004-archivo.svg',
@@ -50,7 +50,7 @@ export default async function Home() {
 
       <section className="hero homeHero">
         <div className="homeHeroBackdrop" aria-hidden="true">
-          <img src="/hero-puerta-317.svg" alt="" />
+          <img src="/door-317.jpg" alt="" />
           <span className="heroScanline" />
         </div>
 
