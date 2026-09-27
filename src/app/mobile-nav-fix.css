@@ -1,22 +1,39 @@
-/* EL VAGO — Mobile navigation accessibility fix */
+/* EL VAGO — Mobile navigation accessibility + scroll fix */
 @media (max-width: 760px){
   .globalNav{
     position:sticky;
     top:0;
     z-index:1000;
+    width:100%;
     background:rgba(7,8,9,.96);
     backdrop-filter:blur(18px);
     -webkit-backdrop-filter:blur(18px);
     box-shadow:0 10px 28px rgba(0,0,0,.28);
+    padding-top:max(12px, env(safe-area-inset-top));
   }
 
   .globalNav .navCenter{
+    min-width:0;
+    max-width:100%;
+    overflow-x:auto;
+    overflow-y:hidden;
     scrollbar-width:none;
     -webkit-overflow-scrolling:touch;
+    overscroll-behavior-x:contain;
+    touch-action:pan-x;
   }
 
   .globalNav .navCenter::-webkit-scrollbar{
     display:none;
+  }
+
+  .globalNav .navLink{
+    flex:0 0 auto;
+  }
+
+  .homePage .homeHeroActions,
+  .homePage .featuredCase{
+    scroll-margin-top:110px;
   }
 }
 
