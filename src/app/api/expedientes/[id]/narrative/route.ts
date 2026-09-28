@@ -36,6 +36,7 @@ export async function GET(
       userId: u.id,
       evidence: {
         expedienteId: id,
+        status: 'PUBLISHED',
       },
     },
   });
