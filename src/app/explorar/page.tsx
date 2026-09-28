@@ -82,7 +82,7 @@ export default async function Explorar({
         <div className="grid">
           {exps.map((e, index) => (
             <article className="card exploreCard" key={e.id}>
-              <div className="exploreCardVisual" aria-hidden="true"><img src={exploreArtwork[e.code] ?? '/archivo-visual.svg'} alt="" loading="lazy" /></div>
+              <div className="exploreCardVisual" aria-hidden="true"><img src={exploreArtwork[e.code] ?? '/exp-004-archivo.svg'} alt="" loading="lazy" /></div>
               <div className="exploreCardTop"><span className="tag">{e.code}</span><span className="exploreStatus">DISPONIBLE</span></div>
               <h2>{e.title}</h2>
               <p className="muted">{e.description}</p>
