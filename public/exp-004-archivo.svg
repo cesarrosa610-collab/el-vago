@@ -1,1 +1,35 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700"><defs><linearGradient id="g" x2="1" y2="1"><stop stop-color="#050505"/><stop offset=".65" stop-color="#121212"/><stop offset="1" stop-color="#1e080a"/></linearGradient><radialGradient id="r"><stop stop-color="#e50914" stop-opacity=".3"/><stop offset="1" stop-color="#e50914" stop-opacity="0"/></radialGradient></defs><rect width="1200" height="700" fill="url(#g)"/><g stroke="#30282a" fill="#0b0b0b"><rect x="120" y="120" width="420" height="460" rx="8"/><rect x="155" y="155" width="350" height="60"/><rect x="155" y="245" width="350" height="18"/><rect x="155" y="285" width="280" height="18"/><rect x="155" y="325" width="315" height="18"/><rect x="155" y="390" width="350" height="130"/><rect x="680" y="155" width="360" height="420" rx="8" transform="rotate(5 860 365)"/></g><path d="M745 265h220M745 300h180M745 335h205" stroke="#4a3436" stroke-width="5"/><path d="M690 500h350" stroke="#e50914" stroke-opacity=".55" stroke-width="2"/><circle cx="900" cy="210" r="180" fill="url(#r)"/><text x="120" y="95" fill="#e50914" font-family="Arial" font-size="18" font-weight="700" letter-spacing="5">EXP-004 / ARCHIVO</text><text x="120" y="625" fill="#777" font-family="Arial" font-size="14" letter-spacing="3">DOCUMENTO RECUPERADO</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" role="img" aria-labelledby="t d">
+<title id="t">Archivo documental</title>
+<desc id="d">Mesa oscura con documentos recuperados, carpeta de archivo y luz cálida de investigación.</desc>
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#070707"/><stop offset=".52" stop-color="#12100f"/><stop offset="1" stop-color="#250b0d"/></linearGradient>
+  <radialGradient id="lamp" cx=".76" cy=".25" r=".55"><stop stop-color="#ffd18b" stop-opacity=".46"/><stop offset=".28" stop-color="#c96b2b" stop-opacity=".18"/><stop offset="1" stop-color="#e50914" stop-opacity="0"/></radialGradient>
+  <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#e7e1d5"/><stop offset="1" stop-color="#aaa397"/></linearGradient>
+  <linearGradient id="folder" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#40332f"/><stop offset="1" stop-color="#171313"/></linearGradient>
+  <filter id="shadow"><feGaussianBlur stdDeviation="18"/></filter>
+</defs>
+<rect width="1200" height="700" fill="url(#bg)"/>
+<ellipse cx="920" cy="210" rx="430" ry="320" fill="url(#lamp)"/>
+<path d="M0 555C260 505 500 535 760 505S1030 470 1200 520V700H0Z" fill="#090909"/>
+<ellipse cx="610" cy="560" rx="420" ry="75" fill="#000" opacity=".62" filter="url(#shadow)"/>
+<g transform="translate(170 145) rotate(-5)">
+  <rect x="0" y="0" width="470" height="420" rx="7" fill="url(#paper)" opacity=".94"/>
+  <path d="M40 82h300M40 108h350M40 134h265M40 185h340M40 211h290M40 237h325M40 289h355M40 315h250" stroke="#6d6860" stroke-width="8" opacity=".45"/>
+  <rect x="315" y="48" width="105" height="38" rx="3" fill="#7f171d" opacity=".9"/>
+  <text x="334" y="74" fill="#f5d8d8" font-family="Arial" font-size="18" font-weight="700" letter-spacing="3">317</text>
+  <text x="40" y="370" fill="#514d47" font-family="Arial" font-size="16" letter-spacing="4">DOCUMENTO RECUPERADO</text>
+</g>
+<g transform="translate(350 190) rotate(8)">
+  <path d="M0 55Q0 0 55 0h160l32 42v318H0Z" fill="url(#folder)" stroke="#57403d" stroke-width="3"/>
+  <path d="M55 0h160l32 42H55Z" fill="#54413c"/>
+  <text x="35" y="105" fill="#e50914" font-family="Arial" font-size="22" font-weight="700" letter-spacing="5">ARCHIVO</text>
+  <text x="35" y="140" fill="#a69a94" font-family="Arial" font-size="12" letter-spacing="3">EXPEDIENTE / 001</text>
+</g>
+<g transform="translate(760 355) rotate(-7)">
+  <rect width="290" height="190" rx="5" fill="#d9d0c2"/>
+  <path d="M28 48h180M28 76h220M28 104h175M28 132h210" stroke="#68635c" stroke-width="7" opacity=".45"/>
+  <circle cx="238" cy="45" r="25" fill="#a81920" opacity=".9"/>
+  <text x="225" y="51" fill="#fff" font-family="Arial" font-size="11" font-weight="700">OK</text>
+</g>
+<text x="78" y="82" fill="#e50914" font-family="Arial" font-size="18" font-weight="700" letter-spacing="6">EVIDENCIA / ARCHIVO</text>
+</svg>
