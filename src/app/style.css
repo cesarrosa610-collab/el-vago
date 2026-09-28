@@ -2216,3 +2216,27 @@ body{background:radial-gradient(circle at 50% -12%,rgba(229,9,20,.08),transparen
     filter:contrast(1.05) saturate(1.04) brightness(1.08) !important;
   }
 }
+
+
+/* EL VAGO — FINAL REFERENCE CORRECTIONS — 28-09-2026 */
+@media(min-width:761px){
+  .homePage .homeHero{
+    height:410px !important;
+    min-height:410px !important;
+  }
+  .homePage .homeHeroBackdrop img{
+    filter:contrast(1.04) saturate(1.10) brightness(1.22) !important;
+  }
+  .homePage .communityBand{
+    background:
+      linear-gradient(90deg,rgba(4,4,5,.70) 0%,rgba(4,4,5,.46) 54%,rgba(4,4,5,.28) 100%),
+      url('/comunidad-escena.svg') center/cover no-repeat !important;
+  }
+}
+@media(max-width:760px){
+  .homePage .communityBand{
+    background:
+      linear-gradient(90deg,rgba(4,4,5,.78),rgba(4,4,5,.42)),
+      url('/comunidad-escena.svg') center/cover no-repeat !important;
+  }
+}
