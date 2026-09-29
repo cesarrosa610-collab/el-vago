@@ -25,6 +25,9 @@ export default async function Home() {
     return e ? '/expedientes/' + e.slug : '/explorar';
   };
 
+  const archiveCodes = ['EV-EXP-004', 'EV-EXP-002', 'EV-EXP-003'];
+  const archiveItems = archiveCodes.filter((code) => byCode(code));
+
   return (
     <main id="top" className="v3Page">
       <GlobalNav />
@@ -104,8 +107,8 @@ export default async function Home() {
           <div><span className="v3Index">ARCHIVO 002 — 004</span><h2>Más historias.<br /><i>Más preguntas.</i></h2></div>
           <Link href="/explorar">Ver todos los expedientes →</Link>
         </div>
-        <div className="v3CaseGrid">
-          {['EV-EXP-004', 'EV-EXP-002', 'EV-EXP-003'].map((code, i) => {
+        <div className={`v3CaseGrid v3CaseGrid--${archiveItems.length}`}>
+          {archiveItems.map((code, i) => {
             const e = byCode(code);
             if (!e) return null;
             return (
