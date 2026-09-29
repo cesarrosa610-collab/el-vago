@@ -27,6 +27,11 @@ export default async function Home() {
 
   const archiveCodes = ['EV-EXP-004', 'EV-EXP-002', 'EV-EXP-003'];
   const archiveItems = archiveCodes.filter((code) => byCode(code));
+  const archiveDescriptions: Record<string, string> = {
+    'EV-EXP-004': 'Un archivo desapareció antes de que pudiera cerrarse la investigación.',
+    'EV-EXP-002': 'Una llamada apareció donde no debía. La pista sigue abierta.',
+    'EV-EXP-003': 'Un cuarto que no figuraba en el plano cambió toda la cronología.',
+  };
 
   return (
     <main id="top" className="v3Page">
@@ -34,7 +39,7 @@ export default async function Home() {
 
       <section className="v3Hero">
         <div className="v3HeroMedia" aria-hidden="true">
-          <img src="/door-317.jpg" alt="" />
+          <img src="/door-317.jpg" alt="" fetchPriority="high" decoding="async" />
           <div className="v3HeroShade" />
           <div className="v3HeroNumber">317</div>
           <div className="v3DoorMark">HABITACIÓN<br /><b>317</b></div>
@@ -64,7 +69,7 @@ export default async function Home() {
 
       <section className="v3Feature">
         <div className="v3FeatureImage">
-          <img src="/door-317.jpg" alt="Puerta de la habitación 317" />
+          <img src="/door-317.jpg" alt="Puerta de la habitación 317" loading="lazy" decoding="async" />
           <span className="v3EvidenceLabel">EVIDENCIA · 001</span>
           <span className="v3Stamp">ARCHIVO EL VAGO</span>
         </div>
@@ -84,13 +89,13 @@ export default async function Home() {
       <section className="v3Triad">
         <article className="v3Panel v3PanelDark">
           <span className="v3PanelNo">02 / EVIDENCIAS</span>
-          <div className="v3PanelImage"><img src="https://images.unsplash.com/photo-1764352104384-15621992b7b9?auto=format&fit=crop&fm=jpg&q=82&w=1400" alt="Expediente documental con documentos antiguos" /></div>
+          <div className="v3PanelImage"><img src="https://images.unsplash.com/photo-1764352104384-15621992b7b9?auto=format&fit=crop&fm=jpg&q=82&w=1400" alt="Expediente documental con documentos antiguos" loading="lazy" decoding="async" /></div>
           <div><h3>Todo deja<br /><i>una pista.</i></h3><p>Documentos, detalles y fragmentos de la historia aparecen a medida que avanzas.</p></div>
           <Link href={hrefFor('EV-EXP-004')}>Explorar evidencias <span>↗</span></Link>
         </article>
         <article className="v3Panel v3PanelPhoto">
           <span className="v3PanelNo">03 / EXPERIENCIA</span>
-          <div className="v3PanelImage"><img src="https://images.unsplash.com/photo-1635186238046-40771478f17e?auto=format&fit=crop&fm=jpg&q=82&w=1400" alt="Mesa de investigación con documentos y teléfono" /></div>
+          <div className="v3PanelImage"><img src="https://images.unsplash.com/photo-1635186238046-40771478f17e?auto=format&fit=crop&fm=jpg&q=82&w=1400" alt="Mesa de investigación con documentos y teléfono" loading="lazy" decoding="async" /></div>
           <div><h3>Tú decides<br /><i>qué significa.</i></h3><p>Observa, conecta las piezas y construye tu propia teoría antes del cierre.</p></div>
           <Link href={hrefFor('EV-EXP-002')}>Entrar a la investigación <span>↗</span></Link>
         </article>
@@ -104,7 +109,7 @@ export default async function Home() {
 
       <section className="v3Cases">
         <div className="v3SectionHead">
-          <div><span className="v3Index">ARCHIVO 002 — 004</span><h2>Más historias.<br /><i>Más preguntas.</i></h2></div>
+          <div><span className="v3Index">ARCHIVO 002 — 004</span><h2>Historias que todavía<br /><i>no tienen una sola respuesta.</i></h2></div>
           <Link href="/explorar">Ver todos los expedientes →</Link>
         </div>
         <div className={`v3CaseGrid v3CaseGrid--${archiveItems.length}`}>
@@ -113,8 +118,8 @@ export default async function Home() {
             if (!e) return null;
             return (
               <Link className="v3Case" href={hrefFor(code)} key={code}>
-                <div className="v3CaseMedia"><img src={artwork[code]} alt="" /><span>EXPEDIENTE / 00{i + 2}</span><b>ABRIR ↗</b></div>
-                <div className="v3CaseBody"><h3>{e.title}</h3><p>{i === 0 ? 'Una puerta. Una habitación. Una cronología que no coincide.' : i === 1 ? 'Una llamada apareció donde no debía.' : 'La última pista desapareció antes de ser archivada.'}</p></div>
+                <div className="v3CaseMedia"><img src={artwork[code]} alt={e.title} loading="lazy" decoding="async" /><span>EXPEDIENTE / 00{i + 2}</span><b>ABRIR ↗</b></div>
+                <div className="v3CaseBody"><h3>{e.title}</h3><p>{archiveDescriptions[code]}</p></div>
               </Link>
             );
           })}
