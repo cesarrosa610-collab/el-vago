@@ -2240,3 +2240,165 @@ body{background:radial-gradient(circle at 50% -12%,rgba(229,9,20,.08),transparen
       url('/comunidad-escena.svg') center/cover no-repeat !important;
   }
 }
+
+
+/* EL VAGO — FINAL VISUAL MASTER PASS — 28-09-2026 */
+:root{
+  --vago-bg:#070809;
+  --vago-panel:#0d0f11;
+  --vago-line:#292d30;
+  --vago-red:#e50914;
+  --vago-text:#f3f4f4;
+  --vago-muted:#9da1a5;
+}
+body{
+  background:var(--vago-bg);
+  color:var(--vago-text);
+}
+.homePage .globalNav{
+  position:relative;
+  z-index:20;
+  min-height:78px;
+  border-bottom:1px solid rgba(229,9,20,.18);
+  background:rgba(7,8,9,.92);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+}
+.homePage .brandLockup strong{
+  letter-spacing:-.055em;
+}
+.homePage .brandLockup strong span{
+  color:var(--vago-red);
+}
+.homePage .brandLockup small{
+  display:block;
+  margin-top:3px;
+  color:#72777b;
+  font-size:8px;
+  font-weight:700;
+  letter-spacing:.15em;
+}
+.homePage .navLink{
+  position:relative;
+  padding:8px 0;
+}
+.homePage .navLink.active{
+  color:#fff;
+}
+.homePage .navLink.active:after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:2px;
+  border-radius:2px;
+  background:var(--vago-red);
+  box-shadow:0 0 12px rgba(229,9,20,.45);
+}
+.homePage .navRegister,
+.homePage .heroPrimary{
+  border-radius:999px;
+}
+.homePage .homeHero{
+  isolation:isolate;
+}
+.homePage .homeHeroBackdrop img{
+  will-change:transform;
+}
+.homePage .homeHeroCopy .eyebrow{
+  text-shadow:0 2px 14px rgba(0,0,0,.8);
+}
+.homePage .homeHero h1{
+  letter-spacing:-.055em;
+}
+.homePage .homeHero h1 em{
+  color:#f2b37a;
+  font-style:normal;
+}
+.homePage .homeHeroActions .heroPrimary{
+  padding:13px 20px;
+}
+.homePage .homeHeroActions .heroSecondary{
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(9,10,11,.52);
+  backdrop-filter:blur(10px);
+}
+.homePage .visualArchive .sectionHead{
+  align-items:end;
+}
+.homePage .sectionLink{
+  color:#c9cccf;
+  transition:color .2s ease,transform .2s ease;
+}
+.homePage .sectionLink:hover{
+  color:#fff;
+  transform:translateX(3px);
+}
+.homePage .homeCaseCard{
+  overflow:hidden;
+  background:linear-gradient(145deg,#0e1012,#0a0c0e);
+  box-shadow:0 18px 55px rgba(0,0,0,.24);
+}
+.homePage .homeCaseCard:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:linear-gradient(135deg,rgba(255,255,255,.035),transparent 36%,rgba(229,9,20,.025));
+  z-index:1;
+}
+.homePage .homeCaseVisual{
+  position:relative;
+  overflow:hidden;
+}
+.homePage .homeCaseVisual img{
+  transition:transform .65s ease,filter .35s ease;
+}
+.homePage .homeCaseCard:hover .homeCaseVisual img{
+  transform:scale(1.045);
+  filter:contrast(1.1) saturate(1.08) brightness(1.06);
+}
+.homePage .homeCaseBody,
+.homePage .homeCaseBody *{
+  position:relative;
+  z-index:2;
+}
+.homePage .homeCaseBody .tag{
+  letter-spacing:.14em;
+}
+.homePage .communityBand{
+  position:relative;
+  overflow:hidden;
+}
+.homePage .communityBand:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:linear-gradient(90deg,rgba(229,9,20,.06),transparent 35%,rgba(229,9,20,.035));
+}
+.homePage .premiumTeaser{
+  border-color:#332529;
+  background:linear-gradient(120deg,#0c0e10,#110b0d);
+}
+@media(max-width:760px){
+  .homePage .globalNav{
+    background:rgba(7,8,9,.97);
+  }
+  .homePage .brandLockup small{
+    display:none;
+  }
+  .homePage .navCenter{
+    scrollbar-width:none;
+  }
+  .homePage .navCenter::-webkit-scrollbar{
+    display:none;
+  }
+  .homePage .homeHeroCopy{
+    text-shadow:0 3px 22px rgba(0,0,0,.82);
+  }
+  .homePage .homeHero h1 em{
+    color:#f0ad73;
+  }
+}
