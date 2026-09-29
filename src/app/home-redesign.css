@@ -41,3 +41,15 @@
   .v3Cases{margin-top:72px}
   .v3CaseGrid--2 .v3CaseMedia{height:250px}
 }
+
+
+/* Final archive composition — copy hierarchy and two-card balance */
+.v3CaseGrid--2{align-items:stretch}
+.v3CaseGrid--2 .v3Case{min-height:100%;display:flex;flex-direction:column}
+.v3CaseGrid--2 .v3CaseBody{flex:1;display:flex;flex-direction:column;justify-content:flex-start}
+.v3CaseGrid--2 .v3CaseBody h3{max-width:620px}
+.v3SectionHead h2{max-width:760px}
+@media(max-width:650px){
+  .v3SectionHead h2{max-width:none}
+  .v3CaseGrid--2 .v3CaseBody{display:block}
+}
