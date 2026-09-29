@@ -28,194 +28,159 @@ export default async function Home() {
     include: { evidence: true },
   });
 
-  const featured = exps.find((e) => e.code === 'EV-EXP-001') ?? null;
+  const byCode = (code: string) => exps.find((e) => e.code === code) ?? null;
+  const featured = byCode('EV-EXP-001');
+  const callCase = byCode('EV-EXP-002');
+  const lastRecord = byCode('EV-EXP-003');
 
-  const featuredInvestigation =
-    user && featured
-      ? await prisma.investigation.findUnique({
-          where: {
-            userId_expedienteId: {
-              userId: user.id,
-              expedienteId: featured.id,
-            },
-          },
-        })
-      : null;
-
-  const featuredArtwork = featured ? artwork[featured.code] ?? '/exp-001-habitacion.svg' : null;
+  const hrefFor = (code: string) => {
+    const item = byCode(code);
+    return item ? `/expedientes/${item.slug}` : '/explorar';
+  };
 
   return (
     <main className="wrap homePage">
       <GlobalNav />
 
-      <section className="hero homeHero">
-        <div className="homeHeroBackdrop" aria-hidden="true">
-          <img src="/door-317.jpg" alt="" />
-          <span className="heroScanline" />
-        </div>
-
-        <div className="homeHeroCopy">
-          <p className="eyebrow">EXPEDIENTES INTERACTIVOS</p>
-          <h1>Misterios que <em>tienes que resolver.</em></h1>
-          <p className="lead">
-            Entra al expediente. Observa las evidencias. Conecta las pistas y descubre lo que realmente ocurrió.
-          </p>
-          <div className="homeHeroActions">
+      <section className="masterHero">
+        <div className="masterHeroGlow" aria-hidden="true" />
+        <div className="masterHeroCopy">
+          <p className="masterEyebrow">EXPEDIENTE #001&nbsp; • &nbsp;CASO ABIERTO</p>
+          <h1>LA HABITACIÓN 317</h1>
+          <p className="masterHeroSub">Una puerta. Una habitación. Una noche que nadie logra explicar.</p>
+          <div className="masterHeroActions">
             {featured && (
-              <Link className="btn heroPrimary" href={`/expedientes/${featured.slug}`}>
-                <span aria-hidden="true">→</span> Comenzar investigación
+              <Link className="masterPrimary" href={`/expedientes/${featured.slug}`}>
+                ABRIR EXPEDIENTE
               </Link>
             )}
-            <Link className="btn secondary heroSecondary" href="/explorar">
-              Explorar expedientes
-            </Link>
+            <Link className="masterSecondary" href={`/explorar`}>Ver las pistas →</Link>
           </div>
-          <div className="heroDots" aria-hidden="true">
-            <i className="active" /><i /><i /><i /><i />
+          <p className="masterMeta">MISTERIO&nbsp; / &nbsp;INVESTIGACIÓN&nbsp; / &nbsp;08:42 MIN</p>
+          <div className="masterDivider" />
+        </div>
+
+        <div className="masterDoor" aria-hidden="true">
+          <div className="masterDoorFrame">
+            <div className="masterDoorImage">
+              <img src="/door-317.jpg" alt="" />
+              <span className="masterDoorNumber">317</span>
+              <span className="masterDoorHandle" />
+            </div>
           </div>
         </div>
       </section>
 
       {user && activeInvestigation ? (
-        <section className="homeSection continueInvestigation">
-          <div className="sectionHead">
-            <div>
-              <p className="eyebrow">TU INVESTIGACIÓN</p>
-              <h2>Continúa donde te quedaste.</h2>
-            </div>
-            <p className="muted">{Math.round(activeInvestigation.progress)}% completado</p>
-          </div>
-          <div className="card continueCard">
-            <span className="tag">{activeInvestigation.expediente.code}</span>
-            <h2>{activeInvestigation.expediente.title}</h2>
-            <p className="muted">Sigue investigando para descubrir qué ocurrió en esta historia.</p>
-            <div className="bar" aria-label={`Progreso ${Math.round(activeInvestigation.progress)}%`}>
-              <i style={{ width: `${Math.min(100, Math.max(0, activeInvestigation.progress))}%` }} />
-            </div>
-            <Link className="btn" href={`/expedientes/${activeInvestigation.expediente.slug}`}>
-              Continuar investigación
-            </Link>
-          </div>
+        <section className="masterContinue">
+          <span>CONTINÚA TU INVESTIGACIÓN</span>
+          <strong>{activeInvestigation.expediente.title}</strong>
+          <em>{Math.round(activeInvestigation.progress)}% completado</em>
+          <Link href={`/expedientes/${activeInvestigation.expediente.slug}`}>Continuar →</Link>
         </section>
       ) : null}
 
-      {featured && featuredArtwork && (
-        <section className="featuredCase">
-          <div className="featuredCopy">
-            <p className="eyebrow">EXPEDIENTE PRINCIPAL</p>
-            <span className="featuredBadge">DESTACADO</span>
-            <h2>{featured.title}</h2>
-            <p className="lead">Un hotel. Una desaparición. Una historia que se descubre pieza por pieza.</p>
-            <div className="caseMeta">
-              <span>▣ Investigación documental</span>
-              <span>5 evidencias</span>
-              <span className="difficulty">▮▮▮ Intermedio</span>
-            </div>
-            <Link className="btn heroBtn" href={`/expedientes/${featured.slug}`}>
-              {featuredInvestigation?.status === 'COMPLETED'
-                ? 'Revisar expediente'
-                : featuredInvestigation
-                  ? 'Continuar investigación'
-                  : 'Comenzar investigación'}
-            </Link>
-          </div>
-
-          <div className="featuredVisual" aria-hidden="true">
-            <img className="featuredArtwork" src={featuredArtwork} alt="" />
-            <div className="sceneGrid" />
-            <div className="sceneNoise" />
-            <div className="featuredGlow" />
-            <div className="featuredDoorMark">317</div>
-            <div className="sceneStamp">EXPEDIENTE / 001</div>
-          </div>
-        </section>
-      )}
-
-      <section className="homeSection visualArchive">
-        <div className="sectionHead">
+      <section className="masterCases">
+        <div className="masterSectionHead">
           <div>
-            <p className="eyebrow">UNIVERSO 001</p>
-            <h2>El universo de la historia</h2>
+            <h2>EXPEDIENTES DESTACADOS</h2>
+            <p>Casos documentados para explorar, conectar pistas y formar tu propia teoría.</p>
           </div>
-          <Link className="sectionLink" href="/explorar">Entrar al expediente →</Link>
         </div>
 
-        <div className="homeCaseRail cinematicRail">
-          <article className="homeCaseCard realCaseCard cinematicCaseCard">
-            <div className="homeCaseVisual cinematicVisual">
-              <img src={featuredArtwork ?? '/exp-001-habitacion.svg'} alt="" loading="lazy" />
-              <span className="visualVignette" />
-              <span className="visualCode">317</span>
+        <div className="masterCaseGrid">
+          <Link className="masterCase" href={hrefFor('EV-EXP-001')}>
+            <div className="masterCaseImage">
+              <img src={artwork['EV-EXP-001']} alt="" />
+              <span className="masterImageLight" />
+              <span className="masterImageShadow" />
             </div>
-            <div className="homeCaseBody">
-              <span className="tag">EV-EXP-001</span>
-              <h3>{featured?.title ?? 'La Habitación 317'}</h3>
-              <p>Un hotel. Una desaparición. Evidencias que todavía guardan preguntas.</p>
-              <div className="caseMeta"><span>▣ Investigación documental</span><span>5 evidencias</span><span className="difficulty">▮▮▮ Intermedio</span></div>
+            <div className="masterCaseBody">
+              <span className="masterCaseNo">001</span>
+              <h3>LA HABITACIÓN 317</h3>
+              <p>Una puerta cerrada y una cronología que no coincide.</p>
+              <div><b>MISTERIO</b><span>ABRIR →</span></div>
             </div>
-          </article>
+          </Link>
 
-          <article className="homeCaseCard atmosphereCard">
-            <div className="homeCaseVisual atmosphereVisual">
-              <img src="/exp-004-archivo.svg" alt="" loading="lazy" />
-              <span className="visualLabel">ARCHIVO</span>
+          <Link className="masterCase" href={hrefFor('EV-EXP-002')}>
+            <div className="masterCaseImage">
+              <img src={artwork['EV-EXP-002']} alt="" />
+              <span className="masterImageLight" />
+              <span className="masterImageShadow" />
             </div>
-            <div className="homeCaseBody">
-              <span className="tag">EVIDENCIAS</span>
-              <h3>Todo deja una pista.</h3>
-              <p>Documentos, detalles y fragmentos de la historia aparecen a medida que avanzas.</p>
+            <div className="masterCaseBody">
+              <span className="masterCaseNo">002</span>
+              <h3>LA LLAMADA DE LAS 03:17</h3>
+              <p>Una grabación que apareció donde no debía.</p>
+              <div><b>INEXPLICABLE</b><span>ABRIR →</span></div>
             </div>
-          </article>
+          </Link>
 
-          <article className="homeCaseCard atmosphereCard">
-            <div className="homeCaseVisual atmosphereVisual">
-              <img src="/exp-002-llamada.svg" alt="" loading="lazy" />
-              <span className="visualLabel">INVESTIGACIÓN</span>
+          <Link className="masterCase" href={hrefFor('EV-EXP-003')}>
+            <div className="masterCaseImage">
+              <img src={artwork['EV-EXP-003']} alt="" />
+              <span className="masterImageLight" />
+              <span className="masterImageShadow" />
             </div>
-            <div className="homeCaseBody">
-              <span className="tag">EXPERIENCIA</span>
-              <h3>Tú decides qué significa.</h3>
-              <p>Observa, conecta las piezas y construye tu propia teoría antes del cierre.</p>
+            <div className="masterCaseBody">
+              <span className="masterCaseNo">003</span>
+              <h3>EL ÚLTIMO REGISTRO</h3>
+              <p>La última pista desapareció antes de ser archivada.</p>
+              <div><b>INVESTIGACIÓN</b><span>ABRIR →</span></div>
             </div>
-          </article>
-        </div>
-      </section>
-
-      <section className="communityBand">
-        <div className="communityQuote">
-          <span>“</span>
-          <p>NO SE TRATA SOLO DE LO QUE VES,<br />SINO DE TODO LO QUE AÚN NO SABES.</p>
-          <i />
-        </div>
-        <div className="communityInvite">
-          <p className="eyebrow">ÚNETE A LA COMUNIDAD DE EL VAGO</p>
-          <h3>Comparte tus teorías, conecta las pistas y entra en el universo de El Vago.</h3>
-          <Link className="btn secondary" href="/comunidad">Entrar a la comunidad</Link>
+          </Link>
         </div>
       </section>
 
-      <section className="premiumTeaser">
+      <section className="masterNarrative">
+        <div className="masterNarrativeCopy">
+          <p>NO SOLO MIRAS. INVESTIGAS.</p>
+          <h2>Cada pista cambia lo que creías saber.</h2>
+          <span>Desbloquea testimonios, conecta evidencias, revisa la línea de tiempo y construye hipótesis antes de descubrir el expediente completo.</span>
+        </div>
+        <div className="masterPills" aria-label="Elementos de investigación">
+          <span>PISTAS</span>
+          <span>PREGUNTAS</span>
+          <span>TEORÍAS</span>
+          <span>TIMELINE</span>
+        </div>
+      </section>
+
+      <section className="masterEntry">
+        <h2>MÁS FORMAS DE ENTRAR AL VAGO</h2>
+        <div className="masterEntryGrid">
+          <Link href="/multimedia" className="masterEntryCard">
+            <h3>MULTIMEDIA</h3>
+            <p>Videos, audios y fragmentos para ampliar cada historia.</p>
+            <b>EXPLORAR →</b>
+          </Link>
+          <Link href="/comunidad" className="masterEntryCard">
+            <h3>COMUNIDAD</h3>
+            <p>Comparte teorías, conecta pistas y descubre otras perspectivas.</p>
+            <b>EXPLORAR →</b>
+          </Link>
+          <Link href="/mi-vago" className="masterEntryCard">
+            <h3>MI VAGO</h3>
+            <p>Tu progreso, expedientes guardados y actividad reciente.</p>
+            <b>EXPLORAR →</b>
+          </Link>
+        </div>
+      </section>
+
+      <footer className="masterFooter">
         <div>
-          <p className="eyebrow">EL VAGO PREMIUM</p>
-          <h2>Casos más profundos. Nuevas historias.</h2>
-          <p className="muted">La experiencia crecerá contigo a medida que el archivo de El Vago se expanda.</p>
+          <strong>EL VAGO</strong>
+          <p>Historias reales. Preguntas abiertas. Tu propia teoría.</p>
+          <small>© {new Date().getFullYear()} El Vago</small>
         </div>
-        <span className="premiumBadge">PRÓXIMAMENTE</span>
-      </section>
-
-      <footer className="siteFooter">
-        <div>
-          <span className="footerBrand">EL VAGO</span>
-          <p className="muted">Historias reales · Misterios sin respuesta.</p>
-        </div>
-        <div className="footerLinks">
-          <Link href="/">Inicio</Link>
-          <Link href="/explorar">Explorar</Link>
-          <Link href="/multimedia">Multimedia</Link>
-          <Link href="/comunidad">Comunidad</Link>
-          <Link href="/mi-vago">Mi Vago</Link>
-        </div>
-        <span className="muted footerCopy">© {new Date().getFullYear()} El Vago</span>
+        <nav>
+          <Link href="/explorar">EXPLORE</Link>
+          <Link href="/explorar">EXPEDIENTES</Link>
+          <Link href="/multimedia">MULTIMEDIA</Link>
+          <Link href="/comunidad">COMUNIDAD</Link>
+          <Link href="/mi-vago">PREMIUM</Link>
+        </nav>
       </footer>
     </main>
   );
