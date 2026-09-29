@@ -7,18 +7,17 @@ export default async function GlobalNav() {
   const pathname = (await headers()).get('x-pathname') ?? '';
 
   return (
-    <nav className="nav globalNav" aria-label="Navegación principal">
+    <nav className="nav globalNav masterNav" aria-label="Navegación principal">
       <Link className="brand brandLockup" href="/">
         <strong>EL VAG<span>O</span></strong>
-        <small>HISTORIAS REALES · MISTERIOS · FORMATO DOCUMENTAL</small>
+        <small>Historias que no te dejan dormir.</small>
       </Link>
 
       <div className="navCenter">
-        <Link className={`navLink ${pathname === '/' ? 'active' : ''}`} href="/">Inicio</Link>
-        <Link className={`navLink ${(pathname.startsWith('/explorar') || pathname.startsWith('/expedientes/')) ? 'active' : ''}`} href="/explorar">Explorar</Link>
-        <Link className={`navLink ${pathname.startsWith('/multimedia') ? 'active' : ''}`} href="/multimedia">Multimedia</Link>
-        <Link className={`navLink ${pathname.startsWith('/comunidad') ? 'active' : ''}`} href="/comunidad">Comunidad</Link>
-        <Link className={`navLink ${pathname.startsWith('/mi-vago') ? 'active' : ''}`} href="/mi-vago">Mi Vago</Link>
+        <Link className={`navLink ${pathname.startsWith('/explorar') ? 'active' : ''}`} href="/explorar">EXPLORE</Link>
+        <Link className={`navLink ${pathname.startsWith('/expedientes/') ? 'active' : ''}`} href="/explorar">EXPEDIENTES</Link>
+        <Link className={`navLink ${pathname.startsWith('/multimedia') ? 'active' : ''}`} href="/multimedia">MULTIMEDIA</Link>
+        <Link className={`navLink ${pathname.startsWith('/comunidad') ? 'active' : ''}`} href="/comunidad">COMUNIDAD</Link>
       </div>
 
       <div className="navActions">
@@ -28,7 +27,7 @@ export default async function GlobalNav() {
             <span className="navProfile" aria-hidden="true">{user.email.slice(0, 1).toUpperCase()}</span>
             {user.role === 'ADMIN' && <Link className="btn secondary navCms" href="/admin">CMS</Link>}
             <form action="/api/auth/logout" method="post">
-              <button className="btn secondary navLogout">Salir</button>
+              <button className="btn secondary navLogout" type="submit">Salir</button>
             </form>
           </>
         ) : (
@@ -37,6 +36,7 @@ export default async function GlobalNav() {
             <Link className="btn navRegister" href="/register">Crear cuenta</Link>
           </>
         )}
+        <Link className="masterPremium" href="/mi-vago">PREMIUM</Link>
       </div>
     </nav>
   );
