@@ -2402,3 +2402,75 @@ body{
     color:#f0ad73;
   }
 }
+
+
+/* EL VAGO — FINAL VISUAL MASTER IMPLEMENTATION — 29-09-2026 */
+.homePage{width:100%;max-width:none;margin:0;padding:0 0 44px;background:#060608;color:#f0f0eb;overflow:hidden}
+.homePage .masterNav{height:88px;min-height:88px;padding:0 4.7vw;border-bottom:1px solid #202126;background:#060608;gap:24px}
+.homePage .masterNav .brandLockup{width:250px}
+.homePage .masterNav .brandLockup strong{display:block;font-size:22px;line-height:1;color:#f0f0eb;letter-spacing:-.05em}
+.homePage .masterNav .brandLockup strong span{color:#b8090d}
+.homePage .masterNav .brandLockup small{display:block;margin-top:7px;font-size:11px;letter-spacing:0;color:#8c8c94;font-weight:400}
+.homePage .masterNav .navCenter{gap:0;justify-content:flex-end}
+.homePage .masterNav .navLink{font-size:12px;font-weight:700;letter-spacing:.01em;color:#8c8c94;padding:8px 22px}
+.homePage .masterNav .navLink:hover,.homePage .masterNav .navLink.active{color:#f0f0eb}
+.homePage .masterNav .navLink.active:after{display:none}
+.homePage .masterNav .navActions{gap:8px}
+.homePage .masterNav .navIcon{color:#aaa;font-size:25px}
+.homePage .masterNav .navProfile{display:grid;place-items:center;width:34px;height:34px;border:1px solid #36373b;border-radius:50%;font-weight:800;color:#f0f0eb;background:#101114}
+.homePage .masterNav .navLogout,.homePage .masterNav .navCms{background:#111316;border:1px solid #303237;border-radius:10px;padding:10px 14px;color:#f0f0eb}
+.homePage .masterPremium{display:grid;place-items:center;width:110px;height:40px;border-radius:20px;background:#b8090d;color:#f0f0eb;font-size:12px;font-weight:800;letter-spacing:.02em}
+.masterHero{height:610px;position:relative;display:flex;overflow:hidden;background:#09090b}
+.masterHeroCopy{position:relative;z-index:3;width:57%;padding:102px 0 0 5.35vw}
+.masterEyebrow{margin:0;color:#b8090d;font-size:13px;font-weight:800;letter-spacing:.11em}
+.masterHero h1{margin:26px 0 16px;max-width:700px;font-size:clamp(48px,4.25vw,64px);line-height:.96;letter-spacing:-.045em;color:#f0f0eb}
+.masterHeroSub{max-width:610px;margin:0;color:#8c8c94;font-size:22px;line-height:1.25}
+.masterHeroActions{display:flex;align-items:center;gap:24px;margin-top:28px}
+.masterPrimary{display:inline-flex;align-items:center;justify-content:center;width:205px;height:52px;border-radius:26px;background:#b8090d;color:#f0f0eb;font-size:13px;font-weight:800;letter-spacing:.03em;box-shadow:none}
+.masterSecondary{font-size:16px;font-weight:700;color:#f0f0eb}
+.masterMeta{margin:48px 0 0;color:#8c8c94;font-size:11px;font-weight:700;letter-spacing:.1em}
+.masterDivider{width:600px;max-width:90%;height:1px;margin-top:42px;background:#2e2e33}
+.masterHeroGlow{position:absolute;z-index:0;width:600px;height:500px;right:5.6vw;top:42px;border-radius:18px;background:radial-gradient(circle at 55% 48%,rgba(184,9,13,.23),transparent 62%),#120708}
+.masterDoor{position:absolute;z-index:2;right:15.4%;top:67px;width:300px;height:440px;border:2px solid #333336;border-radius:10px;background:#040405;padding:23px}
+.masterDoorFrame{width:100%;height:100%;border:2px solid #4d3826;border-radius:6px;overflow:hidden;background:#171311;position:relative}
+.masterDoorImage{width:100%;height:100%;position:relative;overflow:hidden}
+.masterDoorImage img{width:100%;height:100%;object-fit:cover;object-position:82% center;filter:contrast(1.08) saturate(1.08) brightness(1.12)}
+.masterDoorImage:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.1),rgba(0,0,0,.25)),radial-gradient(circle at 70% 35%,rgba(255,185,105,.22),transparent 30%)}
+.masterDoorNumber{position:absolute;z-index:2;left:50%;top:35px;transform:translateX(-50%);font-size:54px;font-weight:800;color:#d1c7ad;text-shadow:0 2px 12px rgba(0,0,0,.45)}
+.masterDoorHandle{position:absolute;z-index:2;right:27px;top:210px;width:16px;height:8px;border-radius:4px;background:#a69473}
+.masterContinue{max-width:1392px;margin:20px auto 0;padding:14px 20px;border:1px solid #242429;border-left:2px solid #b8090d;background:#0d0d10;display:flex;gap:18px;align-items:center;font-size:12px}
+.masterContinue span{color:#b8090d;font-weight:800;letter-spacing:.12em}.masterContinue strong{color:#f0f0eb}.masterContinue em{color:#8c8c94;font-style:normal}.masterContinue a{margin-left:auto;color:#f0f0eb;font-weight:700}
+.masterCases{max-width:1392px;margin:0 auto;padding:58px 0 74px}
+.masterSectionHead h2,.masterEntry>h2{margin:0;color:#f0f0eb;font-size:28px;line-height:1.1;letter-spacing:-.02em}
+.masterSectionHead p{margin:12px 0 0;color:#8c8c94;font-size:15px}
+.masterCaseGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;margin-top:42px}
+.masterCase{min-width:0;height:430px;border:1px solid #242429;border-radius:16px;background:#131316;overflow:hidden;display:block;transition:transform .25s ease,border-color .25s ease}
+.masterCase:hover{transform:translateY(-4px);border-color:#4b2428}
+.masterCaseImage{height:225px;position:relative;overflow:hidden;background:#171312}
+.masterCaseImage img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease,filter .3s ease}
+.masterCase:hover .masterCaseImage img{transform:scale(1.045);filter:contrast(1.06) saturate(1.08) brightness(1.05)}
+.masterImageLight{position:absolute;left:29px;top:34px;width:120px;height:120px;border-radius:60px;background:rgba(184,9,13,.18);filter:blur(20px)}
+.masterImageShadow{position:absolute;right:70px;top:40px;width:130px;height:150px;border-radius:8px;background:rgba(6,6,8,.28)}
+.masterCaseBody{padding:24px 28px}
+.masterCaseNo{color:#b8090d;font-size:12px;font-weight:800}
+.masterCaseBody h3{margin:12px 0 10px;color:#f0f0eb;font-size:22px;line-height:1.15}
+.masterCaseBody p{margin:0;color:#8c8c94;font-size:14px;line-height:1.35}
+.masterCaseBody div{display:flex;justify-content:space-between;align-items:center;margin-top:43px;font-size:11px}
+.masterCaseBody div b{color:#b8090d}.masterCaseBody div span{color:#f0f0eb;font-weight:700}
+.masterNarrative{min-height:300px;background:#0b0b0e;border-top:1px solid #15151a;border-bottom:1px solid #15151a;display:grid;grid-template-columns:minmax(0,1fr) 1fr;gap:60px;align-items:center;padding:50px max(32px,calc((100vw - 1392px)/2))}
+.masterNarrativeCopy>p{margin:0 0 25px;color:#b8090d;font-size:12px;font-weight:800;letter-spacing:.11em}.masterNarrativeCopy h2{margin:0 0 20px;font-size:34px;line-height:1.15;letter-spacing:-.025em}.masterNarrativeCopy>span{display:block;max-width:720px;color:#8c8c94;font-size:17px;line-height:1.45}
+.masterPills{display:grid;grid-template-columns:repeat(2,125px);gap:18px;justify-content:end}.masterPills span{display:grid;place-items:center;height:42px;border:1px solid #333338;border-radius:21px;background:#141417;color:#f0f0eb;font-size:10px;font-weight:700}
+.masterEntry{max-width:1392px;margin:0 auto;padding:58px 0 70px}.masterEntryGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;margin-top:28px}.masterEntryCard{height:190px;padding:30px 24px;border-radius:14px;background:#111113;display:flex;flex-direction:column}.masterEntryCard h3{margin:0;color:#f0f0eb;font-size:17px}.masterEntryCard p{margin:24px 0 0;color:#8c8c94;font-size:14px;line-height:1.45}.masterEntryCard b{margin-top:auto;color:#b8090d;font-size:11px}
+.masterFooter{max-width:1392px;margin:0 auto;border-top:1px solid #26262b;padding:38px 0 0;display:flex;justify-content:space-between;gap:40px}.masterFooter strong{font-size:18px}.masterFooter p{margin:10px 0 30px;color:#8c8c94;font-size:12px}.masterFooter small{color:#595961;font-size:10px}.masterFooter nav{display:flex;gap:30px;align-items:flex-start}.masterFooter nav a{color:#8c8c94;font-size:11px;font-weight:700}.masterFooter nav a:hover{color:#f0f0eb}
+@media(max-width:760px){
+ .homePage{padding:0 0 24px}
+ .homePage .masterNav{height:auto;min-height:0;padding:22px 20px 14px;display:grid;grid-template-columns:1fr auto;gap:18px 12px;align-items:center}
+ .homePage .masterNav .brandLockup{width:auto}.homePage .masterNav .brandLockup strong{font-size:28px}.homePage .masterNav .brandLockup small{font-size:9px;margin-top:5px}
+ .homePage .masterNav .navCenter{grid-column:1/-1;grid-row:2;justify-content:flex-start;overflow:auto;gap:0;border-top:0;padding-top:2px}.homePage .masterNav .navLink{font-size:13px;padding:10px 15px;letter-spacing:0}.homePage .masterNav .navLink:first-child{padding-left:0}.homePage .masterNav .navActions{justify-content:flex-end;gap:6px}.homePage .masterNav .navIcon{display:none}.homePage .masterNav .navProfile{width:38px;height:38px}.homePage .masterNav .navLogout{padding:10px 15px}.homePage .masterNav .masterPremium{display:none}
+ .masterHero{height:auto;min-height:650px;border-radius:0 0 18px 18px;display:block}.masterHeroCopy{width:100%;padding:62px 22px 44px}.masterEyebrow{font-size:12px}.masterHero h1{margin:24px 0 18px;font-size:clamp(40px,12vw,56px);line-height:.93}.masterHeroSub{font-size:19px;line-height:1.45;max-width:100%}.masterHeroActions{display:flex;flex-direction:column;align-items:stretch;gap:12px;margin-top:28px}.masterPrimary{width:100%;height:56px;font-size:15px}.masterSecondary{width:100%;height:56px;border:1px solid #303238;border-radius:12px;background:rgba(10,10,12,.72);display:grid;place-items:center;font-size:15px}.masterMeta{margin-top:30px;font-size:10px}.masterDivider{display:none}.masterHeroGlow{width:120%;height:470px;right:-20%;top:300px}.masterDoor{width:240px;height:350px;right:50%;transform:translateX(50%);top:auto;bottom:-88px;padding:14px;opacity:.45}.masterDoorNumber{font-size:45px;top:28px}.masterDoorHandle{right:20px;top:165px}
+ .masterContinue{margin:14px 16px 0;flex-wrap:wrap}.masterContinue a{margin-left:0;width:100%}
+ .masterCases{padding:42px 16px 50px}.masterSectionHead h2,.masterEntry>h2{font-size:27px}.masterSectionHead p{font-size:14px;line-height:1.45}.masterCaseGrid{grid-template-columns:1fr;gap:18px;margin-top:28px}.masterCase{height:auto;min-height:430px}.masterCaseImage{height:230px}.masterCaseBody{padding:24px}.masterCaseBody h3{font-size:22px}.masterCaseBody div{margin-top:36px}
+ .masterNarrative{display:block;min-height:0;padding:44px 22px}.masterNarrativeCopy>p{margin-bottom:18px}.masterNarrativeCopy h2{font-size:29px}.masterNarrativeCopy>span{font-size:15px}.masterPills{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:28px}.masterPills span{height:42px}
+ .masterEntry{padding:44px 16px 50px}.masterEntryGrid{grid-template-columns:1fr;gap:14px;margin-top:24px}.masterEntryCard{height:170px;padding:25px 22px}.masterEntryCard p{margin-top:18px}
+ .masterFooter{margin:0 16px;padding-top:28px;display:block}.masterFooter nav{margin-top:25px;display:grid;grid-template-columns:repeat(2,1fr);gap:15px}.masterFooter nav a:last-child{display:none}
+}
