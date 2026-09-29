@@ -29,3 +29,15 @@
   .v3CaseGrid--2{grid-template-columns:1fr}
   .v3CaseGrid--2 .v3CaseMedia{height:250px}
 }
+
+/* Final composition polish for the two-card archive section */
+.v3Cases{margin-top:92px}
+.v3SectionHead{padding-bottom:22px}
+.v3CaseGrid{margin-top:20px}
+.v3CaseGrid--2{gap:22px}
+.v3CaseGrid--2 .v3CaseMedia{height:285px}
+.v3CaseGrid--2 .v3CaseBody{padding:24px 28px 25px}
+@media(max-width:650px){
+  .v3Cases{margin-top:72px}
+  .v3CaseGrid--2 .v3CaseMedia{height:250px}
+}
