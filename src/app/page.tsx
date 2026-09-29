@@ -84,13 +84,13 @@ export default async function Home() {
       <section className="v3Triad">
         <article className="v3Panel v3PanelDark">
           <span className="v3PanelNo">02 / EVIDENCIAS</span>
-          <div className="v3PanelImage"><img src="/exp-004-archivo.svg" alt="" /></div>
+          <div className="v3PanelImage"><img src="https://images.unsplash.com/photo-1764352104384-15621992b7b9?auto=format&fit=crop&fm=jpg&q=82&w=1400" alt="Expediente documental con documentos antiguos" /></div>
           <div><h3>Todo deja<br /><i>una pista.</i></h3><p>Documentos, detalles y fragmentos de la historia aparecen a medida que avanzas.</p></div>
           <Link href={hrefFor('EV-EXP-004')}>Explorar evidencias <span>↗</span></Link>
         </article>
         <article className="v3Panel v3PanelPhoto">
           <span className="v3PanelNo">03 / EXPERIENCIA</span>
-          <div className="v3PanelImage"><img src="/exp-002-llamada.svg" alt="" /></div>
+          <div className="v3PanelImage"><img src="https://images.unsplash.com/photo-1635186238046-40771478f17e?auto=format&fit=crop&fm=jpg&q=82&w=1400" alt="Mesa de investigación con documentos y teléfono" /></div>
           <div><h3>Tú decides<br /><i>qué significa.</i></h3><p>Observa, conecta las piezas y construye tu propia teoría antes del cierre.</p></div>
           <Link href={hrefFor('EV-EXP-002')}>Entrar a la investigación <span>↗</span></Link>
         </article>
