@@ -20,7 +20,7 @@ export default async function Home(){
   const featured=byCode('EV-EXP-001');
   const hrefFor=(code:string)=>{const e=byCode(code);return e?'/expedientes/'+e.slug:'/explorar';};
 
-  return <main className="wrap homePage">
+  return <main id="top" className="wrap homePage">
     <GlobalNav />
 
     {/* HERO — BLOQUE VISUAL CONSERVADO */}
@@ -99,6 +99,8 @@ export default async function Home(){
       <span>La experiencia crecerá contigo a medida que el archivo de El Vago se expanda.</span>
       <strong>PRÓXIMAMENTE</strong>
     </section>
+
+    <a className="finalBackTop" href="#top" aria-label="Volver arriba">↑</a>
 
     <footer className="finalFooter">
       <div><strong>EL VAGO</strong><span>Historias reales. Preguntas abiertas. Tu propia teoría.</span><small>© {new Date().getFullYear()} El Vago</small></div>
