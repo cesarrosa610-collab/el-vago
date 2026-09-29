@@ -3,111 +3,142 @@ import { prisma } from '@/src/lib/prisma';
 import { currentUser } from '@/src/lib/auth';
 import GlobalNav from './GlobalNav';
 
-const archivePhoto = 'https://images.unsplash.com/photo-1764352104384-15621992b7b9?auto=format&fit=crop&fm=jpg&q=82&w=1400';
-const investigationPhoto = 'https://images.unsplash.com/photo-1635186238046-40771478f17e?auto=format&fit=crop&fm=jpg&q=82&w=1400';
-
-const artwork: Record<string,string> = {
-  'EV-EXP-001':'/door-317.jpg',
-  'EV-EXP-002':'/exp-002-llamada.svg',
-  'EV-EXP-003':'/exp-003-cuarto.svg',
-  'EV-EXP-004':'/exp-004-archivo.svg',
-  'EV-EXP-006':'/exp-006-habitacion.svg',
+const artwork: Record<string, string> = {
+  'EV-EXP-001': '/door-317.jpg',
+  'EV-EXP-002': '/exp-002-llamada.svg',
+  'EV-EXP-003': '/exp-003-cuarto.svg',
+  'EV-EXP-004': '/exp-004-archivo.svg',
 };
 
-export default async function Home(){
-  const user=await currentUser();
-  const exps=await prisma.expediente.findMany({
-    where:{status:'PUBLISHED'}, orderBy:{createdAt:'asc'}, include:{evidence:true}
+export default async function Home() {
+  const user = await currentUser();
+  const exps = await prisma.expediente.findMany({
+    where: { status: 'PUBLISHED' },
+    orderBy: { createdAt: 'asc' },
+    include: { evidence: true },
   });
-  const byCode=(code:string)=>exps.find(e=>e.code===code)??null;
-  const featured=byCode('EV-EXP-001');
-  const hrefFor=(code:string)=>{const e=byCode(code);return e?'/expedientes/'+e.slug:'/explorar';};
 
-  return <main id="top" className="wrap homePage">
-    <GlobalNav />
+  const byCode = (code: string) => exps.find((e) => e.code === code) ?? null;
+  const featured = byCode('EV-EXP-001');
+  const hrefFor = (code: string) => {
+    const e = byCode(code);
+    return e ? '/expedientes/' + e.slug : '/explorar';
+  };
 
-    {/* HERO — BLOQUE VISUAL CONSERVADO */}
-    <section className="preservedHero">
-      <div className="preservedHeroBg" />
-      <div className="preservedHeroCopy">
-        <p className="preservedEyebrow">— &nbsp;EXPEDIENTES INTERACTIVOS</p>
-        <h1>Misterios<br/>que <em>tienes</em><br/><em>que resolver.</em></h1>
-        <p className="preservedSub">Entra al expediente. Observa las evidencias.<br/>Conecta las pistas y descubre lo que realmente ocurrió.</p>
-        <div className="preservedActions">
-          {featured && <Link className="preservedPrimary" href={hrefFor('EV-EXP-001')}>→ &nbsp; Comenzar investigación</Link>}
-          <Link className="preservedSecondary" href="/explorar">Explorar expedientes</Link>
+  return (
+    <main id="top" className="v3Page">
+      <GlobalNav />
+
+      <section className="v3Hero">
+        <div className="v3HeroMedia" aria-hidden="true">
+          <img src="/door-317.jpg" alt="" />
+          <div className="v3HeroShade" />
+          <div className="v3HeroNumber">317</div>
+          <div className="v3DoorMark">HABITACIÓN<br /><b>317</b></div>
         </div>
-        <div className="preservedDots"><b/><i/><i/><i/><i/></div>
-      </div>
-    </section>
 
-    {/* EVIDENCIA + INVESTIGACIÓN */}
-    <section className="storyModules">
-      <Link className="storyModule" href={hrefFor('EV-EXP-004')}>
-        <div className="storyVisual archiveVisual"><img src={archivePhoto} alt="Expediente documental con documentos antiguos"/></div>
-        <div className="storyBody"><p>EVIDENCIAS</p><h2>Todo deja una pista.</h2><span>Documentos, detalles y fragmentos de la historia aparecen a medida que avanzas.</span></div>
-      </Link>
-      <Link className="storyModule" href={hrefFor('EV-EXP-002')}>
-        <div className="storyVisual callVisual"><img src={investigationPhoto} alt="Mesa de investigación con documentos y teléfono"/></div>
-        <div className="storyBody"><p>EXPERIENCIA</p><h2>Tú decides qué significa.</h2><span>Observa, conecta las piezas y construye tu propia teoría antes del cierre.</span></div>
-      </Link>
-    </section>
-
-    {/* UNIVERSO PRINCIPAL */}
-    <section className="universeSection">
-      <div className="universeHead">
-        <p>— &nbsp;EXPEDIENTE PRINCIPAL</p>
-        <h2>El universo de la historia</h2>
-        <span>Una investigación que se descubre pieza por pieza.</span>
-      </div>
-      <Link className="universeCard" href={hrefFor('EV-EXP-001')}>
-        <div className="universeInfo">
-          <small>EXPEDIENTE / 001</small>
-          <h3>La Habitación 317</h3>
-          <p>Un hotel. Una desaparición. Una historia que todavía guarda preguntas.</p>
-          <strong>ENTRAR AL EXPEDIENTE →</strong>
+        <div className="v3HeroContent">
+          <div className="v3Kicker"><span /> EXPEDIENTES INTERACTIVOS</div>
+          <h1>Misterios que<br /><i>tienes que resolver.</i></h1>
+          <p>Entra al expediente. Observa las evidencias. Conecta las pistas y descubre lo que realmente ocurrió.</p>
+          <div className="v3Actions">
+            {featured && <Link href={hrefFor('EV-EXP-001')} className="v3Primary">Comenzar investigación <span>↗</span></Link>}
+            <Link href="/explorar" className="v3Secondary">Explorar expedientes</Link>
+          </div>
+          <div className="v3HeroMeta">
+            <span>EXPEDIENTE 001</span><span>INVESTIGACIÓN DOCUMENTAL</span><span>5 EVIDENCIAS</span>
+          </div>
         </div>
-        <div className="universeImage"><img src={artwork['EV-EXP-001']} alt=""/></div>
-      </Link>
-    </section>
+      </section>
 
-    {/* CASOS */}
-    <section className="caseSection">
-      <div className="sectionKicker">— &nbsp;MÁS EXPEDIENTES</div>
-      <div className="caseHeading"><h2>Historias que todavía<br/><em>no tienen una sola respuesta.</em></h2><Link href="/explorar">Ver todos →</Link></div>
-      <div className="caseGrid">
-        {['EV-EXP-004','EV-EXP-002','EV-EXP-003'].map((code,i)=>{
-          const e=byCode(code); if(!e) return null;
-          return <Link className="caseCard" href={hrefFor(code)} key={code}>
-            <div className="caseCardImage"><span className="caseVisualTag">ARCHIVO VISUAL</span><img src={artwork[code]} alt=""/><span className="caseVisualStamp">EVIDENCIA</span></div>
-            <div className="caseCardBody"><small>EXPEDIENTE / 00{i+1}</small><h3>{e.title}</h3><p>{i===0?'Una puerta. Una habitación. Una cronología que no coincide.':i===1?'Una llamada apareció donde no debía.':'La última pista desapareció antes de ser archivada.'}</p><b>ABRIR EXPEDIENTE →</b></div>
-          </Link>
-        })}
-      </div>
-    </section>
+      <section className="v3Intro">
+        <div>
+          <span className="v3Index">UNIVERSO 001</span>
+          <h2>El universo de<br /><i>la historia.</i></h2>
+        </div>
+        <p>Una investigación documental construida para descubrirse pieza por pieza. Aquí nada está puesto por accidente.</p>
+      </section>
 
-    {/* COMUNIDAD */}
-    <section className="communityFinal">
-      <div className="communityQuote">“NO SE TRATA SOLO DE LO QUE VES,<br/>SINO DE TODO LO QUE AÚN NO SABES.”</div>
-      <div className="communityRule"/>
-      <p>— &nbsp;ÚNETE A LA COMUNIDAD DE EL VAGO</p>
-      <h2>Comparte tus teorías, conecta las pistas y<br/>entra en el universo de El Vago.</h2>
-      <Link href="/comunidad">Entrar a la comunidad</Link>
-    </section>
+      <section className="v3Feature">
+        <div className="v3FeatureImage">
+          <img src="/door-317.jpg" alt="Puerta de la habitación 317" />
+          <span className="v3EvidenceLabel">EVIDENCIA · 001</span>
+          <span className="v3Stamp">ARCHIVO EL VAGO</span>
+        </div>
+        <div className="v3FeatureCopy">
+          <span className="v3SmallRed">EV · EXP · 001</span>
+          <h3>La Habitación<br /><i>317</i></h3>
+          <p>Un hotel. Una desaparición. Evidencias que todavía guardan preguntas.</p>
+          <div className="v3Facts">
+            <span><b>01</b> Investigación documental</span>
+            <span><b>02</b> 5 evidencias</span>
+            <span><b>03</b> Nivel intermedio</span>
+          </div>
+          <Link href={hrefFor('EV-EXP-001')} className="v3TextLink">Abrir expediente <span>→</span></Link>
+        </div>
+      </section>
 
-    {/* PREMIUM */}
-    <section className="premiumFinal">
-      <p>— &nbsp;EL VAGO PREMIUM</p>
-      <h2>Casos más profundos.<br/>Nuevas historias.</h2>
-      <span>La experiencia crecerá contigo a medida que el archivo de El Vago se expanda.</span>
-      <strong>PRÓXIMAMENTE</strong>
-    </section>
+      <section className="v3Triad">
+        <article className="v3Panel v3PanelDark">
+          <span className="v3PanelNo">02 / EVIDENCIAS</span>
+          <div className="v3PanelImage"><img src="/exp-004-archivo.svg" alt="" /></div>
+          <div><h3>Todo deja<br /><i>una pista.</i></h3><p>Documentos, detalles y fragmentos de la historia aparecen a medida que avanzas.</p></div>
+          <Link href={hrefFor('EV-EXP-004')}>Explorar evidencias <span>↗</span></Link>
+        </article>
+        <article className="v3Panel v3PanelPhoto">
+          <span className="v3PanelNo">03 / EXPERIENCIA</span>
+          <div className="v3PanelImage"><img src="/exp-002-llamada.svg" alt="" /></div>
+          <div><h3>Tú decides<br /><i>qué significa.</i></h3><p>Observa, conecta las piezas y construye tu propia teoría antes del cierre.</p></div>
+          <Link href={hrefFor('EV-EXP-002')}>Entrar a la investigación <span>↗</span></Link>
+        </article>
+        <article className="v3Panel v3PanelArchive">
+          <span className="v3PanelNo">04 / ARCHIVO</span>
+          <div className="v3ArchiveVisual"><span>EL VAGO</span><strong>ARCHIVO<br />RESTRINGIDO</strong><b>EV-EXP</b></div>
+          <div><h3>La verdad<br /><i>también se archiva.</i></h3><p>Casos, documentos y materiales que amplían el universo de cada expediente.</p></div>
+          <Link href="/explorar">Ver el archivo <span>↗</span></Link>
+        </article>
+      </section>
 
-    <a className="finalBackTop" href="#top" aria-label="Volver arriba">↑</a>
+      <section className="v3Cases">
+        <div className="v3SectionHead">
+          <div><span className="v3Index">ARCHIVO 002 — 004</span><h2>Más historias.<br /><i>Más preguntas.</i></h2></div>
+          <Link href="/explorar">Ver todos los expedientes →</Link>
+        </div>
+        <div className="v3CaseGrid">
+          {['EV-EXP-004', 'EV-EXP-002', 'EV-EXP-003'].map((code, i) => {
+            const e = byCode(code);
+            if (!e) return null;
+            return (
+              <Link className="v3Case" href={hrefFor(code)} key={code}>
+                <div className="v3CaseMedia"><img src={artwork[code]} alt="" /><span>EXPEDIENTE / 00{i + 2}</span><b>ABRIR ↗</b></div>
+                <div className="v3CaseBody"><h3>{e.title}</h3><p>{i === 0 ? 'Una puerta. Una habitación. Una cronología que no coincide.' : i === 1 ? 'Una llamada apareció donde no debía.' : 'La última pista desapareció antes de ser archivada.'}</p></div>
+              </Link>
+            );
+          })}
+        </div>
+      </section>
 
-    <footer className="finalFooter">
-      <div><strong>EL VAGO</strong><span>Historias reales. Preguntas abiertas. Tu propia teoría.</span><small>© {new Date().getFullYear()} El Vago</small></div>
-      <nav><Link href="/explorar">EXPEDIENTES</Link><Link href="/multimedia">MULTIMEDIA</Link><Link href="/comunidad">COMUNIDAD</Link><Link href="/mi-vago">MI VAGO</Link></nav>
-    </footer>
-  </main>;
+      <section className="v3Community">
+        <div className="v3CommunityImage"><div className="v3RedGlow" /><div className="v3Silhouette" /></div>
+        <div className="v3CommunityCopy">
+          <span className="v3SmallRed">COMUNIDAD EL VAGO</span>
+          <blockquote>“No se trata solo de lo que ves,<br /><i>sino de todo lo que aún no sabes.</i>”</blockquote>
+          <p>Comparte tus teorías, conecta las pistas y entra en el universo de El Vago.</p>
+          <Link href="/comunidad" className="v3Primary">Entrar a la comunidad <span>↗</span></Link>
+        </div>
+      </section>
+
+      <section className="v3Premium">
+        <span className="v3Index">EL VAGO / PREMIUM</span>
+        <h2>El archivo<br /><i>continúa.</i></h2>
+        <p>Nuevos expedientes, historias más profundas y materiales exclusivos para quienes quieren seguir investigando.</p>
+        <Link href="/mi-vago">Descubrir Mi Vago →</Link>
+      </section>
+
+      <footer className="v3Footer">
+        <div><strong>EL VAGO</strong><span>Historias reales · Misterios · Formato documental</span><small>© 2026 El Vago</small></div>
+        <nav><Link href="/explorar">Explorar</Link><Link href="/multimedia">Multimedia</Link><Link href="/comunidad">Comunidad</Link><Link href="/mi-vago">Mi Vago</Link></nav>
+      </footer>
+    </main>
+  );
 }
