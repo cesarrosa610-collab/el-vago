@@ -73,10 +73,10 @@ export default async function Home(){
       <div className="sectionKicker">— &nbsp;MÁS EXPEDIENTES</div>
       <div className="caseHeading"><h2>Historias que todavía<br/><em>no tienen una sola respuesta.</em></h2><Link href="/explorar">Ver todos →</Link></div>
       <div className="caseGrid">
-        {['EV-EXP-001','EV-EXP-002','EV-EXP-003'].map((code,i)=>{
+        {['EV-EXP-004','EV-EXP-002','EV-EXP-003'].map((code,i)=>{
           const e=byCode(code); if(!e) return null;
           return <Link className="caseCard" href={hrefFor(code)} key={code}>
-            <div className="caseCardImage"><img src={artwork[code]} alt=""/></div>
+            <div className="caseCardImage"><span className="caseVisualTag">ARCHIVO VISUAL</span><img src={artwork[code]} alt=""/><span className="caseVisualStamp">EVIDENCIA</span></div>
             <div className="caseCardBody"><small>EXPEDIENTE / 00{i+1}</small><h3>{e.title}</h3><p>{i===0?'Una puerta. Una habitación. Una cronología que no coincide.':i===1?'Una llamada apareció donde no debía.':'La última pista desapareció antes de ser archivada.'}</p><b>ABRIR EXPEDIENTE →</b></div>
           </Link>
         })}
