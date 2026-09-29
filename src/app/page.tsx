@@ -3,6 +3,9 @@ import { prisma } from '@/src/lib/prisma';
 import { currentUser } from '@/src/lib/auth';
 import GlobalNav from './GlobalNav';
 
+const archivePhoto = 'https://images.unsplash.com/photo-1764352104384-15621992b7b9?auto=format&fit=crop&fm=jpg&q=82&w=1400';
+const investigationPhoto = 'https://images.unsplash.com/photo-1635186238046-40771478f17e?auto=format&fit=crop&fm=jpg&q=82&w=1400';
+
 const artwork: Record<string,string> = {
   'EV-EXP-001':'/door-317.jpg',
   'EV-EXP-002':'/exp-002-llamada.svg',
@@ -41,11 +44,11 @@ export default async function Home(){
     {/* EVIDENCIA + INVESTIGACIÓN */}
     <section className="storyModules">
       <Link className="storyModule" href={hrefFor('EV-EXP-004')}>
-        <div className="storyVisual archiveVisual"><img src={artwork['EV-EXP-004']} alt=""/></div>
+        <div className="storyVisual archiveVisual"><img src={archivePhoto} alt="Expediente documental con documentos antiguos"/></div>
         <div className="storyBody"><p>EVIDENCIAS</p><h2>Todo deja una pista.</h2><span>Documentos, detalles y fragmentos de la historia aparecen a medida que avanzas.</span></div>
       </Link>
       <Link className="storyModule" href={hrefFor('EV-EXP-002')}>
-        <div className="storyVisual callVisual"><img src={artwork['EV-EXP-002']} alt=""/></div>
+        <div className="storyVisual callVisual"><img src={investigationPhoto} alt="Mesa de investigación con documentos y teléfono"/></div>
         <div className="storyBody"><p>EXPERIENCIA</p><h2>Tú decides qué significa.</h2><span>Observa, conecta las piezas y construye tu propia teoría antes del cierre.</span></div>
       </Link>
     </section>
