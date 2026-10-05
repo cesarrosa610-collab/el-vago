@@ -2540,3 +2540,5 @@ body{
 .storyModule:hover .storyVisual img{transform:scale(1.045);filter:brightness(.9) contrast(1.08) saturate(.84)}
 .archiveVisual:after,.callVisual:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.28),transparent 58%),linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.42));pointer-events:none}
 @media(max-width:760px){.storyVisual img{filter:brightness(.74) contrast(1.08) saturate(.74)}.archiveVisual:after,.callVisual:after{background:linear-gradient(180deg,rgba(0,0,0,.02),rgba(0,0,0,.5))}}
+
+.v3HeroMedia:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(3,5,7,.82) 0%,rgba(3,5,7,.52) 30%,rgba(34,15,5,.08) 62%,rgba(75,32,8,.18) 100%),linear-gradient(180deg,rgba(0,0,0,.18),rgba(120,55,10,.08) 55%,rgba(0,0,0,.35));mix-blend-mode:normal;}
