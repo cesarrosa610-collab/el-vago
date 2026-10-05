@@ -62,7 +62,7 @@ export default async function Explorar({
     <main className="wrap explorePage">
       <GlobalNav />
       <section className="exploreHero">
-        <div className="exploreHeroVisual" aria-hidden="true"><img src="/explorar-escena.svg" alt="" /></div>
+        <div className="exploreHeroVisual" aria-hidden="true"><img src="https://images.unsplash.com/photo-1781665790125-81ffedbdbecc?auto=format&fit=crop&fm=jpg&q=86&w=1800" alt="" /></div>
         <div className="exploreHeroCopy">
           <p className="eyebrow">EXPLORAR</p>
           <h1>Entra en la historia.</h1>
