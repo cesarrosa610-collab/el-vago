@@ -22,7 +22,7 @@ export default function Comunidad() {
     <main className="wrap">
       <GlobalNav />
       <section className="hero communityHero">
-        <div className="communityHeroVisual" aria-hidden="true"><img src="/comunidad-escena.svg" alt="" /></div>
+        <div className="communityHeroVisual" aria-hidden="true"><img src="https://images.unsplash.com/photo-1771837602944-899e888e72e9?auto=format&fit=crop&fm=jpg&q=84&w=1400" alt="" /></div>
         <div className="communityHeroCopy"><p className="eyebrow">COMUNIDAD</p><h1>La historia también se investiga en comunidad.</h1><p className="lead">Un espacio para compartir teorías, debatir pistas y descubrir nuevas formas de interpretar cada expediente.</p></div>
       </section>
       <section className="grid landingGrid">
