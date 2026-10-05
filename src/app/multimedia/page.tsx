@@ -22,7 +22,7 @@ export default function Multimedia() {
     <main className="wrap">
       <GlobalNav />
       <section className="hero multimediaHero">
-        <div className="multimediaHeroVisual" aria-hidden="true"><img src="/exp-001-habitacion.svg" alt="" /><span className="mediaPlay"><i /></span></div>
+        <div className="multimediaHeroVisual" aria-hidden="true"><img src="https://images.unsplash.com/photo-1780247594959-7d5e35157592?auto=format&fit=crop&fm=jpg&q=84&w=1400" alt="" /><span className="mediaPlay"><i /></span></div>
         <div className="multimediaHeroCopy">
           <p className="eyebrow">ARCHIVO MULTIMEDIA</p><h1>Mira, escucha y descubre.</h1>
           <p className="lead">Una capa audiovisual para entrar en el universo del expediente desde otra perspectiva.</p>
