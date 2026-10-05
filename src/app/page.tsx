@@ -42,7 +42,7 @@ export default async function Home() {
 
       <section className="v3Hero">
         <div className="v3HeroMedia" aria-hidden="true">
-          <img src="/door-317.jpg" alt="" fetchPriority="high" decoding="async" />
+          <img src="https://images.unsplash.com/photo-1709913472141-b6ad54960da2?auto=format&fit=crop&fm=jpg&q=86&w=1600" alt="" fetchPriority="high" decoding="async" />
           <div className="v3HeroShade" />
           <div className="v3HeroNumber">317</div>
           <div className="v3DoorMark">HABITACIÓN<br /><b>317</b></div>
