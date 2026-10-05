@@ -104,7 +104,7 @@ export default async function Home() {
         </article>
         <article className="v3Panel v3PanelArchive">
           <span className="v3PanelNo">04 / ARCHIVO</span>
-          <div className="v3ArchiveVisual"><img src="/archivo-visual.svg" alt="Archivo documental de El Vago" loading="lazy" decoding="async" /><div className="v3ArchiveOverlay"><span>EL VAGO</span><strong>ARCHIVO<br />RESTRINGIDO</strong><b>EV-EXP</b></div></div>
+          <div className="v3ArchiveVisual"><img src="https://images.unsplash.com/photo-1613331700917-0992a56b4314?auto=format&fit=crop&fm=jpg&q=84&w=1400" alt="Archivo restringido con candado" loading="lazy" decoding="async" /><div className="v3ArchiveOverlay"><span>EL VAGO</span><strong>ARCHIVO<br />RESTRINGIDO</strong><b>EV-EXP</b></div></div>
           <div><h3>La verdad<br /><i>también se archiva.</i></h3><p>Casos, documentos y materiales que amplían el universo de cada expediente.</p></div>
           <Link href="/explorar">Ver el archivo <span>↗</span></Link>
         </article>
