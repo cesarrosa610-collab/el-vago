@@ -23,7 +23,7 @@ const exploreArtwork: Record<string, string> = {
   'EV-EXP-002': 'https://images.unsplash.com/photo-1763296556896-5b17f1414525?auto=format&fit=crop&fm=jpg&q=82&w=1000',
   'EV-EXP-003': 'https://images.unsplash.com/photo-1695893155282-4f71c946da5a?auto=format&fit=crop&fm=jpg&q=82&w=1000',
   'EV-EXP-004': 'https://images.unsplash.com/photo-1756993263826-9b4bae15e2b2?auto=format&fit=crop&fm=jpg&q=82&w=1000',
-  'EV-EXP-006': '/exp-006-habitacion.svg',
+  'EV-EXP-006': 'https://images.unsplash.com/photo-1757840600451-c29785ad2af3?auto=format&fit=crop&fm=jpg&q=86&w=1200',
 };
 
 export default async function Explorar({
