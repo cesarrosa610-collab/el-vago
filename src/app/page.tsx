@@ -6,11 +6,11 @@ import GlobalNav from './GlobalNav';
 const artwork: Record<string, string> = {
   'EV-EXP-001': '/door-317.jpg',
   // Fotografía real: llamada/telefono antiguo, tratada por CSS para mantener el lenguaje cinematográfico.
-  'EV-EXP-002': 'https://images.unsplash.com/photo-1784757332701-d81fce65a32d?auto=format&fit=crop&fm=jpg&q=82&w=1600',
+  'EV-EXP-002': 'https://images.unsplash.com/photo-1763296556896-5b17f1414525?auto=format&fit=crop&fm=jpg&q=82&w=1600',
   // Fotografía real: habitación tenue, para reforzar el misterio del expediente.
-  'EV-EXP-003': 'https://images.unsplash.com/photo-1703962169683-2064ad7d1179?auto=format&fit=crop&fm=jpg&q=82&w=1600',
+  'EV-EXP-003': 'https://images.unsplash.com/photo-1695893155282-4f71c946da5a?auto=format&fit=crop&fm=jpg&q=82&w=1600',
   // Fotografía real: pasillo oscuro, para el expediente del archivo desaparecido.
-  'EV-EXP-004': 'https://images.unsplash.com/photo-1695758987304-694fdcb654fa?auto=format&fit=crop&fm=jpg&q=82&w=1600',
+  'EV-EXP-004': 'https://images.unsplash.com/photo-1756993263826-9b4bae15e2b2?auto=format&fit=crop&fm=jpg&q=82&w=1600',
 };
 
 export default async function Home() {
