@@ -104,7 +104,7 @@ export default async function Home() {
         </article>
         <article className="v3Panel v3PanelArchive">
           <span className="v3PanelNo">04 / ARCHIVO</span>
-          <div className="v3ArchiveVisual"><span>EL VAGO</span><strong>ARCHIVO<br />RESTRINGIDO</strong><b>EV-EXP</b></div>
+          <div className="v3ArchiveVisual"><img src="/archivo-visual.svg" alt="Archivo documental de El Vago" loading="lazy" decoding="async" /><div className="v3ArchiveOverlay"><span>EL VAGO</span><strong>ARCHIVO<br />RESTRINGIDO</strong><b>EV-EXP</b></div></div>
           <div><h3>La verdad<br /><i>también se archiva.</i></h3><p>Casos, documentos y materiales que amplían el universo de cada expediente.</p></div>
           <Link href="/explorar">Ver el archivo <span>↗</span></Link>
         </article>
@@ -130,7 +130,7 @@ export default async function Home() {
       </section>
 
       <section className="v3Community">
-        <div className="v3CommunityImage"><div className="v3RedGlow" /><div className="v3Silhouette" /></div>
+        <div className="v3CommunityImage"><img src="/comunidad-escena.svg" alt="Escena de comunidad e investigación de El Vago" loading="lazy" decoding="async" /><div className="v3CommunityShade" /></div>
         <div className="v3CommunityCopy">
           <span className="v3SmallRed">COMUNIDAD EL VAGO</span>
           <blockquote>“No se trata solo de lo que ves,<br /><i>sino de todo lo que aún no sabes.</i>”</blockquote>
