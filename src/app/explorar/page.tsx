@@ -19,10 +19,10 @@ export const metadata: Metadata = {
 };
 
 const exploreArtwork: Record<string, string> = {
-  'EV-EXP-001': '/exp-001-habitacion.svg',
-  'EV-EXP-002': '/exp-002-llamada.svg',
-  'EV-EXP-003': '/exp-003-cuarto.svg',
-  'EV-EXP-004': '/exp-004-archivo.svg',
+  'EV-EXP-001': '/door-317.jpg',
+  'EV-EXP-002': 'https://images.unsplash.com/photo-1763296556896-5b17f1414525?auto=format&fit=crop&fm=jpg&q=82&w=1000',
+  'EV-EXP-003': 'https://images.unsplash.com/photo-1695893155282-4f71c946da5a?auto=format&fit=crop&fm=jpg&q=82&w=1000',
+  'EV-EXP-004': 'https://images.unsplash.com/photo-1756993263826-9b4bae15e2b2?auto=format&fit=crop&fm=jpg&q=82&w=1000',
   'EV-EXP-006': '/exp-006-habitacion.svg',
 };
 
