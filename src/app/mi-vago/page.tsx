@@ -50,13 +50,13 @@ export default async function MiVago() {
       <GlobalNav />
       <style>{`
         .miVagoHero{overflow:hidden;}
-        .miVagoHeroVisual img{opacity:1;filter:contrast(1.04) saturate(1.06) brightness(1.02);object-fit:cover;object-position:center center;}
-        .miVagoHeroVisual:after{background:linear-gradient(90deg,rgba(5,5,5,.82) 0%,rgba(5,5,5,.42) 42%,rgba(5,5,5,.08) 82%,rgba(5,5,5,.22) 100%),linear-gradient(0deg,rgba(5,5,5,.42),transparent 55%);}
+        .miVagoHeroVisual img{opacity:1;filter:contrast(1.05) saturate(1.12) brightness(.94);object-fit:cover;object-position:center center;}
+        .miVagoHeroVisual:after{background:linear-gradient(90deg,rgba(5,5,5,.88) 0%,rgba(5,5,5,.55) 34%,rgba(5,5,5,.18) 68%,rgba(5,5,5,.12) 100%),linear-gradient(0deg,rgba(5,5,5,.48),transparent 58%);}
         .miVagoHeroCopy{display:block;position:relative;z-index:2;}
         @media(max-width:760px){.miVagoHeroVisual img{object-position:center center;opacity:.9;}}
       `}</style>
       <section className="hero homeHero miVagoHero">
-        <div className="miVagoHeroVisual" aria-hidden="true"><img src="https://images.stockcake.com/public/d/0/b/d0bce6e2-2d90-4b1b-95f4-8e013a56a1d9_large/detective-evidence-wall-stockcake.jpg" alt="" /></div>
+        <div className="miVagoHeroVisual" aria-hidden="true"><img src="https://images.stockcake.com/public/3/1/6/3169f250-47b9-4913-aa70-293568c9f6b1_large/detective-workspace-scene-stockcake.jpg" alt="" /></div>
         <div className="miVagoHeroCopy"><p className="eyebrow">MI VAGO</p><h1>Tu investigación, siempre contigo.</h1><p className="lead">Continúa donde te quedaste y revisa tus investigaciones y descubrimientos.</p></div>
       </section>
       <section className="homeSection"><div className="sectionHead"><div><p className="eyebrow">EN INVESTIGACIÓN</p><h2>Investigación en curso</h2></div><p className="muted">{active.length} activa</p></div>
