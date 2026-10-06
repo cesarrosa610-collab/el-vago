@@ -42,7 +42,7 @@ export default async function Home() {
 
       <section className="v3Hero">
         <div className="v3HeroMedia" aria-hidden="true">
-          <img src="https://images.pexels.com/photos/8369512/pexels-photo-8369512.jpeg?auto=compress&dpr=1&w=1800" alt="" fetchPriority="high" decoding="async" />
+          <img src="https://img.magnific.com/premium-photo/dark-empty-street-dark-red-background-empty-dark-scene-neon-light-spotlights-asphalt-floor-studio-room-with-smoke-float-up-interior-texture-night-view_1028938-515036.jpg" alt="" fetchPriority="high" decoding="async" />
           <div className="v3HeroShade" />
           <div className="v3HeroNumber">317</div>
           <div className="v3DoorMark">HABITACIÓN<br /><b>317</b></div>
