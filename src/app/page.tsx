@@ -92,7 +92,7 @@ export default async function Home() {
       <section className="v3Triad">
         <article className="v3Panel v3PanelDark">
           <span className="v3PanelNo">02 / EVIDENCIAS</span>
-          <div className="v3PanelImage"><img src="https://images.unsplash.com/photo-1764352104384-15621992b7b9?auto=format&fit=crop&fm=jpg&q=82&w=1400" alt="Expediente documental con documentos antiguos" loading="lazy" decoding="async" /></div>
+          <div className="v3PanelImage"><img src="https://images.unsplash.com/photo-1784466505267-b89f7ff3a1d4?auto=format&fit=crop&fm=jpg&q=82&w=1600" alt="Expediente documental con documentos antiguos" loading="lazy" decoding="async" /></div>
           <div><h3>Todo deja<br /><i>una pista.</i></h3><p>Documentos, detalles y fragmentos de la historia aparecen a medida que avanzas.</p></div>
           <Link href={hrefFor('EV-EXP-004')}>Explorar evidencias <span>↗</span></Link>
         </article>
