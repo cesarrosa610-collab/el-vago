@@ -31,7 +31,7 @@ export default async function MiVago() {
 `}</style>
         <GlobalNav />
         <section className="hero homeHero miVagoHero">
-          <div className="miVagoHeroVisual" aria-hidden="true"><img src="https://images.unsplash.com/photo-1774125383150-6dbf4c5e8fa2?auto=format&fit=crop&fm=jpg&q=86&w=1800" alt="" /></div>
+          <div className="miVagoHeroVisual" aria-hidden="true"><img src="/mi-vago-castle-generated.jpg" alt="" /></div>
           <div className="miVagoHeroCopy"><p className="eyebrow">MI VAGO</p><h1>Tu investigación, siempre contigo.</h1><p className="lead">Inicia sesión para continuar tus investigaciones y revisar tu progreso en El Vago.</p><Link className="btn" href="/login">Entrar</Link></div>
         </section>
         <footer className="siteFooter"><div><span className="footerBrand">EL VAGO</span><p className="muted">Historias reales · Misterios sin respuesta.</p></div><div className="footerLinks"><Link href="/">Inicio</Link><Link href="/explorar">Explorar</Link><Link href="/multimedia">Multimedia</Link><Link href="/comunidad">Comunidad</Link><Link href="/mi-vago">Mi Vago</Link></div><span className="muted footerCopy">© {new Date().getFullYear()} El Vago</span></footer>
@@ -56,7 +56,7 @@ export default async function MiVago() {
         @media(max-width:760px){.miVagoHeroVisual img{object-position:center center;opacity:.9;}}
       `}</style>
       <section className="hero homeHero miVagoHero">
-        <div className="miVagoHeroVisual" aria-hidden="true"><img src="https://images.unsplash.com/photo-1660299173156-a69ddba25824?auto=format&fit=crop&fm=jpg&q=92&w=2400" alt="" /></div>
+        <div className="miVagoHeroVisual" aria-hidden="true"><img src="/mi-vago-castle-generated.jpg" alt="" /></div>
         <div className="miVagoHeroCopy"><p className="eyebrow">MI VAGO</p><h1>Tu investigación, siempre contigo.</h1><p className="lead">Continúa donde te quedaste y revisa tus investigaciones y descubrimientos.</p></div>
       </section>
       <section className="homeSection"><div className="sectionHead"><div><p className="eyebrow">EN INVESTIGACIÓN</p><h2>Investigación en curso</h2></div><p className="muted">{active.length} activa</p></div>
