@@ -48,9 +48,16 @@ export default async function MiVago() {
   return (
     <main className="wrap homePage miVagoPage">
       <GlobalNav />
+      <style>{`
+        .miVagoHero{overflow:hidden;}
+        .miVagoHeroVisual img{opacity:1;filter:none;object-fit:cover;object-position:center center;}
+        .miVagoHeroVisual:after{background:linear-gradient(180deg,rgba(0,0,0,.02),rgba(0,0,0,.18));}
+        .miVagoHeroCopy{display:none;}
+        @media(max-width:760px){.miVagoHeroVisual img{object-position:center center;}}
+      `}</style>
       <section className="hero homeHero miVagoHero">
-        <div className="miVagoHeroVisual" aria-hidden="true"><img src="https://images.stockcake.com/public/1/0/0/1002f04f-ba38-4a3b-96e2-f40d9ee32240_medium/investigation-board-illuminated-stockcake.jpg" alt="" /></div>
-        <div className="miVagoHeroCopy"><p className="eyebrow">MI VAGO</p><h1>Tu investigación, siempre contigo.</h1><p className="lead">Continúa donde te quedaste y revisa tus investigaciones y descubrimientos.</p></div>
+        <div className="miVagoHeroVisual" aria-hidden="true"><img src="/mi-vago-hero.svg" alt="" /></div>
+        <div className="miVagoHeroCopy" aria-hidden="true"></div>
       </section>
       <section className="homeSection"><div className="sectionHead"><div><p className="eyebrow">EN INVESTIGACIÓN</p><h2>Investigación en curso</h2></div><p className="muted">{active.length} activa</p></div>
         {active.length ? <div className="grid">{active.map((item) => <article className="card" key={item.id}><div className="exploreCardTop"><span className="tag">{item.expediente.code}</span><span className="exploreStatus">EN CURSO</span></div><h2>{item.expediente.title}</h2><p className="muted">{item.expediente.description}</p><div className="caseMeta"><span>Progreso {Math.round(item.progress)}%</span><span>{item.expediente.evidence.length} evidencias</span></div><div className="bar" aria-label={`Progreso ${Math.round(item.progress)}%`}><i style={{width:`${Math.min(100,Math.max(0,item.progress))}%`}} /></div><Link className="btn" href={`/expedientes/${item.expediente.slug}`}>Continuar investigación</Link></article>)}</div> : <div className="notice exploreEmpty">No tienes investigaciones en curso. <Link href="/explorar">Explorar expedientes</Link></div>}
