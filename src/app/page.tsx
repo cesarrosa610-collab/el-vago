@@ -130,7 +130,7 @@ export default async function Home() {
       </section>
 
       <section className="v3Community">
-        <div className="v3CommunityImage"><img src="/community-hero.webp?v=2" alt="Escena de comunidad e investigación de El Vago" loading="lazy" decoding="async" /><div className="v3CommunityShade" /></div>
+        <div className="v3CommunityImage"><img src="https://images.unsplash.com/photo-1758272133786-ee98adcc6837?auto=format&fit=crop&fm=jpg&q=88&w=1800" alt="Escena de comunidad e investigación de El Vago" loading="lazy" decoding="async" /><div className="v3CommunityShade" /></div>
         <div className="v3CommunityCopy">
           <span className="v3SmallRed">COMUNIDAD EL VAGO</span>
           <blockquote>“No se trata solo de lo que ves,<br /><i>sino de todo lo que aún no sabes.</i>”</blockquote>
