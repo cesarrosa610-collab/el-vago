@@ -54,3 +54,67 @@
   .v3SectionHead h2{max-width:none}
   .v3CaseGrid--2 .v3CaseBody{display:block}
 }
+
+
+/* Cinematic lighting polish — visual only: no layout, content, imagery or engine changes. */
+.v3Page{
+  background:
+    radial-gradient(circle at 78% 7%,rgba(190,16,25,.055),transparent 28%),
+    radial-gradient(circle at 18% 42%,rgba(214,161,109,.025),transparent 25%),
+    #070809;
+}
+.v3Nav{
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.018),transparent 70%),
+    #060708;
+  box-shadow:0 8px 32px rgba(0,0,0,.24);
+}
+.v3Hero{
+  box-shadow:inset 0 -60px 90px rgba(0,0,0,.18);
+}
+.v3HeroShade{
+  background:
+    linear-gradient(90deg,#050607 0%,rgba(5,6,7,.78) 28%,rgba(5,6,7,.30) 62%,rgba(5,6,7,.12) 100%),
+    radial-gradient(circle at 72% 42%,rgba(214,161,109,.09),transparent 28%),
+    linear-gradient(0deg,rgba(0,0,0,.48),rgba(82,34,8,.08) 55%,rgba(0,0,0,.12));
+}
+.v3FeatureCopy,
+.v3Panel,
+.v3Case,
+.v3Community,
+.v3Premium{
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.018);
+}
+.v3FeatureCopy{
+  background:
+    radial-gradient(circle at 100% 18%,rgba(214,161,109,.045),transparent 32%),
+    #0d0f11;
+}
+.v3PanelPhoto{
+  background:
+    radial-gradient(circle at 82% 12%,rgba(190,16,25,.12),transparent 34%),
+    linear-gradient(145deg,#111315,#17090b);
+}
+.v3PanelArchive{
+  background:
+    radial-gradient(circle at 12% 15%,rgba(214,161,109,.035),transparent 32%),
+    #0d0f11;
+}
+.v3Community{
+  background:
+    radial-gradient(circle at 88% 50%,rgba(190,16,25,.055),transparent 34%),
+    #0b0c0e;
+}
+.v3CommunityCopy{
+  background:
+    radial-gradient(circle at 12% 48%,rgba(214,161,109,.025),transparent 30%),
+    transparent;
+}
+.v3Premium{
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.02),
+    0 24px 70px rgba(0,0,0,.18);
+}
+.v3Footer{
+  background:linear-gradient(180deg,rgba(255,255,255,.008),transparent 45%);
+}
