@@ -56,7 +56,7 @@ export default async function MiVago() {
         @media(max-width:760px){.miVagoHeroVisual img{object-position:center center;opacity:.9;}}
       `}</style>
       <section className="hero homeHero miVagoHero">
-        <div className="miVagoHeroVisual" aria-hidden="true"><img src="https://images.unsplash.com/photo-1774125383150-6dbf4c5e8fa2?auto=format&fit=crop&fm=jpg&q=90&w=2000" alt="" /></div>
+        <div className="miVagoHeroVisual" aria-hidden="true"><img src="https://images.stockcake.com/public/d/0/b/d0bce6e2-2d90-4b1b-95f4-8e013a56a1d9_large/detective-evidence-wall-stockcake.jpg" alt="" /></div>
         <div className="miVagoHeroCopy"><p className="eyebrow">MI VAGO</p><h1>Tu investigación, siempre contigo.</h1><p className="lead">Continúa donde te quedaste y revisa tus investigaciones y descubrimientos.</p></div>
       </section>
       <section className="homeSection"><div className="sectionHead"><div><p className="eyebrow">EN INVESTIGACIÓN</p><h2>Investigación en curso</h2></div><p className="muted">{active.length} activa</p></div>
