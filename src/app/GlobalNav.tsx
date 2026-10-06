@@ -9,7 +9,7 @@ export default async function GlobalNav() {
   return (
     <header className="v3Nav">
       <Link className="v3Brand" href="/">
-        <strong>EL VAGO</strong>
+        <strong><span className="v3BrandWord">EL VAG</span><span className="v3BrandO">O</span></strong>
         <small>HISTORIAS REALES · MISTERIOS · FORMATO DOCUMENTAL</small>
       </Link>
       <nav className="v3NavLinks" aria-label="Navegación principal">
