@@ -44,7 +44,7 @@ export default async function MiVago() {
     <main className="wrap homePage miVagoPage">
       <GlobalNav />
       <section className="hero homeHero miVagoHero">
-        <div className="miVagoHeroVisual" aria-hidden="true"><img src="/exp-001-habitacion.svg" alt="" /></div>
+        <div className="miVagoHeroVisual" aria-hidden="true"><img src="https://images.stockcake.com/public/1/0/0/1002f04f-ba38-4a3b-96e2-f40d9ee32240_medium/investigation-board-illuminated-stockcake.jpg" alt="" /></div>
         <div className="miVagoHeroCopy"><p className="eyebrow">MI VAGO</p><h1>Tu investigación, siempre contigo.</h1><p className="lead">Continúa donde te quedaste y revisa tus investigaciones y descubrimientos.</p></div>
       </section>
       <section className="homeSection"><div className="sectionHead"><div><p className="eyebrow">EN INVESTIGACIÓN</p><h2>Investigación en curso</h2></div><p className="muted">{active.length} activa</p></div>
