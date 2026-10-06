@@ -50,13 +50,13 @@ export default async function MiVago() {
       <GlobalNav />
       <style>{`
         .miVagoHero{overflow:hidden;}
-        .miVagoHeroVisual img{opacity:1;filter:contrast(1.05) saturate(1.12) brightness(.94);object-fit:cover;object-position:center center;}
-        .miVagoHeroVisual:after{background:linear-gradient(90deg,rgba(5,5,5,.88) 0%,rgba(5,5,5,.55) 34%,rgba(5,5,5,.18) 68%,rgba(5,5,5,.12) 100%),linear-gradient(0deg,rgba(5,5,5,.48),transparent 58%);}
+        .miVagoHeroVisual img{opacity:1;filter:contrast(1.06) saturate(1.14) brightness(.98);object-fit:cover;object-position:center center;}
+        .miVagoHeroVisual:after{background:linear-gradient(90deg,rgba(5,5,5,.84) 0%,rgba(5,5,5,.46) 38%,rgba(5,5,5,.12) 76%,rgba(5,5,5,.16) 100%),linear-gradient(0deg,rgba(5,5,5,.40),transparent 58%);}
         .miVagoHeroCopy{display:block;position:relative;z-index:2;}
         @media(max-width:760px){.miVagoHeroVisual img{object-position:center center;opacity:.9;}}
       `}</style>
       <section className="hero homeHero miVagoHero">
-        <div className="miVagoHeroVisual" aria-hidden="true"><img src="https://images.stockcake.com/public/3/1/6/3169f250-47b9-4913-aa70-293568c9f6b1_large/detective-workspace-scene-stockcake.jpg" alt="" /></div>
+        <div className="miVagoHeroVisual" aria-hidden="true"><img src="https://images.unsplash.com/photo-1660299173156-a69ddba25824?auto=format&fit=crop&fm=jpg&q=92&w=2400" alt="" /></div>
         <div className="miVagoHeroCopy"><p className="eyebrow">MI VAGO</p><h1>Tu investigación, siempre contigo.</h1><p className="lead">Continúa donde te quedaste y revisa tus investigaciones y descubrimientos.</p></div>
       </section>
       <section className="homeSection"><div className="sectionHead"><div><p className="eyebrow">EN INVESTIGACIÓN</p><h2>Investigación en curso</h2></div><p className="muted">{active.length} activa</p></div>
