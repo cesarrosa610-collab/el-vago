@@ -20,6 +20,29 @@ export const metadata: Metadata = {
 export default function Comunidad() {
   return (
     <main className="wrap">
+      <style>{`
+        .v3Nav{
+          position:sticky;
+          top:0;
+          z-index:1000;
+          background:rgba(6,7,8,.96);
+          -webkit-backdrop-filter:blur(16px);
+          backdrop-filter:blur(16px);
+        }
+        @media(max-width:650px){
+          .v3Nav{
+            padding-top:max(12px, env(safe-area-inset-top));
+          }
+          .v3NavLinks{
+            -webkit-overflow-scrolling:touch;
+            scrollbar-width:none;
+            overscroll-behavior-x:contain;
+            touch-action:pan-x;
+          }
+          .v3NavLinks::-webkit-scrollbar{display:none}
+          .v3NavLinks a{flex:0 0 auto}
+        }
+      `}</style>
       <GlobalNav />
       <section className="hero communityHero">
         <div className="communityHeroVisual" aria-hidden="true"><img src="https://images.unsplash.com/photo-1758272133786-ee98adcc6837?auto=format&fit=crop&fm=jpg&q=88&w=1800" alt="" /></div>
