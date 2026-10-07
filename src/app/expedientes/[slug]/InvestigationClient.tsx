@@ -1,6 +1,8 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
+import AudiovisualScenePlayer from './AudiovisualScenePlayer';
+import { EV001_AUDIOVISUAL } from './audiovisual-scenes';
 
 type Evidence = {
   id: string;
@@ -943,6 +945,18 @@ export default function InvestigationClient({
               );
             })}
           </div>
+
+          {expediente.code === 'EV-EXP-001' && status !== 'NOT_STARTED' && (
+            <AudiovisualScenePlayer
+              scene={
+                EV001_AUDIOVISUAL
+                  .filter((scene) => typeof scene.unlockAtProgress !== 'number' || progress >= scene.unlockAtProgress)
+                  .sort((a, b) => (a.unlockAtProgress ?? 0) - (b.unlockAtProgress ?? 0))
+                  .at(-1) ?? EV001_AUDIOVISUAL[0]
+              }
+              progress={status === 'COMPLETED' ? 100 : progress}
+            />
+          )}
 
           <div className="evidenceAreaHeader">
             <div>

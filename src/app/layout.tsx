@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './style.css';
 import './mobile-nav-fix.css';
 import './home-redesign.css';
+import './audiovisual.css';
 import ScrollToTop from './ScrollToTop';
 
 const siteUrl = 'https://el-vago.vercel.app';
