@@ -44,6 +44,22 @@ export default function AudiovisualScenePlayer({
     );
   }
 
+  if (!scene.src) {
+    return (
+      <section className="audiovisual-scene audiovisual-scene--fallback" aria-label={scene.title}>
+        {scene.poster ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={scene.poster} alt="" loading="lazy" />
+        ) : null}
+        <div>
+          <span className="audiovisual-scene__eyebrow">EVIDENCIA AUDIOVISUAL · V2.1</span>
+          <strong>{scene.title}</strong>
+          <p>La estructura está lista. La pieza audiovisual original se cargará aquí antes de publicar esta escena.</p>
+        </div>
+      </section>
+    );
+  }
+
   if (failed) {
     return (
       <section className="audiovisual-scene audiovisual-scene--fallback" aria-label={scene.title}>
