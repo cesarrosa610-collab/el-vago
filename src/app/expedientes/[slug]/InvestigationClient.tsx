@@ -946,10 +946,7 @@ export default function InvestigationClient({
           </div>
 
           {expediente.code === 'EV-EXP-001' && status !== 'NOT_STARTED' && (
-            <AudiovisualScenePlayer
-              progress={status === 'COMPLETED' ? 100 : progress}
-              status={status}
-            />
+            <AudiovisualScenePlayer status={status} />
           )}
 
           <div className="evidenceAreaHeader">
