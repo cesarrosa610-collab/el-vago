@@ -3,14 +3,15 @@
 import { useState } from 'react';
 
 type Props = {
-  progress?: number;
   status: string;
 };
 
-export default function AudiovisualScenePlayer({ progress = 0, status }: Props) {
+export default function AudiovisualScenePlayer({ status }: Props) {
   const [failed, setFailed] = useState(false);
 
-  if (status === 'NOT_STARTED' || progress < 1) return null;
+  // progress can legitimately be 0 when a user has just started the case.
+  // Unlock based on investigation status, not percentage of evidence discovered.
+  if (status === 'NOT_STARTED') return null;
 
   return (
     <section
@@ -54,7 +55,7 @@ export default function AudiovisualScenePlayer({ progress = 0, status }: Props) 
           Tu navegador no puede reproducir este video.
         </video>
       ) : (
-        <div style={{ padding: 22, color: '#b5bbbf', fontSize: 13, lineHeight: 1.6 }}>
+        <div role="status" style={{ padding: 22, color: '#b5bbbf', fontSize: 13, lineHeight: 1.6 }}>
           <strong style={{ display: 'block', color: '#fff', marginBottom: 6 }}>La secuencia audiovisual no está disponible todavía.</strong>
           La investigación puede continuar. El archivo MP4 final debe estar publicado en el servidor para habilitar la reproducción.
         </div>
