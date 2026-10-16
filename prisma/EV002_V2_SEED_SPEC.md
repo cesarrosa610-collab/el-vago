@@ -34,8 +34,8 @@ Use this specification to populate the second fictional interactive expediente i
 - T-202 — Registro alterado — unlockAfter 4
 
 ## Hypotheses
-- H-201 — Fallo técnico — unlockAfter 4 — correct
-- H-202 — Alteración posterior — unlockAfter 4 — incorrect
+- H-201 — Fallo técnico — unlockAfter 5 — correct
+- H-202 — Alteración posterior — unlockAfter 5 — incorrect
 
 ## Timeline
 - TL-201 — 03:17 — unlockAfter 0
@@ -44,7 +44,7 @@ Use this specification to populate the second fictional interactive expediente i
 - TL-204 — Sincronización — unlockAfter 4
 
 ## Release gate
-Do not publish this expediente from this branch. Before V2 release, validate:
+Do not publish this expediente from this branch. Before V2.1 publication, validate:
 1. New account starts at 0%.
 2. All five evidence items unlock progressively.
 3. Narrative sections unlock at the declared thresholds.
