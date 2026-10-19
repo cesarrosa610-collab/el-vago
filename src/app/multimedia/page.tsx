@@ -28,6 +28,17 @@ export default function Multimedia() {
           <p className="lead">Una capa audiovisual para entrar en el universo del expediente desde otra perspectiva.</p>
         </div>
       </section>
+      <section className="card ev001VideoSection" aria-labelledby="ev001-video-title" style={{ margin: '24px 0', padding: 'clamp(16px, 3vw, 28px)' }}>
+        <p className="eyebrow">EV-001 · PIEZA AUDIOVISUAL</p>
+        <h2 id="ev001-video-title">La Habitación 317 — Video oficial</h2>
+        <p className="muted">Reproduce aquí la pieza audiovisual del expediente, con su música y diseño sonoro.</p>
+        <video controls playsInline preload="metadata" poster="/door-317.jpg" aria-label="Video EV-001 La Habitación 317" style={{ display: 'block', width: '100%', maxHeight: '75vh', aspectRatio: '16 / 9', objectFit: 'contain', margin: '16px 0', background: '#050505', border: '1px solid #252a2d', borderRadius: 10 }}>
+          <source src="/ev001-habitacion-317-v10.mp4" type="video/mp4" />
+          Tu navegador no puede reproducir este video. <a href="/ev001-habitacion-317-v10.mp4">Abrir el archivo de video</a>.
+        </video>
+        <p className="muted">Si el reproductor no carga, <a href="/ev001-habitacion-317-v10.mp4" target="_blank" rel="noreferrer">abre el video directamente</a>.</p>
+        <Link className="btn" href="/expedientes/la-habitacion-317">Abrir expediente</Link>
+      </section>
       <section className="mediaFeature"><div><p className="eyebrow">PIEZA DESTACADA</p><h2>La Habitación 317</h2><p className="muted">La experiencia audiovisual de La Habitación 317 está diseñada para reunir imágenes, registros y sonido del expediente.</p></div><div className="mediaTimeline" aria-hidden="true"><span /><span /><span /><span /><span /><span /><span /></div></section>
 
       <section className="card ev001VideoSection" aria-labelledby="ev001-video-title">

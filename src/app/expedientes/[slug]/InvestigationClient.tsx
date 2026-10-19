@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
+import AudiovisualScenePlayer from './AudiovisualScenePlayer';
 
 type Evidence = {
   id: string;
@@ -967,6 +968,10 @@ export default function InvestigationClient({
               );
             })}
           </div>
+
+          {expediente.code === 'EV-EXP-001' && status !== 'NOT_STARTED' && (
+            <AudiovisualScenePlayer status={status} />
+          )}
 
           <div className="evidenceAreaHeader">
             <div>
