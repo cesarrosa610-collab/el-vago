@@ -882,6 +882,19 @@ export default function InvestigationClient({
         </div>
       </header>
 
+      {expediente.title.toLowerCase().includes('317') && (
+        <section className="card ev001EmbeddedVideo" aria-labelledby="ev001-embedded-title" style={{ margin: '24px auto', padding: 'clamp(16px, 3vw, 28px)', maxWidth: 1180 }}>
+          <p className="eyebrow">EV-001 · ARCHIVO AUDIOVISUAL</p>
+          <h2 id="ev001-embedded-title">La Habitación 317 — Video oficial</h2>
+          <p className="muted">Reproduce la pieza audiovisual sin salir de la investigación.</p>
+          <video controls playsInline preload="metadata" poster="/door-317.jpg" aria-label="Video EV-001 La Habitación 317" style={{ display: 'block', width: '100%', maxHeight: '70vh', aspectRatio: '16 / 9', objectFit: 'contain', margin: '16px 0', background: '#050505', border: '1px solid #252a2d', borderRadius: 10 }}>
+            <source src="/ev001-habitacion-317-v10.mp4" type="video/mp4" />
+            Tu navegador no puede reproducir este video. <a href="/ev001-habitacion-317-v10.mp4">Abrir el archivo de video</a>.
+          </video>
+          <p className="muted">¿No carga? <a href="/ev001-habitacion-317-v10.mp4" target="_blank" rel="noreferrer">Abre el video directamente</a>.</p>
+        </section>
+      )}
+
       <section className="investigation">
         <aside className="caseNav">
           <div className="sideTitle">ARCHIVO DE INVESTIGACIÓN</div>
