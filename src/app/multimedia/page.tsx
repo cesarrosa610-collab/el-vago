@@ -30,12 +30,13 @@ export default function Multimedia() {
       </section>
       <section className="mediaFeature"><div><p className="eyebrow">PIEZA DESTACADA</p><h2>La Habitación 317</h2><p className="muted">La experiencia audiovisual de La Habitación 317 está diseñada para reunir imágenes, registros y sonido del expediente.</p></div><div className="mediaTimeline" aria-hidden="true"><span /><span /><span /><span /><span /><span /><span /></div></section>
 
-      <section className="card ev001VideoSection" aria-labelledby="ev001-video-title">
+      <section className="card ev001VideoSection" aria-labelledby="ev001-video-title" style={{ margin: "1.25rem 0", padding: "clamp(1rem, 3vw, 2rem)" }}>
         <p className="eyebrow">EV-001 · PIEZA AUDIOVISUAL</p>
         <h2 id="ev001-video-title">La Habitación 317 — Video oficial</h2>
         <p className="muted">Reproducción de la pieza audiovisual del expediente. Usa los controles para reproducir el video y escuchar el diseño sonoro.</p>
         <video
           className="ev001VideoPlayer"
+          style={{ display: "block", width: "100%", maxHeight: "75vh", aspectRatio: "16 / 9", objectFit: "contain", margin: "1rem 0", background: "#050505", border: "1px solid rgba(255,255,255,.14)", borderRadius: "10px" }}
           controls
           playsInline
           preload="metadata"
@@ -45,7 +46,7 @@ export default function Multimedia() {
           <source src="/El_Vago_EV001_Melodia_HD_Impacto_Eco_v10%20(3).mp4" type="video/mp4" />
           Tu navegador no puede reproducir este video. <a href="/El_Vago_EV001_Melodia_HD_Impacto_Eco_v10%20(3).mp4">Abrir el archivo de video</a>.
         </video>
-        <p className="muted ev001VideoHelp">Si no inicia, <a href="/El_Vago_EV001_Melodia_HD_Impacto_Eco_v10%20(3).mp4" target="_blank" rel="noreferrer">abre el video directamente</a>.</p>
+        <p className="muted ev001VideoHelp" style={{ marginBottom: "1rem" }}>Si no inicia, <a style={{ color: "#ff3038", textDecoration: "underline" }} href="/El_Vago_EV001_Melodia_HD_Impacto_Eco_v10%20(3).mp4" target="_blank" rel="noreferrer">abre el video directamente</a>.</p>
         <Link className="btn" href="/expedientes/la-habitacion-317">Volver al expediente</Link>
       </section>
 
@@ -56,12 +57,6 @@ export default function Multimedia() {
       </section>
       <section className="premiumTeaser"><div><p className="eyebrow">EL VAGO</p><h2>Todo misterio deja algo que ver.</h2><p className="muted">El archivo multimedia crecerá junto con la historia. Mientras tanto, puedes comenzar la investigación.</p></div><Link className="btn" href="/explorar">Entrar en la historia</Link></section>
       <footer className="siteFooter"><div><span className="footerBrand">EL VAGO</span><p className="muted">Historias reales · Misterios sin respuesta.</p></div><div className="footerLinks"><Link href="/">Inicio</Link><Link href="/explorar">Explorar</Link><Link href="/multimedia">Multimedia</Link><Link href="/comunidad">Comunidad</Link><Link href="/mi-vago">Mi Vago</Link></div><span className="muted footerCopy">© {new Date().getFullYear()} El Vago</span></footer>
-      <style jsx>{`
-        .ev001VideoSection { margin: 1.25rem 0; padding: clamp(1rem, 3vw, 2rem); }
-        .ev001VideoPlayer { display: block; width: 100%; max-height: 75vh; aspect-ratio: 16 / 9; object-fit: contain; margin: 1rem 0; background: #050505; border: 1px solid rgba(255,255,255,.14); border-radius: 10px; }
-        .ev001VideoHelp { margin-bottom: 1rem; }
-        .ev001VideoHelp a { color: #ff3038; text-decoration: underline; }
-      `}</style>
     </main>
   );
 }
