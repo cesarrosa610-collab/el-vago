@@ -25,8 +25,9 @@ export default async function MiVago() {
     return (
       <main className="wrap homePage miVagoPage">
 <style>{`
-  .miVagoHero{min-height:480px;padding-bottom:64px;}
-  .miVagoHeroCopy{padding-bottom:12px;}
+  .miVagoHeroCopy{position:relative;width:100%;}
+  .miVagoHeroCopy .btn{position:absolute;top:20px;right:0;z-index:4;}
+  @media(max-width:760px){.miVagoHeroCopy .btn{top:8px;right:0;padding:10px 14px;}}
   .miVagoHeroVisual img{opacity:.82;filter:contrast(1.06) saturate(1.08) brightness(1.12);}
   .miVagoHeroVisual:after{background:linear-gradient(90deg,rgba(5,5,5,.82) 0%,rgba(5,5,5,.48) 40%,rgba(5,5,5,.08) 78%,rgba(5,5,5,.24) 100%),linear-gradient(0deg,rgba(5,5,5,.55) 0%,transparent 52%,rgba(0,0,0,.04) 100%);}
   @media(max-width:760px){.miVagoHeroVisual img{opacity:.72;object-position:center center;}.miVagoHeroVisual:after{background:linear-gradient(0deg,rgba(5,5,5,.72) 4%,rgba(5,5,5,.38) 48%,rgba(5,5,5,.06) 100%),linear-gradient(90deg,rgba(5,5,5,.34),rgba(5,5,5,.04));}}
