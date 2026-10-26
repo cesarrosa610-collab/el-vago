@@ -7,6 +7,7 @@ import EvidenceForm from './EvidenceForm';
 import EditEvidenceForm from './EditEvidenceForm';
 import NarrativeForm from './NarrativeForm';
 import NarrativeDeleteButton from './NarrativeDeleteButton';
+import NarrativeEditForm from './NarrativeEditForm';
 import PublishButton from './PublishButton';
 import DeleteDraftButton from './DeleteDraftButton';
 import ArchiveButton from './ArchiveButton';
@@ -215,12 +216,7 @@ export default async function AdminExpedientePage({
                   </p>
 
                   {expediente.status === 'DRAFT' && (
-                    <NarrativeDeleteButton
-                      expedienteId={expediente.id}
-                      itemId={x.id}
-                      type="CLUE"
-                      code={x.code}
-                    />
+                    <><NarrativeEditForm expedienteId={expediente.id} type="CLUE" item={{ id: x.id, code: x.code, title: x.title, body: x.description, unlockAfter: x.unlockAfter, sortOrder: x.sortOrder }} /><NarrativeDeleteButton expedienteId={expediente.id} itemId={x.id} type="CLUE" code={x.code} /></>
                   )}
                 </div>
               ))}
@@ -248,12 +244,7 @@ export default async function AdminExpedientePage({
                   </p>
 
                   {expediente.status === 'DRAFT' && (
-                    <NarrativeDeleteButton
-                      expedienteId={expediente.id}
-                      itemId={x.id}
-                      type="QUESTION"
-                      code={x.code}
-                    />
+                    <><NarrativeEditForm expedienteId={expediente.id} type="QUESTION" item={{ id: x.id, code: x.code, title: '', body: x.text, unlockAfter: x.unlockAfter, sortOrder: x.sortOrder }} /><NarrativeDeleteButton expedienteId={expediente.id} itemId={x.id} type="QUESTION" code={x.code} /></>
                   )}
                 </div>
               ))}
@@ -281,12 +272,7 @@ export default async function AdminExpedientePage({
                   </p>
 
                   {expediente.status === 'DRAFT' && (
-                    <NarrativeDeleteButton
-                      expedienteId={expediente.id}
-                      itemId={x.id}
-                      type="THEORY"
-                      code={x.code}
-                    />
+                    <><NarrativeEditForm expedienteId={expediente.id} type="THEORY" item={{ id: x.id, code: x.code, title: x.title, body: x.description, unlockAfter: x.unlockAfter, sortOrder: x.sortOrder }} /><NarrativeDeleteButton expedienteId={expediente.id} itemId={x.id} type="THEORY" code={x.code} /></>
                   )}
                 </div>
               ))}
@@ -314,12 +300,7 @@ export default async function AdminExpedientePage({
                   </p>
 
                   {expediente.status === 'DRAFT' && (
-                    <NarrativeDeleteButton
-                      expedienteId={expediente.id}
-                      itemId={x.id}
-                      type="HYPOTHESIS"
-                      code={x.code}
-                    />
+                    <><NarrativeEditForm expedienteId={expediente.id} type="HYPOTHESIS" item={{ id: x.id, code: x.code, title: x.title, body: x.description, unlockAfter: x.unlockAfter, sortOrder: x.sortOrder, isCorrect: x.isCorrect }} /><NarrativeDeleteButton expedienteId={expediente.id} itemId={x.id} type="HYPOTHESIS" code={x.code} /></>
                   )}
                 </div>
               ))}
@@ -348,12 +329,7 @@ export default async function AdminExpedientePage({
                   </p>
 
                   {expediente.status === 'DRAFT' && (
-                    <NarrativeDeleteButton
-                      expedienteId={expediente.id}
-                      itemId={x.id}
-                      type="TIMELINE"
-                      code={x.code}
-                    />
+                    <><NarrativeEditForm expedienteId={expediente.id} type="TIMELINE" item={{ id: x.id, code: x.code, title: x.label, body: x.description, unlockAfter: x.unlockAfter, sortOrder: x.sortOrder }} /><NarrativeDeleteButton expedienteId={expediente.id} itemId={x.id} type="TIMELINE" code={x.code} /></>
                   )}
                 </div>
               ))}
