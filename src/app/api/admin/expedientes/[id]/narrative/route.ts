@@ -362,6 +362,76 @@ export async function POST(
   }
 }
 
+
+export async function PUT(
+  req: Request,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  const user = await currentUser();
+  if (!user || user.role !== 'ADMIN') {
+    return NextResponse.json({ error: 'No autorizado' }, { status: 403 });
+  }
+
+  const { id } = await params;
+  const expediente = await prisma.expediente.findUnique({
+    where: { id },
+    select: { id: true, status: true },
+  });
+  if (!expediente) {
+    return NextResponse.json({ error: 'Expediente no encontrado' }, { status: 404 });
+  }
+  if (expediente.status !== 'DRAFT') {
+    return NextResponse.json({ error: 'Solo se puede editar contenido de un DRAFT' }, { status: 409 });
+  }
+
+  const body = await req.json().catch(() => null);
+  const allowedTypes: NarrativeType[] = ['CLUE', 'QUESTION', 'THEORY', 'HYPOTHESIS', 'TIMELINE'];
+  const type = body?.type as NarrativeType;
+  const itemId = typeof body?.itemId === 'string' ? body.itemId.trim() : '';
+  const code = typeof body?.code === 'string' ? body.code.trim() : '';
+  const title = typeof body?.title === 'string' ? body.title.trim() : '';
+  const narrativeBody = typeof body?.body === 'string' ? body.body.trim() : '';
+  const unlockAfter = Number(body?.unlockAfter);
+  const sortOrder = Number(body?.sortOrder ?? 0);
+  const isCorrect = type === 'HYPOTHESIS' ? Boolean(body?.isCorrect) : false;
+
+  if (!body || !allowedTypes.includes(type) || !itemId || !code || !narrativeBody ||
+      !Number.isInteger(unlockAfter) || unlockAfter < 0 ||
+      !Number.isInteger(sortOrder) || sortOrder < 0) {
+    return NextResponse.json({ error: 'Revisa el código, contenido y niveles de desbloqueo.' }, { status: 400 });
+  }
+  if (type !== 'QUESTION' && !title) {
+    return NextResponse.json({ error: 'El título es requerido.' }, { status: 400 });
+  }
+
+  try {
+    let result: { count: number };
+    switch (type) {
+      case 'CLUE':
+        result = await prisma.clue.updateMany({ where: { id: itemId, expedienteId: id }, data: { code, title, description: narrativeBody, unlockAfter, sortOrder } });
+        break;
+      case 'QUESTION':
+        result = await prisma.question.updateMany({ where: { id: itemId, expedienteId: id }, data: { code, text: narrativeBody, unlockAfter, sortOrder } });
+        break;
+      case 'THEORY':
+        result = await prisma.theory.updateMany({ where: { id: itemId, expedienteId: id }, data: { code, title, description: narrativeBody, unlockAfter, sortOrder } });
+        break;
+      case 'HYPOTHESIS':
+        result = await prisma.hypothesis.updateMany({ where: { id: itemId, expedienteId: id }, data: { code, title, description: narrativeBody, isCorrect, unlockAfter, sortOrder } });
+        break;
+      case 'TIMELINE':
+        result = await prisma.timelineEvent.updateMany({ where: { id: itemId, expedienteId: id }, data: { code, label: title, description: narrativeBody, unlockAfter, sortOrder } });
+        break;
+    }
+    if (result.count === 0) {
+      return NextResponse.json({ error: 'La pieza no existe o no pertenece a este expediente.' }, { status: 404 });
+    }
+    return NextResponse.json({ ok: true });
+  } catch {
+    return NextResponse.json({ error: 'No se pudo actualizar. Comprueba que el código no esté repetido.' }, { status: 409 });
+  }
+}
+
 export async function DELETE(
   req: Request,
   { params }: { params: Promise<{ id: string }> }
