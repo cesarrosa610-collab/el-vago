@@ -190,7 +190,14 @@ export default function InvestigationClient({
       if (r.ok) {
         setProgress(j.progress);
         setStatus(j.status);
-        setMessage('Hipótesis registrada. El expediente está listo para su cierre.');
+
+        if (j.correct === false) {
+          setMessage('Hipótesis descartada: no explica todas las evidencias. El expediente sigue abierto; puedes evaluar la otra hipótesis.');
+          setTab('Hipótesis');
+          return;
+        }
+
+        setMessage('Hipótesis correcta. La investigación ha sido resuelta.');
         await refreshNarrative();
         goToSection('Cierre');
       } else {
