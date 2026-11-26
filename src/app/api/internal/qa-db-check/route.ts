@@ -29,7 +29,7 @@ export async function GET() {
       ok: true,
       databaseConnected: true,
       qaTargetMatch,
-      databaseName: parsed.pathname.replace(/^\\//, ''),
+      databaseName: parsed.pathname.slice(1),
     });
   } catch {
     return NextResponse.json(
