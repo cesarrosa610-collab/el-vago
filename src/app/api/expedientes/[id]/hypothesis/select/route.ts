@@ -123,6 +123,18 @@ export async function POST(
     );
   }
 
+  // Incorrect hypotheses must not complete or lock the investigation.
+  if (!h.isCorrect) {
+    return NextResponse.json({
+      ok: true,
+      correct: false,
+      completed: false,
+      selectedHypothesisId: null,
+      progress: investigation.progress,
+      status: investigation.status,
+    });
+  }
+
   const updated = await prisma.investigation.update({
     where: {
       id: investigation.id,

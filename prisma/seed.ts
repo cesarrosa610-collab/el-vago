@@ -2,9 +2,15 @@ import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcryptjs';
 const p = new PrismaClient();
 async function main(){
- const hash=await bcrypt.hash('demo123',10);
- await p.user.upsert({where:{email:'demo@elvago.local'},update:{passwordHash:hash},create:{email:'demo@elvago.local',passwordHash:hash,role:'USER'}});
- await p.user.upsert({where:{email:'admin@elvago.local'},update:{passwordHash:hash,role:'ADMIN'},create:{email:'admin@elvago.local',passwordHash:hash,role:'ADMIN'}});
+ if(process.env.SEED_DEMO_USERS==='true'){
+  const adminPassword=process.env.SEED_ADMIN_PASSWORD;
+  const demoPassword=process.env.SEED_DEMO_PASSWORD;
+  if(!adminPassword || !demoPassword) throw new Error('SEED_ADMIN_PASSWORD and SEED_DEMO_PASSWORD are required when SEED_DEMO_USERS=true');
+  const adminHash=await bcrypt.hash(adminPassword,10);
+  const demoHash=await bcrypt.hash(demoPassword,10);
+  await p.user.upsert({where:{email:'demo@elvago.local'},update:{passwordHash:demoHash},create:{email:'demo@elvago.local',passwordHash:demoHash,role:'USER'}});
+  await p.user.upsert({where:{email:'admin@elvago.local'},update:{passwordHash:adminHash,role:'ADMIN'},create:{email:'admin@elvago.local',passwordHash:adminHash,role:'ADMIN'}});
+ }
  const cases=[
  {code:'EV-EXP-001',title:'La Habitación 317',slug:'la-habitacion-317',description:'Una habitación que no debería existir. Una llamada. Una fecha imposible.',conclusionTitle:'La habitación sí existió',conclusion:'Las inconsistencias no fueron un simple error administrativo: alguien alteró los registros para ocultar la existencia de la 317 y conectar el incidente de 1987 con el de 1991.',e:[['E-001','La llamada','02:58:41. Una llamada quedó registrada antes de que el teléfono fuera instalado.',0],['E-002','La puerta','Una puerta marcada con 317 aparece en un plano donde el tercer piso termina en la 316.',1],['E-003','VHS 17/09/1991','Una cinta contiene imágenes de la habitación y una persona que no figura en ningún registro.',2],['E-004','Uniforme de 1987','Una prenda encontrada dentro de la habitación conecta el caso con un incidente anterior.',3],['E-005','Registros del hotel','Los registros de ocupación contradicen la existencia de la habitación.',3]],
  c:[['C-001','La hora','Las tres fuentes independientes apuntan a las 03:17.',2],['C-002','El huésped ausente','Un nombre aparece en un documento que oficialmente nunca existió.',3]],
